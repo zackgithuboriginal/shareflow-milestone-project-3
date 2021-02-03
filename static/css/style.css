@@ -1,0 +1,52 @@
+html {
+  font-size: 62.5%;
+}
+
+nav.navbar {
+    background-color: #89A6FB;
+}
+
+.navbar a.navbar-brand {
+    color: #ffffff;
+}
+
+.navbar li.nav-item a.nav-link {
+    color: #ffffff;
+}
+
+@media (min-width: 960px){
+    nav.navbar {
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        height: 100vh;
+        width: 30rem;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, .4);
+    }
+
+    div.collapse.navbar-collapse ul.navbar-nav {
+        flex-direction: column;
+    }
+
+    main.container {
+        position: relative;
+        margin-left: 2rem;
+    }
+
+    .navbar ul {
+        margin-top: 4rem;
+        margin-left: 5rem;
+    }
+
+    .navbar a.navbar-brand {
+        font-size: 5rem;
+        text-align: center;
+        margin: 3rem 0 0 0;
+    }
+    
+    .navbar li.nav-item a.nav-link {
+        padding: 1rem;
+        font-size: 2.2rem;
+    }
+
+}
