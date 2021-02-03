@@ -1,7 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
-    redirect, request, session, url_for)
+    Flask, flash, render_template, redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -16,9 +15,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
-def testFlaskApp():
-    return "Flask test"
+@app.route("/get_posts")
+def get_posts():
+    posts = list(mongo.db.posts.find())
+    return render_template("posts.html", posts=posts)
 
 
 if __name__ == "__main__":
