@@ -3,9 +3,12 @@ html {
 }
 
 nav.navbar {
+    position: fixed;
     background-color: #89A6FB;
     height: 6rem;
-    padding: 0 1rem;
+    padding: 0;
+    width: 100vw;
+    box-shadow: 0 2px rgba(0, 0, 0, .3);
 }
 
 div.collapse.navbar-collapse {
@@ -13,12 +16,36 @@ div.collapse.navbar-collapse {
 }
 
 .navbar a.navbar-brand {
+    position: absolute;
     font-size: 3rem;
     color: #ffffff;
+    margin-left: 1rem;
+}
+
+button.navbar-toggler {
+    position: absolute;
+    right: 1rem;
+    margin-right: 1rem;
 }
 
 .navbar li.nav-item a.nav-link {
-    padding: 1rem;
-    font-size: 2rem;
+    padding: .5rem;
+    font-size: 1.8rem;
     color: #ffffff;
+}
+
+.navbar-nav {
+    margin-top: 6rem;
+    background-color: #89A6FB;
+}
+
+@media (min-width: 768px) {
+    .navbar li.nav-item a.nav-link {
+        padding: 1rem;
+        font-size: 2rem;
+    }
+    
+    .navbar-nav {
+        margin: 0;
+    }
 }
