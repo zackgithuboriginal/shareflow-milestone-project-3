@@ -4,11 +4,13 @@ html {
 
 nav.navbar {
     position: fixed;
+    top:0;
     background-color: #89A6FB;
     height: 6rem;
     padding: 0;
     width: 100vw;
     box-shadow: 0 2px rgba(0, 0, 0, .3);
+    z-index: 10;
 }
 
 div.collapse.navbar-collapse {
@@ -39,6 +41,11 @@ button.navbar-toggler {
     margin-top: 6rem;
     background-color: #89A6FB;
     box-shadow: 0 2px rgba(0, 0, 0, .3);
+}
+
+.main-container {
+    position: relative;
+    margin-top: 6rem;
 }
 
 @media (min-width: 768px) {

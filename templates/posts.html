@@ -1,5 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-    
+<section class="main-container">
+    {% if posts|length > 0 %}
+        {% for post in posts %}
+        <div class="col-12 col-lg-6">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h4>{{ post.topic_name }}</h4>
+                    <h3 class="card-title">{{ post.post_title }}</h3>
+                    <h5 class="card-subtitle mb-2 text-muted">{{ post.author }}</h5>
+                    <p class="card-text">{{ post.post_content }}</p>
+                    <p class="card-text">{{ post.post_date }}</p>
+                    <p class="card-text">{{ post.pluses }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</section>
+
 {% endblock %}
