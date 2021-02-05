@@ -46,15 +46,120 @@ button.navbar-toggler {
 .main-container {
     position: relative;
     margin-top: 6rem;
+    padding-top: 2rem;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Post Styling */
+.post-details {
+    margin-left: 1rem;
+}
+
+.sidebar {
+    width: 100%;
+    padding: 0;
+    height: 5rem;
+}
+
+.sidebar .row {
+    padding: 0;
+}
+
+.post-card {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px;
+    max-width: 90vw;
+    background-color: rgba(245, 244, 244, .5);
+    min-height: 25rem;
+    height: 25rem;
+    box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
+}
+
+.post-title, .post-topic {
+    font-size: 2.4rem;
+}
+
+.post-text, .post-author {
+    font-size: 1.6rem;
+}
+
+.post-pluses {
+    padding: 0;
+    color: #ffffff;
+    font-size: 1.4rem;
+}
+
+.sidebar i {
+    padding: 0;
+    color: #ffffff;
+    font-size: 2.5rem;
+}
+
+.card-body.row {
+    padding: 0;
+}
+
+/* Topic Styling */
+.sport {
+    color: #0075F2;
+}
+
+.sport-sidebar {
+    background-color: rgba(0, 117, 242, .6);
+}
+
+.entertainment {
+    color: #78C3FB;
+}
+
+.global-news {
+    color: #1B263B;
+}
+
+.general {
+    color: #415A77;
+}
+
+.politics {
+    color: #7697F9;
 }
 
 @media (min-width: 768px) {
     .navbar li.nav-item a.nav-link {
         padding: 1rem;
     }
-    
+
     .navbar-nav {
         margin: 0;
         box-shadow: none;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        width: 7rem;
+        padding: 1rem;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .post-pluses {
+        text-align: center
+    }
+
+    .post-votes {
+        display: flex;
+    }
+
+    .post-comments {
+        display: flex;
+    }
+
+    .sidebar i {
+        margin-bottom: .5rem;
+        text-align: center;
     }
 }
