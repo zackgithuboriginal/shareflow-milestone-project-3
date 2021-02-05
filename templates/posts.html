@@ -4,17 +4,17 @@
 <section class="main-container">
     {% if posts|length > 0 %}
         {% for post in posts %}
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-xl-6">
             <div class="post-card card">
                 <div class="card-body row">
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
-                            <i class="col-6 col-md-12 fas fa-plus"></i>
-                            <p class="col-6 col-md-12 post-pluses">{{ post.pluses }}</p>
+                            <i class="col-12 fas fa-plus"></i>
+                            <p class="col-12 post-pluses">{{ post.pluses }}</p>
                         </div>
                         <div class="post-comments row">
-                            <i class="col-6 col-md-12 fas fa-comments"></i>
-                            <p class="col-6 col-md-12 post-pluses">Engage</p>
+                            <i class="col-12 fas fa-comments"></i>
+                            <p class="col-12 post-pluses">Engage</p>
                         </div>
                     </div>
                     <div class="post-details col col-md-10">

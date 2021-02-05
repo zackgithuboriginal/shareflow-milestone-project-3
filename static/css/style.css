@@ -2,6 +2,10 @@ html {
   font-size: 62.5%;
 }
 
+.row {
+    padding: 0;
+}
+
 nav.navbar {
     position: fixed;
     top:0;
@@ -58,13 +62,14 @@ button.navbar-toggler {
 }
 
 .sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     width: 100%;
     padding: 0;
-    height: 5rem;
-}
-
-.sidebar .row {
-    padding: 0;
+    height: 5.5rem;
+    margin:0;
+    max-width: 100%;
 }
 
 .post-card {
@@ -99,7 +104,15 @@ button.navbar-toggler {
 }
 
 .card-body.row {
+    max-width:100%;
     padding: 0;
+    margin: 0;
+}
+
+.post-comments, .post-votes  {
+    text-align: center;
+    margin: 0;
+    padding: .5rem;
 }
 
 /* Topic Styling */
@@ -138,7 +151,6 @@ button.navbar-toggler {
     }
 
     .sidebar {
-        display: flex;
         flex-direction: column;
         width: 7rem;
         padding: 1rem;
@@ -150,16 +162,21 @@ button.navbar-toggler {
         text-align: center
     }
 
-    .post-votes {
+    .post-votes, .post-comments  {
         display: flex;
-    }
-
-    .post-comments {
-        display: flex;
+        padding: 0;
     }
 
     .sidebar i {
         margin-bottom: .5rem;
         text-align: center;
+    }
+
+    .post-details {
+        padding: 0;
+    }
+
+    .post-card {
+        max-width: 80vw;
     }
 }
