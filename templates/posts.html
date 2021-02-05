@@ -2,10 +2,13 @@
 {% block content %}
 
 <section class="main-container">
+    <div class="filter-options">
+        <h3 class="filter-control">Sort By:</h3>
+        <h3 class="filter-control">Filter Posts</h3>
+    </div>
     {% if posts|length > 0 %}
         {% for post in posts %}
-        <div class="col-12 col-xl-6">
-            <div class="post-card card">
+            <div class="col-12 col-xl-6 post-card card">
                 <div class="card-body row">
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
@@ -26,7 +29,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
     {% endif %}
 </section>
