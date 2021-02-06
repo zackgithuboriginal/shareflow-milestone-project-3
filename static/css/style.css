@@ -49,16 +49,15 @@ button.navbar-toggler {
 
 .main-container {
     position: relative;
-    margin-top: 6rem;
-    padding-top: 2rem;
+    padding-top: 8rem;
     max-width: 90vw;
+    min-height:100vh;
     margin-left: auto;
     margin-right: auto;
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100vw;
