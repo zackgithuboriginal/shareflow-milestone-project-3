@@ -102,7 +102,8 @@ button.navbar-toggler {
     min-height: 25rem;
     height: 25rem;
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
-    margin-bottom: 7rem;
+    margin-bottom: 5rem;
+    padding: 0;
 }
 
 .post-title, .post-topic {
@@ -150,16 +151,36 @@ button.navbar-toggler {
     color: #78C3FB;
 }
 
-.global-news {
+.entertainment-sidebar {
+    background-color: rgba(120, 195, 251, .6);
+}
+
+.-news {
     color: #1B263B;
+}
+
+.news-sidebar {
+    background-color: rgba(27, 38, 59, .6);
 }
 
 .general {
     color: #415A77;
 }
 
+.general-sidebar {
+    background-color: rgba(65, 90, 119, .6);
+}
+
 .politics {
     color: #7697F9;
+}
+
+.politics-sidebar {
+    background-color: rgba(118, 151, 249, .6);
+}
+
+.card-container {
+    justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -181,12 +202,21 @@ button.navbar-toggler {
     }
 
     .post-pluses {
-        text-align: center
+        text-align: center;
+        margin-bottom: 0;
     }
 
     .post-votes, .post-comments  {
         display: flex;
         padding: 0;
+    }
+
+    .post-comments {
+        margin-bottom: 1rem;
+    }
+
+    .post-votes {
+        margin-top: 1rem;
     }
 
     .sidebar i {
@@ -210,5 +240,9 @@ button.navbar-toggler {
 @media (min-width: 1140px) {
     .filter-options {
         max-width: 50vw;
+    }
+
+    .post-card {
+        max-width: 45vw;
     }
 }
