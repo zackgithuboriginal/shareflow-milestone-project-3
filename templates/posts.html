@@ -7,9 +7,9 @@
         <h3 class="filter-control">Filter Posts</h3>
     </div>
     {% if posts|length > 0 %}
-        <div class="card-container row">
+        <div class="card-container">
             {% for post in posts %}
-                <div class="col-12 col-xl-6 post-card card">
+                <div class=" post-card card">
                     <div class="card-body row">
                         <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                             <div class="post-votes row">

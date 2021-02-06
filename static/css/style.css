@@ -206,6 +206,8 @@ footer {
 }
 
 .card-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -256,6 +258,7 @@ footer {
 
     .post-card {
         max-width: 80vw;
+        width: 80vw;
     }
 
     .filter-options {
@@ -279,6 +282,18 @@ footer {
     }
 
     .post-card {
-        max-width: 45vw;
+        max-width: 50vw;
+    }
+}
+
+@media (min-width: 2000px) {
+    .card-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .post-card {
+        width: 100rem;
+        max-width: 40vw;
     }
 }
