@@ -83,7 +83,9 @@ footer {
 
 /* Post Styling */
 .post-details {
-    margin-left: 1rem;
+    padding: 1rem;
+    margin:0;
+    margin-top: -2rem;
 }
 
 .filter-options {
@@ -137,6 +139,18 @@ footer {
 
 .post-text, .post-author {
     font-size: 1.6rem;
+}
+
+.post-topic, .post-text,
+.post-title {
+    padding-top: .5rem;
+}
+
+.post-date {
+    position: absolute;
+    bottom: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
 }
 
 .post-pluses {
@@ -253,6 +267,8 @@ footer {
 
     .post-details {
         padding: 0;
+        margin-left: 1rem;
+        margin-top: 0;
     }
 
     .post-card {
@@ -277,11 +293,11 @@ footer {
 
 @media (min-width: 1140px) {
     .filter-options {
-        max-width: 50vw;
+        max-width: 60vw;
     }
 
     .post-card {
-        max-width: 50vw;
+        max-width: 60vw;
     }
 }
 
