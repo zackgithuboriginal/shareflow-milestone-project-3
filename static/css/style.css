@@ -56,6 +56,31 @@ button.navbar-toggler {
     margin-right: auto;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    color: #89A6FB;
+    font-size: 1.8rem;
+    align-items: center;
+}
+
+.social-container, .copyright {
+    display: flex;
+}
+
+.copyright {
+    padding: 1rem;
+    margin: 0;
+}
+
+.social-container i {
+    font-size: 2.4rem;
+    padding: 1rem;
+}
+
 /* Post Styling */
 .post-details {
     margin-left: 1rem;
@@ -234,6 +259,16 @@ button.navbar-toggler {
 
     .filter-options {
         max-width: 80vw;
+    }
+    
+    footer {
+        flex-direction: row;
+        width: 100vw;
+        color: #89A6FB;
+        font-size: 1.8rem;
+        align-items: center;
+        justify-content: center;
+        line-height: 2rem;
     }
 }
 
