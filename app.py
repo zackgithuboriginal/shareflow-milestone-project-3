@@ -23,6 +23,11 @@ def get_posts():
     return render_template("posts.html", posts=posts)
 
 
+@app.route("/log_in")
+def log_in():
+    return render_template("log_in.html")
+
+    
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
