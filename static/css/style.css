@@ -3,6 +3,16 @@ html {
     font-size: 62.5%;
 }
 
+body {
+    margin:0;
+    padding:0;
+}
+
+.page-container {
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 h1,
 h2,
 h3,
@@ -66,20 +76,29 @@ button.navbar-toggler {
     box-shadow: 0 2px rgba(0, 0, 0, .3);
 }
 
+header {
+    display: flex;
+    height: 6rem;
+}
+
+main {
+    padding-top: 2rem;
+    display: flex;
+    flex-grow: 1;
+}
+
 .main-container {
+    display: flex;
+    flex-direction: column;
     position: relative;
-    padding-top: 8rem;
     max-width: 90vw;
-    min-height:100vh;
     margin-left: auto;
     margin-right: auto;
 }
 
 footer {
-    position: relative;
     display: flex;
     flex-direction: column;
-    width: 100vw;
     color: #89A6FB;
     font-size: 1.8rem;
     align-items: center;
@@ -108,12 +127,13 @@ footer {
 }
 
 .filter-options {
+    width:100%;
     height: 6rem;
     display: flex;
     background-color: rgba(245, 244, 244, .5);
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
     flex-direction: row;
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
     margin-right: auto;
     margin-left: auto;
 }
