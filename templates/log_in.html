@@ -4,10 +4,22 @@
     <section class="main-container">
         <div class="login-container">
             <div class="login-form-side">
-                <h1 class="page-heading">Sign In</h1>
+                <h1 class="page-heading">Welcome Back!</h1>
+                <div class="sign-in-info">
+                    <ul>
+                        <li>Access your account</li>
+                        <li>Create and edit your posts</li>
+                        <li>Vote and comment on posts you like</li>
+                    </ul>
+                </div>
+                <div class="register-link-side">
+                    <h3>Don't have an account? &nbsp;</h3>
+                    <a href="{{ url_for('register') }}">Register Now!</a>
+                </div>
             </div>
             <div class="login-form-main">
                 <form class="login-form">
+                    <h2 class="login-title">Sign In</h2>
                     <label class="form-label" for="username">Username</label>
                     <input name="username" class="form-control" type="text" required>
                     <label class="form-label" for="password">Password</label>

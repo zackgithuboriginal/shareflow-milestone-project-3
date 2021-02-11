@@ -283,7 +283,7 @@ footer {
 .login-container {
     margin-top: 6rem;
     position: relative;
-    width: 80vw;
+    width: 90vw;
     max-width: 60rem;
     flex-direction: column;
 }
@@ -296,6 +296,7 @@ footer {
     box-shadow: 0rem .1rem .4rem rgba(0, 0, 0, .25);
     width: 80%;
     z-index: 5;
+    flex-direction: column;
 }
 
 .login-end-panel {
@@ -308,6 +309,7 @@ footer {
 }
 
 .page-heading {
+    text-align: center;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 3rem;
@@ -345,6 +347,11 @@ footer {
     box-shadow: 0rem .1rem .4rem rgba(0, 0, 0, .25);
 }
 
+.login-form-side li {
+    font-size: 1.8rem;
+    text-align: left;
+    line-height: 3rem;
+}
 
 .login-submit {
     margin: 0 auto;
@@ -356,22 +363,42 @@ footer {
     color: #ffffff;
 }
 
+.sign-in-info {
+    display: none;
+}
+
+.register-link-side {
+    display: none;
+}
+
 .register-link {
     color: #ffffff;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .register-link h3, .register-link a {
     font-size: 1.8rem;
     line-height: 2rem;
-    margin: 0;
+    margin: auto;
     text-decoration: none;
+    display: flex;
 }
 
 .register-link a {
     color: #ffffff;
     font-weight: 500;
     font-size: 2rem;
+}
+
+.login-title {
+    text-align: center;
+    display: flex;
+    margin: 0 auto 2rem auto;
+    font-size: 2.6rem;
+    color: #89A6FB;
 }
 
 @media (min-width: 768px) {
@@ -438,6 +465,52 @@ footer {
         align-items: center;
         justify-content: center;
         line-height: 2rem;
+    }
+
+    .sign-in-info {
+        display: flex;
+    }
+
+    .login-container {
+        flex-direction: row;
+    }
+
+    .login-form-side {
+        border-radius: 3rem 0 0 3rem;
+        padding: 3rem 2rem;
+        min-height: 45rem;
+        text-align: center;
+        margin: 0 auto;
+        justify-content: space-between;
+    }
+
+    .login-form-main {
+        border-radius: 0 3rem 3rem 0;
+    }
+
+    .page-heading {
+        margin: 0;
+        font-size: 3.6rem;
+    }
+    .login-end-panel{
+        display: none;
+    }
+    
+    .register-link-side {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .register-link-side a {
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 2rem;
+    }
+
+    .register-link-side a,
+    .register-link-side h3 {
+        display: flex;
+        margin: auto;
     }
 }
 
