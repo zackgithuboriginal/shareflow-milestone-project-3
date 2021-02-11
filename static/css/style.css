@@ -6,6 +6,7 @@ html {
 body {
     margin:0;
     padding:0;
+    overflow-x: hidden;
 }
 
 .page-container {
@@ -261,6 +262,116 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+
+/* Login Styling */
+
+.login-container,
+.login-form-side,
+.login-end-panel,
+.login-form,
+.login-form-main,
+.login-form-main form,
+.register-link {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.login-container {
+    margin-top: 6rem;
+    position: relative;
+    width: 80vw;
+    max-width: 60rem;
+    flex-direction: column;
+}
+
+.login-form-side {
+    height: 10rem;
+    border-radius: 4rem 4rem 0 0;
+    color: #ffffff;
+    background-color: #89A6FB;
+    box-shadow: 0rem .1rem .4rem rgba(0, 0, 0, .25);
+    width: 80%;
+    z-index: 5;
+}
+
+.login-end-panel {
+    background-color: #89A6FB;
+    width: 80%;
+    height: 6rem;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0rem .1rem .4rem rgba(0, 0, 0, .25);
+}
+
+.page-heading {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 3rem;
+    letter-spacing: .2rem;
+    font-weight: 500;
+}
+
+.login-form {
+    flex-direction: column;
+    width: 80%;
+}
+
+.login-form input {
+    margin-top: .2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    font-size: 1.8rem;
+    box-shadow: 0 2px rgba(185, 185, 185, 0.3);
+}
+
+.login-form label {
+    font-size: 1.8rem;
+    color: #89A6FB;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.login-form-main {
+    padding-top: 2rem;
+    padding-bottom : 2rem;
+    width: 80%;
+    min-height: 30rem;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, .1);
+    box-shadow: 0rem .1rem .4rem rgba(0, 0, 0, .25);
+}
+
+
+.login-submit {
+    margin: 0 auto;
+    background-color: rgba(7, 156, 131, .8);
+    height: 4.5rem;
+    width: 12rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.register-link {
+    color: #ffffff;
+    margin: auto;
+}
+
+.register-link h3, .register-link a {
+    font-size: 1.8rem;
+    line-height: 2rem;
+    margin: 0;
+    text-decoration: none;
+}
+
+.register-link a {
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 2rem;
 }
 
 @media (min-width: 768px) {

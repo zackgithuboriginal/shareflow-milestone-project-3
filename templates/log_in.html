@@ -1,4 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-
+    
+    <section class="main-container">
+        <div class="login-container">
+            <div class="login-form-side">
+                <h1 class="page-heading">Sign In</h1>
+            </div>
+            <div class="login-form-main">
+                <form class="login-form">
+                    <label class="form-label" for="username">Username</label>
+                    <input name="username" class="form-control" type="text" required>
+                    <label class="form-label" for="password">Password</label>
+                    <input name="password" class="form-control" type="text" required>
+                    <label class="form-label" for="repeat-password">Re-Enter Password</label>
+                    <input name="repeat-password" class="form-control" type="text" required>
+                    <button class="form-control login-submit" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="login-end-panel">
+                <div class="register-link">
+                    <h3>Don't have an account? &nbsp;</h3>
+                    <a href="{{ url_for('register') }}">Register Now!</a>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
