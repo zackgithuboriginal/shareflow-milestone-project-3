@@ -1,4 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-
+    
+    <section class="main-container">
+        <div class="register-container">
+            <div class="register-form-main">
+                <form class="registration-form">
+                    <h2 class="form-title">Register</h2>
+                    <div class="input-container">
+                        <label class="form-label" for="username">Username</label>
+                        <input name="username" class="form-control" type="text" required>
+                        <label class="form-label" for="password">Password</label>
+                        <input name="password" class="form-control" type="text" required>
+                        <label class="form-label" for="password">Re Type Password</label>
+                        <input name="password" class="form-control" type="text" required>
+                    </div>
+                    <button class="form-control login-submit" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="register-end-panel">
+                <div class="alternate-link">
+                    <h3>Don't have an account? &nbsp;</h3>
+                    <a href="{{ url_for('register') }}">Register Now!</a>
+                </div>
+            </div>
+            <div class="register-form-side">
+                <h1 class="page-heading">Nice to meet you!</h1>
+                <div class="sign-in-info">
+                    <ul>
+                        <li>Access your account</li>
+                        <li>Create and edit your posts</li>
+                        <li>Vote and comment on posts you like</li>
+                    </ul>
+                </div>
+                <div class="alternate-link-side">
+                    <h3>Don't have an account? &nbsp;</h3>
+                    <a href="{{ url_for('register') }}">Register Now!</a>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
