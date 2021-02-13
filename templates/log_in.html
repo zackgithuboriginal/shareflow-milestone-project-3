@@ -12,25 +12,25 @@
                         <li>Vote and comment on posts you like</li>
                     </ul>
                 </div>
-                <div class="register-link-side">
+                <div class="alternate-link-side">
                     <h3>Don't have an account? &nbsp;</h3>
                     <a href="{{ url_for('register') }}">Register Now!</a>
                 </div>
             </div>
             <div class="login-form-main">
                 <form class="login-form">
-                    <h2 class="login-title">Sign In</h2>
-                    <label class="form-label" for="username">Username</label>
-                    <input name="username" class="form-control" type="text" required>
-                    <label class="form-label" for="password">Password</label>
-                    <input name="password" class="form-control" type="text" required>
-                    <label class="form-label" for="repeat-password">Re-Enter Password</label>
-                    <input name="repeat-password" class="form-control" type="text" required>
+                    <h2 class="form-title">Sign In</h2>
+                    <div class="input-container">
+                        <label class="form-label" for="username">Username</label>
+                        <input name="username" class="form-control" type="text" required>
+                        <label class="form-label" for="password">Password</label>
+                        <input name="password" class="form-control" type="text" required>
+                    </div>
                     <button class="form-control login-submit" type="submit">Submit</button>
                 </form>
             </div>
             <div class="login-end-panel">
-                <div class="register-link">
+                <div class="alternate-link">
                     <h3>Don't have an account? &nbsp;</h3>
                     <a href="{{ url_for('register') }}">Register Now!</a>
                 </div>
