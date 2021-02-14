@@ -286,6 +286,7 @@ footer {
 
 .login-container,
 .register-container {
+    min-height: 60rem;
     margin-top: 6rem;
     position: relative;
     width: 90vw;
@@ -360,11 +361,12 @@ form.registration-form {
 
 .login-form-main,
 .register-form-main {
-    padding-top: 2rem;
+    padding-top: 4rem;
     padding-bottom : 2rem;
     width: 80%;
     min-height: 30rem;
     flex-direction: column;
+    flex-grow: 1;
     background-color: rgba(211, 211, 211, .1);
     box-shadow: 0rem .1rem .4rem rgba(0, 0, 0, .25);
 }
@@ -513,6 +515,7 @@ form.registration-form {
     .login-container,
     .register-container {
         flex-direction: row;
+        min-height: 50rem;
     }
 
     .login-form-side,
@@ -526,6 +529,7 @@ form.registration-form {
 
     .login-form-side {
         border-radius: 3rem 0 0 3rem;
+        height: 100%;
     }
 
     .login-form-main {
@@ -533,12 +537,12 @@ form.registration-form {
     }
     
     .register-form-side {
+        height: 100%;
         order: 2;
         border-radius: 0 3rem 3rem 0;
     }
 
     .register-form-main {
-        order: 1;
         border-radius: 3rem 0 0 3rem;
     }
 
