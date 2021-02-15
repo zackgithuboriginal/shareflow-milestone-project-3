@@ -8,9 +8,9 @@
                     <h2 class="form-title">Register</h2>
                     <div class="input-container">
                         <label class="form-label" for="username">Username</label>
-                        <input name="username" class="form-control" type="text" required>
+                        <input id="username" name="username" class="form-control" type="text" minlength="4" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
                         <label class="form-label" for="password">Password</label>
-                        <input name="password" class="form-control" type="text" required>
+                        <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required>
                         <label class="form-label" for="password">Re Type Password</label>
                         <input name="password" class="form-control" type="text" required>
                     </div>
