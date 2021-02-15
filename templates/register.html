@@ -4,7 +4,7 @@
     <section class="main-container">
         <div class="register-container">
             <div class="register-form-main">
-                <form class="registration-form">
+                <form class="registration-form"  method="POST" action="{{ url_for('register') }}">
                     <h2 class="form-title">Register</h2>
                     <div class="input-container">
                         <label class="form-label" for="username">Username</label>
