@@ -29,8 +29,16 @@ def log_in():
     return render_template("log_in.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+
+        mongo.db.users.insert_one(register)
+
     return render_template("register.html")
 
 
