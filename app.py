@@ -36,7 +36,7 @@ def register():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            flash("Username unavailable, please try again.")
+            flash("Username unavailable.")
             return redirect(url_for("register"))
 
         register = {
@@ -45,6 +45,9 @@ def register():
         }
 
         mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Complete")
 
     return render_template("register.html")
 
