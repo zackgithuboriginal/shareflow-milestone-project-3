@@ -32,6 +32,13 @@ def log_in():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username unavailable, please try again.")
+            return redirect(url_for("register"))
+
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
