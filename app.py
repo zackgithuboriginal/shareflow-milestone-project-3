@@ -24,6 +24,11 @@ def get_posts():
     return render_template("posts.html", posts=posts)
 
 
+@app.route("/topics")
+def topics():
+    return render_template("topics.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
