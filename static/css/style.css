@@ -442,7 +442,43 @@ form.registration-form {
     flex-direction: column;
 }
 
+/* Topic Styling */
+.topic-card-container {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+}
+
+.topic-card {
+    display: flex;
+    flex: 1 0 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.card-inner {
+    display: flex;
+    height: 35rem;
+    width: 25rem;
+    background-color: #0075F2;
+    flex-direction: column;
+}
+.topic-card-img {
+    display: flex;   
+}
+
+.topic-card-body {
+    display: flex;
+}
+
 @media (min-width: 768px) {
+
+    .topic-card {
+        flex-basis: 50%;
+    }
+
     .navbar li.nav-item a.nav-link {
         padding: 1rem;
     }
@@ -575,6 +611,11 @@ form.registration-form {
 }
 
 @media (min-width: 1140px) {
+
+    .topic-card {
+        flex-basis: 33.3333%;
+    }
+
     .filter-options {
         max-width: 60vw;
     }
