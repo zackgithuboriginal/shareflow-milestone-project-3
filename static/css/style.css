@@ -7,6 +7,13 @@ body {
     margin:0;
     padding:0;
     overflow-x: hidden;
+    display: flex;
+    background-color: #1B263B;
+}
+
+main.container-flex {
+    display: flex;
+    flex-direction: column;
 }
 
 .page-container {
@@ -14,6 +21,23 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+
+.title-container {
+    display: flex;
+    width: 100vw;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 8rem;
+    white-space: nowrap;
+    margin: 0 auto;
+    color: rgba(137, 166, 251, .5);
+}
+
 h1,
 h2,
 h3,
@@ -636,8 +660,18 @@ form.registration-form {
 
 @media (min-width: 1140px) {
 
+    .main-container {
+        margin: 0;
+        max-width: 100vw;
+        padding-left: 24rem;
+    }
+
     .topic-card {
         flex-basis: 33.3333%;
+    }
+
+    .topic-card-container {
+        max-width: 60vw;
     }
 
     .filter-options {
@@ -646,6 +680,26 @@ form.registration-form {
 
     .post-card {
         max-width: 60vw;
+    }
+
+    .title-container {
+        width: 24rem;
+        position: absolute;
+        height: 100vh;
+        margin-top: -8rem;
+    }
+
+    .page-title {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        position: absolute;
+        font-size: 20rem;
+        white-space: nowrap;
+        margin: 0 auto;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+        color: rgba(137, 166, 251, .5);
     }
 }
 
