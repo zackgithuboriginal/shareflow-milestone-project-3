@@ -218,6 +218,10 @@ footer {
 }
 
 /* Topic Styling */
+.all-sidebar {
+    background-color: rgba(245, 244, 244, .6);
+}
+
 .sport {
     color: #0075F2;
 }
@@ -455,22 +459,42 @@ form.registration-form {
     display: flex;
     flex: 1 0 100%;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 6rem;
 }
 
 .card-inner {
     display: flex;
-    height: 35rem;
+    height: 100%;
     width: 25rem;
-    background-color: #0075F2;
     flex-direction: column;
 }
+
 .topic-card-img {
-    display: flex;   
+    height: 100%;
+    width: auto;
+    bottom: 0;
+    right: 0;
+    position: absolute
 }
 
 .topic-card-body {
+    height: 10rem;
     display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.topic-card-title {
+    display: flex;
+    margin: auto 0;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.card-img-container {
+    height: 25vh;
+    overflow: hidden;
+    position: relative;
 }
 
 @media (min-width: 768px) {
