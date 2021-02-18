@@ -1,40 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
-    
-    <section class="main-container">
-        <div class="login-container">
-            <div class="login-form-side">
-                <h1 class="page-heading">Welcome Back!</h1>
-                <div class="sign-in-info">
-                    <ul>
-                        <li>Access your account</li>
-                        <li>Create and edit your posts</li>
-                        <li>Vote and comment on posts you like</li>
-                    </ul>
-                </div>
-                <div class="alternate-link-side">
-                    <h3>Don't have an account? &nbsp;</h3>
-                    <a href="{{ url_for('register') }}">Register Now</a>
-                </div>
+
+<div class="title-container">
+    <h1 class="page-title">Sign In</h1>
+</div>
+<section class="main-container">
+    <div class="login-container">
+        <div class="login-form-side">
+            <h1 class="page-heading">Welcome Back!</h1>
+            <div class="sign-in-info">
+                <ul>
+                    <li>Access your account</li>
+                    <li>Create and edit your posts</li>
+                    <li>Vote and comment on posts you like</li>
+                </ul>
             </div>
-            <div class="login-form-main">
-                <form class="login-form" method="POST" action="{{ url_for('log_in') }}">
-                    <h2 class="form-title">Sign In</h2>
-                    <div class="input-container">
-                        <label class="form-label" for="username">Username</label>
-                        <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" required>
-                        <label class="form-label" for="password">Password</label>
-                        <input id="password" name="password" class="form-control" type="password"  minlength="6" maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
-                    </div>
-                    <button class="form-control login-submit" type="submit">Submit</button>
-                </form>
-            </div>
-            <div class="login-end-panel">
-                <div class="alternate-link">
-                    <h3>Don't have an account? &nbsp;</h3>
-                    <a href="{{ url_for('register') }}">Register Now</a>
-                </div>
+            <div class="alternate-link-side">
+                <h3>Don't have an account? &nbsp;</h3>
+                <a href="{{ url_for('register') }}">Register Now</a>
             </div>
         </div>
-    </section>
+        <div class="login-form-main">
+            <form class="login-form" method="POST" action="{{ url_for('log_in') }}">
+                <h2 class="form-title">Sign In</h2>
+                <div class="input-container">
+                    <label class="form-label" for="username">Username</label>
+                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" required>
+                    <label class="form-label" for="password">Password</label>
+                    <input id="password" name="password" class="form-control" type="password"  minlength="6" maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
+                </div>
+                <button class="form-control login-submit" type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="login-end-panel">
+            <div class="alternate-link">
+                <h3>Don't have an account? &nbsp;</h3>
+                <a href="{{ url_for('register') }}">Register Now</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

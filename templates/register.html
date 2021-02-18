@@ -1,42 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
     
-    <section class="main-container">
-        <div class="register-container">
-            <div class="register-form-main">
-                <form class="registration-form"  method="POST" action="{{ url_for('register') }}">
-                    <h2 class="form-title">Register</h2>
-                    <div class="input-container">
-                        <label class="form-label" for="username">Username</label>
-                        <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" required>
-                        <label class="form-label" for="password">Password</label>
-                        <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
-                        <label class="form-label" for="password">Re Type Password</label>
-                        <input name="password" class="form-control" type="text" required>
-                    </div>
-                    <button class="form-control login-submit" type="submit">Submit</button>
-                </form>
-            </div>
-            <div class="register-end-panel">
-                <div class="alternate-link">
-                    <h3>Already Registered? &nbsp;</h3>
-                    <a href="{{ url_for('log_in') }}">Sign In</a>
+<div class="title-container">
+    <h1 class="page-title">Register</h1>
+</div>
+<section class="main-container">
+    <div class="register-container">
+        <div class="register-form-main">
+            <form class="registration-form"  method="POST" action="{{ url_for('register') }}">
+                <h2 class="form-title">Register</h2>
+                <div class="input-container">
+                    <label class="form-label" for="username">Username</label>
+                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" required>
+                    <label class="form-label" for="password">Password</label>
+                    <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
+                    <label class="form-label" for="password">Re Type Password</label>
+                    <input name="password" class="form-control" type="text" required>
                 </div>
-            </div>
-            <div class="register-form-side">
-                <h1 class="page-heading">Nice to meet you!</h1>
-                <div class="sign-in-info">
-                    <ul>
-                        <li>Access your account</li>
-                        <li>Create and edit your posts</li>
-                        <li>Vote and comment on posts you like</li>
-                    </ul>
-                </div>
-                <div class="alternate-link-side">
-                    <h3>Already Registered? &nbsp;</h3>
-                    <a href="{{ url_for('log_in') }}">Sign In</a>
-                </div>
+                <button class="form-control login-submit" type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="register-end-panel">
+            <div class="alternate-link">
+                <h3>Already Registered? &nbsp;</h3>
+                <a href="{{ url_for('log_in') }}">Sign In</a>
             </div>
         </div>
-    </section>
+        <div class="register-form-side">
+            <h1 class="page-heading">Nice to meet you!</h1>
+            <div class="sign-in-info">
+                <ul>
+                    <li>Access your account</li>
+                    <li>Create and edit your posts</li>
+                    <li>Vote and comment on posts you like</li>
+                </ul>
+            </div>
+            <div class="alternate-link-side">
+                <h3>Already Registered? &nbsp;</h3>
+                <a href="{{ url_for('log_in') }}">Sign In</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
