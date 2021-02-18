@@ -313,7 +313,7 @@ footer {
 
 .login-container,
 .register-container {
-    min-height: 60rem;
+    height: 60rem;
     margin-top: 6rem;
     position: relative;
     width: 90vw;
@@ -598,7 +598,7 @@ form.registration-form {
     .login-container,
     .register-container {
         flex-direction: row;
-        min-height: 50rem;
+        height: 50rem;
     }
 
     .login-form-side,
