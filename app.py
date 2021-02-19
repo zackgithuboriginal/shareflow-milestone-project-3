@@ -26,7 +26,8 @@ def get_posts():
 
 @app.route("/topics")
 def topics():
-    return render_template("topics.html")
+    topics = list(mongo.db.topics.find())
+    return render_template("topics.html", topics=topics)
 
 
 @app.route("/register", methods=["GET", "POST"])

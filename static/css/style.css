@@ -241,15 +241,19 @@ footer {
 }
 
 /* Topic Styling */
-.all-sidebar {
+.all-topics-sidebar {
     background-color: rgba(245, 244, 244, .6);
 }
 
-.sport {
+.all-topics-sidebar h5 {
+    color: #1B263B;
+}
+
+.sports {
     color: #0075F2;
 }
 
-.sport-sidebar {
+.sports-sidebar {
     background-color: rgba(0, 117, 242, .6);
 }
 
@@ -261,19 +265,19 @@ footer {
     background-color: rgba(120, 195, 251, .6);
 }
 
-.-news {
+.global-news {
     color: #1B263B;
 }
 
-.news-sidebar {
+.global-news-sidebar {
     background-color: rgba(27, 38, 59, .6);
 }
 
-.general {
+.thoughts {
     color: #415A77;
 }
 
-.general-sidebar {
+.thoughts-sidebar {
     background-color: rgba(65, 90, 119, .6);
 }
 
