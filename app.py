@@ -30,6 +30,12 @@ def topics():
     return render_template("topics.html", topics=topics)
 
 
+@app.route("/filter_topics/<topic>")
+def filter_topics(topic):
+    posts = list(mongo.db.posts.find({"topic_name": topic}))
+    return render_template("posts.html", posts=posts)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
