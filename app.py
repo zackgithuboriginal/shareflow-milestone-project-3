@@ -21,7 +21,8 @@ mongo = PyMongo(app)
 @app.route("/get_posts")
 def get_posts():
     posts = list(mongo.db.posts.find())
-    return render_template("posts.html", posts=posts)
+    topics = list(mongo.db.topics.find())
+    return render_template("posts.html", posts=posts, topics=topics)
 
 
 @app.route("/topics")
@@ -32,8 +33,9 @@ def topics():
 
 @app.route("/filter_topics/<topic>")
 def filter_topics(topic):
+    topics = list(mongo.db.topics.find())
     posts = list(mongo.db.posts.find({"topic_name": topic}))
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", posts=posts, topics=topics)
 
 
 @app.route("/register", methods=["GET", "POST"])

@@ -7,7 +7,13 @@
 <section class="main-container">
     <div class="filter-options">
         <h3 class="filter-control">Sort By:</h3>
-        <h3 class="filter-control">Filter Posts</h3>
+        <label for="id-dropdown" class="filter-control">Filter Posts</label>
+        <select class="filter-control" name="filter-dropdown" id="filter-dropdown">
+                <option class="filter-control" value="all">All Topics</option>
+            {% for topic in topics %}
+                <option class="filter-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
+            {% endfor %}
+        </select>
     </div>
     {% if posts|length > 0 %}
         <div class="card-container">

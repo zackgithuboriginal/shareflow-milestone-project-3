@@ -584,6 +584,10 @@ form.registration-form {
     .filter-options {
         max-width: 80vw;
     }
+
+    #filter-dropdown {
+        border: 0;
+    }
     
     footer {
         flex-direction: row;
