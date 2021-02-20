@@ -5,6 +5,16 @@
 </div>
 <section class="main-container">
     <div class="topic-card-container row">
+            <a class="topic-card" href="{{ url_for('get_posts') }}">
+                <div class="card-inner">
+                    <div class="card-img-container">
+                        <img class="topic-card-img" src="static/images/all-topics.jpg" alt="">
+                    </div>
+                    <div class="topic-card-body all-topics-sidebar">
+                        <h5 class="topic-card-title">All Topics</h5>
+                    </div>
+                </div>
+            </a>
         {% for topic in topics %}
             <a class="topic-card" href="{{ url_for('filter_topics', topic=topic.topic_name) }}">
                 <div class="card-inner">
