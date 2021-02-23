@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
+from datetime import date
 
 
 app = Flask(__name__)
@@ -80,6 +81,29 @@ def log_in():
             return redirect(url_for("log_in"))
 
     return render_template("log_in.html")
+
+
+@app.route("/create_post")
+def create_post():
+    topics = list(mongo.db.topics.find())
+    return render_template("create_post.html", topics=topics)
+
+
+@app.route("/add_post", methods=["GET", "POST"])
+def add_post():
+    if request.method == "POST":
+        post = {
+            "post_title": request.form.get("post_title"),
+            "post_content": request.form.get("post_content"),
+            "topic_name": request.form.get("post_topic"),
+            "post_date": date.today().strftime("%d/%m/%Y"),
+            "author": session["user"],
+            "pluses": 0,
+            "comments": {}
+        }
+        mongo.db.posts.insert_one(post)
+        flash("Post Successfully Added")
+        return redirect(url_for("get_posts"))
 
 
 if __name__ == "__main__":

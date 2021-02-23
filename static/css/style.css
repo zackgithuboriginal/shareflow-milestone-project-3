@@ -170,7 +170,9 @@ footer {
     margin-bottom: auto;
     font-size: 1.6rem;
     color: #7697F9;
+    font-family: 'Montserrat', sans-serif;
 }
+
 
 .sidebar {
     display: flex;
@@ -524,6 +526,12 @@ form.registration-form {
     position: relative;
 }
 
+
+.create-post-form {
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
 @media (min-width: 768px) {
 
     .topic-card {
@@ -587,6 +595,7 @@ form.registration-form {
 
     #filter-dropdown {
         border: 0;
+        background-color: rgba(245, 244, 244, .5);
     }
     
     footer {

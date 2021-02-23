@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="title-container">
+    <h1 class="page-title">Create</h1>
+</div>
+<section class="main-container">
+    <form class="row create-post-form" method="POST" action="{{ url_for('add_post') }}">
+        <label class="col-12" for="post_title">Your Title</label>
+        <input class="col-12 form-control"  type="text" id="post_title" name="post_title" placeholder="Post Title">
+        <label class="col-12"  for="post_content">Your Post</label>
+        <input class="col-12 form-control"  type="text" id="post_content" name="post_content" placeholder="Post Content">
+        <select class="col-12 form-control"  name="post_topic" id="post_topic">
+            {% for topic in topics %}
+                <option class="filter-control  form-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add</button>
+    </form>
+</section>
+{% endblock %}
