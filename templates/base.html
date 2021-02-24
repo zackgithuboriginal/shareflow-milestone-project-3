@@ -33,6 +33,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('account', username=session['user']) }}">My Account</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
+                            </li>
                         {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('log_in') }}">Log In</a>

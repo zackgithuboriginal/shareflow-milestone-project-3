@@ -73,6 +73,7 @@ def log_in():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Successfully Logged In")
+                return redirect(url_for("get_posts"))
             else:
                 flash("Incorrect Account Details")
                 return redirect(url_for("log_in"))
@@ -104,6 +105,14 @@ def add_post():
         mongo.db.posts.insert_one(post)
         flash("Post Successfully Added")
         return redirect(url_for("get_posts"))
+
+
+@app.route("/sign_out")
+def sign_out():
+    flash("Successfully signed out.")
+    session.pop("user")
+
+    return redirect(url_for("log_in"))
 
 
 @app.route("/account/<username>", methods=["GET", "POST"])
