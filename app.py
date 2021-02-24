@@ -51,7 +51,8 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "voted": []
         }
 
         mongo.db.users.insert_one(register)
@@ -113,6 +114,50 @@ def sign_out():
     session.pop("user")
 
     return redirect(url_for("log_in"))
+
+
+@app.route("/vote/<post_id>", methods=["GET", "POST"])
+def vote(post_id):
+    current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    current_vote = current_post["pluses"]
+
+    if session["user"]:
+        already_voted = mongo.db.users.find_one(
+            {"username": session["user"]})["voted"]
+        if post_id in already_voted:
+            update_vote = {
+                "$set": {
+                     "pluses": current_vote - 1
+                     }
+                     }
+            update_user = {
+                '$pull': {
+                     "voted": post_id
+                     }
+                     }
+            mongo.db.users.update_one(
+                {"username": session["user"]}, update_user)
+            mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
+            return redirect(url_for("get_posts"))
+        else:
+            update_vote = {
+                "$set": {
+                     "pluses": current_vote + 1
+                     }
+                     }
+            update_user = {
+                '$push': {
+                     "voted": post_id
+                     }
+                     }
+            mongo.db.users.update_one(
+                {"username": session["user"]}, update_user)
+            mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
+            return redirect(url_for("get_posts"))
+
+    flash("You must be signed in to vote.")
+
+    return
 
 
 @app.route("/account/<username>", methods=["GET", "POST"])
