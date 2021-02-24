@@ -106,6 +106,18 @@ def add_post():
         return redirect(url_for("get_posts"))
 
 
+@app.route("/account/<username>", methods=["GET", "POST"])
+def account(username):
+
+    if session["user"]:
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        posts = list(mongo.db.posts.find({"author": session["user"]}))
+        return render_template("account.html", username=username, posts=posts)
+
+    return redirect(url_for("login"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

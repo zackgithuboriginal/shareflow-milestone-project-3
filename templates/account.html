@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="title-container">
+    <h1 class="page-title">You</h1>
+</div>
+<section class="main-container">
+    {% if posts|length > 0 %}
+        <div class="card-container">
+            {% for post in posts %}
+                <div class=" post-card card">
+                    <div class="card-body row">
+                        <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
+                            <div class="post-votes row">
+                                <i class="col-12 fas fa-plus"></i>
+                                <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                            </div>
+                            <div class="post-comments row">
+                                <i class="col-12 fas fa-comments"></i>
+                                <p class="col-12 post-pluses">Engage</p>
+                            </div>
+                        </div>
+                        <div class="post-details col col-md-10">
+                            <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
+                            <h3 class="post-title">{{ post.post_title }}</h3>
+                            <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
+                            <p class="post-text">{{ post.post_content }}</p>
+                            <p class="post-date">{{ post.post_date }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}
