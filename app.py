@@ -121,7 +121,7 @@ def vote(post_id):
     current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     current_vote = current_post["pluses"]
 
-    if session["user"]:
+    if "user" in session:
         already_voted = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
         if post_id in already_voted:
@@ -154,10 +154,11 @@ def vote(post_id):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
             return redirect(url_for("get_posts"))
+    else:
+        alertUser("session")
+        return redirect(url_for("get_posts"))
 
-    flash("You must be signed in to vote.")
 
-    return
 
 
 @app.route("/account/<username>", methods=["GET", "POST"])
@@ -170,6 +171,12 @@ def account(username):
         return render_template("account.html", username=username, posts=posts)
 
     return redirect(url_for("login"))
+
+
+def alertUser(key):
+    if key == "session":
+        flash("You must be signed in to vote")
+    return "Ok"
 
 
 if __name__ == "__main__":
