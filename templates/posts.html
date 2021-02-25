@@ -19,6 +19,7 @@
         <div class="card-container">
             {% for post in posts %}
                 <div class=" post-card card">
+                    <div class="post-id-target" id="{{ post._id }}"></div>
                     <div class="card-body row">
                         <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                             <div class="post-votes row">

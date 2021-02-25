@@ -138,7 +138,7 @@ def vote(post_id):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            return redirect(url_for("get_posts"))
+            return redirect(url_for("get_posts", _anchor=post_id))
         else:
             update_vote = {
                 "$set": {
@@ -153,12 +153,10 @@ def vote(post_id):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            return redirect(url_for("get_posts"))
+            return redirect(url_for("get_posts", _anchor=post_id))
     else:
         alertUser("session")
         return redirect(url_for("get_posts"))
-
-
 
 
 @app.route("/account/<username>", methods=["GET", "POST"])
