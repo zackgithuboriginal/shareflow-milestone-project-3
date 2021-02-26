@@ -147,9 +147,11 @@ footer {
 
 /* Post Styling */
 .post-details {
-    padding: 1rem;
+    padding: 1rem 1rem;
     margin:0;
-    margin-top: -2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .filter-options {
@@ -213,10 +215,92 @@ footer {
     padding-top: .5rem;
 }
 
-.post-date {
-    position: absolute;
+.post-title-options {
+    line-height: 2.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+}
+
+.post-title-options button {
+    display: flex;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+    font-size: 2rem;
+    padding-top: .5rem;
+    line-height: 1.2;
+
+}
+.post-bottom {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
     bottom: 1rem;
     font-size: 1.2rem;
+    margin: 0;
+    padding-right: 2rem;
+}
+
+.post-bottom button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+    color: #212529;
+}
+
+.post-bottom a{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+    color: #212529;
+}
+
+.post-edit-options {
+    display: none;
+    position:absolute;
+    top: 75%;
+    background-color: rgba(27, 38, 59, .9);
+    box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
+    font-size: 2rem;
+    flex-direction: column;;
+    right: 0;
+    text-align: right;
+    width: 14rem;
+    padding: 1rem;
+}
+
+.post-edit-options i {
+    margin-left: .5rem;
+}
+
+.post-edit-options a, 
+.post-edit-options button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+    font-size: 2rem;
+    padding: .25rem 0;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.post-edit-options h4,
+.post-edit-options i {
+    margin: 0;
+    display: flex;
+    font-size: 1.6rem;
+}
+
+.post-date {
+    display: flex;
     margin: 0;
 }
 
@@ -586,7 +670,7 @@ form.registration-form {
     }
 
     .post-details {
-        padding: 0;
+        padding: .5rem 1rem;
         margin-left: 1rem;
         margin-top: 0;
     }
