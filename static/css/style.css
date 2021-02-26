@@ -264,7 +264,6 @@ footer {
     display: none;
     position:absolute;
     top: 75%;
-    background-color: rgba(27, 38, 59, .9);
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
     font-size: 2rem;
     flex-direction: column;;
@@ -331,6 +330,26 @@ footer {
 .post-id-target {
     position: absolute;
     top: -8rem;
+}
+
+.hvr-icon-spin {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-icon-spin .hvr-icon {
+  -webkit-transition-duration: 1.5;
+  transition-duration: 1.5s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+}
+.hvr-icon-spin:hover .hvr-icon, .hvr-icon-spin:focus .hvr-icon, .hvr-icon-spin:active .hvr-icon {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 /* Topic Styling */
