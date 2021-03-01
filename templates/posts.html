@@ -36,11 +36,11 @@
                                 <div class="post-title-options">
                                     <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
                                     {% if session['user'] == post.author or session['user'] == "admin" %}
-                                        <button onclick="displayOptions('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog"></i></button>
+                                        <button class="post-option-dropdown hvr-icon-spin" onclick="displayOptions('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
                                     {% endif %}
                                     <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
-                                        <button class="{{ post.topic_name }} hvr-icon-spin"><h4>Delete Post</h4><i class="fas fa-trash-alt hvr-icon"></i></button>
-                                        <a class="{{ post.topic_name }} hvr-icon-spin" href=""><h4>Edit Post</h4><i class="fas fa-pencil-alt hvr-icon"></i></a>
+                                        <button class="{{ post.topic_name }}"><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></button>
+                                        <a class="{{ post.topic_name }}" href=""><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
                                     </div>
                                 </div>
                                 <h3 class="post-title">{{ post.post_title }}</h3>

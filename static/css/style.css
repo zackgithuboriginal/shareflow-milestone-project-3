@@ -206,11 +206,15 @@ footer {
     font-size: 2.4rem;
 }
 
+.post-topic {
+    margin: 0;
+}
+
 .post-text, .post-author {
     font-size: 1.6rem;
 }
 
-.post-topic, .post-text,
+.post-text,
 .post-title {
     padding-top: .5rem;
 }
@@ -230,10 +234,14 @@ footer {
     border: none;
     background: none;
     font-size: 2rem;
-    padding-top: .5rem;
-    line-height: 1.2;
-
+    justify-content: center;
+    align-items: center;
 }
+
+.post-title-options button:active {
+    font-size: 2.2rem;
+}
+
 .post-bottom {
     display: flex;
     width: 100%;
@@ -263,7 +271,7 @@ footer {
 .post-edit-options {
     display: none;
     position:absolute;
-    top: 75%;
+    top: 90%;
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
     font-size: 2rem;
     flex-direction: column;;
@@ -271,6 +279,11 @@ footer {
     text-align: right;
     width: 14rem;
     padding: 1rem;
+}
+
+.post-option-dropdown{
+    font-size: 2.4rem;
+    min-height: 0;
 }
 
 .post-edit-options i {
