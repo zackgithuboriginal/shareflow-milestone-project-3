@@ -159,6 +159,13 @@ def vote(post_id):
         return redirect(url_for("get_posts"))
 
 
+@app.route("/delete_post/<post_id>")
+def delete_post(post_id):
+    mongo.db.posts.remove({"_id": ObjectId(post_id)})
+    flash("Post Deleted")
+    return redirect(url_for("get_posts"))
+
+
 @app.route("/account/<username>", methods=["GET", "POST"])
 def account(username):
 
