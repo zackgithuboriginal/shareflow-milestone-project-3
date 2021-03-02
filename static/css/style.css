@@ -120,6 +120,7 @@ main {
     max-width: 90vw;
     margin-left: auto;
     margin-right: auto;
+    height: 100%;
 }
 
 footer {
@@ -649,10 +650,79 @@ form.registration-form {
     position: relative;
 }
 
+/* CREATE POST */
 
 .create-post-form {
-    max-width: 80vw;
+    width: 80vw;
     margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 3rem;
+    padding: 4rem 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post-form-title {
+    display: flex;
+    font-size: 2.6rem;
+    color: #7697F9;
+    width: auto;
+    margin: 0 auto;
+
+}
+
+.create-post-form,
+.create-post-form select,
+.create-post-form option,
+.create-post-form input,
+.post-form-textarea,
+.post-form-label {
+    display: flex;
+}
+
+.post-form-label {
+    font-size: 2.2rem;
+    color: #7697F9;
+}
+
+.post-form-textarea {
+  resize: none;
+}
+
+.create-post-form select,
+.create-post-form option,
+.create-post-form input,
+.post-form-textarea  {
+    font-size: 1.8rem;
+}
+
+
+.create-post-form button {
+    width: 10rem;
+    font-size: 1.8rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 2px rgba(185, 185, 185, 0.3);
+    height: 4.5rem;
+    width: 12rem;
+    text-align: center;
+    color: #ffffff;
+    background-color: #89A6FB;
+    -webkit-appearance: none;
+}
+
+.create-post-form input {
+    color: #BFB1C1;
+}
+
+.post-form-textarea, 
+.create-post-form input,
+.post-form-label,
+.create-post-form select {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    box-shadow: 0 2px rgba(185, 185, 185, 0.3);
 }
 
 @media (min-width: 768px) {
@@ -795,6 +865,10 @@ form.registration-form {
         display: flex;
         margin: auto;
     }
+
+    .create-post-form {
+        width: 60vw;
+    }
 }
 
 @media (min-width: 1140px) {
@@ -839,6 +913,11 @@ form.registration-form {
         left: 50%;
         transform: translateX(-50%) translateY(-50%) rotate(-90deg);
         color: rgba(137, 166, 251);
+    }
+
+    .create-post-form {
+        width: 40vw;
+        margin: auto auto;
     }
 }
 
