@@ -98,14 +98,22 @@ def add_post():
             "post_title": request.form.get("post_title"),
             "post_content": request.form.get("post_content"),
             "topic_name": request.form.get("post_topic"),
-            "post_date": date.today().strftime("%d/%m/%Y"),
             "author": session["user"],
+            "post_date": date.today().strftime("%d/%m/%Y"),
             "pluses": 0,
             "comments": {}
         }
         mongo.db.posts.insert_one(post)
         flash("Post Successfully Added")
         return redirect(url_for("get_posts"))
+
+
+@app.route("/edit_post/<post_id>", methods=["GET", "POST"])
+def edit_post(post_id):
+
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    topics = mongo.db.topics.find()
+    return render_template("edit_post.html", post=post, topics=topics)
 
 
 @app.route("/sign_out")

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="title-container">
+    <h1 class="page-title">Update</h1>
+</div>
+<section class="main-container">
+    <form class="create-post-form" method="POST" action="{{ url_for('edit_post', post_id=post._id) }}">
+        <h3 class="post-form-title">Post Details</h3>
+        <label class="post-form-label" for="post_title">Post Title</label>
+        <input class=" form-control"  type="text" id="post_title" name="post_title" placeholder="Post Title" value="{{ post.post_title }}">
+        <label class="post-form-label"  for="post_content">Post Content</label>
+        <textarea class=" form-control post-form-textarea"  type="text" id="post_content" name="post_content" placeholder="Post Content" rows="" cols="">{{ post.post_content }}</textarea>
+        <label class="post-form-label"  for="post_topic">Post Topic</label>
+        <select class=" form-control"  name="post_topic" id="post_topic">
+            {% for topic in topics %}
+                {% if topic.topic_name == post.topic_name %}
+                        <option class="form-control" value="{{ topic.topic_name }}" selected>{{ topic.topic }}</option>
+                {% else %}
+                    <option class="form-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <div class="form-buttons">
+            <button class="form-control button-cancel" type="submit">Cancel</button>
+            <button class="form-control button-confirm" type="submit">Save Changes</button>
+        </div>
+    </form>
+</section>
+{% endblock %}

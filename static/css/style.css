@@ -39,6 +39,15 @@ main.container-flex {
         color: rgba(137, 166, 251);
 }
 
+.button-confirm { 
+    background-color: rgba(7, 156, 131, .8);
+}
+
+.button-cancel {
+    background-color: rgba(206, 59, 103, .8);
+    
+}
+
 h1,
 h2,
 h3,
@@ -696,18 +705,22 @@ form.registration-form {
     font-size: 1.8rem;
 }
 
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .create-post-form button {
-    width: 10rem;
+    min-width: 10rem;
+    width: auto;
     font-size: 1.8rem;
     margin: 0 auto;
     margin-top: 2rem;
     box-shadow: 0 2px rgba(185, 185, 185, 0.3);
     height: 4.5rem;
-    width: 12rem;
     text-align: center;
     color: #ffffff;
-    background-color: #89A6FB;
     -webkit-appearance: none;
 }
 
