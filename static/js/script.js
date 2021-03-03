@@ -1,5 +1,8 @@
 $(document).ready(function(){
     $("#date-target").text(new Date().getFullYear()); 
+    $("#flash-message-close").click(function(){
+        this.parentNode.style.display="none"
+    });
 });
 
 function displayDropdown(postId){
