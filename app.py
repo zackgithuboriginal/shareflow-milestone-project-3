@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_posts")
 def get_posts():
-    posts = list(mongo.db.posts.find())
+    posts = list(mongo.db.posts.find().sort("post_date", -1))
     topics = list(mongo.db.topics.find())
     return render_template("posts.html", posts=posts, topics=topics)
 
