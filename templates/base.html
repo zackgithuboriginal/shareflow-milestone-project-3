@@ -49,11 +49,14 @@
             </nav>
         </header>
 
-        <section>
+        <section class="page-flash-container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                    <h2>{{ message }}</h2>
+                    <div class="flash-message">
+                        <h2 class="flash-text">{{ message }}</h2>
+                        <button id="flash-message-close" class="flash-close"><i class="fas fa-times"></i></button>
+                    </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
