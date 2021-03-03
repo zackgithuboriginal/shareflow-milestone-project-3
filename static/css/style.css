@@ -206,7 +206,7 @@ footer {
     max-width: 90vw;
     background-color: #ffffff;
     min-height: 25rem;
-    height: 25rem;
+    height: auto;
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
     margin-bottom: 5rem;
     padding: 0;
@@ -758,7 +758,7 @@ form.registration-form {
         width: 7rem;
         padding: 1rem;
         justify-content: space-between;
-        height: 100%;
+        height: 25rem;
     }
 
     .post-pluses {
