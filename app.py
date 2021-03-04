@@ -26,6 +26,21 @@ def get_posts():
     return render_template("posts.html", posts=posts, topics=topics)
 
 
+@app.route("/filter_posts", methods=["GET", "POST"])
+def filter_posts():
+    filter_sort = request.form.get("sort-by-dropdown")
+    filter_topic = request.form.get("filter-dropdown")
+    if filter_topic == "all":
+        posts = list(mongo.db.posts.find(
+            ).sort(filter_sort, -1))
+    else:
+        posts = list(mongo.db.posts.find(
+            {"topic_name": filter_topic}).sort(filter_sort, -1))
+    topics = list(mongo.db.topics.find())
+
+    return render_template("posts.html", posts=posts, topics=topics)
+
+
 @app.route("/topics")
 def topics():
     topics = list(mongo.db.topics.find())

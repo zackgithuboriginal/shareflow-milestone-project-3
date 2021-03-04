@@ -835,13 +835,32 @@ form.registration-form {
         width: 80vw;
     }
 
-    .filter-options {
-        max-width: 80vw;
+    .filter-control{
+        margin-left: 1rem;
     }
 
-    #filter-dropdown {
+    #sort-by-dropdown,
+    #filter-dropdown  {
         border: 0;
-        background-color: rgba(245, 244, 244, .5);
+        background-color: #ffffff;
+    }
+
+
+    button.filter-control {
+        background-color: #89A6FB;
+        color: #ffffff;
+        padding: 1rem;
+        display: flex;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .filter-options {
+        max-width: 80vw;
     }
     
     footer {

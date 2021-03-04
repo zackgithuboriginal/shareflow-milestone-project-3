@@ -5,16 +5,21 @@
     <h1 class="page-title">Home</h1>
 </div>
 <section class="main-container">
-    <div class="filter-options">
-        <h3 class="filter-control">Sort By:</h3>
-        <label for="id-dropdown" class="filter-control">Filter Posts</label>
+    <form class="filter-options" method="POST" action="{{ url_for('filter_posts') }}">
+        <label for="sort-by-dropdown" class="filter-control">Sort By:</label>
+        <select name="sort-by-dropdown" id="sort-by-dropdown" class="filter-control">
+            <option value="pluses">Most Popular</option>
+            <option value="post_date">Newest</option>
+        </select>
+        <label for="filter-dropdown" class="filter-control">Filter Posts</label>
         <select class="filter-control" name="filter-dropdown" id="filter-dropdown">
                 <option class="filter-control" value="all">All Topics</option>
             {% for topic in topics %}
                 <option class="filter-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
             {% endfor %}
         </select>
-    </div>
+        <button class="filter-control" onclick="{{ url_for('get_posts') }}">Go</button>
+    </form>
     {% if posts|length > 0 %}
         <div class="card-container">
             {% for post in posts %}
