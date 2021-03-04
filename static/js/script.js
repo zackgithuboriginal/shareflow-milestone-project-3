@@ -22,3 +22,22 @@ function clearDropdowns(){
         allDropdowns[i].style.display = "none"
     }
 }
+
+function clearComments(){
+    let allComments = document.querySelectorAll(".post-comment-container")
+    for(i = 0; i < allComments.length; i++){
+        allComments[i].style.display = "none"
+    }
+}
+
+function displayComments(postId){
+    let target = document.getElementById(`post-comments-${postId}`)
+    console.log(target)
+    if (target.style.display  == "flex"){
+        clearComments()
+        target.style.display  = "none"
+    } else {
+        clearComments()
+        target.style.display  = "flex"
+    }
+}

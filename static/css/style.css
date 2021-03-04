@@ -199,6 +199,7 @@ footer {
 .post-details {
     padding: 1rem 1rem;
     margin:0;
+    min-height: 25rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -265,14 +266,15 @@ button.filter-control {
 }
 
 .post-card {
+    background: none;
+    display:flex;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     border: 1px;
-    max-width: 90vw;
-    background-color: #ffffff;
+    width: 80vw;
     min-height: 25rem;
     height: auto;
-    box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
     margin-bottom: 5rem;
     padding: 0;
 }
@@ -403,10 +405,40 @@ button.filter-control {
     font-size: 2.5rem;
 }
 
+
 .card-body.row {
+    background-color: #ffffff;
     max-width:100%;
+    height:auto;
     padding: 0;
     margin: 0;
+}
+
+.comment-divider {
+    width: 80%;
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.comment-div {
+    display: flex;
+    flex-direction: column;
+    padding-left: 3rem;
+}
+
+.post-comment,
+.post-comment-author {
+    display: flex;
+}
+
+.post-comment-container {
+    display:none;
+    flex-direction: column;
+}
+
+#post-comment-container {
+    display: none;
 }
 
 .post-comments, .post-votes  {
@@ -856,6 +888,7 @@ form.registration-form {
     }
 
     .post-card {
+        flex-direction: row;
         max-width: 80vw;
         width: 80vw;
     }
