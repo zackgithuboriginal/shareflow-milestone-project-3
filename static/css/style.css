@@ -206,20 +206,20 @@ footer {
 
 .filter-options {
     width:100%;
-    height: 6rem;
+    height: auto;
     display: flex;
     background-color: #ffffff;
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
-    flex-direction: row;
+    flex-direction: column;
     margin-bottom: 4rem;
     margin-right: auto;
     margin-left: auto;
+    justify-content: space-between;
 }
 
 .filter-control {
     display: flex;
     padding: 1rem;
-    margin: 0;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 1.6rem;
@@ -227,6 +227,31 @@ footer {
     font-family: 'Montserrat', sans-serif;
 }
 
+button.filter-control {
+    background-color: #89A6FB;
+    color: #ffffff;
+    padding: 1rem;
+    display: flex;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#sort-by-dropdown,
+#filter-dropdown  {
+    border: 0;
+    background-color: #ffffff;
+    width: 18rem;
+}
+.filter-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
 
 .sidebar {
     display: flex;
@@ -837,30 +862,14 @@ form.registration-form {
 
     .filter-control{
         margin-left: 1rem;
+        margin-right: 1rem;
     }
 
-    #sort-by-dropdown,
-    #filter-dropdown  {
-        border: 0;
-        background-color: #ffffff;
-    }
-
-
-    button.filter-control {
-        background-color: #89A6FB;
-        color: #ffffff;
-        padding: 1rem;
-        display: flex;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        border: none;
-        justify-content: center;
-        align-items: center;
-
-    }
 
     .filter-options {
         max-width: 80vw;
+        height: 6rem;
+        flex-direction: row;
     }
     
     footer {
@@ -962,6 +971,7 @@ form.registration-form {
 
     .filter-options {
         max-width: 60vw;
+        justify-content: flex-start;
     }
 
     .post-card {

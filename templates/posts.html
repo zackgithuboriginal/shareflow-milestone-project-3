@@ -6,18 +6,22 @@
 </div>
 <section class="main-container">
     <form class="filter-options" method="POST" action="{{ url_for('filter_posts') }}">
-        <label for="sort-by-dropdown" class="filter-control">Sort By:</label>
-        <select name="sort-by-dropdown" id="sort-by-dropdown" class="filter-control">
-            <option value="pluses">Most Popular</option>
-            <option value="post_date">Newest</option>
-        </select>
-        <label for="filter-dropdown" class="filter-control">Filter Posts</label>
-        <select class="filter-control" name="filter-dropdown" id="filter-dropdown">
-                <option class="filter-control" value="all">All Topics</option>
-            {% for topic in topics %}
-                <option class="filter-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
-            {% endfor %}
-        </select>
+        <div class="filter-div">
+            <label for="sort-by-dropdown" class="filter-control">Sort By:</label>
+            <select name="sort-by-dropdown" id="sort-by-dropdown" class="filter-control">
+                <option value="pluses">Most Popular</option>
+                <option value="post_date">Newest</option>
+            </select>
+        </div>
+        <div class="filter-div">
+            <label for="filter-dropdown" class="filter-control">Filter By:</label>
+            <select class="filter-control" name="filter-dropdown" id="filter-dropdown">
+                    <option class="filter-control" value="all">All Topics</option>
+                {% for topic in topics %}
+                    <option class="filter-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
+                {% endfor %}
+            </select>
+        </div>
         <button class="filter-control" onclick="{{ url_for('get_posts') }}">Go</button>
     </form>
     {% if posts|length > 0 %}
