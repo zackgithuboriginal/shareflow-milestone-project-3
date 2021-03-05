@@ -423,7 +423,7 @@ button.filter-control {
 }
 
 .comment-divider {
-    width: 80%;
+    width: 100%;
     display: flex;
     margin: 0 auto;
     margin-bottom: 1rem;
@@ -433,8 +433,6 @@ button.filter-control {
     margin: .5rem 0 .5rem 0; 
     display: flex;
     flex-direction: column;
-    padding-left: 3rem;
-    padding-right: 3rem;
 }
 
 .post-comment {
@@ -454,6 +452,8 @@ button.filter-control {
 
 .post-comment-container {
     display:none;
+    width:80%;
+    margin: 0 auto;
     flex-direction: column;
 }
 
