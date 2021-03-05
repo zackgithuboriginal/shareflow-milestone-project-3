@@ -422,14 +422,21 @@ button.filter-control {
 }
 
 .comment-div {
+    margin: .5rem 0 .5rem 0; 
     display: flex;
     flex-direction: column;
     padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .post-comment,
 .post-comment-author {
     display: flex;
+}
+
+.post-comment-author {
+    justify-content: flex-end;
+    color: #6c757d;
 }
 
 .post-comment-container {

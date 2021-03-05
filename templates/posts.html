@@ -67,8 +67,8 @@
                         </div>
                         {% if post.comments|length > 0 %}
                             <div id="post-comments-{{ post._id }}" class="post-comment-container">
-                                <hr class="comment-divider">
                                 {% for comment in post.comments %}
+                                <hr class="comment-divider">
                                 <div class="comment-div">
                                     <h4 class="post-comment">{{ comment.comment_content }}</h4>
                                     <h4 class="post-comment-author">{{ comment.author}}</h4>
