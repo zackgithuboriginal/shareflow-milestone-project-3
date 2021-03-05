@@ -40,3 +40,21 @@ function displayComments(postId){
         target.style.display  = "flex"
     }
 }
+
+function clearCommentForms(){
+    let allCommentForms = document.querySelectorAll(".create-comment-form")
+    for(i = 0; i < allCommentForms.length; i++){
+        allCommentForms[i].style.display = "none"
+    }
+}
+
+function displayCommentForm(postId){
+    let target = document.getElementById(`create-comment-form-${postId}`)
+    if (target.style.display  == "flex"){
+        clearCommentForms()
+        target.style.display  = "none"
+    } else {
+        clearCommentForms()
+        target.style.display  = "flex"
+    }
+}

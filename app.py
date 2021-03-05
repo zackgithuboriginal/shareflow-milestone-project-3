@@ -116,7 +116,8 @@ def add_post():
             "author": session["user"],
             "post_date": date.today().strftime("%d/%m/%Y"),
             "pluses": 0,
-            "comments": {}
+            "comments": {},
+            "total_comments": 0
         }
         mongo.db.posts.insert_one(post)
         flash("Post Successfully Added")
@@ -192,6 +193,43 @@ def vote(post_id):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
             return redirect(url_for("get_posts", _anchor=post_id))
+    else:
+        alertUser("session")
+        return redirect(url_for("get_posts"))
+
+
+@app.route("/add_comment/<post_id>", methods=["GET", "POST"])
+def add_comment(post_id):
+    if "user" in session:
+        if request.method == "POST":
+            post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+            comment_id = (str(post_id) + "/" + str(post["total_comments"]+1))
+            comment = {
+                "comment_id": comment_id,
+                "comment_content": request.form.get("comment_content"),
+                "author": session["user"],
+                "post_date": date.today().strftime("%d/%m/%Y"),
+                "attached_post": post_id
+            }
+            update_post = {
+                "$push": {
+                        "comments": comment
+                        },
+                "$set": {
+                        "total_comments": post["total_comments"]+1
+                        }
+                        }
+            update_user = {
+                "$push": {
+                        "comments": comment
+                        }
+                        }
+            mongo.db.users.update_one(
+                {"username": session["user"]}, update_user)
+            mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_post)
+            flash("Comment Successfully Added")
+            return redirect(url_for("get_posts", _anchor=post_id))
+
     else:
         alertUser("session")
         return redirect(url_for("get_posts"))

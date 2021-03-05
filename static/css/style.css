@@ -39,6 +39,14 @@ main.container-flex {
         color: rgba(137, 166, 251);
 }
 
+.unstyled-button {
+    display: flex;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background: none;
+}
+
 .button-confirm { 
     background-color: rgba(7, 156, 131, .8);
 }
@@ -452,6 +460,20 @@ button.filter-control {
     text-align: center;
     margin: 0;
     padding: .5rem;
+}
+
+.comment-form-textarea {
+    resize: none;
+    font-size: 1.4rem;
+}
+
+.create-comment-form {
+    display: flex;
+    flex-direction: column;
+    display: none;
+    width: 100%;
+    padding: 0 3rem;
+    margin: 2rem 0;
 }
 
 .post-id-target {
