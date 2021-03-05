@@ -116,7 +116,7 @@ def add_post():
             "author": session["user"],
             "post_date": date.today().strftime("%d/%m/%Y"),
             "pluses": 0,
-            "comments": {},
+            "comments": [],
             "total_comments": 0
         }
         mongo.db.posts.insert_one(post)
