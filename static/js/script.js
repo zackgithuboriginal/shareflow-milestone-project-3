@@ -32,7 +32,6 @@ function clearComments(){
 
 function displayComments(postId){
     let target = document.getElementById(`post-comments-${postId}`)
-    console.log(target)
     if (target.style.display  == "flex"){
         clearComments()
         target.style.display  = "none"
