@@ -332,7 +332,7 @@ button.filter-control {
     width: 100%;
     justify-content: space-between;
     bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin: 0;
     padding-right: 2rem;
 }
@@ -437,13 +437,18 @@ button.filter-control {
     padding-right: 3rem;
 }
 
+.post-comment {
+    font-size: 1.6rem;
+}
+
 .post-comment,
 .post-comment-author {
     display: flex;
 }
 
 .post-comment-author {
-    justify-content: flex-end;
+    padding-left: 6rem;
+    justify-content: flex-start;
     color: #6c757d;
 }
 
@@ -1016,6 +1021,11 @@ form.registration-form {
 }
 
 @media (min-width: 1140px) {
+
+    .comment-div {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
 
     .main-container {
         margin: 0;
