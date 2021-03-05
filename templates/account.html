@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="title-container">
-    <h1 class="page-title">You</h1>
+    <h1 class="page-title">{{ session['user'] }}</h1>
 </div>
 <section class="main-container">
     {% if posts|length > 0 %}
