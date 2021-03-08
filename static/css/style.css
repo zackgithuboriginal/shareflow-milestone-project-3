@@ -869,6 +869,27 @@ form.registration-form {
     box-shadow: 0 2px rgba(185, 185, 185, 0.3);
 }
 
+/* PROFILE STYLING */
+.page-option-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.page-option,
+.page-option-middle {
+    white-space: nowrap;
+    display: flex;
+    font-size: 2rem;
+    padding: 0 1rem;
+    color: #fff;
+}
+
+.page-option-middle {
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+}
+
 @media (min-width: 768px) {
 
     .topic-card {
@@ -1021,6 +1042,17 @@ form.registration-form {
 }
 
 @media (min-width: 1140px) {
+
+
+    .page-option-container {
+        position: relative;
+        top: 4rem;
+    }
+
+    .page-option,
+    .page-option-middle {
+        font-size: 2.6rem;
+    }
 
     .comment-div {
         padding-left: 6rem;

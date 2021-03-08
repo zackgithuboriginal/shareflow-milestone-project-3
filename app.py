@@ -244,12 +244,15 @@ def delete_post(post_id):
 
 @app.route("/account/<username>", methods=["GET", "POST"])
 def account(username):
-
     if session["user"]:
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        posts = list(mongo.db.posts.find({"author": session["user"]}))
-        return render_template("account.html", username=username, posts=posts)
+        userPosts = list(
+            mongo.db.posts.find({"author": session["user"]}))
+        print(session["user"])
+        return render_template(
+            "account.html", username=username,
+            userPosts=userPosts)
 
     return redirect(url_for("login"))
 
