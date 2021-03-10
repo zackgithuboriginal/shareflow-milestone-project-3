@@ -9,7 +9,7 @@
         <div class="page-option-middle" onclick="tabDisplay('comments')">Comments</div>
         <div class="page-option" onclick="tabDisplay('plussed')">Plusses</div>
     </div>
-    <div class="user-post-container">
+    <div class="user-post-container tab-display-option" id="posts-display">
         {% if userPosts|length > 0 %}
             <div class="card-container">
                 {% for post in userPosts %}
@@ -38,7 +38,7 @@
             </div>
         {% endif %}
     </div>
-    <div class="user-comment-container">
+    <div class="user-comment-container tab-display-option" id="comments-display">
         {% for post in userComments %}
             <div class="profile-comment-card">
                 <div class="comment-post-link">

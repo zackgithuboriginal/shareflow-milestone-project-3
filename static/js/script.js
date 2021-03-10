@@ -58,3 +58,13 @@ function displayCommentForm(postId){
         target.style.display  = "flex"
     }
 }
+
+function tabDisplay(tab){
+    let tabDOM = document.getElementsByClassName("tab-display-option")
+    let target = document.getElementById(`${tab}-display`)
+    for(i = 0; i < tabDOM.length; i++){
+        tabDOM[i].style.display = "none"
+    }
+
+    target.style.display = "flex"
+}
