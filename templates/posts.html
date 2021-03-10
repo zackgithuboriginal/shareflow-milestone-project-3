@@ -31,8 +31,19 @@
                     <div class="post-id-target" id="{{ post._id }}"></div>
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
-                            <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
-                            <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                            {% if session.user %}
+                                {% if post._id in user_pluses %}
+                                    <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-check"></i></a>
+                                    <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                                {% else %}
+                                    <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
+                                    <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
+                                <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                            {% endif %}
+                            
                         </div>
                         <div class="post-comments row">
                             <button class="unstyled-button" onclick="displayCommentForm('{{ post._id }}')"><i class="col-12 fas fa-comments"></i></button>
@@ -75,11 +86,11 @@
                         {% if post.comments|length > 0 %}
                             <div id="post-comments-{{ post._id }}" class="post-comment-container">
                                 {% for comment in post.comments %}
-                                <hr class="comment-divider">
-                                <div class="comment-div">
-                                    <p class="post-comment">{{ comment.comment_content }}</p>
-                                    <h4 class="post-comment-author">{{ comment.author}}</h4>
-                                </div>  
+                                    <hr class="comment-divider">
+                                    <div class="comment-div">
+                                        <p class="post-comment">{{ comment.comment_content }}</p>
+                                        <h4 class="post-comment-author">{{ comment.author}}</h4>
+                                    </div>  
                                 {% endfor%}
                             </div>
                         {% endif %}

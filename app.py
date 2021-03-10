@@ -23,6 +23,15 @@ mongo = PyMongo(app)
 def get_posts():
     posts = list(mongo.db.posts.find().sort("post_date", -1))
     topics = list(mongo.db.topics.find())
+    if "user" in session:
+        pluses = mongo.db.users.find_one(
+            {"username": session["user"]})["voted"]
+        user_pluses = []
+        for post in pluses:
+            user_pluses.append(ObjectId(post))
+        return render_template(
+            "posts.html", posts=posts, topics=topics,
+            user_pluses=user_pluses)
     return render_template("posts.html", posts=posts, topics=topics)
 
 
