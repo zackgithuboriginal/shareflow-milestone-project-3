@@ -883,10 +883,15 @@ form.registration-form {
     border-right: 3px solid #fff;
 }
 
-.user-post-container,
 .user-comment-container,
 .user-plusses-container {
     display: none;
+    justify-content: center;
+    margin-top: 6rem;
+}
+
+.user-post-container {
+    display: flex;
     justify-content: center;
     margin-top: 6rem;
 }
