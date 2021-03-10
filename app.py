@@ -249,10 +249,13 @@ def account(username):
             {"username": session["user"]})["username"]
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}))
+        userComments = list(
+            mongo.db.posts.find(
+                {"comments.author": session["user"]}))
         print(session["user"])
         return render_template(
             "account.html", username=username,
-            userPosts=userPosts)
+            userPosts=userPosts, userComments=userComments)
 
     return redirect(url_for("login"))
 

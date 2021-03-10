@@ -5,9 +5,9 @@
 </div>
 <section class="main-container">
     <div class="page-option-container">
-        <div class="page-option" onclick="tabDisplay('posts')">Your Posts</div>
-        <div class="page-option-middle" onclick="tabDisplay('comments')">Commented Posts</div>
-        <div class="page-option" onclick="tabDisplay('plussed')">Plussed Posts</div>
+        <div class="page-option" onclick="tabDisplay('posts')">Posts</div>
+        <div class="page-option-middle" onclick="tabDisplay('comments')">Comments</div>
+        <div class="page-option" onclick="tabDisplay('plussed')">Plusses</div>
     </div>
     <div class="user-post-container">
         {% if userPosts|length > 0 %}
@@ -38,9 +38,28 @@
             </div>
         {% endif %}
     </div>
-
-    
-
+    <div class="user-comment-container">
+        {% for post in userComments %}
+            <div class="profile-comment-card">
+                <div class="comment-post-link">
+                    <a class="unstyled-button comment-link-icon" href="{{ url_for('get_posts', _anchor=post._id) }}"><i class="fas fa-arrow-circle-left"></i></a>
+                    <h4 class="comment-link-text">View Post</h4>
+                </div>
+                <div class="profile-comment-container">
+                    <h4 class="comment-post-title">{{ post.post_title }}</h4>
+                    {% for comment in post.comments %}
+                        {% if comment.author==session["user"] %}
+                        <hr class="comment-divider">
+                        <div class="comment-content-container">
+                            <p class="comment-content">{{ comment.comment_content }}</p>
+                            <h3 class="post-comment-date">{{ comment.post_date }}</h3>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </section>
 
 {% endblock %}
