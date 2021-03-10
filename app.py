@@ -245,8 +245,14 @@ def delete_post(post_id):
 @app.route("/account/<username>", methods=["GET", "POST"])
 def account(username):
     if session["user"]:
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})
+        username = user["username"]
+        plussedPostIds = user["voted"]
+        userPlusses = []
+        for post in plussedPostIds:
+            userPlusses.append(
+                mongo.db.posts.find_one({"_id": ObjectId(post)}))
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}))
         userComments = list(
@@ -255,7 +261,8 @@ def account(username):
         print(session["user"])
         return render_template(
             "account.html", username=username,
-            userPosts=userPosts, userComments=userComments)
+            userPosts=userPosts, userComments=userComments,
+            userPlusses=userPlusses)
 
     return redirect(url_for("login"))
 

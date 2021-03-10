@@ -883,17 +883,12 @@ form.registration-form {
     border-right: 3px solid #fff;
 }
 
-.user-post-container {
+.user-post-container,
+.user-comment-container,
+.user-plusses-container {
     display: none;
     justify-content: center;
     margin-top: 6rem;
-}
-
-.user-comment-container {
-    display: flex;
-    flex-direction: column;
-    padding-top: 6rem;
-    height: auto;
 }
 
 .profile-comment-card {
