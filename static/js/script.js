@@ -60,11 +60,18 @@ function displayCommentForm(postId){
 }
 
 function tabDisplay(tab){
-    let tabDOM = document.getElementsByClassName("tab-display-option")
-    let target = document.getElementById(`${tab}-display`)
+    let tabDOM = document.getElementsByClassName("tab-display-option");
+    let target = document.getElementById(`${tab}-display`);
     for(i = 0; i < tabDOM.length; i++){
-        tabDOM[i].style.display = "none"
-    }
+        tabDOM[i].style.display = "none";
+    };
 
+    let linkDOM = document.getElementsByClassName("page-option");
+    let targetLink = document.getElementById(`display-tab-${tab}`);
+    for(i = 0; i < linkDOM.length; i++){
+        linkDOM[i].style.borderBottom = "none";
+    };
+    
+    targetLink.style.borderBottom = "thick solid #ffffff"
     target.style.display = "flex"
 }

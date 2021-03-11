@@ -5,9 +5,11 @@
 </div>
 <section class="main-container">
     <div class="page-option-container">
-        <div class="page-option" onclick="tabDisplay('posts')">Posts</div>
-        <div class="page-option-middle" onclick="tabDisplay('comments')">Comments</div>
-        <div class="page-option" onclick="tabDisplay('plusses')">Plusses</div>
+        <div class="page-option" id="display-tab-posts" onclick="tabDisplay('posts')">Posts</div>
+        <div class="page-display-options"></div>
+        <div class="page-option" id="display-tab-comments" onclick="tabDisplay('comments')">Comments</div>
+        <div class="page-display-options"></div>
+        <div class="page-option" id="display-tab-plusses" onclick="tabDisplay('plusses')">Plusses</div>
     </div>
     <div class="user-post-container tab-display-option" id="posts-display">
         {% if userPosts|length > 0 %}
@@ -64,27 +66,27 @@
         {% if userPlusses|length > 0 %}
             <div class="card-container">
                 {% for post in userPlusses %}
-                        <div class=" post-card card">
-                            <div class="card-body row">
-                                <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
-                                    <div class="post-votes row">
-                                        <i class="col-12 fas fa-plus"></i>
-                                        <p class="col-12 post-pluses">{{ post.pluses }}</p>
-                                    </div>
-                                    <div class="post-comments row">
-                                        <i class="col-12 fas fa-comments"></i>
-                                        <p class="col-12 post-pluses">Engage</p>
-                                    </div>
+                    <div class=" post-card card">
+                        <div class="card-body row">
+                            <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
+                                <div class="post-votes row">
+                                    <i class="col-12 fas fa-plus"></i>
+                                    <p class="col-12 post-pluses">{{ post.pluses }}</p>
                                 </div>
-                                <div class="post-details col col-md-10">
-                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
-                                    <h3 class="post-title">{{ post.post_title }}</h3>
-                                    <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
-                                    <p class="post-text">{{ post.post_content }}</p>
-                                    <p class="post-date">{{ post.post_date }}</p>
+                                <div class="post-comments row">
+                                    <i class="col-12 fas fa-comments"></i>
+                                    <p class="col-12 post-pluses">Engage</p>
                                 </div>
                             </div>
+                            <div class="post-details col col-md-10">
+                                <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
+                                <h3 class="post-title">{{ post.post_title }}</h3>
+                                <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
+                                <p class="post-text">{{ post.post_content }}</p>
+                                <p class="post-date">{{ post.post_date }}</p>
+                            </div>
                         </div>
+                    </div>
                 {% endfor %}
             </div>
         {% endif %}

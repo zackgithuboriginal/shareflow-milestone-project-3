@@ -36,7 +36,7 @@ main.container-flex {
     font-size: 8rem;
     white-space: nowrap;
     margin: 0 auto;
-        color: rgba(137, 166, 251);
+    color: rgba(137, 166, 251);
 }
 
 .unstyled-button {
@@ -869,25 +869,36 @@ form.registration-form {
     justify-content: center;
 }
 
-.page-option,
-.page-option-middle {
+.page-option {
     white-space: nowrap;
     display: flex;
-    font-size: 2rem;
+    font-size: 2.6rem;
     padding: 0 1rem;
     color: #fff;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
-.page-option-middle {
-    border-left: 3px solid #fff;
-    border-right: 3px solid #fff;
+
+#display-tab-posts {
+    border-bottom: thick solid #ffffff;
+}
+
+.page-display-options {
+    width: .25rem; 
+    height: auto;
+    display: flex;
+    background-color: #ffffff;
 }
 
 .user-comment-container,
 .user-plusses-container {
+    width: 80vw;
     display: none;
     justify-content: center;
     margin-top: 6rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .user-post-container {
@@ -899,9 +910,8 @@ form.registration-form {
 .profile-comment-card {
     justify-content: center;
     display: flex;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
-    padding: 1rem;
     height: auto;
 }
 
@@ -1133,8 +1143,7 @@ form.registration-form {
         top: 4rem;
     }
 
-    .page-option,
-    .page-option-middle {
+    .page-option {
         font-size: 2.6rem;
     }
 
@@ -1190,6 +1199,10 @@ form.registration-form {
         width: 40vw;
         margin: auto auto;
     }
+
+    .user-comment-container {
+    width: 60vw;
+}
 }
 
 @media (min-width: 2000px) {
