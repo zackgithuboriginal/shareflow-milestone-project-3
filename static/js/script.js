@@ -3,7 +3,10 @@ $(document).ready(function(){
     $("#flash-message-close").click(function(){
         this.parentNode.style.display="none"
     });
+    truncatePosts();
 });
+
+window.onresize = truncatePosts;
 
 function displayDropdown(postId){
     let target = document.getElementById(`post-options-${postId}`)
@@ -74,4 +77,25 @@ function tabDisplay(tab){
     
     targetLink.style.borderBottom = "thick solid #ffffff"
     target.style.display = "flex"
+}
+
+function truncatePosts(){
+    let containerWidth = $(window).width()
+    let postTextArray = Array.from(document.getElementsByClassName("post-text"))
+    if( containerWidth < 768){
+        for (i = 0; i < postTextArray.length; i++){
+            if(postTextArray[i].textContent.length > 200){
+                postTextArray[i].nextSibling.nextSibling.style.display = "flex";
+            }
+        }
+    } else {
+        for (i = 0; i < postTextArray.length; i++){
+        postTextArray[i].nextSibling.nextSibling.style.display = "none";
+        }
+    }
+}
+
+function expandPost(post){
+    post.previousSibling.previousSibling.style.maxHeight = "30rem"
+    post.style.display = "none"
 }
