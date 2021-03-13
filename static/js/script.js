@@ -82,9 +82,9 @@ function tabDisplay(tab){
 function truncatePosts(){
     let containerWidth = $(window).width()
     let postTextArray = Array.from(document.getElementsByClassName("post-text"))
-    if( containerWidth < 768){
+    if(containerWidth < 768){
         for (i = 0; i < postTextArray.length; i++){
-            if(postTextArray[i].textContent.length > 200){
+            if(postTextArray[i].textContent.length > 200 && postTextArray[i].style.maxHeight != "30rem"){
                 postTextArray[i].nextSibling.nextSibling.style.display = "flex";
             }
         }
