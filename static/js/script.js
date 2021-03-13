@@ -72,10 +72,10 @@ function tabDisplay(tab){
     let linkDOM = document.getElementsByClassName("page-option");
     let targetLink = document.getElementById(`display-tab-${tab}`);
     for(i = 0; i < linkDOM.length; i++){
-        linkDOM[i].style.borderBottom = "none";
+        linkDOM[i].classList.remove("active-tab");
     };
     
-    targetLink.style.borderBottom = "thick solid #ffffff"
+    targetLink.classList.add("active-tab")
     target.style.display = "flex"
 }
 
@@ -84,7 +84,7 @@ function truncatePosts(){
     let postTextArray = Array.from(document.getElementsByClassName("post-text"))
     if(containerWidth < 768){
         for (i = 0; i < postTextArray.length; i++){
-            if(postTextArray[i].textContent.length > 200 && postTextArray[i].style.maxHeight != "30rem"){
+            if(postTextArray[i].textContent.length > 200 && postTextArray.style.maxHeight != "30rem"){
                 postTextArray[i].nextSibling.nextSibling.style.display = "flex";
             }
         }

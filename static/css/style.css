@@ -921,10 +921,11 @@ form.registration-form {
     color: #fff;
     margin-left: 1rem;
     margin-right: 1rem;
+    cursor: pointer;
 }
 
-
-#display-tab-posts {
+.active-tab,
+.page-option:hover {
     border-bottom: thick solid #ffffff;
 }
 
