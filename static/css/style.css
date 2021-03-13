@@ -138,12 +138,25 @@ div.collapse.navbar-collapse {
     font-size: 3rem;
     color: #ffffff;
     margin-left: 1rem;
+    border: none;
 }
 
-button.navbar-toggler {
+.navbar.navbar-expand-md button.navbar-toggler {
     position: absolute;
     right: 1rem;
     margin-right: 1rem;
+    border: none;
+    font-size: 2.2rem;
+    color: #ffffff;
+}
+
+.navbar.navbar-expand-md button.navbar-toggler:active {
+    font-size: 2.4rem;
+}
+
+
+.navbar.navbar-expand-md button.navbar-toggler:focus {
+    box-shadow: none;
 }
 
 .navbar li.nav-item a.nav-link {
