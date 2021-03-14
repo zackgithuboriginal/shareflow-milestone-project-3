@@ -266,7 +266,7 @@ footer {
 }
 
 button.filter-control {
-    background-color: #89A6FB;
+    background-color: rgba(7, 156, 131, .8);
     color: #ffffff;
     padding: 1rem;
     display: flex;
@@ -739,7 +739,8 @@ form.registration-form {
     order: 1;
 }
 
-.login-submit {
+.login-submit,
+.create-submit {
     margin: 0 auto;
     background-color: rgba(7, 156, 131, .8);
     height: 4.5rem;
