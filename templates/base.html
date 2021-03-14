@@ -17,30 +17,30 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li id="index" class="nav-item {% if request.endpoint=='get_posts' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('get_posts') }}">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.endpoint=='topics' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('topics') }}">Topics</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.endpoint=='create_post' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('create_post') }}">Create a Post</a>
                         </li>
                         {% if session.user %}
-                            <li class="nav-item">
+                            <li class="nav-item {% if request.endpoint=='account' %}active{%endif %}">
                                 <a class="nav-link" href="{{ url_for('account', username=session['user']) }}">{{ session['user'] }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
                             </li>
                         {% else %}
-                            <li class="nav-item">
+                            <li class="nav-item {% if request.endpoint=='log_in' %}active{%endif %}">
                                 <a class="nav-link" href="{{ url_for('log_in') }}">Log In</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item {% if request.endpoint=='register' %}active{%endif %}">
                                 <a class="nav-link" href="{{ url_for('register') }}"> Register</a>
                             </li>
                         {% endif %}

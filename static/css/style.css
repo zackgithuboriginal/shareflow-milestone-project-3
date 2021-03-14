@@ -12,6 +12,7 @@ body {
     background-color: rgba(27, 38, 59, .9);
 }
 
+
 main.container-flex {
     display: flex;
     flex-direction: column;
@@ -163,6 +164,8 @@ div.collapse.navbar-collapse {
     padding: .5rem 1rem;
     font-size: 2rem;
     color: #ffffff;
+    margin: 0 auto;
+    width: 50%;
 }
 
 .navbar-nav {
@@ -170,6 +173,19 @@ div.collapse.navbar-collapse {
     margin-top: 6rem;
     background-color: #89A6FB;
     box-shadow: 0 2px rgba(0, 0, 0, .3);
+}
+
+
+.navbar .nav-item .nav-link:hover,
+.navbar .nav-item .nav-link:active,
+.navbar .nav-item .nav-link:focus {
+    background-color: white;
+    color: #7697F9;
+}
+
+li.nav-item.active  a.nav-link {
+    background-color: white;
+    color: #7697F9;
 }
 
 header {
@@ -1037,6 +1053,22 @@ form.registration-form {
 
     .navbar li.nav-item a.nav-link {
         padding: 1rem;
+        width: auto;
+    }
+
+    li.nav-item.active a.nav-link {
+        border-bottom: .2rem solid white;
+        width: auto;
+        background: none;
+        color: white;
+    }
+
+    .navbar .nav-item .nav-link:hover,
+    .navbar .nav-item .nav-link:active,
+    .navbar .nav-item .nav-link:focus {
+        background: none;
+        color: white;
+        border-bottom: .2rem solid white;
     }
 
     .navbar-nav {
