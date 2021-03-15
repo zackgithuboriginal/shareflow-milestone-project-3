@@ -34,7 +34,7 @@ main.container-flex {
 .page-title {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    font-size: 8rem;
+    font-size: 6rem;
     white-space: nowrap;
     margin: 0 auto;
     color: rgba(137, 166, 251);
@@ -1321,7 +1321,7 @@ form.registration-form {
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
         position: absolute;
-        font-size: 20rem;
+        font-size: 12rem;
         white-space: nowrap;
         margin: 0 auto;
         top: 50%;
