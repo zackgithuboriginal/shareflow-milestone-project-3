@@ -560,9 +560,7 @@ button.filter-control {
 }
 
 .create-post-action-button{
-    position: fixed;
-    right: 5vw;
-    bottom: 10vh;
+    position: relative;
     background-color: #7697f9;
     width: 4.8rem;
     height: 4.8rem;
@@ -585,6 +583,38 @@ button.filter-control {
 .create-post-action-button a {
     color: #ffffff;
     text-decoration: none;
+}
+
+.create-post-button-container {
+    position: fixed;
+    width: 5rem;
+    right: 5vw;
+    bottom: 15vh;
+}
+
+#floating-create-post-label {
+    width: auto;
+    height: 2.2rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    top: 6rem;
+    left: -50%;
+    white-space: nowrap;
+    display: none;
+    position: relative;
+    color: #7697F9;
+    line-height: 1;
+    font-size: 1.6rem;
+    padding: .3rem 1rem;
+    background-color: white;
+}
+
+.absolute-div {
+    display: flex;
+    position: absolute;
+}
+
+.create-post-action-button:hover + #floating-create-post-label {
+    display: flex;
 }
 
 /* Topic Styling */

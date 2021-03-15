@@ -102,9 +102,14 @@
         </div>
     {% endif %}
 </section>
-    <button class="create-post-action-button"  type="submit">
-        <a href="{{ url_for('create_post') }}">
-            <i class="fas fa-plus"></i>
-        </a>
-    </button>
+<div class="create-post-button-container">
+    <div class="absolute-div">
+        <button id ="floating-create-post" class="create-post-action-button"  type="submit">
+            <a href="{{ url_for('create_post') }}">
+                <i class="fas fa-plus"></i>
+            </a>
+        </button>
+        <label id="floating-create-post-label" for="floating-create-post">Create Post</label>
+    </div>
+</div>
 {% endblock %}
