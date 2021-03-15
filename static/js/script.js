@@ -84,7 +84,7 @@ function truncatePosts(){
     let postTextArray = Array.from(document.getElementsByClassName("post-text"))
     if(containerWidth < 768){
         for (i = 0; i < postTextArray.length; i++){
-            if(postTextArray[i].textContent.length > 200 && postTextArray.style.maxHeight != "30rem"){
+            if(postTextArray[i].textContent.length > 200 && postTextArray[i].style.maxHeight != "30rem"){
                 postTextArray[i].nextSibling.nextSibling.style.display = "flex";
             }
         }
