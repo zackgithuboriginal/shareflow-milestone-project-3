@@ -594,18 +594,18 @@ button.filter-control {
 
 #floating-create-post-label {
     width: auto;
-    height: 2.2rem;
+    height: 2.6rem;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     top: 6rem;
     left: -50%;
     white-space: nowrap;
     display: none;
     position: relative;
-    color: #7697F9;
+    color: #ffffff;
     line-height: 1;
     font-size: 1.6rem;
-    padding: .3rem 1rem;
-    background-color: white;
+    padding: .5rem 1rem;
+    background-color: #7697F9;
 }
 
 .absolute-div {
