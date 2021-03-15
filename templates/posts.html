@@ -102,5 +102,9 @@
         </div>
     {% endif %}
 </section>
-
+    <button class="create-post-action-button"  type="submit">
+        <a href="{{ url_for('create_post') }}">
+            <i class="fas fa-plus"></i>
+        </a>
+    </button>
 {% endblock %}
