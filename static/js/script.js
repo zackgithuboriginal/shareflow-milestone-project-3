@@ -33,14 +33,19 @@ function clearComments(){
     }
 }
 
-function displayComments(postId, idLocation){
+function displayComments(e, postId, idLocation){
     let target = document.getElementById(`${idLocation}${postId}`)
+    let eventTrigger = e.srcElement
+    let commentCount = eventTrigger.textContent.slice(eventTrigger.textContent.length -4);
+    console.log(commentCount)
     if (target.style.display  == "flex"){
         clearComments()
         target.style.display  = "none"
+        eventTrigger.textContent=`Show Comments ${commentCount}`
     } else {
         clearComments()
         target.style.display  = "flex"
+        eventTrigger.textContent=`Hide Comments ${commentCount}`
     }
 }
 
