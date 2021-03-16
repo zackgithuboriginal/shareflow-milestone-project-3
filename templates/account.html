@@ -97,11 +97,14 @@
     <div class="user-comment-container tab-display-option" id="comments-display">
         {% for post in userComments %}
             <div class="profile-comment-card">
-                <div class="comment-post-link">
-                    <a class="unstyled-button comment-link-icon" href="{{ url_for('get_posts', _anchor=post._id) }}"><i class="fas fa-arrow-circle-left"></i></a>
-                    <h4 class="comment-link-text">View Post</h4>
-                </div>
+                    <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar profile-comments-sidebar">
+                        <div class="comment-post-link row">
+                            <a class="unstyled-button comment-link-icon" href="{{ url_for('get_posts', _anchor=post._id) }}"><i class="fas fa-arrow-circle-left"></i></a>
+                            <p class="comment-link-text">View Post</p>
+                        </div>
+                    </div>
                 <div class="profile-comment-container">
+                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
                     <h4 class="comment-post-title">{{ post.post_title }}</h4>
                     <div class="profile-comment-bottom-row">
                         <h3 class="post-author">{{ post.author }}</h3>

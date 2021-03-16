@@ -291,15 +291,22 @@ button.filter-control {
     padding-right: .5rem;
 }
 
-.sidebar {
+.sidebar,
+.profile-comments-sidebar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    width: 100%;
     padding: 0;
     height: 5.5rem;
     margin:0;
-    max-width: 100%;
+}
+
+.sidebar {
+    width: 100%;
+}
+
+.profile-comments-sidebar {
+    width: 10.5rem;
 }
 
 .post-card {
@@ -466,7 +473,8 @@ button.filter-control {
     font-size: 1.4rem;
 }
 
-.sidebar i {
+.sidebar i,
+.profile-comments-sidebar {
     padding: 0;
     color: #ffffff;
     font-size: 2.5rem;
@@ -1063,7 +1071,7 @@ form.registration-form {
 }
 
 .comment-divider {
-    width: 95%;
+    width: 100%;
     display: flex;
     margin: 0 auto;
 }
@@ -1073,7 +1081,7 @@ form.registration-form {
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
-    padding:1rem 1rem 1rem 2.5rem;
+    padding: 1rem 0;
     background-color: #ffffff;
 }
 
@@ -1082,13 +1090,14 @@ form.registration-form {
     flex-direction: column;
     flex-grow: 1;
     background-color: #ffffff;
+    padding: 1rem 2.5rem 1rem 2.5rem;
 }
 
 .profile-comment-bottom-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1rem 1rem 1rem 2.5rem;
+    padding: 1rem 0;
 }
 
 .post-author {
@@ -1104,7 +1113,7 @@ form.registration-form {
 .post-comment-date {
     display: flex;
     font-size: 1.4rem;
-    padding-right: 6rem;
+    padding-right: 3rem;
     justify-content: flex-end;
     color: #6c757d;
 }
@@ -1112,9 +1121,7 @@ form.registration-form {
 .comment-post-title {
     display: flex;
     font-size: 1.8rem;
-    margin-left: 2.5rem;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    padding: 1rem 0;
 }
 
 @media (min-width: 768px) {
@@ -1154,11 +1161,19 @@ form.registration-form {
         box-shadow: none;
     }
 
+    .profile-comments-sidebar,
     .sidebar {
         flex-direction: column;
         width: 7rem;
         padding: 1rem;
         justify-content: space-between;
+    }
+
+    .profile-comments-sidebar {
+        height: 12.5rem;
+    }
+
+    .sidebar {
         height: 25rem;
     }
 
@@ -1179,7 +1194,8 @@ form.registration-form {
         margin: 1rem 0;
     }
 
-    .sidebar i {
+    .sidebar i,
+    .profile-comments-sidebar i {
         margin-bottom: .5rem;
         text-align: center;
     }
