@@ -514,6 +514,10 @@ button.filter-control {
     display: none;
 }
 
+.comment-post-link {
+    padding: .5rem;
+}
+
 .post-comments, .post-votes  {
     text-align: center;
     margin: 0;
@@ -1034,15 +1038,12 @@ form.registration-form {
     width: 100%;
     height: auto;
     margin: 0 auto;
-}
+} 
 
 .comment-post-link {
-    height: 8rem;
+    text-align: center;
     display: flex;
     justify-content: center;
-    width: 10rem;
-    flex-direction: column;
-    background-color: #7697F9;
 }
 
 .comment-link-icon {
@@ -1051,10 +1052,11 @@ form.registration-form {
     padding: 0;
     text-decoration: none;
     color: #ffffff;
-    font-size: 3rem;
 }
 
 .comment-link-text {
+    white-space: nowrap;
+    font-size: 1.4rem;
     justify-content: center;
     display: flex;
     color: #ffffff;
@@ -1160,6 +1162,7 @@ form.registration-form {
         height: 25rem;
     }
 
+
     .post-pluses {
         text-align: center;
         margin-bottom: 0;
@@ -1170,12 +1173,10 @@ form.registration-form {
         padding: 0;
     }
 
-    .post-comments {
-        margin-bottom: 1rem;
-    }
-
-    .post-votes {
-        margin-top: 1rem;
+    .post-comments,
+    .post-votes,
+    .comment-post-link {
+        margin: 1rem 0;
     }
 
     .sidebar i {
