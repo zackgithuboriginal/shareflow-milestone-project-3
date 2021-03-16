@@ -50,6 +50,10 @@
                 </div>
                 <div class="profile-comment-container">
                     <h4 class="comment-post-title">{{ post.post_title }}</h4>
+                    <div class="profile-comment-bottom-row">
+                        <h3 class="post-author">{{ post.author }}</h3>
+                        <h3 class="post-comment-date">{{ post.post_date }}</h3>
+                    </div>
                     {% for comment in post.comments %}
                         {% if comment.author==session["user"] %}
                         <hr class="comment-divider">
@@ -82,7 +86,7 @@
                             <div class="post-details col col-md-10">
                                 <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
                                 <h3 class="post-title">{{ post.post_title }}</h3>
-                                <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
+                                <h5 class="post-author mb-2">{{ post.author }}</h5>
                                 <p class="post-text">{{ post.post_content }}</p>
                                 <p class="post-date">{{ post.post_date }}</p>
                             </div>

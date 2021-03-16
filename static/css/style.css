@@ -1081,6 +1081,18 @@ form.registration-form {
     flex-grow: 1;
     background-color: #ffffff;
 }
+
+.profile-comment-bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 1rem 1rem 2.5rem;
+}
+
+.post-author {
+    color: #6c757d;
+}
+
 .comment-content {
     display: flex;
     font-size: 1.6rem;
@@ -1098,7 +1110,6 @@ form.registration-form {
 .comment-post-title {
     display: flex;
     font-size: 1.8rem;
-    color: #6c757d;
     margin-left: 2.5rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
