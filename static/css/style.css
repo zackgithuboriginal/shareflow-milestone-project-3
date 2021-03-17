@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+/* General Styling */
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
@@ -11,7 +12,6 @@ body {
     display: flex;
     background-color: rgba(27, 38, 59, .9);
 }
-
 
 main.container-flex {
     display: flex;
@@ -40,6 +40,28 @@ main.container-flex {
     color: rgba(137, 166, 251);
 }
 
+.row {
+    padding: 0;
+}
+
+main {
+    padding-top: 2rem;
+    display: flex;
+    flex-grow: 1;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+/* Button Styling */
+
 .unstyled-button {
     display: flex;
     -webkit-appearance: none;
@@ -56,6 +78,8 @@ main.container-flex {
     background-color: rgba(206, 59, 103, .8);
     
 }
+
+/* Font Styling */
 
 h1,
 h2,
@@ -74,11 +98,9 @@ a {
     font-family: 'Libre Franklin', sans-serif;
     font-weight: 300;
 }
-.row {
-    padding: 0;
-}
 
 /* FLASH STYLING */
+
 .page-flash-container{
     position: fixed;
     left: 50%;
@@ -117,6 +139,14 @@ a {
     justify-content: center;
     align-items: center;
 }
+
+/* Navbar Styling */
+
+header {
+    display: flex;
+    height: 6rem;
+}
+
 
 nav.navbar {
     position: fixed;
@@ -189,26 +219,7 @@ li.nav-item.active  a.nav-link {
     color: #7697F9;
 }
 
-header {
-    display: flex;
-    height: 6rem;
-}
-
-main {
-    padding-top: 2rem;
-    display: flex;
-    flex-grow: 1;
-}
-
-.main-container {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    max-width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
-    height: 100%;
-}
+/* Footer Styling */
 
 footer {
     display: flex;
@@ -233,15 +244,7 @@ footer {
     color: #89A6FB;
 }
 
-/* Post Styling */
-.post-details {
-    padding: 1rem 1rem;
-    margin:0 auto;
-    min-height: 25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+/* Home Page Styling */
 
 .filter-options {
     width:100%;
@@ -285,6 +288,7 @@ button.filter-control {
     background-color: #ffffff;
     width: 18rem;
 }
+
 .filter-div {
     display: flex;
     flex-direction: row;
@@ -324,6 +328,15 @@ button.filter-control {
     height: auto;
     margin-bottom: 5rem;
     padding: 0;
+}
+
+.post-details {
+    padding: 1rem 1rem;
+    margin:0 auto;
+    min-height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .post-title, .post-topic {
@@ -483,11 +496,10 @@ button.filter-control {
     font-size: 2.5rem;
 }
 
-
 .card-body.row {
     background-color: #ffffff;
-    max-width:100%;
-    height:auto;
+    max-width: 100%;
+    height: auto;
     padding: 0;
     margin: 0;
     box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
@@ -562,6 +574,7 @@ button.filter-control {
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
+
 .hvr-icon-spin .hvr-icon {
   -webkit-transition-duration: 1.5;
   transition-duration: 1.5s;
@@ -570,6 +583,7 @@ button.filter-control {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
 }
+
 .hvr-icon-spin:hover .hvr-icon, .hvr-icon-spin:focus .hvr-icon, .hvr-icon-spin:active .hvr-icon {
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
@@ -1131,17 +1145,17 @@ form.registration-form {
 }
 
 @media (min-width: 768px) {
-
-    .profile-comment-card {
-        justify-content: center;
-        margin: 0 auto;
-        flex-direction: row;
+    /* General Styling */
+    .page-heading {
+        margin: 0;
+        font-size: 3.6rem;
     }
-
+    /* Topic Styling */
     .topic-card {
         flex-basis: 50%;
     }
 
+    /* Navbar Styling */
     .navbar li.nav-item a.nav-link {
         padding: 1rem;
         width: auto;
@@ -1167,6 +1181,13 @@ form.registration-form {
         box-shadow: none;
     }
 
+    /* Profile/Posts Styling */
+    .profile-comment-card {
+        justify-content: center;
+        margin: 0 auto;
+        flex-direction: row;
+    }
+
     .profile-comments-sidebar,
     .sidebar {
         flex-direction: column;
@@ -1182,7 +1203,6 @@ form.registration-form {
     .sidebar {
         height: 25rem;
     }
-
 
     .post-pluses {
         text-align: center;
@@ -1222,13 +1242,13 @@ form.registration-form {
         margin-right: 1rem;
     }
 
-
     .filter-options {
         max-width: 80vw;
         height: 6rem;
         flex-direction: row;
     }
     
+    /* Footer Styling */
     footer {
         flex-direction: row;
         width: 100vw;
@@ -1238,6 +1258,8 @@ form.registration-form {
         justify-content: center;
         line-height: 2rem;
     }
+
+    /* Register/Sign In Styling */
 
     .sign-in-info {
         display: flex;
@@ -1278,11 +1300,6 @@ form.registration-form {
         border-radius: 3rem 0 0 3rem;
     }
 
-    .page-heading {
-        margin: 0;
-        font-size: 3.6rem;
-    }
-
     .login-end-panel,
     .register-end-panel{
         display: none;
@@ -1311,43 +1328,11 @@ form.registration-form {
 }
 
 @media (min-width: 1140px) {
-
-
-    .page-option-container {
-        position: relative;
-        top: 4rem;
-    }
-
-    .page-option {
-        font-size: 2.6rem;
-    }
-
-    .comment-div {
-        padding-left: 6rem;
-        padding-right: 6rem;
-    }
-
+    /* General Styling */
     .main-container {
         margin: 0;
         max-width: 100vw;
         padding-left: 24rem;
-    }
-
-    .topic-card {
-        flex-basis: 33.3333%;
-    }
-
-    .topic-card-container {
-        max-width: 60vw;
-    }
-
-    .filter-options {
-        max-width: 60vw;
-        justify-content: flex-start;
-    }
-
-    .post-card {
-        max-width: 60vw;
     }
 
     .title-container {
@@ -1370,17 +1355,52 @@ form.registration-form {
         color: rgba(137, 166, 251);
     }
 
+
+    /* Profile Styling */
+    .page-option-container {
+        position: relative;
+        top: 4rem;
+    }
+
+    .page-option {
+        font-size: 2.6rem;
+    }
+
+    .comment-div {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+
+    .user-comment-container {
+        width: 60vw;
+    }
+    /* Topic Styling */
+    .topic-card {
+        flex-basis: 33.3333%;
+    }
+
+    .topic-card-container {
+        max-width: 60vw;
+    }
+
+
+    /* Home Page Styling */
+    .filter-options {
+        max-width: 60vw;
+        justify-content: flex-start;
+    }
+
+    .post-card {
+        max-width: 60vw;
+    }
     .create-post-form {
         width: 40vw;
         margin: auto auto;
     }
-
-    .user-comment-container {
-    width: 60vw;
-}
 }
 
 @media (min-width: 2000px) {
+    /* Card Styling */
     .card-container {
         flex-direction: row;
         justify-content: space-between;
