@@ -1423,6 +1423,7 @@ form.registration-form {
     .post-card {
         max-width: 60vw;
     }
+
     .create-post-form {
         width: 40vw;
         margin: auto auto;
@@ -1432,12 +1433,16 @@ form.registration-form {
 @media (min-width: 2000px) {
     /* Card Styling */
     .card-container {
-        flex-direction: row;
         justify-content: space-between;
+        flex-direction: wrap;
+    }
+
+    .filter-options {
+        max-width: 50vw;
     }
 
     .post-card {
-        width: 100rem;
-        max-width: 40vw;
+        min-width: 100rem;
+        max-width: 50vw;
     }
 }
