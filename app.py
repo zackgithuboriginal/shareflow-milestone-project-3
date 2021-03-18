@@ -117,20 +117,24 @@ def create_post():
 
 @app.route("/add_post", methods=["GET", "POST"])
 def add_post():
-    if request.method == "POST":
-        post = {
-            "post_title": request.form.get("post_title"),
-            "post_content": request.form.get("post_content"),
-            "topic_name": request.form.get("post_topic"),
-            "author": session["user"],
-            "post_date": date.today().strftime("%d/%m/%Y"),
-            "pluses": 0,
-            "comments": [],
-            "total_comments": 0
-        }
-        mongo.db.posts.insert_one(post)
-        flash("Post Successfully Added")
-        return redirect(url_for("get_posts"))
+    if "user" in session:
+        if request.method == "POST":
+            post = {
+                "post_title": request.form.get("post_title"),
+                "post_content": request.form.get("post_content"),
+                "topic_name": request.form.get("post_topic"),
+                "author": session["user"],
+                "post_date": date.today().strftime("%d/%m/%Y"),
+                "pluses": 0,
+                "comments": [],
+                "total_comments": 0
+            }
+            mongo.db.posts.insert_one(post)
+            flash("Post Successfully Added")
+            return redirect(url_for("get_posts"))
+    else:
+        flash("You must be signed in to create posts")
+        return redirect(url_for("register"))
 
 
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
