@@ -449,6 +449,7 @@ button.filter-control {
     text-align: right;
     width: 14rem;
     padding: 1rem;
+    z-index: 5;
 }
 
 .post-option-dropdown{
