@@ -23,9 +23,6 @@
                         <li id="index" class="nav-item {% if request.endpoint=='get_posts' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('get_posts') }}">Home</a>
                         </li>
-                        <li class="nav-item {% if request.endpoint=='topics' %}active{%endif %}">
-                            <a class="nav-link" href="{{ url_for('topics') }}">Topics</a>
-                        </li>
                         <li class="nav-item {% if request.endpoint=='create_post' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('create_post') }}">Create a Post</a>
                         </li>
