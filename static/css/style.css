@@ -896,6 +896,7 @@ form.registration-form {
     flex: 1 0 100%;
     justify-content: center;
     margin-bottom: 6rem;
+    text-decoration: none;
 }
 
 .card-inner {
@@ -925,6 +926,7 @@ form.registration-form {
     margin: auto 0;
     font-size: 2rem;
     color: #ffffff;
+    text-decoration: none;  
 }
 
 .card-img-container {
