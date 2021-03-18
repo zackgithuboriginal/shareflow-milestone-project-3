@@ -888,7 +888,7 @@ form.registration-form {
     text-align: center;
     display: flex;
     margin: 0 auto 2rem auto;
-    font-size: 2.6rem;
+    font-size: 3.6rem;
     color: #89A6FB;
 }
 
@@ -964,7 +964,7 @@ form.registration-form {
 
 .post-form-title {
     display: flex;
-    font-size: 2.6rem;
+    font-size: 3.6rem;
     color: #7697F9;
     width: auto;
     margin: 0 auto;
