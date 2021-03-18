@@ -342,6 +342,7 @@ button.filter-control {
 
 .post-title, .post-topic {
     font-size: 2.4rem;
+    word-wrap: anywhere;
 }
 
 .post-topic {
@@ -349,10 +350,11 @@ button.filter-control {
 }
 
 .post-text{
-   overflow: hidden;
-   position: relative;
-   background: white;
-   max-height: 12.5rem;
+    word-wrap: anywhere;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    max-height: 12.5rem;
 }
 
 .expand-post {
