@@ -633,6 +633,7 @@ button.filter-control {
     width: 5rem;
     right: 5vw;
     bottom: 15vh;
+    z-index: 10;
 }
 
 #floating-create-post-label {
