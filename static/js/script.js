@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("#flash-message-close").click(function(){
         this.parentNode.style.display="none"
     });
+    updatePostTopics();
     truncatePosts();
 });
 
@@ -103,4 +104,12 @@ function truncatePosts(){
 function expandPost(post){
     post.previousSibling.previousSibling.style.maxHeight = "30rem"
     post.style.display = "none"
+}
+
+function updatePostTopics(){
+    postTopics = document.getElementsByClassName("post-topic")
+        for (i = 0; i < postTopics.length; i++){
+            postTopic = postTopics[i].textContent.replace("-"," ")
+            postTopics[i].textContent = postTopic.charAt(0).toUpperCase() + postTopic.slice(1)
+        }
 }
