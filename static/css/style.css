@@ -1427,6 +1427,7 @@ form.registration-form {
     .create-post-form {
         width: 40vw;
         margin: auto auto;
+        padding: 6rem;
     }
 }
 
