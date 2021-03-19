@@ -19,10 +19,37 @@ $(document).ready(function(){
      * Calls function to hide the end of posts that are too long to maintain visual clarity
      */
     truncatePosts();
-});
 
+    urlParsing();
+});
 window.onresize = truncatePosts;
 
+function urlParsing(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if(urlParams.has('sort-by')){
+        sortCriteria = urlParams.get('sort-by')
+        let sortOptions = document.getElementById('sort-by-dropdown').options
+        console.log(sortOptions)
+        for (i=0; i < sortOptions.length; i++){
+            if (sortOptions[i].value == sortCriteria) {
+                console.log(sortOptions[i].value);
+                sortOptions.selectedIndex = i;
+            }
+        }
+    }
+    if(urlParams.has('topic')){
+        topic = urlParams.get('topic')
+        let topicOptions = document.getElementById('filter-dropdown').options
+        console.log(topicOptions)
+        for (i=0; i < topicOptions.length; i++){
+            if (topicOptions[i].value == topic) {
+                console.log(topicOptions[i].value);
+                topicOptions.selectedIndex = i;
+        }
+    }
+}
+}
 
 /**
  * This function handles the display of the post edit options dropdown menu
