@@ -19,10 +19,20 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/get_posts")
-def get_posts():
-    posts = list(mongo.db.posts.find().sort("post_date", -1))
+@app.route("/posts")
+def posts(): 
+    filter_sort = (request.args.get("sort-by") or "post_date")
+    filter_topic = request.args.get("topic")
+    if filter_topic:
+        posts = list(mongo.db.posts.find(
+            {"topic_name": filter_topic}).sort(filter_sort, -1))
+        if filter_topic == "all":
+            posts = list(mongo.db.posts.find().sort(filter_sort, -1))
+    else:
+        posts = list(mongo.db.posts.find().sort(filter_sort, -1))
+
     topics = list(mongo.db.topics.find())
+
     if "user" in session:
         pluses = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
@@ -32,21 +42,6 @@ def get_posts():
         return render_template(
             "posts.html", posts=posts, topics=topics,
             user_pluses=user_pluses)
-    return render_template("posts.html", posts=posts, topics=topics)
-
-
-@app.route("/filter_posts", methods=["GET", "POST"])
-def filter_posts():
-    filter_sort = request.form.get("sort-by-dropdown")
-    filter_topic = request.form.get("filter-dropdown")
-    if filter_topic == "all":
-        posts = list(mongo.db.posts.find(
-            ).sort(filter_sort, -1))
-    else:
-        posts = list(mongo.db.posts.find(
-            {"topic_name": filter_topic}).sort(filter_sort, -1))
-    topics = list(mongo.db.topics.find())
-
     return render_template("posts.html", posts=posts, topics=topics)
 
 
@@ -98,7 +93,7 @@ def log_in():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Successfully Logged In")
-                return redirect(url_for("get_posts"))
+                return redirect(url_for("posts"))
             else:
                 flash("Incorrect Account Details")
                 return redirect(url_for("log_in"))
@@ -131,7 +126,7 @@ def add_post():
             }
             mongo.db.posts.insert_one(post)
             flash("Post Successfully Added")
-            return redirect(url_for("get_posts"))
+            return redirect(url_for("posts"))
     else:
         flash("You must be signed in to create posts")
         return redirect(url_for("register"))
@@ -153,7 +148,7 @@ def edit_post(post_id):
 
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Post Successfully Edited")
-        return redirect(url_for("get_posts", _anchor=post_id))
+        return redirect(url_for("posts", _anchor=post_id))
 
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     topics = mongo.db.topics.find()
@@ -190,7 +185,7 @@ def vote(post_id):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            return redirect(url_for("get_posts", _anchor=post_id))
+            return redirect(url_for("posts", _anchor=post_id))
         else:
             update_vote = {
                 "$set": {
@@ -205,10 +200,10 @@ def vote(post_id):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            return redirect(url_for("get_posts", _anchor=post_id))
+            return redirect(url_for("posts", _anchor=post_id))
     else:
         alertUser("session")
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("posts"))
 
 
 @app.route("/add_comment/<post_id>", methods=["GET", "POST"])
@@ -241,18 +236,18 @@ def add_comment(post_id):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_post)
             flash("Comment Successfully Added")
-            return redirect(url_for("get_posts", _anchor=post_id))
+            return redirect(url_for("posts", _anchor=post_id))
 
     else:
         alertUser("session")
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("posts"))
 
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     flash("Post Deleted")
-    return redirect(url_for("get_posts"))
+    return redirect(url_for("posts"))
 
 
 @app.route("/account/<username>", methods=["GET", "POST"])
