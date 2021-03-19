@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="main-container">
+        <div class="post-detail-container">
+            <div class="post-detail-topic-container {{ post.topic_name }}-sidebar">
+                <h2 class="post-detail-topic">{{ post.topic_name }}</h2>
+                <div class="post-detail-plusses">
+                    {% if session.user %}
+                        {% if post._id in user_pluses %}
+                            <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-check"></i></a>
+                            <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                        {% else %}
+                            <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
+                            <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                        {% endif %}
+                    {% else %}
+                        <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
+                        <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                    {% endif %}
+                </div>
+                            
+
+            </div>
+            <div class="post-detail-contents">
+                <h2 class="post-detail-title">{{ post.post_title }}</h2>
+                <h3 class="post-detail-author">{{ post.author }}</h3>
+                <p class="post-detail-text-content">{{ post.post_content}}</p>
+                <div class="post-detail-bottom">
+                    <h4>{{ post.post_date }}</h4>
+                </div>
+            </div>
+            <div class="post-detail-comment-container">
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

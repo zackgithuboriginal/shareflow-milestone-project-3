@@ -72,7 +72,7 @@
                             <div class="post-bottom">
                                 <p class="post-date">{{ post.post_date }}</p>
                                 {% if post.comments|length > 0 %}
-                                    <p class="post-comment-count" onclick="displayComments(event, '{{ post._id }}', 'post-comments-')">Show comments({{ post.comments|length }})</p>
+                                    <a class="post-comment-count" href="{{ url_for('post_details', post_id=post._id) }}">Show comments({{ post.comments|length }})</a>
                                 {% else %}
                                     <p class="post-comment-count">Be the first to comment</p>
                                 {% endif %}

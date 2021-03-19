@@ -275,6 +275,14 @@ def account(username):
     return redirect(url_for("login"))
 
 
+@app.route("/post_details/<post_id>")
+def post_details(post_id):
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    print(post)
+    return render_template(
+        "post_detail.html", post=post)
+
+
 def alertUser(key):
     if key == "session":
         flash("You must be signed in to vote")

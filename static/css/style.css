@@ -22,6 +22,7 @@ main.container-flex {
     display:flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100vw;
 }
 
 .title-container {
@@ -1161,6 +1162,69 @@ form.registration-form {
     padding: 1rem 0;
 }
 
+/* Post Detail Page Styling */
+
+.post-detail-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80vw;
+    background-color: #fff;
+    height: auto;
+}
+
+.post-detail-topic-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 6rem;
+    width: 100%;
+}
+
+.post-detail-topic-container h2 {
+    display: flex;
+    margin: auto 0 auto 2rem;
+    color: #ffffff;
+    font-size: 3rem;
+}
+
+.post-detail-contents {
+    padding: 3rem 2rem 2rem 2rem;
+}
+
+.post-detail-text-content {
+    font-size: 1.6rem;
+}
+
+.post-detail-title {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.post-detail-author {
+    font-size: 1.6rem;
+    margin-bottom: 2.5rem;
+}
+
+.post-detail-plusses {
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: .5rem;
+}
+
+.post-detail-plusses p {
+    margin: none;
+}
+
+.post-detail-plusses i {
+    font-size: 3rem;
+    color: #ffffff;
+}
 @media (min-width: 768px) {
     /* General Styling */
     .page-heading {
