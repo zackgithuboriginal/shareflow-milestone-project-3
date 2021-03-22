@@ -20,7 +20,7 @@
                 
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav mr-auto">
-                        <li id="index" class="nav-item {% if request.endpoint=='posts' %}active{%endif %}">
+                        <li id="index" class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('posts') }}">Home</a>
                         </li>
                         <li class="nav-item {% if request.endpoint=='create_post' %}active{%endif %}">
