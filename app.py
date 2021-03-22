@@ -282,6 +282,9 @@ def post_details(post_id):
     return render_template(
         "post_detail.html", post=post)
 
+@app.route("/close_post_details/<post_id>")
+def close_post_details(post_id):
+    return redirect(url_for("posts", _anchor=post_id))
 
 def alertUser(key):
     if key == "session":

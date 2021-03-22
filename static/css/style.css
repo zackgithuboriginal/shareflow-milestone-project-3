@@ -1167,7 +1167,7 @@ form.registration-form {
 .post-detail-container {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin: 2rem auto 0 auto;
     width: 80vw;
     background-color: #fff;
     height: auto;
@@ -1189,31 +1189,37 @@ form.registration-form {
 }
 
 .post-detail-contents {
-    padding: 3rem 2rem 2rem 2rem;
+    padding: 1.5rem 4rem 2rem 4rem;
 }
 
 .post-detail-text-content {
     font-size: 1.6rem;
+    margin-top:1rem;
+    margin-bottom: 3rem;
 }
 
 .post-detail-title {
     font-size: 2.8rem;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .post-detail-author {
     font-size: 1.6rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: .5rem;
 }
 
-.post-detail-plusses {
-    margin-right: 1rem;
+.post-detail-divider {
+    margin-bottom: 2.5rem
+}
+
+.post-detail-plusses,
+.post-detail-close {
+    margin: auto 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin-top: auto;
-    margin-bottom: auto;
     padding: .5rem;
 }
 
@@ -1221,10 +1227,56 @@ form.registration-form {
     margin: none;
 }
 
-.post-detail-plusses i {
+.post-detail-plusses i,
+.post-detail-close i {
     font-size: 3rem;
     color: #ffffff;
 }
+
+.post-detail-comment-container {
+    font-size: 1.6rem;
+}
+
+.post-detail-comment {
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: column;
+}
+
+.post-detail-comment-container h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.post-detail-comment-bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: 2rem;
+    margin-top: .5rem;
+
+}
+
+.post-detail-comment-container h4 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0 1rem;
+}
+
+h4.post-detail-comment-count {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.post-detail-center {
+    min-height: 20rem;
+}
+
+.post-deatil-header-left,
+.post-detail-header-right {
+    display: flex;
+}
+
 @media (min-width: 768px) {
     /* General Styling */
     .page-heading {
@@ -1416,6 +1468,11 @@ form.registration-form {
     }
 
     .create-post-form {
+        width: 60vw;
+    }
+
+    /* Detailed Post Styling */
+    .post-detail-container {
         width: 60vw;
     }
 }
