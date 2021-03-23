@@ -132,8 +132,8 @@ def add_post():
         return redirect(url_for("register"))
 
 
-@app.route("/edit_post/<post_id>", methods=["GET", "POST"])
-def edit_post(post_id):
+@app.route("/edit_post/<post_id>/<user_location>", methods=["GET", "POST"])
+def edit_post(post_id, user_location):
     if request.method == "POST":
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         updated_post = {
@@ -148,7 +148,7 @@ def edit_post(post_id):
 
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Post Successfully Edited")
-        return redirect(url_for("posts", _anchor=post_id))
+        return redirect(url_for(user_location, _anchor=post_id))
 
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     topics = mongo.db.topics.find()
@@ -163,8 +163,10 @@ def sign_out():
     return redirect(url_for("log_in"))
 
 
-@app.route("/vote/<post_id>", methods=["GET", "POST"])
-def vote(post_id):
+@app.route("/vote/<post_id>/<user_location>", methods=["GET", "POST"])
+def vote(post_id, user_location):
+    print(post_id)
+    print(user_location)
     current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     current_vote = current_post["pluses"]
 
@@ -185,7 +187,10 @@ def vote(post_id):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            return redirect(url_for("posts", _anchor=post_id))
+            if user_location == 'account':
+                return redirect(url_for(user_location, username=session["user"], _anchor=post_id))
+            else:
+                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
         else:
             update_vote = {
                 "$set": {
@@ -200,14 +205,25 @@ def vote(post_id):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            return redirect(url_for("posts", _anchor=post_id))
+            if user_location == 'account':
+                return redirect(url_for(user_location, username=session["user"], _anchor=post_id))
+            else:
+                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
     else:
         alertUser("session")
         return redirect(url_for("posts"))
 
 
-@app.route("/add_comment/<post_id>", methods=["GET", "POST"])
-def add_comment(post_id):
+@app.route("/post_details/<post_id>")
+def post_details(post_id):
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    print(post)
+    return render_template(
+        "post_detail.html", post=post)
+
+
+@app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])
+def add_comment(post_id, user_location):
     if "user" in session:
         if request.method == "POST":
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
@@ -236,7 +252,10 @@ def add_comment(post_id):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_post)
             flash("Comment Successfully Added")
-            return redirect(url_for("posts", _anchor=post_id))
+            if user_location == 'account':
+                return redirect(url_for(user_location, username=session["user"], _anchor=post_id))
+            else:
+                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
 
     else:
         alertUser("session")
@@ -274,13 +293,6 @@ def account(username):
 
     return redirect(url_for("login"))
 
-
-@app.route("/post_details/<post_id>")
-def post_details(post_id):
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    print(post)
-    return render_template(
-        "post_detail.html", post=post)
 
 @app.route("/close_post_details/<post_id>")
 def close_post_details(post_id):

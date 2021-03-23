@@ -10,14 +10,14 @@
                 <div class="post-detail-plusses">
                         {% if session.user %}
                             {% if post._id in user_pluses %}
-                                <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-check"></i></a>
+                                <a href="{{ url_for('vote', post_id=post._id, user_location='post_details') }}"><i class="col-12 fas fa-check"></i></a>
                                 <p class="col-12 post-pluses">{{ post.pluses }}</p>
                             {% else %}
-                                <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
+                                <a href="{{ url_for('vote', post_id=post._id, user_location='post_details') }}"><i class="col-12 fas fa-plus"></i></a>
                                 <p class="col-12 post-pluses">{{ post.pluses }}</p>
                             {% endif %}
                         {% else %}
-                            <a href="{{ url_for('vote', post_id=post._id) }}"><i class="col-12 fas fa-plus"></i></a>
+                            <a href="{{ url_for('vote', post_id=post._id, user_location='post_details') }}"><i class="col-12 fas fa-plus"></i></a>
                             <p class="col-12 post-pluses">{{ post.pluses }}</p>
                         {% endif %}
                 </div>
@@ -35,7 +35,7 @@
                         {% endif %}
                         <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
                             <a class="{{ post.topic_name }}" href="{{ url_for('delete_post', post_id=post._id) }}"><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></a>
-                            <a class="{{ post.topic_name }}" href="{{ url_for('edit_post', post_id=post._id) }}"><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
+                            <a class="{{ post.topic_name }}" href="{{ url_for('edit_post', post_id=post._id, user_location=post_detail) }}"><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
                         </div>
                     </div>
                     <h2 class="post-detail-title">{{ post.post_title }}</h2>
