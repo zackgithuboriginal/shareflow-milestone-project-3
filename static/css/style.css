@@ -299,8 +299,7 @@ button.filter-control {
     padding-right: .5rem;
 }
 
-.sidebar,
-.profile-comments-sidebar {
+.sidebar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -312,10 +311,6 @@ button.filter-control {
 
 .sidebar {
     width: 100%;
-}
-
-.profile-comments-sidebar {
-    width: 10.5rem;
 }
 
 .post-card {
@@ -494,8 +489,7 @@ button.filter-control {
     font-size: 1.4rem;
 }
 
-.sidebar i,
-.profile-comments-sidebar i {
+.sidebar i {
     padding: 0;
     color: #ffffff;
     font-size: 2.5rem;
@@ -1077,15 +1071,6 @@ form.registration-form {
     margin-top: 6rem;
 }
 
-.profile-comment-card {
-    justify-content: flex-start;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    margin: 1rem auto;
-} 
-
 .comment-post-link {
     text-align: center;
     display: flex;
@@ -1121,21 +1106,6 @@ form.registration-form {
     flex-grow: 1;
     padding: 1rem 0;
     background-color: #ffffff;
-}
-
-.profile-comment-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    background-color: #ffffff;
-    padding: 1rem 2.5rem 1rem 2.5rem;
-}
-
-.profile-comment-bottom-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1rem 0;
 }
 
 .post-author {
@@ -1333,16 +1303,11 @@ h4.post-detail-comment-count {
         flex-direction: row;
     }
 
-    .profile-comments-sidebar,
     .sidebar {
         flex-direction: column;
         width: 7rem;
         padding: 1rem;
         justify-content: space-between;
-    }
-
-    .profile-comments-sidebar {
-        height: 12.5rem;
     }
 
     .sidebar {
@@ -1365,8 +1330,7 @@ h4.post-detail-comment-count {
         margin: 1rem 0;
     }
 
-    .sidebar i,
-    .profile-comments-sidebar i {
+    .sidebar i {
         margin-bottom: .5rem;
         text-align: center;
     }

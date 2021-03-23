@@ -6,11 +6,9 @@
 </div>
 <section class="main-container">
     <div class="page-option-container">
-        <div class="page-option active-tab" id="display-tab-posts" onclick="tabDisplay('posts')">Posts</div>
+        <div class="page-option active-tab" id="display-tab-posts" onclick="tabDisplay('posts')">Your Posts</div>
         <div class="page-display-options"></div>
-        <div class="page-option" id="display-tab-comments" onclick="tabDisplay('comments')">Comments</div>
-        <div class="page-display-options"></div>
-        <div class="page-option" id="display-tab-plusses" onclick="tabDisplay('plusses')">Plusses</div>
+        <div class="page-option" id="display-tab-plusses" onclick="tabDisplay('plusses')">Plussed Posts</div>
     </div>
     <div class="user-post-container tab-display-option" id="posts-display">
         {% if userPosts|length > 0 %}
@@ -93,35 +91,6 @@
                 {% endfor %}
             </div>
         {% endif %}
-    </div>
-    <div class="user-comment-container tab-display-option" id="comments-display">
-        {% for post in userComments %}
-            <div class="profile-comment-card">
-                    <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar profile-comments-sidebar">
-                        <div class="comment-post-link row">
-                            <a class="unstyled-button comment-link-icon" href="{{ url_for('posts', _anchor=post._id) }}"><i class="fas fa-arrow-circle-left"></i></a>
-                            <p class="comment-link-text">View Post</p>
-                        </div>
-                    </div>
-                <div class="profile-comment-container">
-                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
-                    <h4 class="comment-post-title">{{ post.post_title }}</h4>
-                    <div class="profile-comment-bottom-row">
-                        <h3 class="post-author">{{ post.author }}</h3>
-                        <h3 class="post-comment-date">{{ post.post_date }}</h3>
-                    </div>
-                    {% for comment in post.comments %}
-                        {% if comment.author==session["user"] %}
-                        <hr class="comment-divider">
-                        <div class="comment-content-container">
-                            <p class="comment-content">{{ comment.comment_content }}</p>
-                            <h3 class="post-comment-date">{{ comment.post_date }}</h3>
-                        </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
     </div>
     <div class="user-plusses-container tab-display-option" id="plusses-display">
         {% if userPlusses|length > 0 %}
