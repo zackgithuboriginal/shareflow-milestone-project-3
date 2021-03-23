@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-from datetime import date
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -119,7 +119,7 @@ def add_post():
                 "post_content": request.form.get("post_content"),
                 "topic_name": request.form.get("post_topic"),
                 "author": session["user"],
-                "post_date": date.today().strftime("%d/%m/%Y"),
+                "post_date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
                 "pluses": 0,
                 "comments": [],
                 "total_comments": 0
@@ -232,7 +232,7 @@ def add_comment(post_id, user_location):
                 "comment_id": comment_id,
                 "comment_content": request.form.get("comment_content"),
                 "author": session["user"],
-                "post_date": date.today().strftime("%d/%m/%Y"),
+                "post_date": date.today().strftime("%m/%d/%Y, %H:%M:%S"),
                 "attached_post": post_id
             }
             update_post = {
