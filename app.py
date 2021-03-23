@@ -265,7 +265,12 @@ def add_comment(post_id, user_location):
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
-    mongo.db.users.update({},{"$pull": { "voted": { "$in": [ post_id ] }}})
+    mongo.db.users.update({},{"$pull": { "voted": { "$in": [ post_id ] }}},
+    True)
+    mongo.db.users.update(
+    {}, 
+    { "$pull": { "comments": { "attached_post": post_id } } },
+    True)
     flash("Post Deleted")
     return redirect(url_for("posts"))
 
