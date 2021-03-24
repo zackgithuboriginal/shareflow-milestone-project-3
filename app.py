@@ -188,7 +188,7 @@ def vote(post_id, user_location):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
             if user_location == 'account':
-                return redirect(url_for(user_location, username=session["user"], _anchor=post_id))
+                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
             else:
                 return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
         else:
@@ -206,7 +206,7 @@ def vote(post_id, user_location):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
             if user_location == 'account':
-                return redirect(url_for(user_location, username=session["user"], _anchor=post_id))
+                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
             else:
                 return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
     else:
