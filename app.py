@@ -306,7 +306,8 @@ def account(post_id):
                 "account.html", username=username,
                 userPosts=userPosts,
                 userPlusses=userPlusses,
-                plussed_posts=plussed_posts)
+                plussed_posts=plussed_posts,
+                active_tab="posts")
         else: 
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
             if post['author'] == session['user']:
