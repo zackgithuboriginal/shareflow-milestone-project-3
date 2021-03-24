@@ -282,9 +282,10 @@ def delete_post(post_id):
     return redirect(url_for("posts"))
 
 
-@app.route("/account", methods=["GET", "POST"])
-def account():
+@app.route("/account/<post_id>", methods=["GET", "POST"])
+def account(post_id):
     if session["user"]:
+        print(post_id)
         user = mongo.db.users.find_one(
             {"username": session["user"]})
         username = user["username"]
@@ -298,15 +299,32 @@ def account():
         for post in plussedPostIds:
             userPlusses.append(
                 mongo.db.posts.find_one({"_id": ObjectId(post)}))
-                
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}))
-        print(session["user"])
-        return render_template(
-            "account.html", username=username,
-            userPosts=userPosts,
-            userPlusses=userPlusses,
-            plussed_posts=plussed_posts)
+        if post_id=="None":
+            return render_template(
+                "account.html", username=username,
+                userPosts=userPosts,
+                userPlusses=userPlusses,
+                plussed_posts=plussed_posts)
+        else: 
+            post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+            if post['author'] == session['user']:
+                print("hello")
+                return render_template(
+                    "account.html", username=username,
+                    userPosts=userPosts,
+                    userPlusses=userPlusses,
+                    plussed_posts=plussed_posts, active_tab="posts")
+            else:
+                return render_template(
+                    "account.html", username=username,
+                    userPosts=userPosts,
+                    userPlusses=userPlusses,
+                    plussed_posts=plussed_posts,
+                    active_tab="plusses")
+
+
 
     return redirect(url_for("login"))
 

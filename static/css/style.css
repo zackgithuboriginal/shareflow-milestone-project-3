@@ -1055,7 +1055,8 @@ form.registration-form {
 }
 
 .user-comment-container,
-.user-plusses-container {
+.user-plusses-container,
+.user-post-container {
     width: 80vw;
     display: none;
     justify-content: center;
@@ -1065,10 +1066,9 @@ form.registration-form {
     flex-direction: column;
 }
 
-.user-post-container {
+section.main-container div.tab-display-option.active-profile-tab {
     display: flex;
-    justify-content: center;
-    margin-top: 6rem;
+
 }
 
 .comment-post-link {
