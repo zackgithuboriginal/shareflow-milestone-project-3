@@ -51,7 +51,7 @@
                             <p class="col-12 post-pluses">Engage</p>
                         </div>
                         <div class="comment-post-link row">
-                            <a class="unstyled-button comment-link-icon" href="{{ url_for('post_details', post_id=post._id) }}"><i class="fas fa-arrow-circle-left"></i></a>
+                            <a class="unstyled-button comment-link-icon" href="{{ url_for('post_details', post_id=post._id, user_location='posts') }}"><i class="fas fa-arrow-circle-left"></i></a>
                             <p class="comment-link-text">View Post</p>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                             <div class="post-bottom">
                                 <p class="post-date">{{ post.post_date }}</p>
                                 {% if post.comments|length > 0 %}
-                                    <a class="post-comment-count" href="{{ url_for('post_details', post_id=post._id) }}">Show comments({{ post.comments|length }})</a>
+                                    <a class="post-comment-count" href="{{ url_for('post_details', post_id=post._id, user_location='posts') }}">Show comments({{ post.comments|length }})</a>
                                 {% else %}
                                     <p class="post-comment-count">Be the first to comment</p>
                                 {% endif %}

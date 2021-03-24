@@ -214,8 +214,8 @@ def vote(post_id, user_location):
         return redirect(url_for("posts"))
 
 
-@app.route("/post_details/<post_id>")
-def post_details(post_id):
+@app.route("/post_details/<post_id>/<user_location>")
+def post_details(post_id, user_location):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     if "user" in session:
         plusses = mongo.db.users.find_one(
@@ -224,9 +224,9 @@ def post_details(post_id):
         for plussed_post in plusses:
             user_plusses.append(ObjectId(plussed_post))
         return render_template(
-            "post_detail.html", post=post, user_plusses=user_plusses)
+            "post_detail.html", post=post, user_plusses=user_plusses, user_location=user_location)
     return render_template(
-        "post_detail.html", post=post)
+        "post_detail.html", post=post, user_location=user_location)
 
 
 @app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])
@@ -311,9 +311,9 @@ def account():
     return redirect(url_for("login"))
 
 
-@app.route("/close_post_details/<post_id>")
-def close_post_details(post_id):
-    return redirect(url_for("posts", _anchor=post_id))
+@app.route("/close_post_details/<post_id>/<previous_location>")
+def close_post_details(post_id, previous_location):
+    return redirect(url_for(previous_location, post_id=post_id, _anchor=post_id))
 
 def alertUser(key):
     if key == "session":
