@@ -90,6 +90,8 @@
                 </div>
                 {% endfor %}
             </div>
+        {% else %}
+            <h2 class="profile-alternate-text">You haven't created any posts yet!</h2>
         {% endif %}
     </div>
     <div class="{% if active_tab=='plusses' %} active-profile-tab {% endif %}user-plusses-container tab-display-option" id="plusses-display">
@@ -174,6 +176,8 @@
                     {% endif%}
                 {% endfor %}
             </div>
+        {% else %}
+            <h2 class="profile-alternate-text">You haven't voted on any posts yet!<br><br> Click the <i class="fas fa-plus"></i> symbol on posts you like to save them here</h2>
         {% endif %}
     </div>
 </section>

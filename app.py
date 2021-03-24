@@ -289,16 +289,22 @@ def account(post_id):
         user = mongo.db.users.find_one(
             {"username": session["user"]})
         username = user["username"]
+
+        # Finds the list of posts that a user has liked for the check
+        plussed_posts = []
         plusses = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
-        plussed_posts = []
         for post in plusses:
             plussed_posts.append(ObjectId(post))
-        plussedPostIds = user["voted"]
+
+        # Finds the list of posts that a user has liked to display on profile
         userPlusses = []
+        plussedPostIds = user["voted"]
         for post in plussedPostIds:
-            userPlusses.append(
-                mongo.db.posts.find_one({"_id": ObjectId(post)}))
+            if mongo.db.posts.find_one({"_id": ObjectId(post)})["author"] != username:
+                userPlusses.append(
+                    mongo.db.posts.find_one({"_id": ObjectId(post)}))
+
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}))
         if post_id=="None":
