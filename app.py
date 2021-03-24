@@ -148,11 +148,11 @@ def edit_post(post_id, user_location):
 
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Post Successfully Edited")
-        return redirect(url_for(user_location, _anchor=post_id))
+        return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
 
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     topics = mongo.db.topics.find()
-    return render_template("edit_post.html", post=post, topics=topics)
+    return render_template("edit_post.html", post=post, topics=topics, user_location=user_location)
 
 
 @app.route("/sign_out")
@@ -282,8 +282,8 @@ def delete_post(post_id):
     return redirect(url_for("posts"))
 
 
-@app.route("/account/<username>", methods=["GET", "POST"])
-def account(username):
+@app.route("/account", methods=["GET", "POST"])
+def account():
     if session["user"]:
         user = mongo.db.users.find_one(
             {"username": session["user"]})
