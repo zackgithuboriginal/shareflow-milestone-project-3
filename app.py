@@ -232,7 +232,7 @@ def add_comment(post_id, user_location):
                 "comment_id": comment_id,
                 "comment_content": request.form.get("comment_content"),
                 "author": session["user"],
-                "post_date": date.today().strftime("%m/%d/%Y, %H:%M:%S"),
+                "post_date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
                 "attached_post": post_id
             }
             update_post = {
