@@ -9,7 +9,7 @@
             <div class="post-detail-topic-container {{ post.topic_name }}-sidebar">
                 <div class="post-detail-plusses">
                         {% if session.user %}
-                            {% if post._id in user_pluses %}
+                            {% if post._id in user_plusses %}
                                 <a href="{{ url_for('vote', post_id=post._id, user_location='post_details') }}"><i class="col-12 fas fa-check"></i></a>
                                 <p class="col-12 post-pluses">{{ post.pluses }}</p>
                             {% else %}

@@ -217,7 +217,14 @@ def vote(post_id, user_location):
 @app.route("/post_details/<post_id>")
 def post_details(post_id):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    print(post)
+    if "user" in session:
+        plusses = mongo.db.users.find_one(
+            {"username": session["user"]})["voted"]
+        user_plusses = []
+        for plussed_post in plusses:
+            user_plusses.append(ObjectId(plussed_post))
+        return render_template(
+            "post_detail.html", post=post, user_plusses=user_plusses)
     return render_template(
         "post_detail.html", post=post)
 
