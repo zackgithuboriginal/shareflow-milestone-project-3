@@ -132,8 +132,8 @@ def add_post():
         return redirect(url_for("register"))
 
 
-@app.route("/edit_post/<post_id>/<user_location>", methods=["GET", "POST"])
-def edit_post(post_id, user_location):
+@app.route("/edit_post/<post_id>/<prev_location>", methods=["GET", "POST"])
+def edit_post(post_id, prev_location):
     if request.method == "POST":
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         updated_post = {
@@ -148,11 +148,11 @@ def edit_post(post_id, user_location):
 
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Post Successfully Edited")
-        return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
+        return redirect(url_for('post_details', post_id=post_id, user_location=prev_location, _anchor=post_id))
 
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     topics = mongo.db.topics.find()
-    return render_template("edit_post.html", post=post, topics=topics, user_location=user_location)
+    return render_template("edit_post.html", post=post, topics=topics, prev_location=prev_location)
 
 
 @app.route("/sign_out")
@@ -330,7 +330,6 @@ def account(post_id):
                     userPlusses=userPlusses,
                     plussed_posts=plussed_posts,
                     active_tab="plusses")
-
 
 
     return redirect(url_for("login"))
