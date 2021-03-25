@@ -965,7 +965,7 @@ form.registration-form {
 
 .create-post-form {
     width: 80vw;
-    height: 80vh;
+    height: 70vh;
     margin: 0 auto;
     background-color: #ffffff;
     justify-content: space-between;
@@ -991,6 +991,7 @@ form.registration-form {
 .post-form-textarea,
 .post-form-label {
     display: flex;
+    color: #6c757d;
 }
 
 .post-form-label {
@@ -1010,6 +1011,12 @@ form.registration-form {
     font-size: 1.8rem;
 }
 
+.post-form-textarea:focus,
+.create-post-form input:focus,
+.create-post-form select:focus {
+    color: #212529
+}
+
 .form-buttons {
     display: flex;
     flex-direction: row;
@@ -1027,10 +1034,6 @@ form.registration-form {
     text-align: center;
     color: #ffffff;
     -webkit-appearance: none;
-}
-
-.create-post-form input {
-    color: #BFB1C1;
 }
 
 .post-form-textarea, 
