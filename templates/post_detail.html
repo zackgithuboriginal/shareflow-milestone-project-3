@@ -53,6 +53,11 @@
                 <div class="post-detail-comment-container">
                     {% if post.comments|length > 0 %}
                         <h4 class="post-detail-comment-count">Total Comments: {{ post.total_comments }}</h3>
+                        <form method="POST" class="post-detail-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
+                            <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
+                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                        </form>
+
                         {% for comment in post.comments%}
                         <div class="post-detail-comment">
                             <h3>{{ comment.comment_content}}</h3>
@@ -64,6 +69,10 @@
                         {% endfor %}
                     {% else %}
                         <h4 class="post-detail-comment-count">There are no comments yet. Be the first!</h3>
+                        <form method="POST" class="post-detail-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
+                            <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
+                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                        </form>
                     {% endif %}
                 </div>
             </div>

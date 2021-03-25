@@ -68,11 +68,11 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div  id="create-comment-form-{{ post._id }}" class="create-comment-form" >
+                        <div id="create-comment-form-{{ post._id }}" class="create-comment-form">
                             <hr class="comment-divider">
-                            <form method="POST" action="{{ url_for('add_comment', post_id=post._id, user_location='account') }}">
+                            <form method="POST" action="{{ url_for('add_comment', post_id=post._id, user_location='posts') }}">
                                 <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
-                                <button class="form-control button-confirm" type="submit">Add</button>
+                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
                             </form>
                         </div>
                         {% if post.comments|length > 0 %}
@@ -153,11 +153,11 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div  id="create-comment-form-{{ post._id }}" class="create-comment-form" >
+                        <div id="create-comment-form-{{ post._id }}" class="create-comment-form">
                             <hr class="comment-divider">
-                            <form method="POST" action="{{ url_for('add_comment', post_id=post._id, user_location='account') }}">
+                            <form method="POST" action="{{ url_for('add_comment', post_id=post._id, user_location='posts') }}">
                                 <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
-                                <button class="form-control button-confirm" type="submit">Add</button>
+                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
                             </form>
                         </div>
                         {% if post.comments|length > 0 %}

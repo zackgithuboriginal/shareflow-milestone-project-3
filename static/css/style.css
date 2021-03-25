@@ -553,7 +553,20 @@ button.filter-control {
 
 .comment-form-textarea {
     resize: none;
+    width: 100%;
     font-size: 1.4rem;
+    height: 8rem;
+}
+
+.comment-form-button {
+    width: 10rem;
+    margin-top: 1rem;
+    height: 4rem;
+    position: relative;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .create-comment-form {
@@ -1229,6 +1242,13 @@ section.main-container div.tab-display-option.active-profile-tab {
     font-weight: 400;
 }
 
+.post-detail-comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
 .post-detail-comment-bottom-row {
     display: flex;
     flex-direction: row;
@@ -1449,6 +1469,11 @@ h4.post-detail-comment-count {
     /* Detailed Post Styling */
     .post-detail-container {
         width: 60vw;
+    }
+
+    .post-detail-comment-form {
+        display: flex;
+        flex-direction: start;
     }
 }
 
