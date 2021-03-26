@@ -190,7 +190,7 @@ def vote(post_id, user_location):
             if user_location == 'account':
                 return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
             else:
-                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
+                return redirect(url_for(user_location, post_id=post_id, user_location=user_location, _anchor=post_id))
         else:
             update_vote = {
                 "$set": {
@@ -208,7 +208,7 @@ def vote(post_id, user_location):
             if user_location == 'account':
                 return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
             else:
-                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
+                return redirect(url_for(user_location, post_id=post_id, user_location=user_location, _anchor=post_id))
     else:
         alertUser("session")
         return redirect(url_for("posts"))
