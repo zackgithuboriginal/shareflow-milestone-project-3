@@ -71,7 +71,12 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "voted": []
+            "voted": [],
+            "account_image": "/static/images/avatar_images/avatar_1.png",
+            "registration_date": datetime.now().strftime("%m/%d/%Y"),
+            "posts_made": 0,
+            "comments_made": 0,
+            "plusses": 0
         }
 
         mongo.db.users.insert_one(register)
@@ -285,7 +290,6 @@ def delete_post(post_id):
 @app.route("/account/<post_id>", methods=["GET", "POST"])
 def account(post_id):
     if session["user"]:
-        print(post_id)
         user = mongo.db.users.find_one(
             {"username": session["user"]})
         username = user["username"]
@@ -304,7 +308,7 @@ def account(post_id):
             if mongo.db.posts.find_one({"_id": ObjectId(post)})["author"] != username:
                 userPlusses.append(
                     mongo.db.posts.find_one({"_id": ObjectId(post)}))
-
+        
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}))
         if post_id=="None":
@@ -313,23 +317,25 @@ def account(post_id):
                 userPosts=userPosts,
                 userPlusses=userPlusses,
                 plussed_posts=plussed_posts,
-                active_tab="posts")
+                active_tab="posts",
+                user=user )
         else: 
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
             if post['author'] == session['user']:
-                print("hello")
                 return render_template(
                     "account.html", username=username,
                     userPosts=userPosts,
                     userPlusses=userPlusses,
-                    plussed_posts=plussed_posts, active_tab="posts")
+                    plussed_posts=plussed_posts, active_tab="posts",
+                    user=user)
             else:
                 return render_template(
                     "account.html", username=username,
                     userPosts=userPosts,
                     userPlusses=userPlusses,
                     plussed_posts=plussed_posts,
-                    active_tab="plusses")
+                    active_tab="plusses",
+                    user=user)
 
 
     return redirect(url_for("login"))
