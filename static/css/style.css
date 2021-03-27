@@ -27,6 +27,7 @@ main.container-flex {
 
 .title-container {
     display: flex;
+    flex-direction: column;
     width: 100vw;
     position: relative;
     margin-bottom: 2rem;
@@ -1047,10 +1048,87 @@ form.registration-form {
 }
 
 /* PROFILE STYLING */
+.main-container-account {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.account-details-information, .account-avatar {
+  color: black;
+}
+
+.account-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    position: relative;
+    margin-bottom: 2rem;
+    background-color: #89A6FB;
+    margin-top: -2rem;
+
+}
+
+.account-details {
+
+    display:flex;
+    flex-direction: column;
+    margin:5rem auto 5rem auto ;
+    padding-bottom : 4rem;
+    border-bottom: .4rem solid white;
+}
+
+.account-details-username {
+    font-size: 3.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+}
+
+.account-details-flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .page-option-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.account-avatar {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar {
+    top: 0;
+    left: 0;
+    height: 20rem;
+    width: 20rem;
+    display: flex;
+    margin: auto;
+}
+
+.account-details-information,
+.account-avatar {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    color: #ffffff;
+    justify-content: center;
+}
+
+.account-details-information {
+    width:25rem;
+    margin-left: auto;
+    margin-right:auto;
 }
 
 .profile-alternate-text {
@@ -1095,7 +1173,7 @@ form.registration-form {
     flex-direction: column;
 }
 
-section.main-container div.tab-display-option.active-profile-tab {
+section.main-container-account div.tab-display-option.active-profile-tab {
     display: flex;
 
 }
@@ -1329,6 +1407,36 @@ h4.post-detail-comment-count {
     }
 
     /* Profile/Posts Styling */
+
+    .account-details {
+        display:flex;
+        flex-direction: row;
+        margin:5rem auto 5rem auto ;
+    }
+
+    .account-details-username {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .avatar {
+        height: 15rem;
+        width: 15rem;
+    }
+
+    .account-details-information,
+    .account-avatar {
+        display: flex;
+        flex-direction: column;
+        margin: 0 3rem;
+        color: #ffffff;
+    }
+
+    .account-details-username {
+        text-align: left;
+        margin-left: 3rem;
+    }
+
     .page-option {
         margin-left: 1rem;
         margin-right: 1rem;
@@ -1487,7 +1595,7 @@ h4.post-detail-comment-count {
     .main-container {
         margin: 0;
         max-width: 100vw;
-        padding-left: 24rem;
+        margin-left: 24rem;
     }
 
     .title-container {
@@ -1497,7 +1605,6 @@ h4.post-detail-comment-count {
         margin-top: -8rem;
     }
     
-
     .page-title {
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
@@ -1518,6 +1625,58 @@ h4.post-detail-comment-count {
 
 
     /* Profile Styling */
+    .main-container-account {
+        margin: 0;
+        max-width: 100vw;
+        margin-left: 30rem;
+    }
+
+    .account-container {
+        position: fixed;
+        width: 30rem;
+        height: 60vh;
+        top: 18.4rem;
+        margin:0;
+        margin-left: 5rem;
+    }
+    .account-details {
+        display:flex;
+        flex-direction: column;
+        margin: auto;
+        border-bottom: .4rem solid white;
+    }
+
+    .account-details-divider {
+        display: none;
+    }
+
+    .account-details-username {
+        font-size: 3.4rem;
+        margin-bottom: 2rem;
+        margin-left: 0;
+    }
+
+    .avatar {
+        height: 20rem;
+        width: 20rem;
+    }
+
+    .account-details-information,
+    .account-avatar {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        color: #ffffff;
+    }
+
+    .account-details-information {
+        margin: 0 auto;
+    }
+
+    .account-details-username {
+        text-align: center;
+    }
+    
     .page-option-container {
         position: relative;
         top: 4rem;
@@ -1543,7 +1702,6 @@ h4.post-detail-comment-count {
     .topic-card-container {
         max-width: 60vw;
     }
-
 
     /* Home Page Styling */
     .filter-options {

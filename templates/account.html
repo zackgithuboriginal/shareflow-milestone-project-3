@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 {% set active_page = "account" %}
 {% block content %}
-<div class="title-container">
-    <h1 class="page-title">{{ session['user'] }}</h1>
+<div class="account-container">
+    <div class="account-details">
+        <div class="account-avatar">
+            <img class="avatar" src="{{ user.account_image }}" alt="">
+        </div>
+        <div class="account-details-flex-container">
+            <h2 class="account-details-username">{{ user.username }}</h2>
+            <div class="account-details-information">
+                <h4>User Since: {{ user.registration_date }}</h4>
+                <h4>Posts: {{ user.posts_made }}</h4>
+                <h4>Comments: {{ user.comments_made }}</h4>
+                <h4>Plusses: {{ user.plusses}} </h4>
+            </div>
+        </div>
+    </div>
 </div>
-<section class="main-container">
+<section class="main-container-account">
     <div class="page-option-container">
         <div class="page-option {% if active_tab=='posts' %} active-tab {% endif %}" id="display-tab-posts" onclick="tabDisplay('posts')">Your Posts</div>
         <div class="page-display-options"></div>
