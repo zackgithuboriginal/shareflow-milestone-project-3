@@ -1146,12 +1146,32 @@ form.registration-form {
 
 .modal-content {
     background-color: #89A6FB;
+    padding: 1rem;
+    box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
 }
 
 .modal-header,
 .modal-footer {
     border-bottom: none;
     border-top: none;
+}
+
+.modal-footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.modal-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    color: white;
+    padding: .8rem;
+    font-size: 1.4rem;
+    box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
+    border-radius: .25rem;
+    display: flex;
 }
 
 .avatar-modal-button {
