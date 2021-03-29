@@ -170,6 +170,7 @@ function tabDisplay(tab){
 }
 
 
+
 /**
  * This function loops through all posts and if they exceed a defined character length and the page is small enough it will hide the end of the post and display a toggleable button
  */
@@ -207,4 +208,51 @@ function updatePostTopics(){
             postTopic = postTopics[i].textContent.replace("-"," ")
             postTopics[i].textContent = postTopic.charAt(0).toUpperCase() + postTopic.slice(1)
         }
+}
+
+
+function formSubmit() {
+    let url = document.forms["avatar-submit-form"].elements["avatar_direct_input"].value;
+    if (!checkURL(url)) {
+        alert("Invalid URL. Please submit a URL with one of the following extensions: jpeg, jpg, gif, png.");
+        return(false);
+    }
+    testImage(url, function(testURL, result) {
+        if (result == "success") {
+            document.forms["avatar-submit-form"].submit();
+        } else if (result == "error") {
+            alert("The URL given does not point to the correct type of image.");
+        } else {
+            alert("The image URL was not reachable. Check that the URL is correct.");
+        }
+
+    });
+    return(false);
+}
+
+function checkURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
+function testImage(url, callback, timeout) {
+    timeout = timeout || 5000;
+    let timedOut = false, timer;
+    let img = new Image();
+    img.onerror = img.onabort = function() {
+        if (!timedOut) {
+            clearTimeout(timer);
+            callback(url, "error");
+        }
+    };
+    img.onload = function() {
+        if (!timedOut) {
+            clearTimeout(timer);
+            callback(url, "success");
+        }
+    };
+    img.src = url;
+    timer = setTimeout(function() {
+        timedOut = true;
+        callback(url, "timeout");
+    }, timeout); 
 }
