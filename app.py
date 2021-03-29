@@ -87,6 +87,27 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/edit_avatar", methods=["GET", "POST"])
+def edit_avatar():
+    if request.method == "POST":
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})
+        selected_avatar = request.form.get("avatar_select")
+        if selected_avatar == user["account_image"]:
+            return redirect(url_for('account', post_id="None"))
+        else:
+            updated_avatar = {
+                    "$set": {
+                        "account_image": request.form.get("avatar_select"),
+                        }
+            }
+
+            mongo.db.users.update({"username": session["user"]}, updated_avatar)
+            flash("Image Successfully Updated")
+            return redirect(url_for('account', post_id="None"))
+    else:
+        return redirect(url_for('account', post_id="None"))
+
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "POST":

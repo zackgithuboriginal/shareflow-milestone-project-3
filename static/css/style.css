@@ -1084,7 +1084,7 @@ form.registration-form {
 
 .account-details-username {
     font-size: 3.4rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: center;
     color: white;
@@ -1105,13 +1105,16 @@ form.registration-form {
 .account-avatar {
     display: flex;
     justify-content: center;
+    overflow: hidden;
+    max-width: 25rem;
 }
 
 .avatar {
     top: 0;
     left: 0;
     height: 20rem;
-    width: 20rem;
+    width: auto;
+
     display: flex;
     margin: auto;
 }
@@ -1129,6 +1132,93 @@ form.registration-form {
     width:25rem;
     margin-left: auto;
     margin-right:auto;
+}
+
+.account-avatar-flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.change-account-avatar {
+    background-color: #ffffff;
+}
+
+.modal-content {
+    background-color: #89A6FB;
+}
+
+.modal-header,
+.modal-footer {
+    border-bottom: none;
+    border-top: none;
+}
+
+.avatar-modal-button {
+    margin-top: .5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    color: #ffffff;
+    font-size: 1.4rem;
+    padding: .2rem;
+    width: 15rem;
+    border: none;
+    text-decoration: underline;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+}
+
+.modal-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+button.close {
+    color: white;
+    font-size: 1.6rem;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+}
+
+.change-account-avatar-form {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #89A6FB;
+}
+
+.change-account-avatar-form label {
+    width: 7.5rem;
+    flex: 1 0 33%;
+    display: flex;
+    justify-content: center;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+}
+
+.avatar-select {
+    width: 7.5rem;
+    height: 7.5rem;
+}
+
+.avatar-select-radio { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.avatar-select-radio + img {
+  cursor: pointer;
+}
+
+.avatar-select-radio:checked + img {
+  outline: .4rem solid #ffffff;
 }
 
 .profile-alternate-text {
@@ -1420,8 +1510,8 @@ h4.post-detail-comment-count {
     }
 
     .avatar {
-        height: 15rem;
-        width: 15rem;
+        height: 20rem;
+        width: auto;
     }
 
     .account-details-information,
@@ -1658,7 +1748,7 @@ h4.post-detail-comment-count {
 
     .avatar {
         height: 20rem;
-        width: 20rem;
+        width: auto;
     }
 
     .account-details-information,

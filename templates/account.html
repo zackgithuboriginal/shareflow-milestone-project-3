@@ -3,8 +3,13 @@
 {% block content %}
 <div class="account-container">
     <div class="account-details">
-        <div class="account-avatar">
-            <img class="avatar" src="{{ user.account_image }}" alt="">
+        <div class="account-avatar-flex-container">
+            <div class="account-avatar">
+                <img class="avatar" src="{{ user.account_image }}" alt="">
+            </div> 
+            <button type="button" class="btn avatar-modal-button" data-bs-toggle="modal" data-bs-target="#avatar-select-modal">
+                Update Image
+            </button>
         </div>
         <div class="account-details-flex-container">
             <h2 class="account-details-username">{{ user.username }}</h2>
@@ -194,5 +199,76 @@
         {% endif %}
     </div>
 </section>
+            
+<div class="modal" id="avatar-select-modal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Update Account Image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="change-account-avatar">
+                <form  method="POST" action="{{ url_for('edit_avatar', username=user.username) }}" class="change-account-avatar-form">
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_1.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_1.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_1.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_2.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_2.png" %}checked{% endif %}">
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_2.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_3.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_3.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_3.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_4.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_4.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_4.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_5.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_5.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_5.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_6.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_6.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_6.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_7.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_7.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_7.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_8.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_8.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_8.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_9.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_9.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_9.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_10.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_10.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_10.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_11.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_11.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_11.png">
+                    </label>
+                    <label>
+                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_12.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_12.png" %}checked{% endif %}>
+                        <img class="avatar-select" src="/static/images/avatar_images/avatar_12.png">
+                    </label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
