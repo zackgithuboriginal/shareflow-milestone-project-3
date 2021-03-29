@@ -332,6 +332,26 @@ button.filter-control {
     padding: 0;
 }
 
+.post-author-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.post-author-avatar-container {
+    display: flex;
+    height: 6rem;
+    max-width:7.5rem;
+    overflow: hidden;
+    margin-left: auto;
+}
+
+.post-author-avatar {
+    display: flex;
+    height: 6rem;
+    width: auto;
+}
+
 .post-details {
     padding: 1rem 1rem;
     margin:0 auto;

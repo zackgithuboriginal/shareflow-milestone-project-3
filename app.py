@@ -17,7 +17,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
 @app.route("/")
 @app.route("/posts")
 def posts(): 
@@ -33,6 +32,7 @@ def posts():
 
     topics = list(mongo.db.topics.find())
 
+    users = list(mongo.db.users.find())
     if "user" in session:
         pluses = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
@@ -40,9 +40,9 @@ def posts():
         for post in pluses:
             user_pluses.append(ObjectId(post))
         return render_template(
-            "posts.html", posts=posts, topics=topics,
+            "posts.html", posts=posts, users=users,  topics=topics,
             user_pluses=user_pluses)
-    return render_template("posts.html", posts=posts, topics=topics)
+    return render_template("posts.html", posts=posts, users=users, topics=topics)
 
 
 @app.route("/topics")
@@ -325,6 +325,7 @@ def account(post_id):
             {"username": session["user"]})
         username = user["username"]
 
+        users = list(mongo.db.users.find())
         # Finds the list of posts that a user has liked for the check
         plussed_posts = []
         plusses = mongo.db.users.find_one(
@@ -345,6 +346,7 @@ def account(post_id):
         if post_id=="None":
             return render_template(
                 "account.html", username=username,
+                users=users,
                 userPosts=userPosts,
                 userPlusses=userPlusses,
                 plussed_posts=plussed_posts,
@@ -355,6 +357,7 @@ def account(post_id):
             if post['author'] == session['user']:
                 return render_template(
                     "account.html", username=username,
+                    users=users,
                     userPosts=userPosts,
                     userPlusses=userPlusses,
                     plussed_posts=plussed_posts, active_tab="posts",
@@ -362,6 +365,7 @@ def account(post_id):
             else:
                 return render_template(
                     "account.html", username=username,
+                    users=users,
                     userPosts=userPosts,
                     userPlusses=userPlusses,
                     plussed_posts=plussed_posts,

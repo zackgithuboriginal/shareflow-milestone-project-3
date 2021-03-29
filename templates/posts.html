@@ -69,17 +69,17 @@
                                     </div>
                                 </div>
                                 <h3 class="post-title">{{ post.post_title }}</h3>
-                                <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
                                 <p class="post-text">{{ post.post_content }}</p>
                                 <a class="expand-post"  onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand Post<i class="fas fa-arrow-down"></i></a>
                             </div>
                             <div class="post-bottom">
                                 <p class="post-date">{{ post.post_date }}</p>
-                                {% if post.comments|length > 0 %}
-                                    <a class="post-comment-count" href="{{ url_for('post_details', post_id=post._id, user_location='posts') }}">Show comments({{ post.comments|length }})</a>
-                                {% else %}
-                                    <p class="post-comment-count">Be the first to comment</p>
-                                {% endif %}
+                                <div class="post-author-details">
+                                    <div class="post-author-avatar-container">
+                                        <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
+                                    </div>
+                                    <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
+                                </div>
                             </div>
                         </div>
                         <div id="create-comment-form-{{ post._id }}" class="create-comment-form">
