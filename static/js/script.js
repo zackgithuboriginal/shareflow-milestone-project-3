@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+    $(".close-avatar-modal").click(function(){
+        $("#avatar-select-modal").modal('hide');
+    });
     /**
      * Automatically updates footer copyright date
      */
