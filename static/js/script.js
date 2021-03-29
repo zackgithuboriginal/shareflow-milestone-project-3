@@ -23,6 +23,20 @@ $(document).ready(function(){
      */
     truncatePosts();
 
+    $('#direct-input-image-url').click(function(){
+        document.getElementById("direct-url-input-radio").checked=true;
+        document.getElementById("direct-input-image-url").required = true;
+    })
+    $('input[name="avatar_select"]').change(function(){
+        if($('input[name="avatar_select"]:checked').val()=="direct_input"){
+            console.log("hello")
+            document.getElementById("direct-input-image-url").required = true;
+        } else {
+            document.getElementById("direct-input-image-url").required = false;
+        }
+
+    });
+
     urlParsing();
 });
 window.onresize = truncatePosts;

@@ -212,6 +212,12 @@
         <div class="modal-body">
             <div class="change-account-avatar">
                 <form  method="POST" action="{{ url_for('edit_avatar', username=user.username) }}" class="change-account-avatar-form">
+                    <h3 class="avatar-select-modal-subheading">Input the URL of an image you want to use</h3>
+                    <label class="modal-direct-input">
+                        <input type="radio" name="avatar_select" value="direct_input" id="direct-url-input-radio" class="" {% if user.directly_input_url == True %}checked{% endif %} required>
+                        <input type="text" name="avatar_direct_input" placeholder="Enter a valid image url" id="direct-input-image-url" class="form-control direct-input-text-field" {% if user.directly_input_url == True %} value={{ user.account_image }} {% endif %}>
+                    </label>
+                    <h3 class="avatar-select-modal-subheading">Or select an avatar to represent you</h3>
                     <label>
                         <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_1.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_1.png" %}checked{% endif %}>
                         <img class="avatar-select" src="/static/images/avatar_images/avatar_1.png">

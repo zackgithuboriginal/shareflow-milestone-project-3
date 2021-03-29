@@ -1191,6 +1191,11 @@ form.registration-form {
     background: none;
 }
 
+.avatar-modal-button:hover,
+.avatar-modal-button:focus {
+    color: white;
+}
+
 .modal-title {
     color: white;
     font-size: 2rem;
@@ -1221,12 +1226,26 @@ button.close {
     margin-bottom: 1rem;
 }
 
+.change-account-avatar-form .modal-direct-input {
+    flex: 1 0 100%;
+}
+
+.direct-input-text-field {
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+
+.avatar-select-modal-subheading {
+    color: white;
+    width: 100%;
+}
 .avatar-select {
     width: 7.5rem;
     height: 7.5rem;
 }
 
-.avatar-select-radio { 
+.avatar-select-radio,
+#direct-url-input-radio { 
   position: absolute;
   opacity: 0;
   width: 0;
@@ -1235,6 +1254,10 @@ button.close {
 
 .avatar-select-radio + img {
   cursor: pointer;
+}
+
+#direct-url-input-radio:checked + input{
+  outline: .2rem solid rgba(7, 156, 131, .8);
 }
 
 .avatar-select-radio:checked + img {

@@ -73,10 +73,11 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "voted": [],
             "account_image": "/static/images/avatar_images/avatar_1.png",
+            "directly_input_url": False,
             "registration_date": datetime.now().strftime("%m/%d/%Y"),
             "posts_made": 0,
             "comments_made": 0,
-            "plusses": 0
+            "plusses": 0,
         }
 
         mongo.db.users.insert_one(register)
@@ -92,19 +93,28 @@ def edit_avatar():
     if request.method == "POST":
         user = mongo.db.users.find_one(
             {"username": session["user"]})
-        selected_avatar = request.form.get("avatar_select")
-        if selected_avatar == user["account_image"]:
-            return redirect(url_for('account', post_id="None"))
-        else:
+        if request.form.get("avatar_select") == "direct_input":
             updated_avatar = {
                     "$set": {
-                        "account_image": request.form.get("avatar_select"),
+                        "account_image": request.form.get("avatar_direct_input"),
+                        "directly_input_url": True
                         }
             }
+        else:
+            selected_avatar = request.form.get("avatar_select")
+            if selected_avatar == user["account_image"]:
+                return redirect(url_for('account', post_id="None"))
+            else:
+                updated_avatar = {
+                        "$set": {
+                            "account_image": selected_avatar,
+                            "directly_input_url": False
+                            }
+                }
 
-            mongo.db.users.update({"username": session["user"]}, updated_avatar)
-            flash("Image Successfully Updated")
-            return redirect(url_for('account', post_id="None"))
+        mongo.db.users.update({"username": session["user"]}, updated_avatar)
+        flash("Image Successfully Updated")
+        return redirect(url_for('account', post_id="None"))
     else:
         return redirect(url_for('account', post_id="None"))
 
