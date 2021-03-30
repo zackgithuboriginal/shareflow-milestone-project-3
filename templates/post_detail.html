@@ -39,7 +39,6 @@
                         </div>
                     </div>
                     <h2 class="post-detail-title">{{ post.post_title }}</h2>
-                    <h3 class="post-detail-author">{{ post.author }}</h3>
                     <hr class="post-detail-divider">
                 </div>
                 
@@ -47,7 +46,16 @@
                     <p class="post-detail-text-content">{{ post.post_content}}</p>
                 </div>
                 <div class="post-detail-bottom">
-                    <h4>{{ post.post_date }}</h4>
+                    <div class="post-date-container">
+                        <div class="spacer-div"></div>
+                        <p class="post-date">{{ post.post_date }}</p>
+                    </div>
+                    <div class="post-author-details">
+                        <div class="post-author-avatar-container">
+                            <img src="{% if user.username==post.author %}{{ user.account_image }}{% endif %}" class="post-author-avatar" alt="">
+                        </div>
+                        <p class="post-author">{{ post.author }}</p>
+                    </div>
                 </div>
                 <hr class="post-detail-divider">
                 <div class="post-detail-comment-container">

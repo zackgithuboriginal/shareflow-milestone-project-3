@@ -77,12 +77,15 @@
                                 <a class="expand-post"  onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand Post<i class="fas fa-arrow-down"></i></a>
                             </div>
                             <div class="post-bottom">
-                                <p class="post-date">{{ post.post_date }}</p>
+                                <div class="post-date-container">
+                                    <div class="spacer-div"></div>
+                                    <p class="post-date">{{ post.post_date }}</p>
+                                </div>
                                 <div class="post-author-details">
                                     <div class="post-author-avatar-container">
                                         <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
                                     </div>
-                                    <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
+                                    <p class="post-author">{{ post.author }}</p>
                                 </div>
                             </div>
                         </div>
@@ -162,12 +165,15 @@
                                 <a class="expand-post"  onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand Post<i class="fas fa-arrow-down"></i></a>
                             </div>
                             <div class="post-bottom">
-                                <p class="post-date">{{ post.post_date }}</p>
+                                <div class="post-date-container">
+                                    <div class="spacer-div"></div>
+                                    <p class="post-date">{{ post.post_date }}</p>
+                                </div>
                                 <div class="post-author-details">
                                     <div class="post-author-avatar-container">
                                         <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
                                     </div>
-                                    <h5 class="post-author mb-2 text-muted">{{ post.author }}</h5>
+                                    <p class="post-author">{{ post.author }}</p>
                                 </div>
                             </div>
                         </div>

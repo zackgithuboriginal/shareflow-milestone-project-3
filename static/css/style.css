@@ -340,15 +340,15 @@ button.filter-control {
 
 .post-author-avatar-container {
     display: flex;
-    height: 6rem;
-    max-width:7.5rem;
+    height: 4rem;
+    max-width: 5rem;
     overflow: hidden;
     margin-left: auto;
 }
 
 .post-author-avatar {
     display: flex;
-    height: 6rem;
+    height: 4rem;
     width: auto;
 }
 
@@ -439,7 +439,7 @@ button.filter-control {
     width: 100%;
     justify-content: space-between;
     bottom: 1rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin: 0;
 }
 
@@ -503,9 +503,22 @@ button.filter-control {
     font-size: 1.6rem;
 }
 
+.post-date-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .post-date {
     display: flex;
+    color: #6c757d;
     margin: 0;
+    font-size: 1.6rem;
+}
+
+
+.spacer-div {
+    height: 4rem;
+    display: flex;
 }
 
 .post-pluses {
@@ -1370,6 +1383,7 @@ section.main-container-account div.tab-display-option.active-profile-tab {
 
 .post-author {
     color: #6c757d;
+    margin: 0;
 }
 
 .comment-content {
@@ -1512,6 +1526,12 @@ h4.post-detail-comment-count {
 .post-deatil-header-left,
 .post-detail-header-right {
     display: flex;
+}
+
+.post-detail-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 @media (min-width: 768px) {
