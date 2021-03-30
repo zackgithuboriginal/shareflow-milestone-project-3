@@ -150,6 +150,13 @@ def create_post():
 def add_post():
     if "user" in session:
         if request.method == "POST":
+            user = mongo.db.users.find_one({"username": session["user"]})
+            user_posts_made = user["posts_made"]
+            update_user = {
+                "$set": {
+                    "posts_made":user_posts_made + 1
+                    }
+                }
             post = {
                 "post_title": request.form.get("post_title"),
                 "post_content": request.form.get("post_content"),
@@ -161,6 +168,8 @@ def add_post():
                 "total_comments": 0
             }
             mongo.db.posts.insert_one(post)
+            mongo.db.users.update_one(
+                {"username": session["user"]}, update_user)
             flash("Post Successfully Added")
             return redirect(url_for("posts"))
     else:
@@ -294,6 +303,8 @@ def add_comment(post_id, user_location):
                 "post_date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
                 "attached_post": post_id
             }
+            user = mongo.db.users.find_one({"username": session["user"]})
+            user_comments_made = user["comments_made"]
             update_post = {
                 "$push": {
                         "comments": comment
@@ -305,6 +316,9 @@ def add_comment(post_id, user_location):
             update_user = {
                 "$push": {
                         "comments": comment
+                        },
+                "$set": {
+                        "comments_made":user_comments_made + 1
                         }
                         }
             mongo.db.users.update_one(
