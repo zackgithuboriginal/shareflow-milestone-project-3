@@ -199,13 +199,16 @@ def sign_out():
     return redirect(url_for("log_in"))
 
 
-@app.route("/vote/<post_id>/<user_location>", methods=["GET", "POST"])
-def vote(post_id, user_location):
+@app.route("/vote/<post_id>/<user_location>/<author>", methods=["GET", "POST"])
+def vote(post_id, user_location, author):
     print(post_id)
+    print(author)
     print(user_location)
     current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     current_vote = current_post["pluses"]
-
+    post_creator = mongo.db.users.find_one({"username": author})
+    post_creator_plusses = post_creator["plusses"]
+    print(post_creator_plusses)
     if "user" in session:
         already_voted = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
@@ -213,6 +216,11 @@ def vote(post_id, user_location):
             update_vote = {
                 "$set": {
                      "pluses": current_vote - 1
+                     }
+                     }
+            update_author = {
+                "$set": {
+                     "plusses": post_creator_plusses - 1
                      }
                      }
             update_user = {
@@ -223,6 +231,7 @@ def vote(post_id, user_location):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
+            mongo.db.users.update_one({"username" :author}, update_author)
             if user_location == 'account':
                 return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
             else:
@@ -233,6 +242,11 @@ def vote(post_id, user_location):
                      "pluses": current_vote + 1
                      }
                      }
+            update_author = {
+                "$set": {
+                     "plusses": post_creator_plusses + 1
+                     }
+                     }
             update_user = {
                 '$push': {
                      "voted": post_id
@@ -241,6 +255,7 @@ def vote(post_id, user_location):
             mongo.db.users.update_one(
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
+            mongo.db.users.update_one({"username" :author}, update_author)
             if user_location == 'account':
                 return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
             else:

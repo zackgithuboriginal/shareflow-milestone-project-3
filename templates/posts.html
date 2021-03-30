@@ -34,14 +34,14 @@
                         <div class="post-votes row">
                             {% if session.user %}
                                 {% if post._id in user_pluses %}
-                                    <a href="{{ url_for('vote', post_id=post._id, user_location='posts') }}"><i class="col-12 fas fa-check"></i></a>
+                                    <a href="{{ url_for('vote', post_id=post._id, user_location='posts', author=post.author) }}"><i class="col-12 fas fa-check"></i></a>
                                     <p class="col-12 post-pluses">{{ post.pluses }}</p>
                                 {% else %}
-                                    <a href="{{ url_for('vote', post_id=post._id, user_location='posts') }}"><i class="col-12 fas fa-plus"></i></a>
+                                    <a href="{{ url_for('vote', post_id=post._id, user_location='posts', author=post.author) }}"><i class="col-12 fas fa-plus"></i></a>
                                     <p class="col-12 post-pluses">{{ post.pluses }}</p>
                                 {% endif %}
                             {% else %}
-                                <a href="{{ url_for('vote', post_id=post._id, user_location='posts') }}"><i class="col-12 fas fa-plus"></i></a>
+                                <a href="{{ url_for('vote', post_id=post._id, user_location='posts', author=post.author) }}"><i class="col-12 fas fa-plus"></i></a>
                                 <p class="col-12 post-pluses">{{ post.pluses }}</p>
                             {% endif %}
                             
