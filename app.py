@@ -23,10 +23,11 @@ def posts():
     filter_sort = (request.args.get("sort-by") or "post_date")
     filter_topic = request.args.get("topic")
     if filter_topic:
-        posts = list(mongo.db.posts.find(
-            {"topic_name": filter_topic}).sort(filter_sort, -1))
         if filter_topic == "all":
             posts = list(mongo.db.posts.find().sort(filter_sort, -1))
+        else:
+            posts = list(mongo.db.posts.find(
+                {"topic_name": filter_topic}).sort(filter_sort, -1))
     else:
         posts = list(mongo.db.posts.find().sort(filter_sort, -1))
 
