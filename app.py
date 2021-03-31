@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 from datetime import datetime
+from flask_paginate import Pagination, get_page_args
 
 
 app = Flask(__name__)
@@ -17,9 +18,13 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-@app.route("/")
+
+def get_posts(posts, offset=0, per_page=10):
+    return posts[offset: offset + per_page]
+
+@app.route('/')
 @app.route("/posts")
-def posts(): 
+def posts():
     filter_sort = (request.args.get("sort-by") or "post_date")
     filter_topic = request.args.get("topic")
     if filter_topic:
@@ -31,8 +36,16 @@ def posts():
     else:
         posts = list(mongo.db.posts.find().sort(filter_sort, -1))
 
-    topics = list(mongo.db.topics.find())
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                           per_page_parameter='per_page')
+    total = len(posts)
+    pagination_posts = get_posts(posts=posts, offset=offset, per_page=per_page)
+    pagination = Pagination(page=page,
+                            page_parameter="page", per_page=per_page, total=total,
+                            css_framework='bootstrap4')
 
+
+    topics = list(mongo.db.topics.find())
     users = list(mongo.db.users.find())
     if "user" in session:
         pluses = mongo.db.users.find_one(
@@ -40,10 +53,23 @@ def posts():
         user_pluses = []
         for post in pluses:
             user_pluses.append(ObjectId(post))
-        return render_template(
-            "posts.html", posts=posts, users=users,  topics=topics,
-            user_pluses=user_pluses)
-    return render_template("posts.html", posts=posts, users=users, topics=topics)
+        return render_template('posts.html',
+                            users=users,
+                            topics=topics,
+                            posts=pagination_posts,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination,
+                            user_pluses=user_pluses
+                            )
+    return render_template('posts.html',
+                            users=users,
+                            topics=topics,
+                            posts=pagination_posts,
+                            page=page,
+                            per_page=per_page,
+                            pagination=pagination,
+                            )
 
 
 @app.route("/topics")
