@@ -110,6 +110,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                {{ pagination_posts.links }}
             </div>
         {% else %}
             <h2 class="profile-alternate-text">You haven't created any posts yet!</h2>
@@ -200,6 +201,7 @@
                     {% endif%}
                 {% endfor %}
             </div>
+            {{ pagination_plussed.links }}
         {% else %}
             <h2 class="profile-alternate-text">You haven't voted on any posts yet!<br><br> Click the <i class="fas fa-plus"></i> symbol on posts you like to save them here</h2>
         {% endif %}

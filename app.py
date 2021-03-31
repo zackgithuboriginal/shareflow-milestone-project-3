@@ -192,7 +192,8 @@ def add_post():
                 "post_date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
                 "pluses": 0,
                 "comments": [],
-                "total_comments": 0
+                "total_comments": 0,
+                "users_voted": []
             }
             mongo.db.posts.insert_one(post)
             mongo.db.users.update_one(
@@ -252,6 +253,9 @@ def vote(post_id, user_location, author):
             update_vote = {
                 "$set": {
                      "pluses": current_vote - 1
+                     },
+                '$pull': {
+                     "users_voted": session["user"]
                      }
                      }
             update_author = {
@@ -276,6 +280,9 @@ def vote(post_id, user_location, author):
             update_vote = {
                 "$set": {
                      "pluses": current_vote + 1
+                     },
+                '$push': {
+                     "users_voted": session["user"]
                      }
                      }
             update_author = {
@@ -383,7 +390,7 @@ def account(post_id):
         username = user["username"]
 
         users = list(mongo.db.users.find())
-        # Finds the list of posts that a user has liked for the check
+        # Finds the list of posts that a user has liked for the check icon
         plussed_posts = []
         plusses = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
@@ -391,43 +398,80 @@ def account(post_id):
             plussed_posts.append(ObjectId(post))
 
         # Finds the list of posts that a user has liked to display on profile
-        userPlusses = []
-        plussedPostIds = user["voted"]
-        for post in plussedPostIds:
-            if mongo.db.posts.find_one({"_id": ObjectId(post)})["author"] != username:
-                userPlusses.append(
-                    mongo.db.posts.find_one({"_id": ObjectId(post)}))
-        
+        userPlusses = list(
+            mongo.db.posts.find({"users_voted": session["user"]}).sort("post_date", -1))
+        # Finds the list of posts authored by user
         userPosts = list(
-            mongo.db.posts.find({"author": session["user"]}))
+            mongo.db.posts.find({"author": session["user"]}).sort("post_date", -1))
+
+        postsPage, per_page, offset = get_page_args(page_parameter='userPostPage',
+                                           per_page_parameter='per_page')
+        totalPlussedPosts = len(userPosts)
+        pagination_plussed_list = get_posts(posts=userPosts, offset=offset, per_page=per_page)
+        pagination_plussed = Pagination(page_parameter='userPostPage',
+                                        userPostPage = postsPage,
+                                        per_page=per_page,
+                                        total=totalPlussedPosts,
+                                        css_framework='bootstrap4')
+
+
+        plussesPage, per_page, offset = get_page_args(page_parameter='userPlusPage',
+                                           per_page_parameter='per_page')
+        totalUserPosts = len(userPosts)
+        pagination_posts_list = get_posts(posts=userPosts, offset=offset, per_page=per_page)
+        pagination_posts = Pagination(page_parameter='userPlusPage',
+                                    userPlusPage = plussesPage,
+                                    per_page=per_page,
+                                    total=totalUserPosts,
+                                    css_framework='bootstrap4'
+                                    )
         if post_id=="None":
             return render_template(
                 "account.html", username=username,
                 users=users,
-                userPosts=userPosts,
                 userPlusses=userPlusses,
-                plussed_posts=plussed_posts,
+                plussed_posts=pagination_plussed_list,
+                pagination_plussed=pagination_plussed, 
+                userPostPage=postsPage,
                 active_tab="posts",
-                user=user )
+                user=user,
+                userPosts=pagination_posts_list,
+                userPlusPage = plussesPage,
+                per_page=per_page,
+                pagination_posts=pagination_posts 
+                )
         else: 
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
             if post['author'] == session['user']:
                 return render_template(
-                    "account.html", username=username,
-                    users=users,
-                    userPosts=userPosts,
-                    userPlusses=userPlusses,
-                    plussed_posts=plussed_posts, active_tab="posts",
-                    user=user)
+                "account.html", username=username,
+                users=users,
+                userPlusses=userPlusses,
+                plussed_posts=pagination_plussed_list,
+                pagination_plussed=pagination_plussed, 
+                userPostPage=postsPage,
+                active_tab="posts",
+                user=user,
+                userPosts=pagination_posts_list,
+                userPlusPage = plussesPage,
+                per_page=per_page,
+                pagination_posts=pagination_posts 
+                )
             else:
                 return render_template(
-                    "account.html", username=username,
-                    users=users,
-                    userPosts=userPosts,
-                    userPlusses=userPlusses,
-                    plussed_posts=plussed_posts,
-                    active_tab="plusses",
-                    user=user)
+                "account.html", username=username,
+                users=users,
+                userPlusses=userPlusses,
+                plussed_posts=pagination_plussed_list,
+                pagination_plussed=pagination_plussed, 
+                userPostPage=postsPage,
+                active_tab="plusses",
+                user=user,
+                userPosts=pagination_posts_list,
+                userPlusPage = plussesPage,
+                per_page=per_page,
+                pagination_posts=pagination_posts 
+                )
 
 
     return redirect(url_for("login"))
