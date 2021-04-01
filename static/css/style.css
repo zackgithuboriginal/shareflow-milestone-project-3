@@ -257,8 +257,7 @@ footer {
     width:100%;
     height: auto;
     display: flex;
-    background-color: #ffffff;
-    box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
+    background: none;
     flex-direction: column;
     margin-bottom: 4rem;
     margin-right: auto;
@@ -299,6 +298,8 @@ button.filter-control {
     justify-content: center;
     align-items: center;
     box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
+    width:8rem;
+    margin-left:auto;
 }
 
 #sort-by-dropdown,
@@ -306,12 +307,24 @@ button.filter-control {
     border: 0;
     background-color: #ffffff;
     width: 18rem;
+    box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
+}
+
+.filter-container {
+    max-width: 80rem;
+    width:auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .filter-div {
     display: flex;
     flex-direction: row;
+    padding: .5rem;
     justify-content: space-between;
+    background-color: white;
+    box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
 }
 
 .sidebar {
@@ -1700,13 +1713,26 @@ h4.post-details-comment-count {
         margin-right: 1rem;
     }
 
+    button.filter-control {
+        margin: auto;
+        width: 5rem;
+    }
+
+    .filter-container {
+        flex-direction: row;
+    }
+
     .filter-div {
-        padding-left: .5rem;
-        padding-right: .5rem;
+        margin: 0;
+        padding: 0 .5rem;
+        background:none;
+        box-shadow: none;
     }
 
     .filter-options {
-        max-width: 80vw;
+        width: 100%;
+        background-color: white;
+        box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
         height: 6rem;
         flex-direction: row;
     }

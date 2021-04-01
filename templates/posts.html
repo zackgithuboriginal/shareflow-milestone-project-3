@@ -7,23 +7,25 @@
 </div>
 <section class="main-container">
     <form class="filter-options" method="GET" action="{{ url_for('posts') }}">
-        <div class="filter-div">
-            <label for="sort-by-dropdown" class="filter-label">Sort:</label>
-            <select name="sort-by" id="sort-by-dropdown" class="filter-control">
-                <option value="post_date">Newest</option>
-                <option value="plusses">Most Popular</option>
-            </select>
+        <div class="filter-container">
+            <div class="filter-div">
+                <label for="sort-by-dropdown" class="filter-label">Sort:</label>
+                <select name="sort-by" id="sort-by-dropdown" class="filter-control">
+                    <option value="post_date">Newest</option>
+                    <option value="plusses">Most Popular</option>
+                </select>
+            </div>
+            <div class="filter-div">
+                <label for="filter-dropdown" class="filter-label">Filter:</label>
+                <select class="filter-control" name="topic" id="filter-dropdown">
+                        <option class="filter-control" value="all">All Topics</option>
+                    {% for topic in topics %}
+                        <option class="filter-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="filter-control" onclick="{{ url_for('posts') }}">Go</button>
         </div>
-        <div class="filter-div">
-            <label for="filter-dropdown" class="filter-label">Filter:</label>
-            <select class="filter-control" name="topic" id="filter-dropdown">
-                    <option class="filter-control" value="all">All Topics</option>
-                {% for topic in topics %}
-                    <option class="filter-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <button class="filter-control" onclick="{{ url_for('posts') }}">Go</button>
     </form>
     {% if posts|length > 0 %}
         <div class="card-container">
