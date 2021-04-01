@@ -44,7 +44,7 @@ window.onresize = truncatePosts;
 
 function profileTabDisplayParse(){
     currentParams = new URLSearchParams(window.location.search);
-    
+
     let prevUserPlusPage = "1"
     let prevUserPostPage = "1"
     let currentUserPlusPage = checkSearchParams("userPlusPage")
@@ -267,9 +267,9 @@ function expandPost(post){
  */
 function updatePostTopics(){
     postTopics = document.getElementsByClassName("post-topic")
+    console.log(postTopics)
         for (i = 0; i < postTopics.length; i++){
-            postTopic = postTopics[i].textContent.replace("-"," ")
-            postTopics[i].textContent = postTopic.charAt(0).toUpperCase() + postTopic.slice(1)
+            postTopics[i].textContent = postTopics[i].textContent.replace("-"," ")
         }
 }
 

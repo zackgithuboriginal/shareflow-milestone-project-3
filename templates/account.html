@@ -63,7 +63,7 @@
                         <div class="post-details">
                             <div class="post-top">
                                 <div class="post-title-options">
-                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
+                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
                                     {% if session['user'] == post.author or session['user'] == "admin" %}
                                         <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
                                     {% endif %}
@@ -154,7 +154,7 @@
                         <div class="post-details">
                             <div class="post-top">
                                 <div class="post-title-options">
-                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name }}</h4>
+                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
                                     {% if session['user'] == post.author or session['user'] == "admin" %}
                                         <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
                                     {% endif %}
