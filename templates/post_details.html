@@ -5,9 +5,9 @@
     <h1 class="page-title">Post View</h1>
 </div>
     <section class="main-container">
-        <div class="post-detail-container">
-            <div class="post-detail-topic-container {{ post.topic_name }}-sidebar">
-                <div class="post-detail-plusses">
+        <div class="post-details-container">
+            <div class="post-details-topic-container {{ post.topic_name }}-sidebar">
+                <div class="post-details-plusses">
                         {% if session.user %}
                             {% if post._id in user_plusses %}
                                 <a href="{{ url_for('vote', post_id=post._id, user_location='post_details', author=post.author) }}"><i class="col-12 fas fa-check"></i></a>
@@ -21,13 +21,13 @@
                             <p class="col-12 post-plusses">{{ post.plusses }}</p>
                         {% endif %}
                 </div>
-                <div class="post-detail-close">
+                <div class="post-details-close">
                     <a href="{{ url_for('close_post_details', post_id=post._id, previous_location=user_location) }}"><i class="fas fa-times"></i></a>
                     <p class="col-12 post-plusses">Close</p>
                 </div>
             </div>
-            <div class="post-detail-contents">
-                <div class="post-detail-top">
+            <div class="post-details-contents">
+                <div class="post-details-top">
                     <div class="post-title-options">
                         <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
                         {% if session['user'] == post.author or session['user'] == "admin" %}
@@ -38,14 +38,14 @@
                         <a class="{{ post.topic_name }}" href="{{ url_for('edit_post', post_id=post._id, prev_location=user_location) }}"><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
                         </div>
                     </div>
-                    <h2 class="post-detail-title">{{ post.post_title }}</h2>
-                    <hr class="post-detail-divider">
+                    <h2 class="post-details-title">{{ post.post_title }}</h2>
+                    <hr class="post-details-divider">
                 </div>
                 
-                <div class="post-detail-center">
-                    <p class="post-detail-text-content">{{ post.post_content}}</p>
+                <div class="post-details-center">
+                    <p class="post-details-text-content">{{ post.post_content}}</p>
                 </div>
-                <div class="post-detail-bottom">
+                <div class="post-details-bottom">
                     <div class="post-date-container">
                         <div class="spacer-div"></div>
                         <p class="post-date">{{ post.post_date }}</p>
@@ -57,27 +57,27 @@
                         <p class="post-author">{{ post.author }}</p>
                     </div>
                 </div>
-                <hr class="post-detail-divider">
-                <div class="post-detail-comment-container">
+                <hr class="post-details-divider">
+                <div class="post-details-comment-container">
                     {% if post.comments|length > 0 %}
-                        <h4 class="post-detail-comment-count">Total Comments: {{ post.total_comments }}</h3>
-                        <form method="POST" class="post-detail-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
+                        <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h3>
+                        <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
                             <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
                             <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
                         </form>
 
                         {% for comment in post.comments%}
-                        <div class="post-detail-comment">
+                        <div class="post-details-comment">
                             <h3>{{ comment.comment_content}}</h3>
-                            <div class="post-detail-comment-bottom-row">
+                            <div class="post-details-comment-bottom-row">
                                 <h4>By {{ comment.author }}</h4>
                                 <h4>{{ comment.post_date }}</h4>
                             </div>
                         </div>
                         {% endfor %}
                     {% else %}
-                        <h4 class="post-detail-comment-count">There are no comments yet. Be the first!</h3>
-                        <form method="POST" class="post-detail-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
+                        <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h3>
+                        <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
                             <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
                             <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
                         </form>

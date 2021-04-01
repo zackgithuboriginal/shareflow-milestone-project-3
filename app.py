@@ -319,9 +319,9 @@ def post_details(post_id, user_location):
         for plussed_post in plusses:
             user_plusses.append(ObjectId(plussed_post))
         return render_template(
-            "post_detail.html", post=post, user=user, user_plusses=user_plusses, user_location=user_location)
+            "post_details.html", post=post, user=user, user_plusses=user_plusses, user_location=user_location)
     return render_template(
-        "post_detail.html", post=post, user_location=user_location)
+        "post_details.html", post=post, user_location=user_location)
 
 
 @app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])
