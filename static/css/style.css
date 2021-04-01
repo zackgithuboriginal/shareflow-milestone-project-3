@@ -786,17 +786,17 @@ justify-content: center;
 }
 
 
-/* Login / Register Styling */
+/* sign-in / Register Styling */
 
-.login-container,
+.sign-in-container,
 .register-container,
-.login-form-side,
+.sign-in-form-side,
 .register-form-side,
-.login-end-panel,
+.sign-in-end-panel,
 .register-end-panel,
-.login-form-main,
+.sign-in-form-main,
 .register-form-main,
-.login-form-main form,
+.sign-in-form-main form,
 .register-form-main form,
 .alternate-link {
     justify-content: center;
@@ -805,7 +805,7 @@ justify-content: center;
     display: flex;
 }
 
-.login-container,
+.sign-in-container,
 .register-container {
     height: 60rem;
     margin-top: 6rem;
@@ -816,7 +816,7 @@ justify-content: center;
     justify-content: space-between;
 }
 
-.login-form-side,
+.sign-in-form-side,
 .register-form-side {
     height: 10rem;
     border-radius: 4rem 4rem 0 0;
@@ -829,12 +829,12 @@ justify-content: center;
 }
 
 
-.login-form-main form,
+.sign-in-form-main form,
 .register-form-main form {
     flex-direction: column;
 }
 
-.login-end-panel,
+.sign-in-end-panel,
 .register-end-panel {
     background-color: #89A6FB;
     width: 80%;
@@ -853,7 +853,7 @@ justify-content: center;
     font-weight: 500;
 }
 
-form.login-form,
+form.sign-in-form,
 form.registration-form {
     height: 100%;
     display: flex;
@@ -863,7 +863,7 @@ form.registration-form {
     width: 80%;
 }
 
-.login-form input,
+.sign-in-form input,
 .registration-form input {
     margin-top: .2rem;
     margin-bottom: 1rem;
@@ -872,7 +872,7 @@ form.registration-form {
     box-shadow: 0 2px rgba(185, 185, 185, 0.3);
 }
 
-.login-form label,
+.sign-in-form label,
 .registration-form label {
     font-size: 1.8rem;
     color: #89A6FB;
@@ -880,7 +880,7 @@ form.registration-form {
     font-weight: 500;
 }
 
-.login-form-main,
+.sign-in-form-main,
 .register-form-main {
     padding-top: 4rem;
     padding-bottom : 2rem;
@@ -892,7 +892,7 @@ form.registration-form {
     box-shadow: .2rem .3rem .4rem rgba(0, 0, 0, 0.2);
 }
 
-.login-form-side li,
+.sign-in-form-side li,
 .register-form-side li {
     font-size: 1.8rem;
     text-align: left;
@@ -910,7 +910,7 @@ form.registration-form {
     order: 1;
 }
 
-.login-submit,
+.sign-in-submit,
 .create-submit {
     margin: 0 auto;
     background-color: rgba(7, 156, 131, .8);
@@ -1713,14 +1713,14 @@ h4.post-detail-comment-count {
         display: flex;
     }
 
-    .login-container,
+    .sign-in-container,
     .register-container {
         flex-direction: row;
         height: 50rem;
         margin: auto auto;
     }
 
-    .login-form-side,
+    .sign-in-form-side,
     .register-form-side {
         padding: 3rem 2rem;
         min-height: 45rem;
@@ -1729,12 +1729,12 @@ h4.post-detail-comment-count {
         justify-content: space-between;
     }
 
-    .login-form-side {
+    .sign-in-form-side {
         border-radius: 3rem 0 0 3rem;
         height: 100%;
     }
 
-    .login-form-main {
+    .sign-in-form-main {
         border-radius: 0 3rem 3rem 0;
     }
     
@@ -1748,7 +1748,7 @@ h4.post-detail-comment-count {
         border-radius: 3rem 0 0 3rem;
     }
 
-    .login-end-panel,
+    .sign-in-end-panel,
     .register-end-panel{
         display: none;
     }

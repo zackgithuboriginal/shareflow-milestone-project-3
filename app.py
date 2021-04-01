@@ -145,8 +145,8 @@ def edit_avatar():
     else:
         return redirect(url_for('account', post_id="None"))
 
-@app.route("/log_in", methods=["GET", "POST"])
-def log_in():
+@app.route("/sign_in", methods=["GET", "POST"])
+def sign_in():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -155,16 +155,16 @@ def log_in():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Successfully Logged In")
+                flash("Successfully Signed In")
                 return redirect(url_for("posts"))
             else:
                 flash("Incorrect Account Details")
-                return redirect(url_for("log_in"))
+                return redirect(url_for("sign_in"))
         else:
             flash("Incorrect Account Details")
-            return redirect(url_for("log_in"))
+            return redirect(url_for("sign_in"))
 
-    return render_template("log_in.html")
+    return render_template("sign_in.html")
 
 
 @app.route("/create_post")
@@ -233,7 +233,7 @@ def sign_out():
     flash("Successfully signed out.")
     session.pop("user")
 
-    return redirect(url_for("log_in"))
+    return redirect(url_for("sign_in"))
 
 
 @app.route("/vote/<post_id>/<user_location>/<author>", methods=["GET", "POST"])
@@ -476,7 +476,7 @@ def account(post_id):
                 )
 
 
-    return redirect(url_for("login"))
+    return redirect(url_for("sign_in"))
 
 
 @app.route("/close_post_details/<post_id>/<previous_location>")
