@@ -36,10 +36,73 @@ $(document).ready(function(){
         }
 
     });
-
+    
+    profileTabDisplayParse();
     urlParsing();
 });
 window.onresize = truncatePosts;
+
+function profileTabDisplayParse(){
+    currentParams = new URLSearchParams(window.location.search);
+    
+    let prevUserPlusPage = "1"
+    let prevUserPostPage = "1"
+    let currentUserPlusPage = checkSearchParams("userPlusPage")
+    let currentUserPostPage = checkSearchParams("userPostPage")
+
+    function checkSearchParams(param){
+        let currentParamPage;
+        if(currentParams.has(param)){
+        currentParamPage  = currentParams.get(param)
+        } else{
+        currentParamPage = "1"
+        }
+        return currentParamPage
+    }
+
+    if(document.referrer.includes("?")){
+        let prevUrlFirstParam, prevUrlFirstParamValue, prevUrlSecondParam, prevUrlSecondParamValue
+        prevUrl = document.referrer.split("?")[1]
+
+        if( prevUrl.includes("&")){
+            prevUrlFirstParam = prevUrl.split("&")[0].split("=")[0]
+            prevUrlFirstParamValue = prevUrl.split("&")[0].split("=")[1]
+            prevUrlSecondParam = prevUrl.split("&")[1].split("=")[0]
+            prevUrlSecondParamValue = prevUrl.split("&")[1].split("=")[1]
+
+            if(prevUrlFirstParam=="userPostPage"){
+                prevUserPostPage=prevUrlFirstParamValue
+                prevUserPlusPage=prevUrlSecondParamValue
+
+            } else {
+                prevUserPostPage=prevUrlSecondParamValue
+                prevUserPlusPage=prevUrlFirstParamValue
+            }
+
+        }   else {
+            prevUrlFirstParam = prevUrl.split("=")[0]
+            prevUrlFirstParamValue = prevUrl.split("=")[1]
+
+            if(prevUrlFirstParam=="userPostPage"){
+                prevUserPostPage=prevUrlFirstParamValue
+
+            } else {
+                prevUserPlusPage=prevUrlFirstParamValue
+
+            }
+        }
+    }
+    
+
+
+
+    if( currentUserPlusPage != prevUserPlusPage){
+        tabDisplay("plusses")
+    }
+    if( currentUserPostPage != prevUserPostPage){
+        tabDisplay("posts")
+    }
+}
 
 function urlParsing(){
     const queryString = window.location.search;

@@ -404,23 +404,25 @@ def account(post_id):
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}).sort("post_date", -1))
 
-        postsPage, per_page, offset = get_page_args(page_parameter='userPostPage',
+        plussesPage, per_page, offset = get_page_args(page_parameter='userPlusPage',
                                            per_page_parameter='per_page')
+        
         totalPlussedPosts = len(userPosts)
         pagination_plussed_list = get_posts(posts=userPosts, offset=offset, per_page=per_page)
-        pagination_plussed = Pagination(page_parameter='userPostPage',
-                                        userPostPage = postsPage,
+        pagination_plussed = Pagination(page_parameter='userPlusPage',
+                                        userPlusPage = plussesPage,
                                         per_page=per_page,
                                         total=totalPlussedPosts,
                                         css_framework='bootstrap4')
 
-
-        plussesPage, per_page, offset = get_page_args(page_parameter='userPlusPage',
-                                           per_page_parameter='per_page')
+        postsPage, per_page, offset = get_page_args(page_parameter='userPostPage',
+                                                per_page_parameter='per_page')
+        
         totalUserPosts = len(userPosts)
         pagination_posts_list = get_posts(posts=userPosts, offset=offset, per_page=per_page)
-        pagination_posts = Pagination(page_parameter='userPlusPage',
-                                    userPlusPage = plussesPage,
+        pagination_posts = Pagination(
+                                    page_parameter='userPostPage',
+                                    userPostPage = postsPage,
                                     per_page=per_page,
                                     total=totalUserPosts,
                                     css_framework='bootstrap4'
