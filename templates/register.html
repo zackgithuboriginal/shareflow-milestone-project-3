@@ -12,11 +12,13 @@
                 <h2 class="form-title">Register</h2>
                 <div class="input-container">
                     <label class="form-label" for="username">Username</label>
-                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" required>
+                    <h6>Between 3 and 15 characters.</h6>
+                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="{3,15}$" required>
                     <label class="form-label" for="password">Password</label>
-                    <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
-                    <label class="form-label" for="password">Re Type Password</label>
-                    <input name="password" class="form-control" type="text" required>
+                    <h6>Between 6 and 15 characters.</h6>
+                    <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="15" pattern="{6,15}$" title="Minimum of three characters with no spaces" required>
+                    <label class="form-label" for="password">Repeat Password</label>
+                    <input id="repeat-password" name="password" class="form-control" type="password" required>
                 </div>
                 <button class="form-control sign-in-submit" type="submit">Submit</button>
             </form>

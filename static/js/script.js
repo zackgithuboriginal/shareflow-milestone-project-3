@@ -42,6 +42,20 @@ $(document).ready(function(){
 });
 window.onresize = truncatePosts;
 
+var password = document.getElementById("password"), confirm_password = document.getElementById("repeat-password");
+
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Please ensure that the passwords match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+
 function profileTabDisplayParse(){
     currentParams = new URLSearchParams(window.location.search);
 
