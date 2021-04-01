@@ -311,6 +311,7 @@ def vote(post_id, user_location, author):
 @app.route("/post_details/<post_id>/<user_location>")
 def post_details(post_id, user_location):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    users = list(mongo.db.users.find())
     if "user" in session:
         user = mongo.db.users.find_one(
             {"username": session["user"]})
@@ -319,9 +320,9 @@ def post_details(post_id, user_location):
         for plussed_post in plusses:
             user_plusses.append(ObjectId(plussed_post))
         return render_template(
-            "post_details.html", post=post, user=user, user_plusses=user_plusses, user_location=user_location)
+            "post_details.html", post=post, user=user, user_plusses=user_plusses, user_location=user_location, users=users)
     return render_template(
-        "post_details.html", post=post, user_location=user_location)
+        "post_details.html", post=post, user_location=user_location, users=users)
 
 
 @app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])

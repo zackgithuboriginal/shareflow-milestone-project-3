@@ -52,7 +52,7 @@
                     </div>
                     <div class="post-author-details">
                         <div class="post-author-avatar-container">
-                            <img src="{% if user.username==post.author %}{{ user.account_image }}{% endif %}" class="post-author-avatar" alt="">
+                            <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
                         </div>
                         <p class="post-author">{{ post.author }}</p>
                     </div>
