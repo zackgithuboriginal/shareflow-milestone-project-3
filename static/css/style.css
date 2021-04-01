@@ -266,6 +266,18 @@ footer {
     justify-content: space-between;
 }
 
+.filter-label {
+    font-size: 1.6rem;
+    color: #89A6FB;
+    font-family: 'Montserrat', sans-serif;
+    margin: auto 0;
+    margin-lefT: 1rem;
+}
+
+select.filter-control {
+    padding-right: 1.5rem;
+}
+
 .filter-control {
     display: flex;
     padding: 1rem;
@@ -300,8 +312,6 @@ button.filter-control {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: .5rem;
-    padding-right: .5rem;
 }
 
 .sidebar {
@@ -1688,6 +1698,11 @@ h4.post-details-comment-count {
     .filter-control{
         margin-left: 1rem;
         margin-right: 1rem;
+    }
+
+    .filter-div {
+        padding-left: .5rem;
+        padding-right: .5rem;
     }
 
     .filter-options {
