@@ -585,6 +585,28 @@ button.filter-control {
     padding: .5rem;
 }
 
+/* Pagination Links Styling */
+.post-pagination-container nav {
+display: flex;
+justify-content: center;
+}
+
+.post-pagination-container {
+    font-size: 1.6rem;
+}
+
+.post-pagination-container li a{
+    color: #89A6FB;
+    font-weight: 400;
+}
+
+.post-pagination-container li.page-item.active a,
+.post-pagination-container li.page-item a:hover{
+    background-color: #89A6FB;
+    border-color: #89A6FB;
+    color: white;
+}
+
 .comment-form-textarea {
     resize: none;
     width: 100%;
