@@ -11,7 +11,7 @@
             <label for="sort-by-dropdown" class="filter-control">Sort By:</label>
             <select name="sort-by" id="sort-by-dropdown" class="filter-control">
                 <option value="post_date">Newest</option>
-                <option value="pluses">Most Popular</option>
+                <option value="plusses">Most Popular</option>
             </select>
         </div>
         <div class="filter-div">
@@ -33,22 +33,22 @@
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
                             {% if session.user %}
-                                {% if post._id in user_pluses %}
+                                {% if post._id in user_plusses %}
                                     <a href="{{ url_for('vote', post_id=post._id, user_location='posts', author=post.author) }}"><i class="col-12 fas fa-check"></i></a>
-                                    <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                                    <p class="col-12 post-plusses">{{ post.plusses }}</p>
                                 {% else %}
                                     <a href="{{ url_for('vote', post_id=post._id, user_location='posts', author=post.author) }}"><i class="col-12 fas fa-plus"></i></a>
-                                    <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                                    <p class="col-12 post-plusses">{{ post.plusses }}</p>
                                 {% endif %}
                             {% else %}
                                 <a href="{{ url_for('vote', post_id=post._id, user_location='posts', author=post.author) }}"><i class="col-12 fas fa-plus"></i></a>
-                                <p class="col-12 post-pluses">{{ post.pluses }}</p>
+                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
                             {% endif %}
                             
                         </div>
                         <div class="post-comments row">
                             <button class="unstyled-button" onclick="displayCommentForm('{{ post._id }}')"><i class="col-12 fas fa-comments"></i></button>
-                            <p class="col-12 post-pluses">Engage</p>
+                            <p class="col-12 post-plusses">Engage</p>
                         </div>
                         <div class="comment-post-link row">
                             <a class="unstyled-button comment-link-icon" href="{{ url_for('post_details', post_id=post._id, user_location='posts') }}"><i class="fas fa-arrow-circle-left"></i></a>

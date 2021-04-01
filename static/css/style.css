@@ -521,7 +521,7 @@ button.filter-control {
     display: flex;
 }
 
-.post-pluses {
+.post-plusses {
     padding: 0;
     color: #ffffff;
     font-size: 1.4rem;
@@ -1653,7 +1653,7 @@ h4.post-detail-comment-count {
         height: 30rem;
     }
 
-    .post-pluses {
+    .post-plusses {
         text-align: center;
         margin-bottom: 0;
     }

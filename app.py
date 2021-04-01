@@ -48,11 +48,11 @@ def posts():
     topics = list(mongo.db.topics.find())
     users = list(mongo.db.users.find())
     if "user" in session:
-        pluses = mongo.db.users.find_one(
+        plusses = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
-        user_pluses = []
-        for post in pluses:
-            user_pluses.append(ObjectId(post))
+        user_plusses = []
+        for post in plusses:
+            user_plusses.append(ObjectId(post))
         return render_template('posts.html',
                             users=users,
                             topics=topics,
@@ -60,7 +60,7 @@ def posts():
                             page=page,
                             per_page=per_page,
                             pagination=pagination,
-                            user_pluses=user_pluses
+                            user_plusses=user_plusses
                             )
     return render_template('posts.html',
                             users=users,
@@ -190,7 +190,7 @@ def add_post():
                 "topic_name": request.form.get("post_topic"),
                 "author": session["user"],
                 "post_date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
-                "pluses": 0,
+                "plusses": 0,
                 "comments": [],
                 "total_comments": 0,
                 "users_voted": []
@@ -215,7 +215,7 @@ def edit_post(post_id, prev_location):
             "topic_name": request.form.get("post_topic"),
             "author": session["user"],
             "post_date": post["post_date"],
-            "pluses": post["pluses"],
+            "plusses": post["plusses"],
             "comments": post["comments"]
         }
 
@@ -242,7 +242,7 @@ def vote(post_id, user_location, author):
     print(author)
     print(user_location)
     current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    current_vote = current_post["pluses"]
+    current_vote = current_post["plusses"]
     post_creator = mongo.db.users.find_one({"username": author})
     post_creator_plusses = post_creator["plusses"]
     print(post_creator_plusses)
@@ -252,7 +252,7 @@ def vote(post_id, user_location, author):
         if post_id in already_voted:
             update_vote = {
                 "$set": {
-                     "pluses": current_vote - 1
+                     "plusses": current_vote - 1
                      },
                 '$pull': {
                      "users_voted": session["user"]
@@ -279,7 +279,7 @@ def vote(post_id, user_location, author):
         else:
             update_vote = {
                 "$set": {
-                     "pluses": current_vote + 1
+                     "plusses": current_vote + 1
                      },
                 '$push': {
                      "users_voted": session["user"]
