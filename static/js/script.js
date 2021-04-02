@@ -1,8 +1,6 @@
 $(document).ready(function(){
 
-    $(".close-avatar-modal").click(function(){
-        $("#avatar-select-modal").modal('hide');
-    });
+    
     /**
      * Automatically updates footer copyright date
      */
@@ -36,13 +34,20 @@ $(document).ready(function(){
         }
     });
     
-    profileTabDisplayParse();
-    urlParsing();
+    if (window.location.pathname.indexOf("account") !== -1) {
+        profileTabDisplayParse();
+        $(".close-avatar-modal").click(function(){
+            $("#avatar-select-modal").modal('hide');
+        });
+    }
+    if (window.location.pathname.indexOf("posts") !== -1) {
+        urlParsing();
+    }
 });
 window.onresize = truncatePosts;
 
 function passwordValidation(){
-let password = document.getElementById("password"), confirm_password = document.getElementById("repeat-password");
+    let password = document.getElementById("password"), confirm_password = document.getElementById("repeat-password");
 
     function validatePassword(){
     if(password.value != confirm_password.value) {
@@ -51,10 +56,10 @@ let password = document.getElementById("password"), confirm_password = document.
         confirm_password.setCustomValidity('');
     }
     }
-
 }
 
 function profileTabDisplayParse(){
+    console.log("hello")
     currentParams = new URLSearchParams(window.location.search);
 
     let prevUserPlusPage = "1"
