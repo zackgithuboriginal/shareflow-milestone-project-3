@@ -408,8 +408,8 @@ def account(post_id):
         plussesPage, per_page, offset = get_page_args(page_parameter='userPlusPage',
                                            per_page_parameter='per_page')
         
-        totalPlussedPosts = len(userPosts)
-        pagination_plussed_list = get_posts(posts=userPosts, offset=offset, per_page=per_page)
+        totalPlussedPosts = len(userPlusses)
+        pagination_plussed_list = get_posts(posts=userPlusses, offset=offset, per_page=per_page)
         pagination_plussed = Pagination(page_parameter='userPlusPage',
                                         userPlusPage = plussesPage,
                                         per_page=per_page,
@@ -432,8 +432,8 @@ def account(post_id):
             return render_template(
                 "account.html", username=username,
                 users=users,
-                userPlusses=userPlusses,
-                plussed_posts=pagination_plussed_list,
+                userPlusses=pagination_plussed_list,
+                plussed_posts=plussed_posts,
                 pagination_plussed=pagination_plussed, 
                 userPostPage=postsPage,
                 active_tab="posts",
