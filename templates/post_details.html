@@ -78,10 +78,17 @@
                 <div class="post-details-comment-container">
                     {% if post.comments|length > 0 %}
                         <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h3>
-                        <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
-                            <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
-                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                        </form>
+                        {% if userPostPage is defined %}
+                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
+                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
+                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                            </form>
+                        {% else %}
+                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
+                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
+                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                            </form>
+                        {% endif %}
 
                         {% for comment in post.comments%}
                         <div class="post-details-comment">
@@ -93,11 +100,19 @@
                         </div>
                         {% endfor %}
                     {% else %}
-                        <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h3>
-                        <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, user_location='post_details') }}">
-                            <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
-                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                        </form>
+                        <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
+
+                        {% if userPostPage is defined %}
+                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
+                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
+                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                            </form>
+                        {% else %}
+                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
+                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
+                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                            </form>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

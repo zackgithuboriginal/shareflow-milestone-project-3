@@ -300,6 +300,12 @@ def process_vote(post_id):
         return(post_id, 'error')
 
 
+@app.route("/posts_vote/<post_id>/<page>", methods=["GET", "POST"])
+def posts_vote(post_id, page):
+    vote_status = process_vote(post_id)
+    return redirect(url_for("posts", post_id=post_id, page=page, _anchor=post_id))
+
+
 @app.route("/vote/<post_id>/<pagination_arguments>")
 def vote(post_id, pagination_arguments):
     vote_status = process_vote(post_id)
@@ -312,20 +318,11 @@ def vote(post_id, pagination_arguments):
         return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
 
 
-@app.route("/posts_vote/<post_id>/<page>", methods=["GET", "POST"])
-def posts_vote(post_id, page):
-    vote_status = process_vote(post_id)
-    return redirect(url_for("posts", post_id=post_id, page=page, _anchor=post_id))
 
-
-@app.route("/account_vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>", methods=["GET", "POST"])
-def account_vote(post_id, active_tab, userPlusPage, userPostPage):
-    vote_status = process_vote(post_id)
-    return redirect(url_for("account", post_id=post_id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage, _anchor=post_id))
-
-
-@app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])
-def add_comment(post_id, user_location):
+@app.route("/comment/<post_id>/<pagination_arguments>", methods=["GET", "POST"])
+def add_comment(post_id, pagination_arguments):
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").split(",")
+    print(pagination_arguments)
     if "user" in session:
         if request.method == "POST":
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
@@ -359,14 +356,17 @@ def add_comment(post_id, user_location):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_post)
             flash("Comment Successfully Added")
-            if user_location == 'account':
-                return redirect(url_for(user_location, username=session["user"], _anchor=post_id))
+            if len(split_pagination_arguments)==3:
+                return redirect(url_for("account_post_details", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
             else:
-                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
+                return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
 
     else:
         alertUser("session")
-        return redirect(url_for("posts"))
+        if len(split_pagination_arguments)==3:
+            return redirect(url_for("account_post_details", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
+        else:
+            return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
 
 
 @app.route("/delete_post/<post_id>")
@@ -403,7 +403,13 @@ def post_details(post_id, post_page):
         return render_template(
             "post_details.html", post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], page=post_page)
     return render_template(
-        "post_details.html", post=routing_parameters[0], users=routing_parameters[1])
+        "post_details.html", post=routing_parameters[0], users=routing_parameters[1], page=post_page)
+
+
+@app.route("/account_vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>", methods=["GET", "POST"])
+def account_vote(post_id, active_tab, userPlusPage, userPostPage):
+    vote_status = process_vote(post_id)
+    return redirect(url_for("account", post_id=post_id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage, _anchor=post_id))
 
 
 @app.route("/account_post_details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>")
