@@ -207,27 +207,42 @@ def add_post():
         return redirect(url_for("register"))
 
 
-@app.route("/edit_post/<post_id>/<prev_location>", methods=["GET", "POST"])
-def edit_post(post_id, prev_location):
-    if request.method == "POST":
+def process_post_edit(post_id):
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         updated_post = {
-            "post_title": request.form.get("post_title"),
-            "post_content": request.form.get("post_content"),
-            "topic_name": request.form.get("post_topic"),
-            "author": session["user"],
-            "post_date": post["post_date"],
-            "plusses": post["plusses"],
-            "comments": post["comments"]
+            "$set": {
+                    "post_title": request.form.get("post_title"),
+                    "post_content": request.form.get("post_content"),
+                    "topic_name": request.form.get("post_topic")
+                    },
         }
-
         mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Post Successfully Edited")
-        return redirect(url_for('post_details', post_id=post_id, user_location=prev_location, _anchor=post_id))
+        return("success")
+
+
+@app.route("/edit_post/<post_id>/<pagination_arguments>", methods=["GET", "POST"])
+def edit_post(post_id, pagination_arguments):
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").split(",")
+    if request.method == "POST":
+        if(process_post_edit(post_id) == "success"):
+            if len(split_pagination_arguments)==3:
+                return redirect(url_for("account", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
+            else:
+                return redirect(url_for("posts", post_id=post_id, page=split_pagination_arguments[0], _anchor=post_id))
 
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     topics = mongo.db.topics.find()
-    return render_template("edit_post.html", post=post, topics=topics, prev_location=prev_location)
+    return render_template("edit_post.html", post=post, topics=topics, pagination_arguments=pagination_arguments)
+
+
+@app.route("/close_post_edit/<post_id>/<pagination_arguments>")
+def close_post_edit(post_id, pagination_arguments):
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").split(",")
+    if len(split_pagination_arguments)==3:
+        return redirect(url_for('account', post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id ))
+    else:
+        return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
 
 
 @app.route("/sign_out")
@@ -309,17 +324,16 @@ def posts_vote(post_id, page):
 @app.route("/vote/<post_id>/<pagination_arguments>")
 def vote(post_id, pagination_arguments):
     vote_status = process_vote(post_id)
-    split_pagination_arguments =pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
     if len(split_pagination_arguments)==3:
         return redirect(url_for("account_post_details", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
     else:
         return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
 
 
-
 @app.route("/comment/<post_id>/<pagination_arguments>", methods=["GET", "POST"])
 def add_comment(post_id, pagination_arguments):
-    split_pagination_arguments =pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
     if "user" in session:
         if request.method == "POST":
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
