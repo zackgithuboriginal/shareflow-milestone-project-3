@@ -300,6 +300,12 @@ def process_vote(post_id):
         return(post_id, 'error')
 
 
+@app.route("/posts_vote/<post_id>/<page>", methods=["GET", "POST"])
+def posts_vote(post_id, page):
+    vote_status = process_vote(post_id)
+    return redirect(url_for("posts", post_id=post_id, page=page, _anchor=post_id))
+
+
 @app.route("/account_vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>", methods=["GET", "POST"])
 def account_vote(post_id, active_tab, userPlusPage, userPostPage):
     vote_status = process_vote(post_id)
