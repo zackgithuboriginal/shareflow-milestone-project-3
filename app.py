@@ -381,12 +381,12 @@ def process_post_details(post_id):
     return(post, users)
 
 
-@app.route("/post_details/<post_id>")
-def post_details(post_id):
+@app.route("/post_details/<post_id>/<post_page>")
+def post_details(post_id, post_page):
     routing_parameters = process_post_details(post_id)
     if "user" in session:
         return render_template(
-            "post_details.html", post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3])
+            "post_details.html", post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], page=post_page)
     return render_template(
         "post_details.html", post=routing_parameters[0], users=routing_parameters[1])
 

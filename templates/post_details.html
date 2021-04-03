@@ -23,6 +23,7 @@
                 </div>
                 <div class="post-details-close">
                     <a {% if userPostPage is defined %} href="{{ url_for('account', post_id=post._id, active_tab=active_tab, userPostPage=userPostPage, userPlusPage=userPlusPage, _anchor=post._id ) }}"
+                    {% else %}href="{{ url_for('posts', page=page, _anchor=post._id ) }}"
                     {% endif %}><i class="fas fa-times"></i></a>
                     <p class="col-12 post-plusses">Close</p>
                 </div>
