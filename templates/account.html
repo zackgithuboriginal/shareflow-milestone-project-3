@@ -12,7 +12,7 @@
             </button>
         </div>
         <div class="account-details-flex-container">
-            <h2 class="account-details-username">{{ user.username }}</h2>
+            <h2 class="account-details-username">{{ user.username }}{{ userPlusPage }}</h2>
             <div class="account-details-information">
                 <h4>User Since: {{ user.registration_date }}</h4>
                 <h4>Posts: {{ user.posts_made }}</h4>
@@ -55,7 +55,7 @@
                             <p class="col-12 post-plusses">Engage</p>
                         </div>
                         <div class="comment-post-link row">
-                            <a class="unstyled-button comment-link-icon" href="{{ url_for('post_details', post_id=post._id, user_location='account') }}"><i class="fas fa-arrow-circle-left"></i></a>
+                            <a class="unstyled-button comment-link-icon" href="{{ url_for('account_post_details', post_id=post._id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="fas fa-arrow-circle-left"></i></a>
                             <p class="comment-link-text">View Post</p>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                             <p class="col-12 post-plusses">Engage</p>
                         </div>
                         <div class="comment-post-link row">
-                            <a class="unstyled-button comment-link-icon" href="{{ url_for('post_details', post_id=post._id, user_location='account') }}"><i class="fas fa-arrow-circle-left"></i></a>
+                            <a class="unstyled-button comment-link-icon" href="{{ url_for('account_post_details', post_id=post._id, userPlusPage=userPlusPage, active_tab='plusses', userPostPage=userPostPage ) }}"><i class="fas fa-arrow-circle-left"></i></a>
                             <p class="comment-link-text">View Post</p>
                         </div>
                     </div>

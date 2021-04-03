@@ -22,7 +22,8 @@
                         {% endif %}
                 </div>
                 <div class="post-details-close">
-                    <a href="{{ url_for('close_post_details', post_id=post._id, previous_location=user_location) }}"><i class="fas fa-times"></i></a>
+                    <a {% if userPostPage is defined %} href="{{ url_for('account', post_id=post._id, active_tab=active_tab, userPostPage=userPostPage, userPlusPage=userPlusPage, _anchor=post._id ) }}"
+                    {% endif %}><i class="fas fa-times"></i></a>
                     <p class="col-12 post-plusses">Close</p>
                 </div>
             </div>

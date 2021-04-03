@@ -309,23 +309,6 @@ def vote(post_id, user_location, author):
         return redirect(url_for("posts"))
 
 
-@app.route("/post_details/<post_id>/<user_location>")
-def post_details(post_id, user_location):
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    users = list(mongo.db.users.find())
-    if "user" in session:
-        user = mongo.db.users.find_one(
-            {"username": session["user"]})
-        plusses = user["voted"]
-        user_plusses = []
-        for plussed_post in plusses:
-            user_plusses.append(ObjectId(plussed_post))
-        return render_template(
-            "post_details.html", post=post, user=user, user_plusses=user_plusses, user_location=user_location, users=users)
-    return render_template(
-        "post_details.html", post=post, user_location=user_location, users=users)
-
-
 @app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])
 def add_comment(post_id, user_location):
     if "user" in session:
@@ -384,8 +367,42 @@ def delete_post(post_id):
     return redirect(url_for("posts"))
 
 
-@app.route("/account/<post_id>", methods=["GET", "POST"])
-def account(post_id):
+def process_post_details(post_id):
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    users = list(mongo.db.users.find())
+    if "user" in session:
+        user = mongo.db.users.find_one(
+            {"username": session["user"]})
+        plusses = user["voted"]
+        user_plusses = []
+        for plussed_post in plusses:
+            user_plusses.append(ObjectId(plussed_post))
+        return (post, user_plusses, users, user)
+    return(post, users)
+
+
+@app.route("/post_details/<post_id>")
+def post_details(post_id):
+    routing_parameters = process_post_details(post_id)
+    if "user" in session:
+        return render_template(
+            "post_details.html", post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3])
+    return render_template(
+        "post_details.html", post=routing_parameters[0], users=routing_parameters[1])
+
+
+@app.route("/account_post_details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>")
+def account_post_details(post_id, active_tab, userPlusPage, userPostPage):
+    routing_parameters = process_post_details(post_id)
+    if "user" in session:
+        return render_template(
+            "post_details.html", active_tab=active_tab, post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], userPlusPage=userPlusPage, userPostPage=userPostPage)
+    return render_template(
+        "post_details.html", active_tab=active_tab, post=routing_parameters[0], users=routing_parameters[1], userPlusPage=userPlusPage, userPostPage=userPostPage)
+
+
+@app.route("/account/<post_id>/<active_tab>", methods=["GET", "POST"])
+def account(post_id, active_tab):
     if session["user"]:
         user = mongo.db.users.find_one(
             {"username": session["user"]})
@@ -408,7 +425,7 @@ def account(post_id):
 
         plussesPage, per_page, offset = get_page_args(page_parameter='userPlusPage',
                                            per_page_parameter='per_page')
-        
+
         totalPlussedPosts = len(userPlusses)
         pagination_plussed_list = get_posts(posts=userPlusses, offset=offset, per_page=per_page)
         pagination_plussed = Pagination(page_parameter='userPlusPage',
@@ -429,15 +446,18 @@ def account(post_id):
                                     total=totalUserPosts,
                                     css_framework='bootstrap4'
                                     )
+        print(postsPage)
+        print(plussesPage)
         if post_id=="None":
             return render_template(
-                "account.html", username=username,
+                "account.html",
+                active_tab=active_tab,
+                username=username,
                 users=users,
                 userPlusses=pagination_plussed_list,
                 plussed_posts=plussed_posts,
                 pagination_plussed=pagination_plussed, 
                 userPostPage=postsPage,
-                active_tab="posts",
                 user=user,
                 userPosts=pagination_posts_list,
                 userPlusPage = plussesPage,
@@ -448,7 +468,8 @@ def account(post_id):
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
             if post['author'] == session['user']:
                 return render_template(
-                "account.html", username=username,
+                "account.html",
+                username=username,
                 users=users,
                 userPlusses=userPlusses,
                 plussed_posts=pagination_plussed_list,
@@ -459,11 +480,13 @@ def account(post_id):
                 userPosts=pagination_posts_list,
                 userPlusPage = plussesPage,
                 per_page=per_page,
-                pagination_posts=pagination_posts 
+                pagination_posts=pagination_posts,
+                _anchor=('#'+post_id) 
                 )
             else:
                 return render_template(
-                "account.html", username=username,
+                "account.html",
+                username=username,
                 users=users,
                 userPlusses=userPlusses,
                 plussed_posts=pagination_plussed_list,
@@ -474,16 +497,13 @@ def account(post_id):
                 userPosts=pagination_posts_list,
                 userPlusPage = plussesPage,
                 per_page=per_page,
-                pagination_posts=pagination_posts 
+                pagination_posts=pagination_posts, 
+                _anchor=('#'+post_id) 
                 )
 
 
     return redirect(url_for("sign_in"))
 
-
-@app.route("/close_post_details/<post_id>/<previous_location>")
-def close_post_details(post_id, previous_location):
-    return redirect(url_for(previous_location, post_id=post_id, _anchor=post_id))
 
 def alertUser(key):
     if key == "session":

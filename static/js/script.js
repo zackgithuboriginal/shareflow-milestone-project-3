@@ -54,7 +54,7 @@ $(document).ready(function(){
      * When the active page is account.html
      * the functions in this statement will be called
      */
-    if (currentPage.indexOf("account") !== -1) {
+    if (currentPage.indexOf("/account/") !== -1) {
         /**
          * Calls a function which reads the url to determine which account tab needs to be open upon pagination reload
          */
@@ -106,91 +106,96 @@ function passwordValidation(){
  * The value of the argument that has changed will reflect which tab was interacted with and will inform the tab that should be active
  */
 function profileTabDisplayParse(){
-    currentParams = new URLSearchParams(window.location.search);
+    if(document.referrer.includes("/account/"))
+        currentParams = new URLSearchParams(window.location.search);
 
-    /**
-     * Default values in case the referring url was from a different page, not a reload due to pagination
-     */
-    let prevUserPlusPage = "1"
-    let prevUserPostPage = "1"
+        /**
+         * Default values in case the referring url was from a different page, not a reload due to pagination
+         */
+        let prevUserPlusPage = "1"
+        let prevUserPostPage = "1"
 
-    let currentUserPlusPage = checkSearchParams("userPlusPage")
-    let currentUserPostPage = checkSearchParams("userPostPage")
+        let currentUserPlusPage = checkSearchParams("userPlusPage")
+        let currentUserPostPage = checkSearchParams("userPostPage")
 
-    /**
-     * Basic function to determine a current value for arguments of both tabs
-     */
-    function checkSearchParams(param){
-        let currentParamPage;
-        if(currentParams.has(param)){
-        currentParamPage  = currentParams.get(param)
-        } else{
-        currentParamPage = "1"
+        /**
+         * Basic function to determine a current value for arguments of both tabs
+         */
+        function checkSearchParams(param){
+            let currentParamPage;
+            if(currentParams.has(param)){
+            currentParamPage  = currentParams.get(param)
+            } else{
+            currentParamPage = "1"
+            }
+            return currentParamPage
         }
-        return currentParamPage
-    }
-
-    /**
-     * If statement to ensure the document referrer contains a query before continuing in logic
-     */
-    if(document.referrer.includes("?")){
-        let prevUrlFirstParam, prevUrlFirstParamValue, prevUrlSecondParam, prevUrlSecondParamValue
 
         /**
-         * Splits and isolates the query section from referrer
-         * i.e 'https://shareflow-milestone-project-3.herokuapp.com/account/None?userPlusPage=2&userPostPage=2' to 'userPlusPage=2&userPostPage=2'
+         * If statement to ensure the document referrer contains a query before continuing in logic
          */
-        prevUrl = document.referrer.split("?")[1]
-
-        /**
-         * If two parameters are present in url, splits them , and the further splits to seperate name of arg from value
-         * i.e 'userPlusPage=2&userPostPage=2'
-         * =>     'userPlusPage=2'
-         * =>     'userPlusPage' and '2'
-         */
-        if( prevUrl.includes("&")){
-            prevUrlFirstParam = prevUrl.split("&")[0].split("=")[0]
-            prevUrlFirstParamValue = prevUrl.split("&")[0].split("=")[1]
-            prevUrlSecondParam = prevUrl.split("&")[1].split("=")[0]
-            prevUrlSecondParamValue = prevUrl.split("&")[1].split("=")[1]
+        if(document.referrer.includes("?")){
+            let prevUrlFirstParam, prevUrlFirstParamValue, prevUrlSecondParam, prevUrlSecondParamValue
 
             /**
-             * This section assigns values to the variables representing the previous url's argument values
+             * Splits and isolates the query section from referrer
+             * i.e 'https://shareflow-milestone-project-3.herokuapp.com/account/None?userPlusPage=2&userPostPage=2' to 'userPlusPage=2&userPostPage=2'
              */
-            if(prevUrlFirstParam=="userPostPage"){
-                prevUserPostPage=prevUrlFirstParamValue
-                prevUserPlusPage=prevUrlSecondParamValue
+            prevUrl = document.referrer.split("?")[1]
 
-            } else {
-                prevUserPostPage=prevUrlSecondParamValue
-                prevUserPlusPage=prevUrlFirstParamValue
-            }
+            /**
+             * If two parameters are present in url, splits them , and the further splits to seperate name of arg from value
+             * i.e 'userPlusPage=2&userPostPage=2'
+             * =>     'userPlusPage=2'
+             * =>     'userPlusPage' and '2'
+             */
+            if( prevUrl.includes("&")){
+                prevUrlFirstParam = prevUrl.split("&")[0].split("=")[0]
+                prevUrlFirstParamValue = prevUrl.split("&")[0].split("=")[1]
+                prevUrlSecondParam = prevUrl.split("&")[1].split("=")[0]
+                prevUrlSecondParamValue = prevUrl.split("&")[1].split("=")[1]
 
-        /**
-         * If thers only one argument then the string is split and values to the variables representing the previous url's argument values
-         */
-        }   else {
-            prevUrlFirstParam = prevUrl.split("=")[0]
-            prevUrlFirstParamValue = prevUrl.split("=")[1]
-            if(prevUrlFirstParam=="userPostPage"){
-                prevUserPostPage=prevUrlFirstParamValue
+                /**
+                 * This section assigns values to the variables representing the previous url's argument values
+                 */
+                if(prevUrlFirstParam=="userPostPage"){
+                    prevUserPostPage=prevUrlFirstParamValue
+                    prevUserPlusPage=prevUrlSecondParamValue
 
-            } else {
-                prevUserPlusPage=prevUrlFirstParamValue
+                } else {
+                    prevUserPostPage=prevUrlSecondParamValue
+                    prevUserPlusPage=prevUrlFirstParamValue
+                }
 
+            /**
+             * If thers only one argument then the string is split and values to the variables representing the previous url's argument values
+             */
+            }   else {
+                prevUrlFirstParam = prevUrl.split("=")[0]
+                prevUrlFirstParamValue = prevUrl.split("=")[1]
+                if(prevUrlFirstParam=="userPostPage"){
+                    prevUserPostPage=prevUrlFirstParamValue
+
+                } else {
+                    prevUserPlusPage=prevUrlFirstParamValue
+
+                }
             }
         }
-    }
 
-    /**
-     * Compares the previous and current parameter values for each parameter
-     * if there's a change then that is set as active tab
-     */
-    if( currentUserPlusPage != prevUserPlusPage){
-        tabDisplay("plusses")
-    }
-    if( currentUserPostPage != prevUserPostPage){
-        tabDisplay("posts")
+        /**
+         * Compares the previous and current parameter values for each parameter
+         * if there's a change then that is set as active tab
+         */
+        if( currentUserPlusPage != prevUserPlusPage){
+            tabDisplay("plusses")
+        }
+        if( currentUserPostPage != prevUserPostPage){
+            tabDisplay("posts")
+        }
+
+    else {
+        return
     }
 }
 
