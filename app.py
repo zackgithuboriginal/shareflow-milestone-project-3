@@ -300,6 +300,18 @@ def process_vote(post_id):
         return(post_id, 'error')
 
 
+@app.route("/vote/<post_id>/<pagination_arguments>")
+def vote(post_id, pagination_arguments):
+    vote_status = process_vote(post_id)
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").split(",")
+    print(split_pagination_arguments)
+    print(int(split_pagination_arguments[0]))
+    if len(split_pagination_arguments)==3:
+        return redirect(url_for("account_post_details", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
+    else:
+        return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
+
+
 @app.route("/posts_vote/<post_id>/<page>", methods=["GET", "POST"])
 def posts_vote(post_id, page):
     vote_status = process_vote(post_id)

@@ -8,18 +8,33 @@
         <div class="post-details-container">
             <div class="post-details-topic-container {{ post.topic_name }}-sidebar">
                 <div class="post-details-plusses">
+                    {% if userPostPage is defined %}
                         {% if session.user %}
                             {% if post._id in user_plusses %}
-                                <a href="{{ url_for('vote', post_id=post._id, user_location='post_details', author=post.author) }}"><i class="col-12 fas fa-check"></i></a>
+                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i class="col-12 fas fa-check"></i></a>
                                 <p class="col-12 post-plusses">{{ post.plusses }}</p>
                             {% else %}
-                                <a href="{{ url_for('vote', post_id=post._id, user_location='post_details', author=post.author) }}"><i class="col-12 fas fa-plus"></i></a>
+                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i class="col-12 fas fa-plus"></i></a>
                                 <p class="col-12 post-plusses">{{ post.plusses }}</p>
                             {% endif %}
                         {% else %}
-                            <a href="{{ url_for('vote', post_id=post._id, user_location='post_details', author=post.author) }}"><i class="col-12 fas fa-plus"></i></a>
+                            <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i class="col-12 fas fa-plus"></i></a>
                             <p class="col-12 post-plusses">{{ post.plusses }}</p>
                         {% endif %}
+                    {% else %}
+                        {% if session.user %}
+                            {% if post._id in user_plusses %}
+                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i class="col-12 fas fa-check"></i></a>
+                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                            {% else %}
+                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i class="col-12 fas fa-plus"></i></a>
+                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                            {% endif %}
+                        {% else %}
+                            <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i class="col-12 fas fa-plus"></i></a>
+                            <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% endif %}
+                    {% endif %}
                 </div>
                 <div class="post-details-close">
                     <a {% if userPostPage is defined %} href="{{ url_for('account', post_id=post._id, active_tab=active_tab, userPostPage=userPostPage, userPlusPage=userPlusPage, _anchor=post._id ) }}"
