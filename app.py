@@ -420,8 +420,14 @@ def account(post_id, active_tab):
             plussed_posts.append(ObjectId(post))
 
         # Finds the list of posts that a user has liked to display on profile
-        userPlusses = list(
+        userPlusses = []
+        posts_plussed = list(
             mongo.db.posts.find({"users_voted": session["user"]}).sort("post_date", -1))
+        for post in posts_plussed:
+            if post['author'] != session['user']:
+                userPlusses.append(post)
+            else:
+                pass
         # Finds the list of posts authored by user
         userPosts = list(
             mongo.db.posts.find({"author": session["user"]}).sort("post_date", -1))
