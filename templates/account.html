@@ -50,10 +50,6 @@
                             {% endif %}
                             
                         </div>
-                        <div class="post-comments row">
-                            <button class="unstyled-button" onclick="displayCommentForm('{{ post._id }}')"><i class="col-12 fas fa-comments"></i></button>
-                            <p class="col-12 post-plusses">Engage</p>
-                        </div>
                         <div class="comment-post-link row">
                             <a class="unstyled-button comment-link-icon" href="{{ url_for('account_post_details', post_id=post._id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="fas fa-arrow-circle-left"></i></a>
                             <p class="comment-link-text">View Post</p>
@@ -89,24 +85,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="create-comment-form-{{ post._id }}" class="create-comment-form">
-                            <hr class="comment-divider">
-                            <form method="POST" action="{{ url_for('add_comment', post_id=post._id, user_location='posts') }}">
-                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
-                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                            </form>
-                        </div>
-                        {% if post.comments|length > 0 %}
-                            <div id="post-comments-{{ post._id }}" class="post-comment-container">
-                                {% for comment in post.comments %}
-                                    <hr class="comment-divider">
-                                    <div class="comment-div">
-                                        <p class="post-comment">{{ comment.comment_content }}</p>
-                                        <h4 class="post-comment-author">{{ comment.author}}</h4>
-                                    </div>  
-                                {% endfor%}
-                            </div>
-                        {% endif %}
                     </div>
                 </div>
                 {% endfor %}
@@ -140,10 +118,6 @@
                                 <p class="col-12 post-plusses">{{ post.plusses }}</p>
                             {% endif %}
                             
-                        </div>
-                        <div class="post-comments row">
-                            <button class="unstyled-button" onclick="displayCommentForm('{{ post._id }}')"><i class="col-12 fas fa-comments"></i></button>
-                            <p class="col-12 post-plusses">Engage</p>
                         </div>
                         <div class="comment-post-link row">
                             <a class="unstyled-button comment-link-icon" href="{{ url_for('account_post_details', post_id=post._id, userPlusPage=userPlusPage, active_tab='plusses', userPostPage=userPostPage ) }}"><i class="fas fa-arrow-circle-left"></i></a>
@@ -180,24 +154,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="create-comment-form-{{ post._id }}" class="create-comment-form">
-                            <hr class="comment-divider">
-                            <form method="POST" action="{{ url_for('add_comment', post_id=post._id, user_location='posts') }}">
-                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols=""></textarea>
-                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                            </form>
-                        </div>
-                        {% if post.comments|length > 0 %}
-                           <div id="profile-plussed-post-comments-{{ post._id }}" class="post-comment-container">
-                                {% for comment in post.comments %}
-                                    <hr class="comment-divider">
-                                    <div class="comment-div">
-                                        <p class="post-comment">{{ comment.comment_content }}</p>
-                                        <h4 class="post-comment-author">{{ comment.author}}</h4>
-                                    </div>  
-                                {% endfor%}
-                            </div>
-                        {% endif %}
                     </div>
                 </div>
                     {% endif%}
