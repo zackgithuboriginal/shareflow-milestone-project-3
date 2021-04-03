@@ -146,6 +146,7 @@ def edit_avatar():
     else:
         return redirect(url_for('account', post_id="None"))
 
+
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
@@ -237,16 +238,12 @@ def sign_out():
     return redirect(url_for("sign_in"))
 
 
-@app.route("/vote/<post_id>/<user_location>/<author>", methods=["GET", "POST"])
-def vote(post_id, user_location, author):
-    print(post_id)
-    print(author)
-    print(user_location)
+def process_vote(post_id):
     current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     current_vote = current_post["plusses"]
-    post_creator = mongo.db.users.find_one({"username": author})
-    post_creator_plusses = post_creator["plusses"]
-    print(post_creator_plusses)
+    post_creator = current_post["author"]
+    author = mongo.db.users.find_one({"username": post_creator})
+    post_creator_plusses = author["plusses"]
     if "user" in session:
         already_voted = mongo.db.users.find_one(
             {"username": session["user"]})["voted"]
@@ -273,10 +270,7 @@ def vote(post_id, user_location, author):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
             mongo.db.users.update_one({"username" :author}, update_author)
-            if user_location == 'account':
-                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
-            else:
-                return redirect(url_for(user_location, post_id=post_id, user_location=user_location, _anchor=post_id))
+            return(post_id, 'success')
         else:
             update_vote = {
                 "$set": {
@@ -300,13 +294,16 @@ def vote(post_id, user_location, author):
                 {"username": session["user"]}, update_user)
             mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
             mongo.db.users.update_one({"username" :author}, update_author)
-            if user_location == 'account':
-                return redirect(url_for(user_location, post_id=post_id, _anchor=post_id))
-            else:
-                return redirect(url_for(user_location, post_id=post_id, user_location=user_location, _anchor=post_id))
+            return(post_id, 'success')
     else:
         alertUser("session")
-        return redirect(url_for("posts"))
+        return(post_id, 'error')
+
+
+@app.route("/account_vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>", methods=["GET", "POST"])
+def account_vote(post_id, active_tab, userPlusPage, userPostPage):
+    vote_status = process_vote(post_id)
+    return redirect(url_for("account", post_id=post_id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage, _anchor=post_id))
 
 
 @app.route("/add_comment/<post_id>/<user_location>", methods=["GET", "POST"])
@@ -471,8 +468,8 @@ def account(post_id, active_tab):
                 "account.html",
                 username=username,
                 users=users,
-                userPlusses=userPlusses,
-                plussed_posts=pagination_plussed_list,
+                userPlusses=pagination_plussed_list,
+                plussed_posts=plussed_posts,
                 pagination_plussed=pagination_plussed, 
                 userPostPage=postsPage,
                 active_tab="posts",
@@ -488,8 +485,8 @@ def account(post_id, active_tab):
                 "account.html",
                 username=username,
                 users=users,
-                userPlusses=userPlusses,
-                plussed_posts=pagination_plussed_list,
+                userPlusses=pagination_plussed_list,
+                plussed_posts=plussed_posts,
                 pagination_plussed=pagination_plussed, 
                 userPostPage=postsPage,
                 active_tab="plusses",
