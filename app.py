@@ -309,9 +309,7 @@ def posts_vote(post_id, page):
 @app.route("/vote/<post_id>/<pagination_arguments>")
 def vote(post_id, pagination_arguments):
     vote_status = process_vote(post_id)
-    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").split(",")
-    print(split_pagination_arguments)
-    print(int(split_pagination_arguments[0]))
+    split_pagination_arguments =pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
     if len(split_pagination_arguments)==3:
         return redirect(url_for("account_post_details", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
     else:
@@ -321,8 +319,7 @@ def vote(post_id, pagination_arguments):
 
 @app.route("/comment/<post_id>/<pagination_arguments>", methods=["GET", "POST"])
 def add_comment(post_id, pagination_arguments):
-    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").split(",")
-    print(pagination_arguments)
+    split_pagination_arguments =pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
     if "user" in session:
         if request.method == "POST":
             post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
@@ -369,8 +366,8 @@ def add_comment(post_id, pagination_arguments):
             return redirect(url_for("post_details", post_id=post_id, post_page=int(split_pagination_arguments[0])))
 
 
-@app.route("/delete_post/<post_id>")
-def delete_post(post_id):
+@app.route("/delete_post/<post_id>/<pagination_arguments>")
+def delete_post(post_id, pagination_arguments):
     mongo.db.posts.remove({"_id": ObjectId(post_id)})
     mongo.db.users.update({},{"$pull": { "voted": { "$in": [ post_id ] }}},
     True)
@@ -379,7 +376,11 @@ def delete_post(post_id):
     { "$pull": { "comments": { "attached_post": post_id } } },
     True)
     flash("Post Deleted")
-    return redirect(url_for("posts"))
+    split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
+    if len(split_pagination_arguments)==3:
+        return redirect(url_for("account", post_id='None', active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0]))
+    else: 
+        return redirect(url_for("posts", page=split_pagination_arguments[0]))
 
 
 def process_post_details(post_id):
@@ -473,8 +474,6 @@ def account(post_id, active_tab):
                                     total=totalUserPosts,
                                     css_framework='bootstrap4'
                                     )
-        print(postsPage)
-        print(plussesPage)
         if post_id=="None":
             return render_template(
                 "account.html",

@@ -51,7 +51,7 @@
                             <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
                         {% endif %}
                         <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
-                            <a class="{{ post.topic_name }}" href="{{ url_for('delete_post', post_id=post._id) }}"><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></a>
+                            <a class="{{ post.topic_name }}" {% if userPostPage is defined %}href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"{% else %}href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[page]) }}"{% endif %}><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></a>
                         <a class="{{ post.topic_name }}" href="{{ url_for('edit_post', post_id=post._id, prev_location=user_location) }}"><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
                         </div>
                     </div>
