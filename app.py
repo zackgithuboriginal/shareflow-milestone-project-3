@@ -419,12 +419,15 @@ def process_post_details(post_id):
 
 @app.route("/post_details/<post_id>/<post_page>")
 def post_details(post_id, post_page):
-    routing_parameters = process_post_details(post_id)
-    if "user" in session:
+    if mongo.db.posts.find_one({"_id": ObjectId(post_id)}):
+        routing_parameters = process_post_details(post_id)
+        if "user" in session:
+            return render_template(
+                "post_details.html", post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], page=post_page)
         return render_template(
-            "post_details.html", post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], page=post_page)
-    return render_template(
-        "post_details.html", post=routing_parameters[0], users=routing_parameters[1], page=post_page)
+            "post_details.html", post=routing_parameters[0], users=routing_parameters[1], page=post_page)
+    else: 
+        return  redirect(url_for("posts", post_page=post_page))
 
 
 @app.route("/account_vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>", methods=["GET", "POST"])
@@ -435,12 +438,15 @@ def account_vote(post_id, active_tab, userPlusPage, userPostPage):
 
 @app.route("/account_post_details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>")
 def account_post_details(post_id, active_tab, userPlusPage, userPostPage):
-    routing_parameters = process_post_details(post_id)
-    if "user" in session:
+    if mongo.db.posts.find_one({"_id": ObjectId(post_id)}):
+        routing_parameters = process_post_details(post_id)
+        if "user" in session:
+            return render_template(
+                "post_details.html", active_tab=active_tab, post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], userPlusPage=userPlusPage, userPostPage=userPostPage)
         return render_template(
-            "post_details.html", active_tab=active_tab, post=routing_parameters[0], user_plusses=routing_parameters[1], users=routing_parameters[2], user=routing_parameters[3], userPlusPage=userPlusPage, userPostPage=userPostPage)
-    return render_template(
-        "post_details.html", active_tab=active_tab, post=routing_parameters[0], users=routing_parameters[1], userPlusPage=userPlusPage, userPostPage=userPostPage)
+            "post_details.html", active_tab=active_tab, post=routing_parameters[0], users=routing_parameters[1], userPlusPage=userPlusPage, userPostPage=userPostPage)
+    else: 
+        return  redirect(url_for("account", post_id='None', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage))
 
 
 @app.route("/account/<post_id>/<active_tab>", methods=["GET", "POST"])
