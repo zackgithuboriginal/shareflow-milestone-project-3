@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% set active_page = "index" %}
+{% block script %}
+<script>
+    let counter = 5;
+    let interval = setInterval(function() {
+        counter--;
+        document.getElementById("counter-target").textContent=counter
+        // Display 'counter' wherever you want to display it.
+        if(counter<=0){
+            window.location.href = "{{ url_for('posts') }}";
+        }
+    }, 1000);
+</script>
+{% endblock %}
+{% block content %}
+<section class="error-container">
+        <h1 class="error-heading error-text">Oops, this page doesn't exist!</h1>
+        <h2 class="error-text">If you are not redirected in <span id="counter-target">5</span> seconds, click <a href="{{ url_for('posts') }}">here.</a></h2>
+</section>
+
+
+{% endblock %}

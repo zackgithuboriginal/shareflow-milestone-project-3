@@ -22,6 +22,12 @@ mongo = PyMongo(app)
 def get_posts(posts, offset=0, per_page=10):
     return posts[offset: offset + per_page]
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html")
+
+
 @app.route('/')
 @app.route("/posts")
 def posts():

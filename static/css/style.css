@@ -1579,6 +1579,35 @@ h4.post-details-comment-count {
     justify-content: space-between;
 }
 
+/* 404 Styling */
+.error-text{
+    color: white;
+    font-weight: 300;
+}
+
+.error-container {
+    display: flex;
+    max-width: 80vw;
+    margin: 10rem auto 0 auto;
+    flex-direction: column;
+}
+
+.error-heading {
+    font-size: 6rem;
+}
+
+h2.error-text {
+    margin-top: 4rem;
+    font-size: 3rem;
+}
+
+.error-text a,
+.error-text a:visited,
+.error-text a:hover {
+    color: white;
+}
+
+
 @media (min-width: 768px) {
     /* General Styling */
     .page-heading {
