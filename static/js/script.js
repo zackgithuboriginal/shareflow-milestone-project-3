@@ -257,61 +257,6 @@ function clearDropdowns(){
 }
 
 
-
-/**
- * This function toggles the display of a post's comments
- */
-function displayComments(e, postId, idLocation){
-    let target = document.getElementById(`${idLocation}${postId}`)
-    let eventTrigger = e.srcElement
-    let commentCount = eventTrigger.textContent.slice(eventTrigger.textContent.length -4);
-    if (target.style.display  == "flex"){
-        clearComments()
-        target.style.display  = "none"
-        eventTrigger.textContent=`Show Comments ${commentCount}`
-    } else {
-        clearComments()
-        target.style.display  = "flex"
-        eventTrigger.textContent=`Hide Comments ${commentCount}`
-    }
-}
-
-/**
- * This function closes any opened comment sections
- */
-function clearComments(){
-    let allComments = document.querySelectorAll(".post-comment-container")
-    for(i = 0; i < allComments.length; i++){
-        allComments[i].style.display = "none"
-    }
-}
-
-
-/**
- * This function toggles the create comment form when the button is clicked
- */
-function displayCommentForm(postId){
-    let target = document.getElementById(`create-comment-form-${postId}`)
-    if (target.style.display  == "flex"){
-        clearCommentForms()
-        target.style.display  = "none"
-    } else {
-        clearCommentForms()
-        target.style.display  = "flex"
-    }
-}
-
-/**
- * This function closes all open comment forms
- */
-function clearCommentForms(){
-    let allCommentForms = document.querySelectorAll(".create-comment-form")
-    for(i = 0; i < allCommentForms.length; i++){
-        allCommentForms[i].style.display = "none"
-    }
-}
-
-
 /**
  * This function controls which profile tab is active and displayed
  */
@@ -331,7 +276,6 @@ function tabDisplay(tab){
     targetLink.classList.add("active-tab")
     target.style.display = "flex"
 }
-
 
 
 /**
@@ -410,27 +354,33 @@ function checkURL(url) {
 /**
  * Function that analyses whether the url relates to an image
  * Attempts to load it as an img element
- * if it loads image returns success
- * if it timesout it returns timeout
- * if it fails to load as an image returns error
  */
 function testImage(url, callback, timeout) {
     timeout = timeout || 5000;
     let timedOut = false, timer;
     let img = new Image();
+    img.src = url;
+    /**
+     * If image fails to load, returns an error
+     */
     img.onerror = img.onabort = function() {
         if (!timedOut) {
             clearTimeout(timer);
             callback(url, "error");
         }
     };
+    /**
+     * If image loads within time, returns success
+     */
     img.onload = function() {
         if (!timedOut) {
             clearTimeout(timer);
             callback(url, "success");
         }
     };
-    img.src = url;
+    /**
+     * If image doesnt load in 5 sec, returns timeout
+     */
     timer = setTimeout(function() {
         timedOut = true;
         callback(url, "timeout");
