@@ -13,6 +13,7 @@ $(document).ready(function(){
     });
 
     currentPage = window.location.pathname
+    console.log(currentPage)
 
     /**
      * When the active page is account.html, posts.html or post_details.html
@@ -54,17 +55,17 @@ $(document).ready(function(){
      * When the active page is account.html
      * the functions in this statement will be called
      */
-    if (currentPage.indexOf("/account/") !== -1) {
+    /**
+     * This function hides the modal whenever the 'x' or close buttons are clicked
+     */
+    $(".close-avatar-modal").click(function(){
+        $("#avatar-select-modal").modal('hide');
+    });
+    if (currentPage.indexOf("account") !== -1) {
         /**
          * Calls a function which reads the url to determine which account tab needs to be open upon pagination reload
          */
         profileTabDisplayParse();
-        /**
-         * This function hides the modal whenever the 'x' or close buttons are clicked
-         */
-        $(".close-avatar-modal").click(function(){
-            $("#avatar-select-modal").modal('hide');
-        });
     }
     /**
      * When the active page is posts.html
