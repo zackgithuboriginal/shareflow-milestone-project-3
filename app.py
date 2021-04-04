@@ -16,45 +16,60 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-mongo = PyMongo(app)
+db = PyMongo(app).db
 
 
+# Function used to develop pagination lists
 def get_posts(posts, offset=0, per_page=10):
     return posts[offset: offset + per_page]
 
 
+# Route responsible for handling 404 errors and directing user to 404 page
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html")
 
 
+# View Responsible for routing of home page and default post display page
 @app.route('/')
 @app.route("/posts")
 def posts():
+    # Takes the filter and sort arguments from the input form, if no arguments, uses default values
     filter_sort = (request.args.get("sort-by") or "post_date")
     filter_topic = request.args.get("topic")
+    # Uses given arguments to get relevant list of posts
     if filter_topic:
         if filter_topic == "all":
-            posts = list(mongo.db.posts.find().sort(filter_sort, -1))
+            posts = list(db.posts.find().sort(filter_sort, -1))
         else:
-            posts = list(mongo.db.posts.find(
+            posts = list(db.posts.find(
                 {"topic_name": filter_topic}).sort(filter_sort, -1))
     else:
-        posts = list(mongo.db.posts.find().sort(filter_sort, -1))
+        posts = list(db.posts.find().sort(filter_sort, -1))
 
+    # Parameters used for paginating the list of posts
+    # page represents the current page of pagination, default value is 1
+    # per_page represents the number of posts to be displayed per page
+    # offset represents the posts needed to be displayed on each page
+    # i.e page 2 will be 10 - 19 page 4 will be 30 - 39 and so on
     page, per_page, offset = get_page_args(page_parameter='page',
-                                           per_page_parameter='per_page')
+                                           per_page_parameter='per_page') 
+    # total length of posts used to determine the total number of pages
     total = len(posts)
+    # pagination_posts is the total list of posts
     pagination_posts = get_posts(posts=posts, offset=offset, per_page=per_page)
+    # pagination contains the pagination details, and data for navigation
     pagination = Pagination(page=page,
                             page_parameter="page", per_page=per_page, total=total,
                             css_framework='bootstrap4')
 
 
-    topics = list(mongo.db.topics.find())
-    users = list(mongo.db.users.find())
+    topics = list(db.topics.find())
+    users = list(db.users.find())
+    # if user is signed in, will pass their plussed posts to the render to 
+    # inform whether a post should display a plus or tick
     if "user" in session:
-        plusses = mongo.db.users.find_one(
+        plusses = db.users.find_one(
             {"username": session["user"]})["voted"]
         user_plusses = []
         for post in plusses:
@@ -78,23 +93,13 @@ def posts():
                             )
 
 
-@app.route("/topics")
-def topics():
-    topics = list(mongo.db.topics.find())
-    return render_template("topics.html", topics=topics)
-
-
-@app.route("/filter_topics/<topic>")
-def filter_topics(topic):
-    topics = list(mongo.db.topics.find())
-    posts = list(mongo.db.posts.find({"topic_name": topic}))
-    return render_template("posts.html", posts=posts, topics=topics)
-
-
+# View responsible for rendering the user register page and creating the user object record
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    # if user submits registration form from register.html 
+    # this section will handle creating the register object and posting it to the collection
     if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
+        existing_user = db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -113,19 +118,22 @@ def register():
             "plusses": 0,
         }
 
-        mongo.db.users.insert_one(register)
+        db.users.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
         flash("Registration Complete")
         return redirect(url_for("posts"))
 
+    # if the user has not submitted the form, 
+    # this is the default routing and will render the register.html template for the user
     return render_template("register.html")
 
 
-@app.route("/edit_avatar", methods=["GET", "POST"])
-def edit_avatar():
+# This view handles users updating their avatar or adding a direct url to their user record
+@app.route("/edit_avatar/<active_tab>/<userPlusPage>/<userPostPage>", methods=["GET", "POST"])
+def edit_avatar(active_tab, userPlusPage, userPostPage):
     if request.method == "POST":
-        user = mongo.db.users.find_one(
+        user = db.users.find_one(
             {"username": session["user"]})
         if request.form.get("avatar_select") == "direct_input":
             updated_avatar = {
@@ -137,7 +145,7 @@ def edit_avatar():
         else:
             selected_avatar = request.form.get("avatar_select")
             if selected_avatar == user["account_image"]:
-                return redirect(url_for('account', post_id="None"))
+                return redirect(url_for('account', post_id="None", active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage))
             else:
                 updated_avatar = {
                         "$set": {
@@ -146,17 +154,17 @@ def edit_avatar():
                             }
                 }
 
-        mongo.db.users.update({"username": session["user"]}, updated_avatar)
+        db.users.update({"username": session["user"]}, updated_avatar)
         flash("Image Successfully Updated")
-        return redirect(url_for('account', post_id="None"))
+        return redirect(url_for('account', post_id="None", active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage))
     else:
-        return redirect(url_for('account', post_id="None"))
+        return redirect(url_for('account', post_id="None", active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage))
 
 
 @app.route("/sign_in", methods=["GET", "POST"])
 def sign_in():
     if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
+        existing_user = db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
@@ -177,7 +185,7 @@ def sign_in():
 
 @app.route("/create_post")
 def create_post():
-    topics = list(mongo.db.topics.find())
+    topics = list(db.topics.find())
     return render_template("create_post.html", topics=topics)
 
 
@@ -185,7 +193,7 @@ def create_post():
 def add_post():
     if "user" in session:
         if request.method == "POST":
-            user = mongo.db.users.find_one({"username": session["user"]})
+            user = db.users.find_one({"username": session["user"]})
             user_posts_made = user["posts_made"]
             update_user = {
                 "$set": {
@@ -203,8 +211,8 @@ def add_post():
                 "total_comments": 0,
                 "users_voted": []
             }
-            mongo.db.posts.insert_one(post)
-            mongo.db.users.update_one(
+            db.posts.insert_one(post)
+            db.users.update_one(
                 {"username": session["user"]}, update_user)
             flash("Post Successfully Added")
             return redirect(url_for("posts"))
@@ -214,7 +222,7 @@ def add_post():
 
 
 def process_post_edit(post_id):
-        post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+        post = db.posts.find_one({"_id": ObjectId(post_id)})
         updated_post = {
             "$set": {
                     "post_title": request.form.get("post_title"),
@@ -222,7 +230,7 @@ def process_post_edit(post_id):
                     "topic_name": request.form.get("post_topic")
                     },
         }
-        mongo.db.posts.update({"_id": ObjectId(post_id)}, updated_post)
+        db.posts.update({"_id": ObjectId(post_id)}, updated_post)
         flash("Post Successfully Edited")
         return("success")
 
@@ -237,8 +245,8 @@ def edit_post(post_id, pagination_arguments):
             else:
                 return redirect(url_for("posts", post_id=post_id, page=split_pagination_arguments[0], _anchor=post_id))
 
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    topics = mongo.db.topics.find()
+    post = db.posts.find_one({"_id": ObjectId(post_id)})
+    topics = db.topics.find()
     return render_template("edit_post.html", post=post, topics=topics, pagination_arguments=pagination_arguments)
 
 
@@ -260,13 +268,13 @@ def sign_out():
 
 
 def process_vote(post_id):
-    current_post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    current_post = db.posts.find_one({"_id": ObjectId(post_id)})
     current_vote = current_post["plusses"]
     post_creator = current_post["author"]
-    author = mongo.db.users.find_one({"username": post_creator})
+    author = db.users.find_one({"username": post_creator})
     post_creator_plusses = author["plusses"]
     if "user" in session:
-        already_voted = mongo.db.users.find_one(
+        already_voted = db.users.find_one(
             {"username": session["user"]})["voted"]
         if post_id in already_voted:
             update_vote = {
@@ -287,10 +295,10 @@ def process_vote(post_id):
                      "voted": post_id
                      }
                      }
-            mongo.db.users.update_one(
+            db.users.update_one(
                 {"username": session["user"]}, update_user)
-            mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            mongo.db.users.update_one({"username" :author}, update_author)
+            db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
+            db.users.update_one({"username" :author}, update_author)
             return(post_id, 'success')
         else:
             update_vote = {
@@ -311,10 +319,10 @@ def process_vote(post_id):
                      "voted": post_id
                      }
                      }
-            mongo.db.users.update_one(
+            db.users.update_one(
                 {"username": session["user"]}, update_user)
-            mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
-            mongo.db.users.update_one({"username" :author}, update_author)
+            db.posts.update_one({"_id": ObjectId(post_id)}, update_vote)
+            db.users.update_one({"username" :author}, update_author)
             return(post_id, 'success')
     else:
         alertUser("session")
@@ -342,7 +350,7 @@ def add_comment(post_id, pagination_arguments):
     split_pagination_arguments = pagination_arguments.replace("[","").replace("]","").replace("'","").replace(" ","").split(",")
     if "user" in session:
         if request.method == "POST":
-            post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+            post = db.posts.find_one({"_id": ObjectId(post_id)})
             comment_id = (str(post_id) + "/" + str(post["total_comments"]+1))
             comment = {
                 "comment_id": comment_id,
@@ -351,7 +359,7 @@ def add_comment(post_id, pagination_arguments):
                 "post_date": datetime.now().strftime("%m/%d/%Y, %H:%M:%S"),
                 "attached_post": post_id
             }
-            user = mongo.db.users.find_one({"username": session["user"]})
+            user = db.users.find_one({"username": session["user"]})
             user_comments_made = user["comments_made"]
             update_post = {
                 "$push": {
@@ -369,9 +377,9 @@ def add_comment(post_id, pagination_arguments):
                         "comments_made":user_comments_made + 1
                         }
                         }
-            mongo.db.users.update_one(
+            db.users.update_one(
                 {"username": session["user"]}, update_user)
-            mongo.db.posts.update_one({"_id": ObjectId(post_id)}, update_post)
+            db.posts.update_one({"_id": ObjectId(post_id)}, update_post)
             flash("Comment Successfully Added")
             if len(split_pagination_arguments)==3:
                 return redirect(url_for("account_post_details", post_id=post_id, active_tab=split_pagination_arguments[2], userPlusPage=split_pagination_arguments[1], userPostPage=split_pagination_arguments[0], _anchor=post_id))
@@ -388,10 +396,10 @@ def add_comment(post_id, pagination_arguments):
 
 @app.route("/delete_post/<post_id>/<pagination_arguments>")
 def delete_post(post_id, pagination_arguments):
-    mongo.db.posts.remove({"_id": ObjectId(post_id)})
-    mongo.db.users.update({},{"$pull": { "voted": { "$in": [ post_id ] }}},
+    db.posts.remove({"_id": ObjectId(post_id)})
+    db.users.update({},{"$pull": { "voted": { "$in": [ post_id ] }}},
     True)
-    mongo.db.users.update(
+    db.users.update(
     {}, 
     { "$pull": { "comments": { "attached_post": post_id } } },
     True)
@@ -404,10 +412,10 @@ def delete_post(post_id, pagination_arguments):
 
 
 def process_post_details(post_id):
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    users = list(mongo.db.users.find())
+    post = db.posts.find_one({"_id": ObjectId(post_id)})
+    users = list(db.users.find())
     if "user" in session:
-        user = mongo.db.users.find_one(
+        user = db.users.find_one(
             {"username": session["user"]})
         plusses = user["voted"]
         user_plusses = []
@@ -419,7 +427,7 @@ def process_post_details(post_id):
 
 @app.route("/post_details/<post_id>/<post_page>")
 def post_details(post_id, post_page):
-    if mongo.db.posts.find_one({"_id": ObjectId(post_id)}):
+    if db.posts.find_one({"_id": ObjectId(post_id)}):
         routing_parameters = process_post_details(post_id)
         if "user" in session:
             return render_template(
@@ -438,7 +446,7 @@ def account_vote(post_id, active_tab, userPlusPage, userPostPage):
 
 @app.route("/account_post_details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>")
 def account_post_details(post_id, active_tab, userPlusPage, userPostPage):
-    if mongo.db.posts.find_one({"_id": ObjectId(post_id)}):
+    if db.posts.find_one({"_id": ObjectId(post_id)}):
         routing_parameters = process_post_details(post_id)
         if "user" in session:
             return render_template(
@@ -449,17 +457,18 @@ def account_post_details(post_id, active_tab, userPlusPage, userPostPage):
         return  redirect(url_for("account", post_id='None', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage))
 
 
+
 @app.route("/account/<post_id>/<active_tab>", methods=["GET", "POST"])
 def account(post_id, active_tab):
     if session["user"]:
-        user = mongo.db.users.find_one(
+        user = db.users.find_one(
             {"username": session["user"]})
         username = user["username"]
 
-        users = list(mongo.db.users.find())
+        users = list(db.users.find())
         # Finds the list of posts that a user has liked for the check icon
         plussed_posts = []
-        plusses = mongo.db.users.find_one(
+        plusses = db.users.find_one(
             {"username": session["user"]})["voted"]
         for post in plusses:
             plussed_posts.append(ObjectId(post))
@@ -467,7 +476,7 @@ def account(post_id, active_tab):
         # Finds the list of posts that a user has liked to display on profile
         userPlusses = []
         posts_plussed = list(
-            mongo.db.posts.find({"users_voted": session["user"]}).sort("post_date", -1))
+            db.posts.find({"users_voted": session["user"]}).sort("post_date", -1))
         for post in posts_plussed:
             if post['author'] != session['user']:
                 userPlusses.append(post)
@@ -475,7 +484,7 @@ def account(post_id, active_tab):
                 pass
         # Finds the list of posts authored by user
         userPosts = list(
-            mongo.db.posts.find({"author": session["user"]}).sort("post_date", -1))
+            db.posts.find({"author": session["user"]}).sort("post_date", -1))
 
         plussesPage, per_page, offset = get_page_args(page_parameter='userPlusPage',
                                            per_page_parameter='per_page')
@@ -517,7 +526,7 @@ def account(post_id, active_tab):
                 pagination_posts=pagination_posts 
                 )
         else: 
-            post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+            post = db.posts.find_one({"_id": ObjectId(post_id)})
             if post['author'] == session['user']:
                 return render_template(
                 "account.html",
