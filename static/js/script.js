@@ -1,10 +1,9 @@
 $(document).ready(function(){
-
-    
     /**
      * Automatically updates footer copyright date
      */
     $("#date-target").text(new Date().getFullYear());
+
     /**
      * Closes flash messages on click of x button
      */ 
@@ -52,15 +51,15 @@ $(document).ready(function(){
     });
     
     /**
-     * When the active page is account.html
-     * the functions in this statement will be called
-     */
-    /**
      * This function hides the modal whenever the 'x' or close buttons are clicked
      */
     $(".close-avatar-modal").click(function(){
         $("#avatar-select-modal").modal('hide');
     });
+    /**
+     * When the active page is account.html
+     * the functions in this statement will be called
+     */
     if (currentPage.indexOf("account") !== -1) {
         /**
          * Calls a function which reads the url to determine which account tab needs to be open upon pagination reload
@@ -87,15 +86,14 @@ window.onresize = truncatePosts;
  * This function validates that both the password inputs in the registration form are the same
  * It takes their values, compares them and if they don't match applies a validity message
  */
-function passwordValidation(){
+function validatePassword(){
     let password = document.getElementById("password"), confirm_password = document.getElementById("repeat-password");
-
-    function validatePassword(){
     if(password.value != confirm_password.value) {
+        console.log()
         confirm_password.setCustomValidity("Please ensure that the passwords match");
     } else {
+        console.log("match")
         confirm_password.setCustomValidity('');
-    }
     }
 }
 

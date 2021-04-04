@@ -16,9 +16,9 @@
                     <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" required>
                     <label class="form-label" for="password">Password</label>
                     <h6>Between 6 and 15 characters.</h6>
-                    <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="15" title="Minimum of three characters with no spaces" required onchange="passwordValidation()">
+                    <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="15" title="Minimum of three characters with no spaces" required onchange="validatePassword()">
                     <label class="form-label" for="password">Repeat Password</label>
-                    <input id="repeat-password" name="password" class="form-control" type="password" required onkeyup="passwordValidation()">
+                    <input id="repeat-password" name="password" class="form-control" type="password" minlength="6" maxlength="15" required onkeyup="validatePassword()">
                 </div>
                 <button class="form-control sign-in-submit" type="submit">Submit</button>
             </form>
