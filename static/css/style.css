@@ -1860,7 +1860,6 @@ h2.error-text {
     .main-container {
         margin: 0;
         max-width: 100vw;
-        margin-left: 24rem;
     }
 
     .title-container {
@@ -1882,12 +1881,6 @@ h2.error-text {
         transform: translateX(-50%) translateY(-50%) rotate(-90deg);
         color: rgba(137, 166, 251);
     }
-
-    /* Flash Message Styling */
-    .page-flash-container{
-        padding-left: 24rem;
-    }
-
 
     /* Profile Styling */
     .main-container-account {
