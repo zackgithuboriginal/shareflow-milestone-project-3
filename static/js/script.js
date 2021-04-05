@@ -12,7 +12,6 @@ $(document).ready(function(){
     });
 
     currentPage = window.location.pathname
-    console.log(currentPage)
 
     /**
      * When the active page is account.html, posts.html or post_details.html
@@ -33,7 +32,7 @@ $(document).ready(function(){
      * When the avatar selection modal of account.html is open and the url input option is selected
      * this will make entering a url required and will apply the active style to the input field
      */
-    $('#direct-input-image-url').click(function(){
+    $('.modal-direct-input').click(function(){
         document.getElementById("direct-url-input-radio").checked=true;
         document.getElementById("direct-input-image-url").required = true;
     })
@@ -321,26 +320,31 @@ function updatePostTopics(){
  * and that it relates to an image
  */
 function formSubmit() {
-    let url = document.forms["avatar-submit-form"].elements["avatar_direct_input"].value;
-    if (!checkURL(url)) {
-        alert("Invalid URL. Please submit a URL with one of the following extensions: jpeg, jpg, gif, png.");
-        return(false);
-    }
-    /**
-     * Calls function to test the url to determine that it relates to an image
-     * passes callback function as parameter to handle the result
-     */
-    testImage(url, function(testURL, result) {
-        if (result == "success") {
-            document.forms["avatar-submit-form"].submit();
-        } else if (result == "error") {
-            alert("The URL given does not point to the correct type of image.");
-        } else {
-            alert("The image URL was not reachable. Check that the URL is correct.");
+    if (document.getElementById("direct-input-image-url").required === true){
+        let url = document.forms["avatar-submit-form"].elements["avatar_direct_input"].value;
+        if (!checkURL(url)) {
+            alert("Invalid URL. Please submit a URL with one of the following extensions: jpeg, jpg, gif, png.");
+            return(false);
         }
+        /**
+         * Calls function to test the url to determine that it relates to an image
+         * passes callback function as parameter to handle the result
+         */
+        testImage(url, function(testURL, result) {
+            if (result == "success") {
+                document.forms["avatar-submit-form"].submit();
+            } else if (result == "error") {
+                alert("The URL given does not point to the correct type of image.");
+            } else {
+                alert("The image URL was not reachable. Check that the URL is correct.");
+            }
 
-    });
-    return(false);
+        });
+        return(false)
+    }
+    else {
+        document.forms["avatar-submit-form"].submit();
+    }
 }
 
 /**

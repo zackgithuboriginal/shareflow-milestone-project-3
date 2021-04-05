@@ -192,7 +192,7 @@
         <div class="modal-body">
             <div class="change-account-avatar">
                 <!-- On submission the form will call a function to check if the user has input a url and if so whether the url is valid -->
-                <form name="avatar-submit-form" method="POST" onsubmit="return formSubmit()" action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}" class="change-account-avatar-form">
+                <form name="avatar-submit-form" method="POST" onsubmit=" return formSubmit()" action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}" class="change-account-avatar-form">
                     <!-- Direct url input  -->
                     <h3 class="avatar-select-modal-subheading">Input the URL of an image you want to use</h3>
                     <label class="modal-direct-input">
