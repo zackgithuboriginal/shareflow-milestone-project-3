@@ -118,7 +118,7 @@ a {
     justify-content: space-between;
     width: auto;
     max-width: 36rem;
-    background-color: #7697F9;
+    background-color: #89A6FB;
     font-size: 2.5rem;
     padding:1.5rem 2rem;
     text-align: center;
@@ -217,13 +217,13 @@ div.collapse.navbar-collapse {
 .navbar .nav-item .nav-link:hover,
 .navbar .nav-item .nav-link:active,
 .navbar .nav-item .nav-link:focus {
-    background-color: white;
-    color: #7697F9;
+    background-color: #ffffff;
+    color: #89A6FB;
 }
 
 li.nav-item.active  a.nav-link {
-    background-color: white;
-    color: #7697F9;
+    background-color: #ffffff;
+    color: #89A6FB;
 }
 
 /* Footer Styling */
@@ -283,7 +283,7 @@ select.filter-control {
     margin-top: auto;
     margin-bottom: auto;
     font-size: 1.6rem;
-    color: #7697F9;
+    color: #89A6FB;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -323,7 +323,7 @@ button.filter-control {
     flex-direction: row;
     padding: .5rem;
     justify-content: space-between;
-    background-color: white;
+    background-color: #ffffff;
     box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
 }
 
@@ -397,7 +397,7 @@ button.filter-control {
     word-wrap: anywhere;
     overflow: hidden;
     position: relative;
-    background: white;
+    background: #ffffff;
     max-height: 12.5rem;
 }
 
@@ -406,7 +406,7 @@ button.filter-control {
     position: relative;
     width: auto;
     text-decoration: none;
-    color: #7697F9;
+    color: #89A6FB;
     font-weight: 400;
     font-size: 1.6rem;
     margin: 0;
@@ -627,7 +627,7 @@ justify-content: center;
 .post-pagination-container li.page-item a:hover{
     background-color: #89A6FB;
     border-color: #89A6FB;
-    color: white;
+    color: #ffffff;
 }
 
 .comment-form-textarea {
@@ -686,7 +686,7 @@ justify-content: center;
 
 .create-post-action-button{
     position: relative;
-    background-color: #7697f9;
+    background-color: #89A6FB;
     width: 4.8rem;
     height: 4.8rem;
     border-radius: 100%;
@@ -741,7 +741,7 @@ justify-content: center;
     line-height: 1;
     font-size: 1.6rem;
     padding: .5rem 1rem;
-    background-color: #7697F9;
+    background-color: #89A6FB;
 }
 
 .absolute-div {
@@ -1057,7 +1057,7 @@ form.registration-form {
 .post-form-title {
     display: flex;
     font-size: 3.6rem;
-    color: #7697F9;
+    color: #89A6FB;
     width: auto;
     margin: 0 auto;
 
@@ -1075,7 +1075,7 @@ form.registration-form {
 
 .post-form-label {
     font-size: 2.2rem;
-    color: #7697F9;
+    color: #89A6FB;
 }
 
 .post-form-textarea {
@@ -1157,7 +1157,7 @@ form.registration-form {
     flex-direction: column;
     margin:5rem auto 5rem auto ;
     padding-bottom : 4rem;
-    border-bottom: .4rem solid white;
+    border-bottom: .4rem solid #ffffff;
 }
 
 .account-details-username {
@@ -1165,7 +1165,7 @@ form.registration-form {
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: center;
-    color: white;
+    color: #ffffff;
     font-weight: 400;
 }
 
@@ -1244,7 +1244,7 @@ form.registration-form {
     -webkit-appearance: none;
     -moz-appearance: none;
     border: none;
-    color: white;
+    color: #ffffff;
     padding: .8rem;
     font-size: 1.4rem;
     box-shadow: .2rem .4rem .4rem rgba(0, 0, 0, .25);
@@ -1271,17 +1271,17 @@ form.registration-form {
 
 .avatar-modal-button:hover,
 .avatar-modal-button:focus {
-    color: white;
+    color: #ffffff;
 }
 
 .modal-title {
-    color: white;
+    color: #ffffff;
     font-size: 2rem;
     font-weight: 500;
 }
 
 button.close {
-    color: white;
+    color: #ffffff;
     font-size: 1.6rem;
     border: none;
     -webkit-appearance: none;
@@ -1314,7 +1314,7 @@ button.close {
 }
 
 .avatar-select-modal-subheading {
-    color: white;
+    color: #ffffff;
     width: 100%;
 }
 .avatar-select {
@@ -1345,7 +1345,7 @@ button.close {
 .profile-alternate-text {
     font-size: 2.2rem;
     margin-top: 5rem;
-    color: white;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -1581,7 +1581,7 @@ h4.post-details-comment-count {
 
 /* 404 Styling */
 .error-text{
-    color: white;
+    color: #ffffff;
     font-weight: 300;
 }
 
@@ -1604,7 +1604,7 @@ h2.error-text {
 .error-text a,
 .error-text a:visited,
 .error-text a:hover {
-    color: white;
+    color: #ffffff;
 }
 
 
@@ -1634,18 +1634,18 @@ h2.error-text {
     }
 
     li.nav-item.active a.nav-link {
-        border-bottom: .2rem solid white;
+        border-bottom: .2rem solid #ffffff;
         width: auto;
         background: none;
-        color: white;
+        color: #ffffff;
     }
 
     .navbar .nav-item .nav-link:hover,
     .navbar .nav-item .nav-link:active,
     .navbar .nav-item .nav-link:focus {
         background: none;
-        color: white;
-        border-bottom: .2rem solid white;
+        color: #ffffff;
+        border-bottom: .2rem solid #ffffff;
     }
 
     .navbar-nav {
@@ -1760,7 +1760,7 @@ h2.error-text {
 
     .filter-options {
         width: 100%;
-        background-color: white;
+        background-color: #ffffff;
         box-shadow: .4rem .4rem .4rem rgba(0, 0, 0, .25);
         height: 6rem;
         flex-direction: row;
@@ -1908,7 +1908,7 @@ h2.error-text {
         display:flex;
         flex-direction: column;
         margin: auto;
-        border-bottom: .4rem solid white;
+        border-bottom: .4rem solid #ffffff;
     }
 
     .account-details-divider {
