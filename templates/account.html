@@ -179,7 +179,7 @@
         </div>
         <div class="modal-body">
             <div class="change-account-avatar">
-                <form  method="POST" action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}" class="change-account-avatar-form">
+                <form name="avatar-submit-form" method="POST" onsubmit="return formSubmit()" action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}" class="change-account-avatar-form">
                     <h3 class="avatar-select-modal-subheading">Input the URL of an image you want to use</h3>
                     <label class="modal-direct-input">
                         <input type="radio" name="avatar_select" value="direct_input" id="direct-url-input-radio" class="" {% if user.directly_input_url == True %}checked{% endif %} required>
