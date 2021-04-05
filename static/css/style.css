@@ -1979,9 +1979,8 @@ h2.error-text {
 }
 
 @media (min-width: 1500px) {
-    .filter-options {
-        max-width: 50vw;
-    }
+    .post-details-container,
+    .filter-options,
     .post-card {
         max-width: 50vw;
     }
