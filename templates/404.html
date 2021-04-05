@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-{% set active_page = "index" %}
 {% block script %}
 <script>
+    /**
+     * This function will display a countdown to the user to inform them when the page is due to be redirected
+     */
     let counter = 5;
     let interval = setInterval(function() {
         counter--;
         document.getElementById("counter-target").textContent=counter
-        // Display 'counter' wherever you want to display it.
         if(counter<=0){
             window.location.href = "{{ url_for('posts') }}";
         }

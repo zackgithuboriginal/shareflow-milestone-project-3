@@ -1,13 +1,16 @@
 {% extends "base.html" %}
-{% set active_page = "sign_in" %}
 {% block content %}
 
+<!-- Page Title Section -->
 <div class="title-container">
     <h1 class="page-title">Sign In</h1>
 </div>
+<!-- Main sign in content container -->
 <section class="main-container">
     <div class="sign-in-container">
         <div class="sign-in-form-side">
+
+<!-- Alternative sign in link will display on large screens -->
             <h1 class="page-heading">Welcome Back!</h1>
             <div class="sign-in-info">
                 <ul>
@@ -22,6 +25,7 @@
             </div>
         </div>
         <div class="sign-in-form-main">
+<!-- sign in form  -->
             <form class="sign-in-form" method="POST" action="{{ url_for('sign_in') }}">
                 <h2 class="form-title">Sign In</h2>
                 <div class="input-container">
@@ -33,6 +37,7 @@
                 <button class="form-control sign-in-submit" type="submit">Submit</button>
             </form>
         </div>
+<!-- Alternative sign in link will display on small screens -->
         <div class="sign-in-end-panel">
             <div class="alternate-link">
                 <h3>Don't have an account? &nbsp;</h3>

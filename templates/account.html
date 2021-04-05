@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% set active_page = "account" %}
 {% block content %}
+<!-- Account details section -->
 <div class="account-container">
     <div class="account-details">
         <div class="account-avatar-flex-container">
@@ -22,20 +22,24 @@
         </div>
     </div>
 </div>
+<!-- Tab navigation section -->
 <section class="main-container-account">
     <div class="page-option-container">
         <div class="page-option {% if active_tab=='posts' %} active-tab {% endif %}" id="display-tab-posts" onclick="tabDisplay('posts')">Your Posts</div>
         <div class="page-display-options"></div>
         <div class="page-option {% if active_tab=='plusses' %} active-tab {% endif %}" id="display-tab-plusses" onclick="tabDisplay('plusses')">Plussed Posts</div>
     </div>
+ <!-- 'Your Posts' post display tab -->
     <div class="{% if active_tab=='posts' %} active-profile-tab {% endif %}user-post-container tab-display-option" id="posts-display">
         {% if userPosts|length > 0 %}
             <div class="card-container">
                 {% for post in userPosts %}
+                <!-- Post html -->
                 <div class=" post-card card">
                     <div class="post-id-target" id="{{ post._id }}"></div>
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
+                            <!-- If user has liked post already, a check mark will be displayed -->
                             {% if session.user %}
                                 {% if post._id in plussed_posts %}
                                     <a href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-check"></i></a>
@@ -60,6 +64,7 @@
                             <div class="post-top">
                                 <div class="post-title-options">
                                     <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
+                                    <!-- If user is signed in and the author of post the post options will appear -->
                                     {% if session['user'] == post.author or session['user'] == "admin" %}
                                         <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
                                     {% endif %}
@@ -89,22 +94,27 @@
                 </div>
                 {% endfor %}
             </div>
+            <!-- Pagination links for the 'Your Posts' tab -->
             <div class="post-pagination-container">
                 {{ pagination_posts.links }}
             </div>
+        <!-- If the user hasn't made any posts they will be presented with alternative text -->
         {% else %}
             <h2 class="profile-alternate-text">You haven't created any posts yet!</h2>
         {% endif %}
     </div>
+     <!-- 'Plussed Posts' post display tab -->
     <div class="{% if active_tab=='plusses' %} active-profile-tab {% endif %}user-plusses-container tab-display-option" id="plusses-display">
         {% if userPlusses|length > 0 %}
             <div class="card-container">
                 {% for post in userPlusses %}
                     {% if  post.author != session['user'] %}
+                    <!-- Post html -->
                         <div class=" post-card card">
                     <div class="post-id-target" id="{{ post._id }}"></div>
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
+                            <!-- If user has liked post already, a check mark will be displayed -->
                             {% if session.user %}
                                 {% if post._id in plussed_posts %}
                                     <a href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-check"></i></a>
@@ -159,6 +169,7 @@
                     {% endif%}
                 {% endfor %}
             </div>
+            <!-- Pagination links for the 'Plussed Posts' tab -->
             <div class="post-pagination-container">
                 {{ pagination_plussed.links }}
             </div>
@@ -167,7 +178,8 @@
         {% endif %}
     </div>
 </section>
-            
+
+<!-- Avatar selection modal section -->
 <div class="modal" id="avatar-select-modal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -179,12 +191,15 @@
         </div>
         <div class="modal-body">
             <div class="change-account-avatar">
+                <!-- On submission the form will call a function to check if the user has input a url and if so whether the url is valid -->
                 <form name="avatar-submit-form" method="POST" onsubmit="return formSubmit()" action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}" class="change-account-avatar-form">
+                    <!-- Direct url input  -->
                     <h3 class="avatar-select-modal-subheading">Input the URL of an image you want to use</h3>
                     <label class="modal-direct-input">
                         <input type="radio" name="avatar_select" value="direct_input" id="direct-url-input-radio" class="" {% if user.directly_input_url == True %}checked{% endif %} required>
                         <input type="text" name="avatar_direct_input" placeholder="Enter a valid image url" id="direct-input-image-url" class="form-control direct-input-text-field" {% if user.directly_input_url == True %} value={{ user.account_image }} {% endif %}>
                     </label>
+                    <!-- Avatar radio selection -->
                     <h3 class="avatar-select-modal-subheading">Or select an avatar to represent you</h3>
                     <label>
                         <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_1.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_1.png" %}checked{% endif %}>

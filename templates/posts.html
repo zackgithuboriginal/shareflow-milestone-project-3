@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Page Title Section -->
 <div class="title-container">
     <h1 class="page-title">Home</h1>
 </div>
+<!-- Main post display content container -->
 <section class="main-container">
+<!-- Post display filter options -->
     <form class="filter-options" method="GET" action="{{ url_for('posts') }}">
         <div class="filter-container">
             <div class="filter-div">
@@ -26,6 +29,7 @@
             <button class="filter-control" onclick="{{ url_for('posts') }}">Go</button>
         </div>
     </form>
+<!-- Post container -->
     {% if posts|length > 0 %}
         <div class="card-container">
             {% for post in posts %}
@@ -34,6 +38,8 @@
                     <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
                         <div class="post-votes row">
                             {% if session.user %}
+<!-- Post 'plusses' count and button -->
+<!-- If post has been voted on by user, will display a check icon -->
                                 {% if post._id in user_plusses %}
                                     <a href="{{ url_for('posts_vote', post_id=post._id, user_location='posts', author=post.author, page=page) }}"><i class="col-12 fas fa-check"></i></a>
                                     <p class="col-12 post-plusses">{{ post.plusses }}</p>
@@ -47,16 +53,19 @@
                             {% endif %}
                             
                         </div>
+<!-- Link to expand post in post details -->
                         <div class="comment-post-link row">
                             <a class="unstyled-button comment-link-icon" href="{{ url_for('post_details', post_id=post._id, post_page=page) }}"><i class="fas fa-arrow-circle-left"></i></a>
                             <p class="comment-link-text">View Post</p>
                         </div>
                     </div>
+<!-- Post Content -->
                     <div class="card-body row">
                         <div class="post-details">
                             <div class="post-top">
                                 <div class="post-title-options">
                                     <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
+<!-- If active user, post options will dipslay -->
                                     {% if session['user'] == post.author or session['user'] == "admin" %}
                                         <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
                                     {% endif %}
@@ -85,12 +94,14 @@
                     </div>
                 </div>
             {% endfor %}
+<!-- Post pagination links -->
             <div class="post-pagination-container">
                 {{ pagination.links }}
             </div>
         </div>
     {% endif %}
 </section>
+<!-- Create post floating action button -->
 <div class="create-post-button-container">
     <div class="absolute-div">
         <button id ="floating-create-post" class="create-post-action-button"  type="submit">

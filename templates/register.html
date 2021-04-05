@@ -1,13 +1,15 @@
 {% extends "base.html" %}
-{% set active_page = "register" %}
 {% block content %}
     
+<!-- Page Title Section -->
 <div class="title-container">
     <h1 class="page-title">Register</h1>
 </div>
+<!-- Main registration content container -->
 <section class="main-container">
     <div class="register-container">
         <div class="register-form-main">
+<!-- Registration form  -->
             <form class="registration-form"  method="POST" action="{{ url_for('register') }}">
                 <h2 class="form-title">Register</h2>
                 <div class="input-container">
@@ -23,12 +25,14 @@
                 <button class="form-control sign-in-submit" type="submit">Submit</button>
             </form>
         </div>
+<!-- Alternative sign in link will display on small screens -->
         <div class="register-end-panel">
             <div class="alternate-link">
                 <h3>Already Registered? &nbsp;</h3>
                 <a href="{{ url_for('sign_in') }}">Sign In</a>
             </div>
         </div>
+<!-- Alternative sign in link will display on large screens -->
         <div class="register-form-side">
             <h1 class="page-heading">Nice to meet you!</h1>
             <div class="sign-in-info">

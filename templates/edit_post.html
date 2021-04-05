@@ -1,10 +1,11 @@
 {% extends "base.html" %}
-{% set active_page = "edit_post" %}
 {% block content %}
-
+<!-- Page Title Section -->
 <div class="title-container">
     <h1 class="page-title">Update</h1>
 </div>
+<!-- Main edit post content container -->
+<!-- Form reads values and displays values from flask -->
 <section class="main-container">
     <form class="create-post-form" method="POST" action="{{ url_for('edit_post', post_id=post._id, pagination_arguments=pagination_arguments ) }}">
         <h3 class="post-form-title">Post Details</h3>

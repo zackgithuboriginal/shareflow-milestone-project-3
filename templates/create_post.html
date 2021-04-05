@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% set active_page = "create_post" %}
 {% block content %}
-
+<!-- Page Title Section -->
 <div class="title-container">
     <h1 class="page-title">Create</h1>
 </div>
+<!-- Main create post content container -->
 <section class="main-container">
     <form class="create-post-form" method="POST" action="{{ url_for('add_post') }}">
         <h2 class="post-form-title">Post Details</h2>
@@ -14,7 +14,7 @@
         <textarea class=" form-control post-form-textarea"  type="text" id="post_content" name="post_content" placeholder="Post Content" rows="" cols="" minlength="20" maxlength="300" required></textarea>
         <label class="post-form-label"  for="post_topic">Post Topic</label>
         <select class=" form-control"  name="post_topic" id="post_topic" required>
-                <option class="form-control" value="" selected disabled hidden>Post Topic</option>
+            <option class="form-control" value="" selected disabled hidden>Post Topic</option>
             {% for topic in topics %}
                 <option class="form-control" value="{{ topic.topic_name }}">{{ topic.topic }}</option>
             {% endfor %}

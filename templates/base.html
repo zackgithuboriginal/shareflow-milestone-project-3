@@ -13,6 +13,7 @@
 <body>
     <div class="page-container">
         <header class="container-flex">
+<!-- Navbar Section -->
             <nav class="navbar navbar-expand-md navbar-light">
                 <a href="/" class="navbar-brand">ShareFlow</a>
 
@@ -22,6 +23,7 @@
                 
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav mr-auto">
+<!-- Will check the request endpoint to determine active tab -->
                         <li id="index" class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='404' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('posts') }}">Home</a>
                         </li>
@@ -48,6 +50,7 @@
             </nav>
         </header>
 
+<!-- Flash message display section -->
         <section class="page-flash-container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -61,12 +64,14 @@
         {% endwith %}
         </section>
 
+<!-- Container where template content will display -->
         <main class="container-flex">
             {% block content %}
             
             {% endblock %}
         </main>
 
+<!-- Footer Section -->
         <footer class="text-center">
             <div class="social-container">
             <a href="https://www.facebook.com" target="_blank" aria-label="Link to shareflow's facebook page"
