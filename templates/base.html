@@ -57,7 +57,7 @@
         </header>
 
         <!-- Flash message display section -->
-        <section class="page-flash-container">
+        <div class="page-flash-container">
             {% with messages = get_flashed_messages() %}
             {% if messages %}
             {% for message in messages %}
@@ -68,7 +68,7 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
-        </section>
+        </div>
 
         <!-- Container where template content will display -->
         <main class="container-flex">
