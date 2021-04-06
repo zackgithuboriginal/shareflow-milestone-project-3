@@ -6,11 +6,11 @@
     <h1 class="page-title">Sign In</h1>
 </div>
 <!-- Main sign in content container -->
-<section class="main-container">
+<div class="main-container">
     <div class="sign-in-container">
         <div class="sign-in-form-side">
 
-<!-- Alternative sign in link will display on large screens -->
+            <!-- Alternative sign in link will display on large screens -->
             <h1 class="page-heading">Welcome Back!</h1>
             <div class="sign-in-info">
                 <ul>
@@ -25,19 +25,21 @@
             </div>
         </div>
         <div class="sign-in-form-main">
-<!-- sign in form  -->
+            <!-- sign in form  -->
             <form class="sign-in-form" method="POST" action="{{ url_for('sign_in') }}">
                 <h2 class="form-title">Sign In</h2>
                 <div class="input-container">
                     <label class="form-label" for="username">Username</label>
-                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" required>
+                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{3,15}$" required>
                     <label class="form-label" for="password">Password</label>
-                    <input id="password" name="password" class="form-control" type="password"  minlength="6" maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
+                    <input id="password" name="password" class="form-control" type="password" minlength="6"
+                        maxlength="12" pattern="^[a-zA-Z0-9]{6,12}$" required>
                 </div>
                 <button class="form-control sign-in-submit" type="submit">Submit</button>
             </form>
         </div>
-<!-- Alternative sign in link will display on small screens -->
+        <!-- Alternative sign in link will display on small screens -->
         <div class="sign-in-end-panel">
             <div class="alternate-link">
                 <h3>Don't have an account? &nbsp;</h3>
@@ -45,5 +47,5 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}

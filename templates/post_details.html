@@ -5,126 +5,160 @@
     <h1 class="page-title">Post View</h1>
 </div>
 <!-- Main post details content container -->
-    <section class="main-container">
-        <div class="post-details-container">
-            <div class="post-details-topic-container {{ post.topic_name }}-sidebar">
-<!-- Post 'plusses' count and button -->
-                <div class="post-details-plusses">
-                    {% if userPostPage is defined %}
-                        {% if session.user %}
-                            {% if post._id in user_plusses %}
-                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i class="col-12 fas fa-check"></i></a>
-                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                            {% else %}
-                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i class="col-12 fas fa-plus"></i></a>
-                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                            {% endif %}
-                        {% else %}
-                            <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i class="col-12 fas fa-plus"></i></a>
-                            <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                        {% endif %}
-                    {% else %}
-                        {% if session.user %}
-                            {% if post._id in user_plusses %}
-                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i class="col-12 fas fa-check"></i></a>
-                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                            {% else %}
-                                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i class="col-12 fas fa-plus"></i></a>
-                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                            {% endif %}
-                        {% else %}
-                            <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i class="col-12 fas fa-plus"></i></a>
-                            <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                        {% endif %}
-                    {% endif %}
-                </div>
-<!-- Post details close button -->
-                <div class="post-details-close">
-                    <a {% if userPostPage is defined %} href="{{ url_for('account', post_id=post._id, active_tab=active_tab, userPostPage=userPostPage, userPlusPage=userPlusPage, _anchor=post._id ) }}"
-                    {% else %}href="{{ url_for('posts', page=page, _anchor=post._id ) }}"
-                    {% endif %}><i class="fas fa-times"></i></a>
-                    <p class="col-12 post-plusses">Close</p>
-                </div>
+<section class="main-container">
+    <div class="post-details-container">
+        <div class="post-details-topic-container {{ post.topic_name }}-sidebar">
+            <!-- Post 'plusses' count and button -->
+            <div class="post-details-plusses">
+                {% if userPostPage is defined %}
+                {% if session.user %}
+                {% if post._id in user_plusses %}
+                <a
+                    href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i
+                        class="col-12 fas fa-check"></i></a>
+                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                {% else %}
+                <a
+                    href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i
+                        class="col-12 fas fa-plus"></i></a>
+                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                {% endif %}
+                {% else %}
+                <a
+                    href="{{ url_for('vote', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"><i
+                        class="col-12 fas fa-plus"></i></a>
+                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                {% endif %}
+                {% else %}
+                {% if session.user %}
+                {% if post._id in user_plusses %}
+                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i
+                        class="col-12 fas fa-check"></i></a>
+                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                {% else %}
+                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i
+                        class="col-12 fas fa-plus"></i></a>
+                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                {% endif %}
+                {% else %}
+                <a href="{{ url_for('vote', post_id=post._id, pagination_arguments=[page]) }}"><i
+                        class="col-12 fas fa-plus"></i></a>
+                <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                {% endif %}
+                {% endif %}
             </div>
-<!-- Post content -->
-            <div class="post-details-contents">
-                <div class="post-details-top">
-                    <div class="post-title-options">
-                        <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
-                        {% if session['user'] == post.author or session['user'] == "admin" %}
-                            <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
-                        {% endif %}
-                        <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
-                            <a class="{{ post.topic_name }}" {% if userPostPage is defined %}href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"{% else %}href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[page]) }}"{% endif %}><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></a>
-                        <a class="{{ post.topic_name }}"{% if userPostPage is defined %}href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"{% else %}href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[page]) }}"{% endif %}><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
-                        </div>
-                    </div>
-                    <h2 class="post-details-title">{{ post.post_title }}</h2>
-                    <hr class="post-details-divider">
-                </div>
-                
-                <div class="post-details-center">
-                    <p class="post-details-text-content">{{ post.post_content}}</p>
-                </div>
-                <div class="post-details-bottom">
-                    <div class="post-date-container">
-                        <div class="spacer-div"></div>
-                        <p class="post-date">{{ post.post_date }}</p>
-                    </div>
-<!-- Author avatar -->
-                    <div class="post-author-details">
-                        <div class="post-author-avatar-container">
-                            <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
-                        </div>
-                        <p class="post-author">{{ post.author }}</p>
-                    </div>
-                </div>
-                <hr class="post-details-divider">
-<!-- Post comment section -->
-                <div class="post-details-comment-container">
-                    {% if post.comments|length > 0 %}
-                        <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h3>
-<!-- Add commment form -->
-                        {% if userPostPage is defined %}
-                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
-                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10" maxlength="200" required></textarea>
-                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                            </form>
-                        {% else %}
-                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
-                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10" maxlength="200" required></textarea>
-                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                            </form>
-                        {% endif %}
-
-<!-- Comment display section -->
-                        {% for comment in post.comments%}
-                        <div class="post-details-comment">
-                            <h3>{{ comment.comment_content}}</h3>
-                            <div class="post-details-comment-bottom-row">
-                                <h4>By {{ comment.author }}</h4>
-                                <h4>{{ comment.post_date }}</h4>
-                            </div>
-                        </div>
-                        {% endfor %}
-<!-- Alt section if there is no comments -->
-                    {% else %}
-                        <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
-
-                        {% if userPostPage is defined %}
-                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
-                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10" maxlength="200" required></textarea>
-                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                            </form>
-                        {% else %}
-                            <form method="POST" class="post-details-comment-form" action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
-                                <textarea class="form-control comment-form-textarea"  type="text" id="comment_content" name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10" maxlength="200" required></textarea>
-                                <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                            </form>
-                        {% endif %}
-                    {% endif %}
-                </div>
+            <!-- Post details close button -->
+            <div class="post-details-close">
+                <a {% if userPostPage is defined %}
+                    href="{{ url_for('account', post_id=post._id, active_tab=active_tab, userPostPage=userPostPage, userPlusPage=userPlusPage, _anchor=post._id ) }}"
+                    {% else %}href="{{ url_for('posts', page=page, _anchor=post._id ) }}" {% endif %}><i
+                        class="fas fa-times"></i></a>
+                <p class="col-12 post-plusses">Close</p>
             </div>
         </div>
-    </section>
-{% endblock %}
+        <!-- Post content -->
+        <div class="post-details-contents">
+            <div class="post-details-top">
+                <div class="post-title-options">
+                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
+                    {% if session['user'] == post.author or session['user'] == "admin" %}
+                    <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i
+                            class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
+                    {% endif %}
+                    <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
+                        <a class="{{ post.topic_name }}"
+                            {% if userPostPage is defined %}href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
+                            {% else %}href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[page]) }}"
+                            {% endif %}>
+                            <h4>Delete Post</h4><i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a class="{{ post.topic_name }}"
+                            {% if userPostPage is defined %}href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
+                            {% else %}href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[page]) }}"
+                            {% endif %}>
+                            <h4>Edit Post</h4><i class="fas fa-pencil-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <h2 class="post-details-title">{{ post.post_title }}</h2>
+                <hr class="post-details-divider">
+            </div>
+
+            <div class="post-details-center">
+                <p class="post-details-text-content">{{ post.post_content}}</p>
+            </div>
+            <div class="post-details-bottom">
+                <div class="post-date-container">
+                    <div class="spacer-div"></div>
+                    <p class="post-date">{{ post.post_date }}</p>
+                </div>
+                <!-- Author avatar -->
+                <div class="post-author-details">
+                    <div class="post-author-avatar-container">
+                        <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}"
+                            class="post-author-avatar" alt="">
+                    </div>
+                    <p class="post-author">{{ post.author }}</p>
+                </div>
+            </div>
+            <hr class="post-details-divider">
+            <!-- Post comment section -->
+            <div class="post-details-comment-container">
+                {% if post.comments|length > 0 %}
+                <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h3>
+                    <!-- Add commment form -->
+                    {% if userPostPage is defined %}
+                    <form method="POST" class="post-details-comment-form"
+                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
+                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                            maxlength="200" required></textarea>
+                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                    </form>
+                    {% else %}
+                    <form method="POST" class="post-details-comment-form"
+                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
+                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                            maxlength="200" required></textarea>
+                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                    </form>
+                    {% endif %}
+
+                    <!-- Comment display section -->
+                    {% for comment in post.comments%}
+                    <div class="post-details-comment">
+                        <h3>{{ comment.comment_content}}</h3>
+                        <div class="post-details-comment-bottom-row">
+                            <h4>By {{ comment.author }}</h4>
+                            <h4>{{ comment.post_date }}</h4>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Alt section if there is no comments -->
+                    {% else %}
+                    <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
+
+                    {% if userPostPage is defined %}
+                    <form method="POST" class="post-details-comment-form"
+                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
+                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                            maxlength="200" required></textarea>
+                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                    </form>
+                    {% else %}
+                    <form method="POST" class="post-details-comment-form"
+                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
+                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                            maxlength="200" required></textarea>
+                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                    </form>
+                    {% endif %}
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+    {% endblock %}

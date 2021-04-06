@@ -6,8 +6,9 @@
         <div class="account-avatar-flex-container">
             <div class="account-avatar">
                 <img class="avatar" src="{{ user.account_image }}" alt="{{ user.username }}'s avatar'">
-            </div> 
-            <button type="button" class="btn avatar-modal-button" data-bs-toggle="modal" data-bs-target="#avatar-select-modal">
+            </div>
+            <button type="button" class="btn avatar-modal-button" data-bs-toggle="modal"
+                data-bs-target="#avatar-select-modal">
                 Update Image
             </button>
         </div>
@@ -23,242 +24,314 @@
     </div>
 </div>
 <!-- Tab navigation section -->
-<section class="main-container-account">
+<div class="main-container-account">
     <div class="page-option-container">
-        <div class="page-option {% if active_tab=='posts' %} active-tab {% endif %}" id="display-tab-posts" onclick="tabDisplay('posts')">Your Posts</div>
+        <div class="page-option {% if active_tab=='posts' %} active-tab {% endif %}" id="display-tab-posts"
+            onclick="tabDisplay('posts')">Your Posts</div>
         <div class="page-display-options"></div>
-        <div class="page-option {% if active_tab=='plusses' %} active-tab {% endif %}" id="display-tab-plusses" onclick="tabDisplay('plusses')">Plussed Posts</div>
+        <div class="page-option {% if active_tab=='plusses' %} active-tab {% endif %}" id="display-tab-plusses"
+            onclick="tabDisplay('plusses')">Plussed Posts</div>
     </div>
- <!-- 'Your Posts' post display tab -->
-    <div class="{% if active_tab=='posts' %} active-profile-tab {% endif %}user-post-container tab-display-option" id="posts-display">
+    <!-- 'Your Posts' post display tab -->
+    <div class="{% if active_tab=='posts' %} active-profile-tab {% endif %}user-post-container tab-display-option"
+        id="posts-display">
         {% if userPosts|length > 0 %}
-            <div class="card-container">
-                {% for post in userPosts %}
-                <!-- Post html -->
-                <div class=" post-card card">
-                    <div class="post-id-target" id="{{ post._id }}"></div>
-                    <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
-                        <div class="post-votes row">
-                            <!-- If user has liked post already, a check mark will be displayed -->
-                            {% if session.user %}
-                                {% if post._id in plussed_posts %}
-                                    <a href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-check"></i></a>
-                                    <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                                {% else %}
-                                    <a href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-plus"></i></a>
-                                    <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                                {% endif %}
-                            {% else %}
-                                <a href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-plus"></i></a>
-                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                            {% endif %}
-                            
-                        </div>
-                        <div class="comment-post-link row">
-                            <a class="unstyled-button comment-link-icon" href="{{ url_for('account_post_details', post_id=post._id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="fas fa-arrow-circle-left"></i></a>
-                            <p class="comment-link-text">View Post</p>
-                        </div>
+        <div class="card-container">
+            {% for post in userPosts %}
+            <!-- Post html -->
+            <div class=" post-card card">
+                <div class="post-id-target" id="{{ post._id }}"></div>
+                <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
+                    <div class="post-votes row">
+                        <!-- If user has liked post already, a check mark will be displayed -->
+                        {% if session.user %}
+                        {% if post._id in plussed_posts %}
+                        <a
+                            href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="col-12 fas fa-check"></i></a>
+                        <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% else %}
+                        <a
+                            href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="col-12 fas fa-plus"></i></a>
+                        <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% endif %}
+                        {% else %}
+                        <a
+                            href="{{ url_for('account_vote', post_id=post._id, active_tab='posts', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="col-12 fas fa-plus"></i></a>
+                        <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% endif %}
+
                     </div>
-                    <div class="card-body row">
-                        <div class="post-details">
-                            <div class="post-top">
-                                <div class="post-title-options">
-                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
-                                    <!-- If user is signed in and the author of post the post options will appear -->
-                                    {% if session['user'] == post.author or session['user'] == "admin" %}
-                                        <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
-                                    {% endif %}
-                                    <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
-                                        <a class="{{ post.topic_name }}" href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'posts']) }}"><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></a>
-                                        <a class="{{ post.topic_name }}" href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'posts'], user_location='account') }}"><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
-                                    </div>
+                    <div class="comment-post-link row">
+                        <a class="unstyled-button comment-link-icon"
+                            href="{{ url_for('account_post_details', post_id=post._id, active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="fas fa-arrow-circle-left"></i></a>
+                        <p class="comment-link-text">View Post</p>
+                    </div>
+                </div>
+                <div class="card-body row">
+                    <div class="post-details">
+                        <div class="post-top">
+                            <div class="post-title-options">
+                                <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
+                                <!-- If user is signed in and the author of post the post options will appear -->
+                                {% if session['user'] == post.author or session['user'] == "admin" %}
+                                <button class="post-option-dropdown hvr-icon-spin"
+                                    onclick="displayDropdown('{{ post._id }}')"><i
+                                        class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
+                                {% endif %}
+                                <div class="post-edit-options {{ post.topic_name }}-sidebar"
+                                    id="post-options-{{ post._id }}">
+                                    <a class="{{ post.topic_name }}"
+                                        href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'posts']) }}">
+                                        <h4>Delete Post</h4><i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <a class="{{ post.topic_name }}"
+                                        href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'posts'], user_location='account') }}">
+                                        <h4>Edit Post</h4><i class="fas fa-pencil-alt"></i>
+                                    </a>
                                 </div>
-                                <h3 class="post-title">{{ post.post_title }}</h3>
-                                <p class="post-text">{{ post.post_content }}</p>
-                                <a class="expand-post"  onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand Post<i class="fas fa-arrow-down"></i></a>
                             </div>
-                            <div class="post-bottom">
-                                <div class="post-date-container">
-                                    <div class="spacer-div"></div>
-                                    <p class="post-date">{{ post.post_date }}</p>
+                            <h3 class="post-title">{{ post.post_title }}</h3>
+                            <p class="post-text">{{ post.post_content }}</p>
+                            <a class="expand-post" onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand
+                                Post<i class="fas fa-arrow-down"></i></a>
+                        </div>
+                        <div class="post-bottom">
+                            <div class="post-date-container">
+                                <div class="spacer-div"></div>
+                                <p class="post-date">{{ post.post_date }}</p>
+                            </div>
+                            <div class="post-author-details">
+                                <div class="post-author-avatar-container">
+                                    <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}"
+                                        class="post-author-avatar" alt="">
                                 </div>
-                                <div class="post-author-details">
-                                    <div class="post-author-avatar-container">
-                                        <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
-                                    </div>
-                                    <p class="post-author">{{ post.author }}</p>
-                                </div>
+                                <p class="post-author">{{ post.author }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-            <!-- Pagination links for the 'Your Posts' tab -->
-            <div class="post-pagination-container">
-                {{ pagination_posts.links }}
-            </div>
+            {% endfor %}
+        </div>
+        <!-- Pagination links for the 'Your Posts' tab -->
+        <div class="post-pagination-container">
+            {{ pagination_posts.links }}
+        </div>
         <!-- If the user hasn't made any posts they will be presented with alternative text -->
         {% else %}
-            <h2 class="profile-alternate-text">You haven't created any posts yet!</h2>
+        <h2 class="profile-alternate-text">You haven't created any posts yet!</h2>
         {% endif %}
     </div>
-     <!-- 'Plussed Posts' post display tab -->
-    <div class="{% if active_tab=='plusses' %} active-profile-tab {% endif %}user-plusses-container tab-display-option" id="plusses-display">
+    <!-- 'Plussed Posts' post display tab -->
+    <div class="{% if active_tab=='plusses' %} active-profile-tab {% endif %}user-plusses-container tab-display-option"
+        id="plusses-display">
         {% if userPlusses|length > 0 %}
-            <div class="card-container">
-                {% for post in userPlusses %}
-                    {% if  post.author != session['user'] %}
-                    <!-- Post html -->
-                        <div class=" post-card card">
-                    <div class="post-id-target" id="{{ post._id }}"></div>
-                    <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
-                        <div class="post-votes row">
-                            <!-- If user has liked post already, a check mark will be displayed -->
-                            {% if session.user %}
-                                {% if post._id in plussed_posts %}
-                                    <a href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-check"></i></a>
-                                    <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                                {% else %}
-                                    <a href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-plus"></i></a>
-                                    <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                                {% endif %}
-                            {% else %}
-                                <a href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i class="col-12 fas fa-plus"></i></a>
-                                <p class="col-12 post-plusses">{{ post.plusses }}</p>
-                            {% endif %}
-                            
-                        </div>
-                        <div class="comment-post-link row">
-                            <a class="unstyled-button comment-link-icon" href="{{ url_for('account_post_details', post_id=post._id, userPlusPage=userPlusPage, active_tab='plusses', userPostPage=userPostPage ) }}"><i class="fas fa-arrow-circle-left"></i></a>
-                            <p class="comment-link-text">View Post</p>
-                        </div>
+        <div class="card-container">
+            {% for post in userPlusses %}
+            {% if  post.author != session['user'] %}
+            <!-- Post html -->
+            <div class=" post-card card">
+                <div class="post-id-target" id="{{ post._id }}"></div>
+                <div class="col-12 col-md-2 {{ post.topic_name }}-sidebar sidebar">
+                    <div class="post-votes row">
+                        <!-- If user has liked post already, a check mark will be displayed -->
+                        {% if session.user %}
+                        {% if post._id in plussed_posts %}
+                        <a
+                            href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="col-12 fas fa-check"></i></a>
+                        <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% else %}
+                        <a
+                            href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="col-12 fas fa-plus"></i></a>
+                        <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% endif %}
+                        {% else %}
+                        <a
+                            href="{{ url_for('account_vote', post_id=post._id, active_tab='plusses', userPlusPage=userPlusPage, userPostPage=userPostPage) }}"><i
+                                class="col-12 fas fa-plus"></i></a>
+                        <p class="col-12 post-plusses">{{ post.plusses }}</p>
+                        {% endif %}
+
                     </div>
-                    <div class="card-body row">
-                        <div class="post-details">
-                            <div class="post-top">
-                                <div class="post-title-options">
-                                    <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
-                                    {% if session['user'] == post.author or session['user'] == "admin" %}
-                                        <button class="post-option-dropdown hvr-icon-spin" onclick="displayDropdown('{{ post._id }}')"><i class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
-                                    {% endif %}
-                                    <div class="post-edit-options {{ post.topic_name }}-sidebar" id="post-options-{{ post._id }}">
-                                        <a class="{{ post.topic_name }}" href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'plusses']) }}"><h4>Delete Post</h4><i class="fas fa-trash-alt"></i></a>
-                                        <a class="{{ post.topic_name }}" href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'plusses']) }}"><h4>Edit Post</h4><i class="fas fa-pencil-alt"></i></a>
-                                    </div>
+                    <div class="comment-post-link row">
+                        <a class="unstyled-button comment-link-icon"
+                            href="{{ url_for('account_post_details', post_id=post._id, userPlusPage=userPlusPage, active_tab='plusses', userPostPage=userPostPage ) }}"><i
+                                class="fas fa-arrow-circle-left"></i></a>
+                        <p class="comment-link-text">View Post</p>
+                    </div>
+                </div>
+                <div class="card-body row">
+                    <div class="post-details">
+                        <div class="post-top">
+                            <div class="post-title-options">
+                                <h4 class="{{ post.topic_name }} post-topic">{{ post.topic_name|capitalize }}</h4>
+                                {% if session['user'] == post.author or session['user'] == "admin" %}
+                                <button class="post-option-dropdown hvr-icon-spin"
+                                    onclick="displayDropdown('{{ post._id }}')"><i
+                                        class="{{ post.topic_name }} fas fa-cog hvr-icon"></i></button>
+                                {% endif %}
+                                <div class="post-edit-options {{ post.topic_name }}-sidebar"
+                                    id="post-options-{{ post._id }}">
+                                    <a class="{{ post.topic_name }}"
+                                        href="{{ url_for('delete_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'plusses']) }}">
+                                        <h4>Delete Post</h4><i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <a class="{{ post.topic_name }}"
+                                        href="{{ url_for('edit_post', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, 'plusses']) }}">
+                                        <h4>Edit Post</h4><i class="fas fa-pencil-alt"></i>
+                                    </a>
                                 </div>
-                                <h3 class="post-title">{{ post.post_title }}</h3>
-                                <p class="post-text">{{ post.post_content }}</p>
-                                <a class="expand-post"  onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand Post<i class="fas fa-arrow-down"></i></a>
                             </div>
-                            <div class="post-bottom">
-                                <div class="post-date-container">
-                                    <div class="spacer-div"></div>
-                                    <p class="post-date">{{ post.post_date }}</p>
+                            <h3 class="post-title">{{ post.post_title }}</h3>
+                            <p class="post-text">{{ post.post_content }}</p>
+                            <a class="expand-post" onclick="expandPost(this)"><i class="fas fa-arrow-down"></i>Expand
+                                Post<i class="fas fa-arrow-down"></i></a>
+                        </div>
+                        <div class="post-bottom">
+                            <div class="post-date-container">
+                                <div class="spacer-div"></div>
+                                <p class="post-date">{{ post.post_date }}</p>
+                            </div>
+                            <div class="post-author-details">
+                                <div class="post-author-avatar-container">
+                                    <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}"
+                                        class="post-author-avatar" alt="">
                                 </div>
-                                <div class="post-author-details">
-                                    <div class="post-author-avatar-container">
-                                        <img src="{% for user in users %}{% if user.username==post.author %}{{ user.account_image }}{% endif %}{% endfor %}" class="post-author-avatar" alt="">
-                                    </div>
-                                    <p class="post-author">{{ post.author }}</p>
-                                </div>
+                                <p class="post-author">{{ post.author }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                    {% endif%}
-                {% endfor %}
             </div>
-            <!-- Pagination links for the 'Plussed Posts' tab -->
-            <div class="post-pagination-container">
-                {{ pagination_plussed.links }}
-            </div>
+            {% endif%}
+            {% endfor %}
+        </div>
+        <!-- Pagination links for the 'Plussed Posts' tab -->
+        <div class="post-pagination-container">
+            {{ pagination_plussed.links }}
+        </div>
         {% else %}
-            <h2 class="profile-alternate-text">You haven't voted on any posts yet!<br><br> Click the <i class="fas fa-plus"></i> symbol on posts you like to save them here</h2>
+        <h2 class="profile-alternate-text">You haven't voted on any posts yet!<br><br> Click the <i
+                class="fas fa-plus"></i> symbol on posts you like to save them here</h2>
         {% endif %}
     </div>
-</section>
+</div>
 
 <!-- Avatar selection modal section -->
 <div class="modal" id="avatar-select-modal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="modalTitle">Update Account Image</h5>
-            <button type="button" class="close close-avatar-modal" data-dismiss="modal" aria-label="Close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="change-account-avatar">
-                <!-- On submission the form will call a function to check if the user has input a url and if so whether the url is valid -->
-                <form name="avatar-submit-form" method="POST" onsubmit=" return formSubmit()" action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}" class="change-account-avatar-form">
-                    <!-- Direct url input  -->
-                    <h3 class="avatar-select-modal-subheading">Input the URL of an image you want to use</h3>
-                    <label class="modal-direct-input">
-                        <input type="radio" name="avatar_select" value="direct_input" id="direct-url-input-radio" class="" {% if user.directly_input_url == True %}checked{% endif %} required>
-                        <input type="text" name="avatar_direct_input" placeholder="Enter a valid image url" id="direct-input-image-url" class="form-control direct-input-text-field" {% if user.directly_input_url == True %} value={{ user.account_image }} {% endif %}>
-                    </label>
-                    <!-- Avatar radio selection -->
-                    <h3 class="avatar-select-modal-subheading">Or select an avatar to represent you</h3>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_1.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_1.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_1.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_2.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_2.png" %}checked{% endif %}">
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_2.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_3.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_3.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_3.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_4.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_4.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_4.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_5.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_5.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_5.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_6.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_6.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_6.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_7.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_7.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_7.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_8.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_8.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_8.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_9.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_9.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_9.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_10.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_10.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_10.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_11.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_11.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_11.png">
-                    </label>
-                    <label>
-                        <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_12.png" class="avatar-select-radio" {% if user.account_image == "/static/images/avatar_images/avatar_12.png" %}checked{% endif %}>
-                        <img class="avatar-select" src="/static/images/avatar_images/avatar_12.png">
-                    </label>
-                    <div class="modal-footer">
-                        <button type="button" class="button-cancel modal-button close-avatar-modal" data-dismiss="modal">Close</button>
-                        <input type="submit" class="modal-button button-confirm" value="Submit">
-                    </div>
-                </form>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Update Account Image</h5>
+                <button type="button" class="close close-avatar-modal" data-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-        </div>
+            <div class="modal-body">
+                <div class="change-account-avatar">
+                    <!-- On submission the form will call a function to check if the user has input a url and if so whether the url is valid -->
+                    <form name="avatar-submit-form" method="POST" onsubmit=" return formSubmit()"
+                        action="{{ url_for('edit_avatar', active_tab=active_tab, userPlusPage=userPlusPage, userPostPage=userPostPage) }}"
+                        class="change-account-avatar-form">
+                        <!-- Direct url input  -->
+                        <h3 class="avatar-select-modal-subheading">Input the URL of an image you want to use</h3>
+                        <label class="modal-direct-input">
+                            <input type="radio" name="avatar_select" value="direct_input" id="direct-url-input-radio"
+                                class="" {% if user.directly_input_url == True %}checked{% endif %} required>
+                            <input type="text" name="avatar_direct_input" placeholder="Enter a valid image url"
+                                id="direct-input-image-url" class="form-control direct-input-text-field"
+                                {% if user.directly_input_url == True %} value={{ user.account_image }} {% endif %}>
+                        </label>
+                        <!-- Avatar radio selection -->
+                        <h3 class="avatar-select-modal-subheading">Or select an avatar to represent you</h3>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_1.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_1.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_1.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_2.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_2.png" %}checked{% endif %}">
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_2.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_3.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_3.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_3.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_4.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_4.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_4.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_5.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_5.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_5.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_6.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_6.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_6.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_7.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_7.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_7.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_8.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_8.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_8.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_9.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_9.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_9.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_10.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_10.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_10.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_11.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_11.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_11.png">
+                        </label>
+                        <label>
+                            <input type="radio" name="avatar_select" value="/static/images/avatar_images/avatar_12.png"
+                                class="avatar-select-radio"
+                                {% if user.account_image == "/static/images/avatar_images/avatar_12.png" %}checked{% endif %}>
+                            <img class="avatar-select" src="/static/images/avatar_images/avatar_12.png">
+                        </label>
+                        <div class="modal-footer">
+                            <button type="button" class="button-cancel modal-button close-avatar-modal"
+                                data-dismiss="modal">Close</button>
+                            <input type="submit" class="modal-button button-confirm" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 {% endblock %}
-

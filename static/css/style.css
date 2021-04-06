@@ -703,10 +703,11 @@ button.filter-control {
 .create-post-action-button:active,
 .create-post-action-button:focus,
 .create-post-action-button:hover {
-	transform: scale(1.1);
+    transform: scale(1.1);
+    color: white;
 }
 
-.create-post-action-button a {
+.create-post-action-button {
 	position: relative;
 	display: inline-block;
 	color: #ffffff;
@@ -716,8 +717,9 @@ button.filter-control {
 	border-radius: 50%;
 }
 
-.create-post-action-button a i {
-	padding-top: 1.2rem;
+.create-post-action-button i {
+    padding-top: 1.2rem;
+    margin-left: 1.35rem;
 }
 
 .create-post-button-container {

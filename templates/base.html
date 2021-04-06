@@ -1,88 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>ShareFlow</title>
     {% block script %}
     {% endblock %}
 </head>
+
 <body>
     <div class="page-container">
         <header class="container-flex">
-<!-- Navbar Section -->
+            <!-- Navbar Section -->
             <nav class="navbar navbar-expand-md navbar-light">
                 <a href="/" class="navbar-brand">ShareFlow</a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+                    aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav mr-auto">
-<!-- Will check the request endpoint to determine active tab -->
-                        <li id="index" class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='404' %}active{%endif %}">
+                        <!-- Will check the request endpoint to determine active tab -->
+                        <li id="index"
+                            class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='404' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('posts') }}">Home</a>
                         </li>
                         <li class="nav-item {% if request.endpoint=='create_post' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('create_post') }}">Create a Post</a>
                         </li>
                         {% if session.user %}
-                            <li class="nav-item {% if request.endpoint=='account' %}active{%endif %}">
-                                <a class="nav-link" href="{{ url_for('account', post_id='None', active_tab='posts' ) }}">{{ session['user'] }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
-                            </li>
+                        <li class="nav-item {% if request.endpoint=='account' %}active{%endif %}">
+                            <a class="nav-link"
+                                href="{{ url_for('account', post_id='None', active_tab='posts' ) }}">{{ session['user'] }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
+                        </li>
                         {% else %}
-                            <li class="nav-item {% if request.endpoint=='sign_in' %}active{%endif %}">
-                                <a class="nav-link" href="{{ url_for('sign_in') }}">Sign In</a>
-                            </li>
-                            <li class="nav-item {% if request.endpoint=='register' %}active{%endif %}">
-                                <a class="nav-link" href="{{ url_for('register') }}"> Register</a>
-                            </li>
+                        <li class="nav-item {% if request.endpoint=='sign_in' %}active{%endif %}">
+                            <a class="nav-link" href="{{ url_for('sign_in') }}">Sign In</a>
+                        </li>
+                        <li class="nav-item {% if request.endpoint=='register' %}active{%endif %}">
+                            <a class="nav-link" href="{{ url_for('register') }}"> Register</a>
+                        </li>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
         </header>
 
-<!-- Flash message display section -->
+        <!-- Flash message display section -->
         <section class="page-flash-container">
-        {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages() %}
             {% if messages %}
-                {% for message in messages %}
-                    <div class="flash-message">
-                        <h2 class="flash-text">{{ message }}</h2>
-                        <button id="flash-message-close" class="flash-close"><i class="fas fa-times"></i></button>
-                    </div>
-                {% endfor %}
+            {% for message in messages %}
+            <div class="flash-message">
+                <h2 class="flash-text">{{ message }}</h2>
+                <button id="flash-message-close" class="flash-close"><i class="fas fa-times"></i></button>
+            </div>
+            {% endfor %}
             {% endif %}
-        {% endwith %}
+            {% endwith %}
         </section>
 
-<!-- Container where template content will display -->
+        <!-- Container where template content will display -->
         <main class="container-flex">
             {% block content %}
-            
+
             {% endblock %}
         </main>
 
-<!-- Footer Section -->
+        <!-- Footer Section -->
         <footer class="text-center">
             <div class="social-container">
-            <a href="https://www.facebook.com" target="_blank" aria-label="Link to shareflow's facebook page"
-                ><i class="fab fa-facebook-square" aria-hidden="true"></i></a>
-            <a href="https://www.instagram.com" target="_blank" aria-label="Link to shareflow's instagram page"
-                ><i class="fab fa-instagram-square" aria-hidden="true"></i></a>
-            <a href="https://www.twitter.com/" target="_blank" aria-label="Link to shareflow's twitter page">
-                <i class="fab fa-twitter-square" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Link to shareflow's facebook page"><i
+                        class="fab fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com" target="_blank" aria-label="Link to shareflow's instagram page"><i
+                        class="fab fa-instagram-square" aria-hidden="true"></i></a>
+                <a href="https://www.twitter.com/" target="_blank" aria-label="Link to shareflow's twitter page">
+                    <i class="fab fa-twitter-square" aria-hidden="true"></i></a>
             </div>
             <p class="copyright">Shareflow&nbsp;<span id="date-target"></span></p>
-            
+
         </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -90,4 +96,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

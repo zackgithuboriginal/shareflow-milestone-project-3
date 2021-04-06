@@ -1,38 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-    
+
 <!-- Page Title Section -->
 <div class="title-container">
     <h1 class="page-title">Register</h1>
 </div>
 <!-- Main registration content container -->
-<section class="main-container">
+<div class="main-container">
     <div class="register-container">
         <div class="register-form-main">
-<!-- Registration form  -->
-            <form class="registration-form"  method="POST" action="{{ url_for('register') }}">
+            <!-- Registration form  -->
+            <form class="registration-form" method="POST" action="{{ url_for('register') }}">
                 <h2 class="form-title">Register</h2>
                 <div class="input-container">
                     <label class="form-label" for="username">Username</label>
                     <h6>Between 3 and 15 characters.</h6>
-                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15" required>
+                    <input id="username" name="username" class="form-control" type="text" minlength="3" maxlength="15"
+                        required>
                     <label class="form-label" for="password">Password</label>
                     <h6>Between 6 and 15 characters.</h6>
-                    <input id="password" name="password" class="form-control" type="password" minlength="6" maxlength="15" title="Minimum of three characters with no spaces" required onchange="validatePassword()">
+                    <input id="password" name="password" class="form-control" type="password" minlength="6"
+                        maxlength="15" title="Minimum of three characters with no spaces" required
+                        onchange="validatePassword()">
                     <label class="form-label" for="password">Repeat Password</label>
-                    <input id="repeat-password" name="password" class="form-control" type="password" minlength="6" maxlength="15" required onkeyup="validatePassword()">
+                    <input id="repeat-password" name="password" class="form-control" type="password" minlength="6"
+                        maxlength="15" required onkeyup="validatePassword()">
                 </div>
                 <button class="form-control sign-in-submit" type="submit">Submit</button>
             </form>
         </div>
-<!-- Alternative sign in link will display on small screens -->
+        <!-- Alternative sign in link will display on small screens -->
         <div class="register-end-panel">
             <div class="alternate-link">
                 <h3>Already Registered? &nbsp;</h3>
                 <a href="{{ url_for('sign_in') }}">Sign In</a>
             </div>
         </div>
-<!-- Alternative sign in link will display on large screens -->
+        <!-- Alternative sign in link will display on large screens -->
         <div class="register-form-side">
             <h1 class="page-heading">Nice to meet you!</h1>
             <div class="sign-in-info">
@@ -48,5 +52,5 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 {% endblock %}
