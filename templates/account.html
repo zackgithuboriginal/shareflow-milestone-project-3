@@ -5,14 +5,14 @@
     <div class="account-details">
         <div class="account-avatar-flex-container">
             <div class="account-avatar">
-                <img class="avatar" src="{{ user.account_image }}" alt="">
+                <img class="avatar" src="{{ user.account_image }}" alt="{{ user.username }}'s avatar'">
             </div> 
             <button type="button" class="btn avatar-modal-button" data-bs-toggle="modal" data-bs-target="#avatar-select-modal">
                 Update Image
             </button>
         </div>
         <div class="account-details-flex-container">
-            <h2 class="account-details-username">{{ user.username }}{{ userPlusPage }}</h2>
+            <h2 class="account-details-username">{{ user.username }}</h2>
             <div class="account-details-information">
                 <h4>User Since: {{ user.registration_date }}</h4>
                 <h4>Posts: {{ user.posts_made }}</h4>
