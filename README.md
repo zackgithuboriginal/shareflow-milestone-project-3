@@ -8,32 +8,43 @@ This website is designed to be a location for people to share their thoughts and
 The thinking behind this process was that as a social media/ message board the content and the ease of creating, navigating and filtering that content would be integral to the user experience of the website. In order to pursue this ideal the website has a number of features aimed to elevate the importance and visibility of user’s posts and to allow them to view and interact with the posts in a number of different ways.
 
 ## User Experience / UX
+### User Stories
 ### First time visitor
-To be able to understand the purpose of the site
+#### 1. Discern the purpose and function of the website.
 
-To be able to understand the navigation structure and how to interact with the website
+#### 2. Understand the navigation structure and how to interact with the website
 
-To be able to register an account to enable them to post
+#### 3. View posts relating to certain topics
+
+#### 4. View the most popular posts
+
+#### 5. Register an account
 
 ### Return user 
-To be able to log in
+#### 1. Log in to their account
 
-To be able to be to make a post
+#### 2. Make a post
 
-To be able to edit their post
+#### 3. Edit their post
 
-To be able to delete their post if desired
+#### 4. Delete their post
 
-To be able to comment on other people’s posts
+#### 5. View the comments made on a post
 
-To be able to show support for a post
+#### 6. Comment on another user’s post
 
-### General user
+#### 7. Show support for a post
 
-To be able to only view posts relating to certain topics
+#### 8. View posts that they have previously shown support for
+
+#### 9. View all of their posts in one location
+
+#### 10 . Change their account avatar
+
+#### 11. Use an image url to generate a image as their 
 
 ### Site administrators
-To be able to delete any posts
+#### 1. Edit or delete any post
 
 ### Design
 
@@ -162,3 +173,167 @@ The Post card itself is the primary way in which a post is displayed. The post c
 
 ### Logical routing behaviour
 There are some interactions with the site that in order to provide a satisfying and logical experience for the user needs to recall the user’s previous actions. The most complex example of this is when a user on their account page changes the active tab of the account page and changes the active page of the pagination menu, then proceeds to navigate into the post details page of a post and open up the edit post page for that post. In this instance the website will recall the previous user’s path to the page and the account page’s pagination and tab arguments from when the user was last on the page. To ensure satisfying user experience the page will return the user to the post details page when the edit page is closed and then return the user to the account page with the correct pagination status and with the correct tab open when the user closes the post details page.
+
+
+
+
+
+### Testing User Stories from User Experience (UX) Section
+#### First Time User Stories
+
+#### 1.    Goal: Discern the purpose and function of the website.
+
+**Expected:** When the user accesses the website for the first time they should be presented with a home page that makes it clear that it is a social media environment centered around sharing posts.
+
+**Result:** Upon arriving at the home page, the user is presented with the primary post display. The posts are clearly labelled with topic names as well clearly labelled buttons and navigation elements.
+
+![Image of main post view](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_page.png)
+
+#### 2.    Goal: Understand the navigation structure and how to interact with the website
+
+**Expected:** Wherever the user is on the website they should be able to immediately identify and locate the navigation structure.
+
+**Result:** The navigation bar is fixed at the top of the screen so that the user can always identify it, even if they have scrolled down the page.
+
+![Image of navbar](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_navbar.PNG)
+
+#### 3.    Goal: View posts relating to certain topics
+
+**Expected:** The user should be able to filter the display of posts to see posts related to a single topic.
+
+**Result:** The user can select a topic from the select element of the toolbar at the top of the home page. If they then click the ‘Go’ button, the page will reload only displaying posts relating to the chosen topic.
+
+![Image of the filter options](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_filter.PNG)
+
+#### 4.    Goal: View the most popular posts.
+
+**Expected:** The user should be able to change the method through which the display of posts is sorted in order to view the most popular posts.
+
+**Result:** The user can use the toolbar at the top of the homepage to select ‘Most Popular” from the sort select element. If they then click the ‘Go’ button the page will reload with posts sorted by the number of votes they have received instead of by date posted.
+
+![Image of the sort options](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_sort.PNG)
+
+#### 5.    Goal: Register an account.
+
+**Expected:** The user should be able to easily create an account that they can use to access all of the site’s features.
+
+**Result:** Upon loading the website for the first time the user can navigate to the Register page. By entering their details in the Registration form and clicking the submit button the user will then have their details saved in the database. Upon submission the user will be relocated to the home page, signed in, and presented with a flash message informing them that the registration was successful.
+
+![Image of the registration form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_register.PNG)
+
+#### Return Visitor Stories
+#### 1.    Goal: Sign in to their account
+
+**Expected:** The user should be able to easily navigate to the appropriate page and from there input their details to sign in to their account.
+
+**Result:** Upon returning to the website the user can navigate to the Sign In page using the sign in link in the navbar. By entering the correct details in the sign in form and clicking submit the user can sign in to their account and gain access to the related privileges.
+
+![Image of the sign in form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_sign_in.PNG)
+
+#### 2.    Goal: Make a post
+
+**Expected:** The user should be able to create a post that will then be displayed on the site for others to see and interact with.
+
+**Result:** Upon loading the website and arriving on the home page the user has two options to navigate to the post creation page. They can either select the link on the navbar or click the floating action page with a plus icon it fixed to the bottom right of the home page. 
+
+After navigating to the post creation page the user can input their desired Post title, Post content and select their desired post Topic from a dropdown selection. After filling in the form the user can click the Add button, which will submit the post to the database. 
+
+The user will then be redirected to the home page where their post will be visible to all, and they will be presented with a flash message informing them that the operaction was successful. 
+
+![Image of the post creation](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_create.PNG)
+
+#### 3.    Goal: Edit their post
+
+**Expected:** The user should be able to select an option on any of their posts to edit the content of the post and have the post permanently updated.
+
+**Result:** On any post authored by the user the user can select the ‘cog’ icon which will present the user will a dropdown menu of operations that they can perform on their post. When they select the ‘ Edit post’ option they will be redirected to the edit post form where the posts details will be filled in. By changing any of the filled in details and clicking the ‘Save changes’ button the post will be permanently updated with the altered content. 
+
+![Image of the post edit option](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_edit_option.PNG)
+
+The user will then be redirected to the post details page for that page with a flash message displayed informing them that the post was edited successfully.
+
+![Image of the post edit form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_edit.PNG)
+
+#### 4.    Goal: Delete their post
+
+**Expected:** The user should be able to select an option on any of their posts to permanently delete their post.
+
+**Result:** On any post authored by the user the user can select the ‘cog’ icon which will present the user will a dropdown menu of operations that they can perform on their post. By selecting the ‘Delete Post’ the post will be permanently removed from the website and all records of it will be removed from the database.
+
+![Image of the post edit option](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_edit_option.PNG)
+![Image of the post deletion option](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_delete.PNG)
+
+#### 5.    Goal: View the comments made on a post
+
+**Expected:** The user should be able to view all of the comments that have been made on a post.
+
+**Result:** By selecting the ‘View Post’ button on a post the user will be navigated to the post details page for that post. On that page just below the post’s content is the comment section containing all of the post’s comments.
+
+
+![Image of the comment section](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_comment_section.PNG)
+
+#### 6.    Goal: Comment on another user’s post
+
+**Expected:** The user should be able to make a comment on another user’s post that will then be displayed on that post for other user’s to see.
+
+**Result:** By navigating to a post’s post details page the user can scroll down to the comment section and user the Add comment form to type out their comment and submit it. After the comment is submit the page will reload and display the comment at the bottom of the comment section, the user will also be presented with a flash message informing them that the comment was added successfully.
+
+![Image of the comment form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_add_comment.PNG)
+
+#### 7.    Goal: Show support for a post
+
+**Expected:** The user should be able to show support to a post that they like or that interests them that would be meaningfully on the post.
+
+**Result:** The user can select the ‘+’ icon on any post to increase that post’s vote tally by 1. When the user clicks the button the current tally which is displayed below the icon will be updated to reflect the user’s vote. The ‘+’ icon will switch to a tick icon to provide feedback to the user that the vote was registered.
+
+![Image of the post voting button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/vote.PNG)
+![Image of the post voted button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/vote-check.PNG)
+
+#### 8.    Goal: View posts that they have previously shown support for
+
+**Expected:** The user should be able to revisit any posts that they have plussed in the past.
+
+**Result:** The user can view all of the posts that they have previously voted for by navigating to their account page. By then selecting the ‘Plused Posts’ tab in the center of the page the page will display off the posts that the user has voted for, in a paginated list.
+
+![Image of the plussed posts tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_plussed.PNG)
+
+#### 9.    Goal: View their own posts
+
+**Expected:** The user should be able to conveniently view all of their own posts in one location.
+
+**Result:** When the user navigates to their account page, they will be presented with all of their posts displayed down the center of the page.
+
+![Image of the user posts tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_posted.PNG)
+
+#### 10.    Goal: Change their account avatar
+
+**Expected:** The user should be able to change the avatar that is associated with their account and have that change reflected in all of their posts.
+
+**Result:** On the account page the user can select the ‘Update Image’ option just below their current avatar. After selecting the option the user will be presented with a modal window offering two options to change their avatar. The first is to enter the url of an image that they wish to use and the second is to select one of the provided avatars. 
+
+![Image of the avatar modal](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_av_option.PNG)
+
+If the user selects one of the provided avatars and clicks the save button then the updated avatar selection will be saved in their user record in the database. The page will then reload and the avatar on the page along with the avatar on each of the user’s posts will have updated to reflect the new choice. The user will also be presented with a flash message informing them that the operation was successful.
+
+![Image of the avatar modal](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/avatar_select.PNG)
+
+#### 11.    Goal: Use an image url to load an image as their avatar
+
+
+**Expected:** The user should be able to directly input the url of an image on the internet, and then have that image be used as their account avatar on their account page and on any posts they make.
+
+**Result:** On the account page the user can select the ‘Update Image’ option just below their current avatar. After selecting the option the user will be presented with a modal window offering two options to change their avatar. The first is to enter the url of an image that they wish to use and the second is to select one of the provided avatars. 
+
+If the user selects the url input option and then inserts a url for image into the form and submits it. The page will first validate the link, and if it is a valid image the user’s record will be updated with the new image. The page will then reload and the avatar on the page along with the avatar on each of the user’s posts will have updated to reflect the new choice. The user will also be presented with a flash message informing them that the operation was successful.
+
+![Image of the url input form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_av_link.PNG)
+
+#### Administrator Stories
+
+#### 1. Goal: Edit or delete any post
+
+**Expected:** As the site administrator, the user should be able to access the post edit and delete options for all posts.
+
+**Result:** When signed in as the Admin account the user is presented with the post option cog button for all posts. When the user clicks on the button the dropdown menu containing the two options is displayed and if the user clicks either one of the buttons the page will treat their action as though they are the creator of the post and either direct them to the edit post page, or delete the post.
+
+![Image of the admin's page view](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_admin.PNG)
