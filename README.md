@@ -175,6 +175,80 @@ The Post card itself is the primary way in which a post is displayed. The post c
 There are some interactions with the site that in order to provide a satisfying and logical experience for the user needs to recall the user’s previous actions. The most complex example of this is when a user on their account page changes the active tab of the account page and changes the active page of the pagination menu, then proceeds to navigate into the post details page of a post and open up the edit post page for that post. In this instance the website will recall the previous user’s path to the page and the account page’s pagination and tab arguments from when the user was last on the page. To ensure satisfying user experience the page will return the user to the post details page when the edit page is closed and then return the user to the account page with the correct pagination status and with the correct tab open when the user closes the post details page.
 
 
+## Technologies Used
+
+### Languages Used
+
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [JavaScript](https://www.javascript.com/)
+-   [Python](https://www.python.org/)
+
+### Frameworks, Libraries & Programs Used
+
+1. [Bootstrap 5.0:](https://getbootstrap.com/)
+  - Bootstrap was used to create the initial base template of the design that was then built on top of and customised further using CSS.
+ 
+2. [Google Fonts:](https://fonts.google.com/)
+  - Google fonts was used to import the fonts that were used as the primary typography on the website.
+ 
+3. [Font Awesome:](https://fontawesome.com/)
+  - Font Awesome's icon library was used to reinforce sections and information points throughout the website.
+ 
+4. [jQuery:](https://jquery.com/)
+  - Bootstrap's jQuery library is in use on the website to increase the functionality of some Bootstrap components.
+ 
+5. [Git](https://git-scm.com/)
+  - Git was used as the primary version control software for the project. It was operated using the Gitpod terminal.
+ 
+6. [GitHub:](https://github.com/)
+  - GitHub is where the project is stored. It was also used to view version control changes.
+ 
+7. [Gitpod](https://gitpod.io/)
+  - Gitpod was the IDE used to program the website.
+ 
+8. [Coolors](https://coolors.co/)
+  - Coolors was used to generate colours for a scheme that was harmonious and evoked the desired aesthetic.
+ 
+9. [Figma](https://www.figma.com/)
+  - Figma was used to generate the initial wireframes and mockups that were used to inform the programming of the website.
+
+10. [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en)
+  - This chrome web extension was used as it allows for multiple views of a website at multiple scales and device sizes at once. It was used for testing of responsive design.
+ 
+11. [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools)
+ - DevTools was used for analysing the code and design of the practice during development. Also used to test changes in real-time.
+ 
+12. [Pymongo](https://pypi.org/project/pymongo/)
+- Pymongo is the python library used to allow interaction with the shareflow mongodb database.
+ 
+13. [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+- Flask is a python framework, used extensively for routing and rendering pages along with jinja.
+
+14. [Flask-paginate](https://pythonhosted.org/Flask-paginate/)
+- Flask-paginate is a flask extension which enables pagination of lists
+
+15. [Hover.css](https://ianlunn.github.io/Hover/)
+- Hover.css was used to implement hover effects on several elements.
+
+16. [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
+- Werkzeug was neceassary for Flask's full operation, also used for password hashing
+
+17. [Heroku](https://dashboard.heroku.com/apps)
+- Heroku is the cloud platform where the live version of this project is hosted
+
+18. [MongoDB](https://www.mongodb.com/)
+- Papa Parse was used to parse the CSV file containing the full list of countries and their two-character country codes.
+
+19. [Chrome Lighthouse](https://developers.google.com/web/tools/lighthouse)
+- Chrome Lighthouse was used to analyse and test page load speeds and page performance.
+
+20. [Multi Device Website Mockup Generator](https://techsini.com/multi-mockup/index.php)
+- This website was used to generate the image at the top of the readme.md file.
+- 
+21. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+- Jinja is used by and in conjunction with Flask to enable templating of html pages.
+
 
 
 
