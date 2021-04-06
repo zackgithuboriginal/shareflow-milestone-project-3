@@ -1393,7 +1393,7 @@ button.close {
 	flex-direction: column;
 }
 
-section.main-container-account div.tab-display-option.active-profile-tab {
+div.main-container-account div.tab-display-option.active-profile-tab {
 	display: flex;
 }
 
