@@ -249,6 +249,55 @@ There are some interactions with the site that in order to provide a satisfying 
 21. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 - Jinja is used by and in conjunction with Flask to enable templating of html pages.
 
+### Testing
+
+### Browser and Device Size Testing
+The website was tested thoroughly across all major browsers and all screen and devices sizes down to 360px. 
+
+- [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/)
+
+- [Google Chrome](https://www.google.com/intl/en_ie/chrome/)
+
+- [Microsoft Edge](https://www.microsoft.com/en-us/edge)
+
+- [Opera](https://www.opera.com/)
+
+- A full range of sizes and devices using Chrome DevTools, [Responsive Viewer](https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) and [Am I Responsive?](http://ami.responsivedesign.is/)
+
+### Code Validation
+
+At the end of the project, the code was put through CSS and HTML validators to ensure there were no errors presented.
+
+#### style.css css validation            [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+![Image of css validator](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/css_validation.png)
+
+#### gym-finder.js js validation         [JSHint](https://jshint.com/)
+![Image of Js linter results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/script.js-validation.png)
+
+### Performance Testing
+
+To ensure that the website performed well and loaded all pages quickly I tested each page using [Lighthouse](https://developers.google.com/web/tools/lighthouse) where all pages received positive results
+
+#### Home Page 
+![Image of home page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-home.PNG)
+
+#### Create Post Page
+![Image of create post page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-create.PNG)
+
+#### Sign In Page
+![Image of sign in page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-sign-in.PNG)
+
+#### Register Page
+![Image of register performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-register.PNG)
+
+#### Account Page
+![Image of account page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-account.PNG)
+
+#### Post Details Page
+![Image of post details page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/shareflow-post-details.PNG)
+
+#### Edit Post Page
+![Image of edit post page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-edit.PNG)
 
 
 
@@ -411,3 +460,35 @@ If the user selects the url input option and then inserts a url for image into t
 **Result:** When signed in as the Admin account the user is presented with the post option cog button for all posts. When the user clicks on the button the dropdown menu containing the two options is displayed and if the user clicks either one of the buttons the page will treat their action as though they are the creator of the post and either direct them to the edit post page, or delete the post.
 
 ![Image of the admin's page view](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_admin.PNG)
+
+### Manual Functionality Testing
+
+
+### Bugs Discovered
+
+
+## Deployment
+
+### To Publish to Heroku
+
+### To Clone the Repository and Run Locally
+
+#### To Clone Using the Command Line
+
+#### To Clone Using GitHub Desktop
+
+#### To Run the Project Locally
+
+## Credits
+
+### Resources Used
+
+### Code
+
+### Content
+
+### Media
+
+#### Original creators and links to images
+
+### Acknowledgements
