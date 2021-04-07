@@ -3,9 +3,9 @@
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/device-mockup.PNG)
 
 ## Website Description
-This website is designed to be a location for people to share their thoughts and opinions on a range of topics and to interact and engage with other users and their posts. Designing the website I intended to maximise the clarity and visibility of the user’s content and the ease and usability of interaction and navigation above all other considerations. 
+This website is designed to be a text based social media website for people to share their thoughts and opinions on a range of topics and to interact and engage with other users and their posts. Designing the website I intended to maximise the clarity and visibility of the user’s content and the ease and usability of interaction and navigation above all other considerations. 
 
-The thinking behind this process was that as a social media/ message board the content and the ease of creating, navigating and filtering that content would be integral to the user experience of the website. In order to pursue this ideal the website has a number of features aimed to elevate the importance and visibility of user’s posts and to allow them to view and interact with the posts in a number of different ways.
+The thinking behind this process was that as a social media site the content and the ease of creating, navigating and filtering that content would be integral to the user experience of the website. In order to pursue this ideal the website has a number of features aimed to elevate the importance and visibility of user’s posts and to allow them to view and interact with posts in a number of different ways.
 
 ## User Experience / UX
 ### User Stories
