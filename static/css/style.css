@@ -660,6 +660,7 @@ button.filter-control {
     border: 1px solid #ced4da;
     padding: .375rem .75rem 1.25rem .75rem;
     margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .comment-form-alt p {
@@ -1555,8 +1556,9 @@ div.main-container-account div.tab-display-option.active-profile-tab {
 
 .post-details-comment {
 	display: flex;
-	margin-top: 2rem;
-	flex-direction: column;
+    flex-direction: column;
+    border: 1px solid #ced4da;
+    padding: 1.25rem .75rem 1.25rem .75rem;
 }
 
 .post-details-comment-container h3 {
