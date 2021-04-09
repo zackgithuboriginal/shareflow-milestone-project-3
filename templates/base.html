@@ -32,10 +32,10 @@
                             class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='404' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('posts') }}">Home</a>
                         </li>
+                        {% if session.user %}
                         <li class="nav-item {% if request.endpoint=='create_post' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('create_post') }}">Create a Post</a>
                         </li>
-                        {% if session.user %}
                         <li class="nav-item {% if request.endpoint=='account' %}active{%endif %}">
                             <a class="nav-link"
                                 href="{{ url_for('account', post_id='None', active_tab='posts' ) }}">{{ session['user'] }}</a>
