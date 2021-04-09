@@ -655,6 +655,24 @@ button.filter-control {
 	font-weight: 600;
 }
 
+.comment-form-alt {
+    display: flex;
+    border: 1px solid #ced4da;
+    padding: .375rem .75rem 1.25rem .75rem;
+    margin-top: 1rem;
+}
+
+.comment-form-alt p {
+    font-size: 1.4rem;
+}
+
+.comment-form-alt a,
+.comment-form-alt a:hover,
+.comment-form-alt a:active,
+.comment-form-alt a:focus {
+    color: #89A6FB;
+}
+
 .post-id-target {
 	position: absolute;
 	top: -8rem;
