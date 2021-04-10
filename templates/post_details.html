@@ -124,7 +124,7 @@
                     {% endif %}
 
                     <!-- Comment display section -->
-                    {% for comment in post.comments%}
+                    {% for comment in post.comments|reverse %}
                     <div class="post-details-comment">
                         <h3>{{ comment.comment_content}}</h3>
                         <div class="post-details-comment-bottom-row">
