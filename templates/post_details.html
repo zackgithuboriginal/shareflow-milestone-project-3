@@ -105,7 +105,7 @@
             <!-- Post comment section -->
             <div class="post-details-comment-container">
                 {% if post.comments|length > 0 %}
-                <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h3>
+                <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h4>
                     <!-- Add commment form -->
                     {% if userPostPage is defined %}
                     <form method="POST" class="post-details-comment-form"
