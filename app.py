@@ -167,7 +167,7 @@ def register():
 
 # This view handles users updating their avatar or adding a direct url to their user record
 
-@app.route('/edit_avatar/<active_tab>/<userPlusPage>/<userPostPage>',
+@app.route('/edit-avatar/<active_tab>/<userPlusPage>/<userPostPage>',
            methods=['GET', 'POST'])
 def edit_avatar(active_tab, userPlusPage, userPostPage):
     if request.method == 'POST':
@@ -225,7 +225,7 @@ def edit_avatar(active_tab, userPlusPage, userPostPage):
 # This view handles the rendering of the sign in page as well as
 # the actual sign in functionality
 
-@app.route('/sign_in', methods=['GET', 'POST'])
+@app.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     if request.method == 'POST':
 
@@ -264,20 +264,20 @@ def sign_in():
 
     # If the user is not submitting the form the default behaviour of rendering the page will occur
 
-    return render_template('sign_in.html')
+    return render_template('sign-in.html')
 
 
 # This view will handle rendering the create post page
 
-@app.route('/create_post')
+@app.route('/create-post')
 def create_post():
     topics = list(db.topics.find())
-    return render_template('create_post.html', topics=topics)
+    return render_template('create-post.html', topics=topics)
 
 
 # This view will handle adding a post to the database from the create_post page
 
-@app.route('/add_post', methods=['GET', 'POST'])
+@app.route('/add-post', methods=['GET', 'POST'])
 def add_post():
 
     # if the user is in session and the
@@ -327,7 +327,7 @@ def add_post():
 # both the posts and account templates
 # they will be passed back into the redirect statements to render the user's previous page
 
-@app.route('/edit_post/<post_id>/<pagination_arguments>', methods=['GET'
+@app.route('/edit-post/<post_id>/<pagination_arguments>', methods=['GET'
            , 'POST'])
 def edit_post(post_id, pagination_arguments):
 
@@ -362,14 +362,14 @@ def edit_post(post_id, pagination_arguments):
 
     post = db.posts.find_one({'_id': ObjectId(post_id)})
     topics = db.topics.find()
-    return render_template('edit_post.html', post=post, topics=topics,
+    return render_template('edit-post.html', post=post, topics=topics,
                            pagination_arguments=pagination_arguments)
 
 
 # This view handles the functionality of redirecting the user to their previous location
 # when they try to close the edit post page
 
-@app.route('/close_post_edit/<post_id>/<pagination_arguments>')
+@app.route('/close-post-edit/<post_id>/<pagination_arguments>')
 def close_post_edit(post_id, pagination_arguments):
 
     # It splits the pagination argument into an array of values which will then inform the parameters provided to the redirect statement
@@ -407,7 +407,7 @@ def process_post_edit(post_id):
 
 # This view handles the removal of the user from the cookie session
 
-@app.route('/sign_out')
+@app.route('/sign-out')
 def sign_out():
     flash('Successfully signed out.')
     session.pop('user')
@@ -487,7 +487,7 @@ def process_vote(post_id):
 # the post id is passed into the process vote function to update the relevant records
 # the page parameter is passed back into the return statment to reload the posts page on the correct page
 
-@app.route('/posts_vote/<post_id>/<page>', methods=['GET', 'POST'])
+@app.route('/posts-vote/<post_id>/<page>', methods=['GET', 'POST'])
 def posts_vote(post_id, page):
     vote_status = process_vote(post_id)
     return redirect(url_for('posts', post_id=post_id, page=page,
@@ -602,7 +602,7 @@ def add_comment(post_id, pagination_arguments):
 # This view handles the deletion of a post
 # it accepts pagination arguments which are used to inform the pagination
 
-@app.route('/delete_post/<post_id>/<pagination_arguments>')
+@app.route('/delete-post/<post_id>/<pagination_arguments>')
 def delete_post(post_id, pagination_arguments):
 
     # The function removes the post record from the collection
@@ -651,20 +651,20 @@ def process_post_details(post_id):
 # View handles the rendering of the account details page
 # accepts post id and post page as parameters
 
-@app.route('/post_details/<post_id>/<post_page>')
+@app.route('/post-details/<post_id>/<post_page>')
 def post_details(post_id, post_page):
     if db.posts.find_one({'_id': ObjectId(post_id)}):
         routing_parameters = process_post_details(post_id)
         if 'user' in session:
             return render_template(
-                'post_details.html',
+                'post-details.html',
                 post=routing_parameters[0],
                 user_plusses=routing_parameters[1],
                 users=routing_parameters[2],
                 user=routing_parameters[3],
                 page=post_page,
                 )
-        return render_template('post_details.html',
+        return render_template('post-details.html',
                                post=routing_parameters[0],
                                users=routing_parameters[1],
                                page=post_page)
@@ -674,7 +674,7 @@ def post_details(post_id, post_page):
 
 # This view handles the voting functionality from the account page
 
-@app.route('/account_vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>'
+@app.route('/account-vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>'
            , methods=['GET', 'POST'])
 def account_vote(
     post_id,
@@ -697,7 +697,7 @@ def account_vote(
 # The parameters it accepts are passed through
 # to allow for the user to be returned to the correct location if they close the details view
 
-@app.route('/account_post_details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>'
+@app.route('/account-post-details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>'
            )
 def account_post_details(
     post_id,
@@ -709,7 +709,7 @@ def account_post_details(
         routing_parameters = process_post_details(post_id)
         if 'user' in session:
             return render_template(
-                'post_details.html',
+                'post-details.html',
                 active_tab=active_tab,
                 post=routing_parameters[0],
                 user_plusses=routing_parameters[1],
@@ -719,7 +719,7 @@ def account_post_details(
                 userPostPage=userPostPage,
                 )
         return render_template(
-            'post_details.html',
+            'post-details.html',
             active_tab=active_tab,
             post=routing_parameters[0],
             users=routing_parameters[1],

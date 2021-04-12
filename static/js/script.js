@@ -17,7 +17,7 @@ $(document).ready(function () {
      * When the active page is account.html, posts.html or post_details.html
      * the functions in this statement will be called
      */
-    if ((currentPage.indexOf("account") !== -1) || (currentPage.indexOf("posts") !== -1) || (currentPage.indexOf("post_details") !== -1)) {
+    if ((currentPage.indexOf("account") !== -1) || (currentPage.indexOf("posts") !== -1) || (currentPage.indexOf("post-details") !== -1)) {
         /**
          * Calls function to normalise post topics on page load
          */

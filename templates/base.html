@@ -21,7 +21,7 @@
         <header class="container-flex">
             <!-- Navbar Section -->
             <nav class="navbar navbar-expand-md navbar-light">
-                <a href="/" class="navbar-brand">ShareFlow</a>
+                <a href="{{ url_for('posts') }}" class="navbar-brand">ShareFlow</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                     <ul class="navbar-nav mr-auto">
                         <!-- Will check the request endpoint to determine active tab -->
                         <li id="index"
-                            class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='404' %}active{%endif %}">
+                            class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='account_post_details' or request.endpoint=='edit_post' or request.endpoint=='404' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('posts') }}">Home</a>
                         </li>
                         {% if session.user %}
