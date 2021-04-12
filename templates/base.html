@@ -8,6 +8,9 @@
         type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="icon" 
+        type="image/png" 
+        href="static/images/favicon.png">
     <title>ShareFlow</title>
     {% block script %}
     {% endblock %}
@@ -32,10 +35,10 @@
                             class="nav-item {% if request.endpoint=='posts' or request.endpoint=='post_details' or request.endpoint=='404' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('posts') }}">Home</a>
                         </li>
+                        {% if session.user %}
                         <li class="nav-item {% if request.endpoint=='create_post' %}active{%endif %}">
                             <a class="nav-link" href="{{ url_for('create_post') }}">Create a Post</a>
                         </li>
-                        {% if session.user %}
                         <li class="nav-item {% if request.endpoint=='account' %}active{%endif %}">
                             <a class="nav-link"
                                 href="{{ url_for('account', post_id='None', active_tab='posts' ) }}">{{ session['user'] }}</a>

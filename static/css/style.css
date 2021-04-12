@@ -655,6 +655,25 @@ button.filter-control {
 	font-weight: 600;
 }
 
+.comment-form-alt {
+    display: flex;
+    border: 1px solid #ced4da;
+    padding: .375rem .75rem 1.25rem .75rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.comment-form-alt p {
+    font-size: 1.4rem;
+}
+
+.comment-form-alt a,
+.comment-form-alt a:hover,
+.comment-form-alt a:active,
+.comment-form-alt a:focus {
+    color: #89A6FB;
+}
+
 .post-id-target {
 	position: absolute;
 	top: -8rem;
@@ -1537,8 +1556,9 @@ div.main-container-account div.tab-display-option.active-profile-tab {
 
 .post-details-comment {
 	display: flex;
-	margin-top: 2rem;
-	flex-direction: column;
+    flex-direction: column;
+    border: 1px solid #ced4da;
+    padding: 1.25rem .75rem 1.25rem .75rem;
 }
 
 .post-details-comment-container h3 {
@@ -1854,10 +1874,12 @@ h2.error-text {
 	.account-container {
 		position: fixed;
 		width: 30rem;
-		height: 60vh;
+		min-height: 60vh;
 		top: 18.4rem;
 		margin: 0;
-		margin-left: 5rem;
+        margin-left: 5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
 	}
 	.account-details {
 		display: flex;

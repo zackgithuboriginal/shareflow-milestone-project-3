@@ -10,41 +10,41 @@ The thinking behind this process was that as a social media site the content and
 ## User Experience / UX
 ### User Stories
 ### First time visitor
-#### 1. Discern the purpose and function of the website.
+  1. **As first time visitor I should be able to understand the purpose and function of the website.**
 
-#### 2. Understand the navigation structure and how to interact with the website
+  1. **As first time visitor I should be able to understand the navigation structure and how to interact with the website**
+ 
+  1. **As first time visitor I want to view posts relating to a specific topic**
 
-#### 3. View posts relating to certain topics
+  1. **As first time visitor I want to view the most popular posts**
 
-#### 4. View the most popular posts
-
-#### 5. Register an account
+  1. **As first time visitor I want to register an account**
 
 ### Return user 
-#### 1. Log in to their account
+  1. **As a return visitor I want to sign in to my account**
 
-#### 2. Make a post
+  1. **As a return visitor I want to be able make a post**
 
-#### 3. Edit their post
+  1. **As a return visitor I should be able to edit my post**
 
-#### 4. Delete their post
+  1. **As a return visitor I should be able to delete my post**
 
-#### 5. View the comments made on a post
+  1. **As a return visitor I should be able to view the comments made on a post**
 
-#### 6. Comment on another user’s post
+  1. **As a return visitor I want to be able to comment on another user’s post**
 
-#### 7. Show support for a post
+  1. **As a return visitor I want to be able to show support for a post**
 
-#### 8. View posts that they have previously shown support for
+  1. **As a return visitor I should be able to view posts that they have previously shown support for**
 
-#### 9. View all of their posts in one location
+  1. **As a return visitor I should be able to view all of my posts conveniently**
 
-#### 10 . Change their account avatar
+  1. **As a return visitor I would like to be able to change mytheir account avatar**
 
-#### 11. Use an image url to generate a image as their 
+  1. **As a return visitor I would like to be able to use an image url to generate a image as my avatar**
 
 ### Site administrators
-#### 1. Edit or delete any post
+  1. **As the site administrator I should be able to edit or delete any post**
 
 ### Design
 
@@ -77,7 +77,44 @@ The user’s image is also displayed on the user’s account page itself, alongs
 
 ### Wireframes
 
-The wireframes for the website were developed using [Figma](https://www.figma.com/)
+The wireframes for the website were developed using [Figma](https://www.figma.com/) 
+
+ -   Home Page - Desktop Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_desktop.png)
+
+ -   Home Page - Tablet Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_tablet.png)
+
+ -   Home Page - Mobile Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_mobile.png)
+
+ -   Create Post Page - Desktop Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/create_desktop.png)
+
+ -   Create Post Page - Tablet Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/create_tablet.png)
+
+ -   Create Post Page - Mobile Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/create_mobile.png)
+
+ -   Edit Post Page - Desktop Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/edit_desktop.png)
+ 
+ -   Edit Post Page - Tablet Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/edit_tablet.png)
+ 
+ -   Edit Post Page - Mobile Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/edit_mobile.png)
+
+ -   Post Details Page - Desktop Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/post_details_desktop.png)
+
+ -   Post Details Page - Tablet Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/post_details_tablet.png)
+
+ -   Post Details Page - Mobile Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/post_details_mobile.png)
+
+ -   Account Page - Desktop Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_desktop.png)
+ 
+ -   Account Page - Tablet Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_tablet.png)
+
+ -   Account Page - Mobile Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_mobile.png)
+
+ -   Sign Up Page - Desktop Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/sign_up_desktop.png)
+
+ -   Sign Up Page - Tablet Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/sign_up_tablet.png)
+
+ -   Sign Up Page - Mobile Wireframe - [View](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/sign_up_mobile.png)
+
 
 ### Database Design / Data Modelling
 
@@ -89,24 +126,28 @@ The project uses a MongoDB nonrelational database to store it's data. Data is st
 
 The posts collection is where all of the posts made by users are stored in the database. It use's MongoDB's ObjectId value as a unique identifier and stores all other details necessary to the display and tracking of the post in it's data fields.
 
-**id**: *ObjectId*: unique identifier of each post object, generated by MongoDB  
-**post_title**: *string*: contains the post's title, input by the user in the post creation form  
-**post_content**: *string*: contains the post's text content, input by the user in the post creation form  
-**topic_name**: *string*: contains the post's topic, selected by the user in post creation form represents an object of the topics collection  
-**author**: *string*: contains the name of the author of the post, taken from the 'user' attribute of the session cookie  
-**post_date**: *string*: contains the date and time that the post was created, generated using python's datetime module and output in the MM:DD:YYYY, HH:MM:SS format  
-**plusses**: *int32*: contains the total tally of votes awarded by users, tracks the current value so if a user changes their vote it will reduce by 1  
-**comments**: *array*: contains a list of comments made on the post  
+    id:             ObjectId: unique identifier of each post object, generated by MongoDB  
+    post_title:     string: contains the post's title, input by the user in the post creation form  
+    post_content:   string: contains the post's text content, input by the user in the post creation form  
+    topic_name:     string: contains the post's topic, selected by the user in post creation form represents an object of the topics collection  
+    author:         string: contains the name of the author of the post, taken from the 'user' attribute of the session cookie  
+    post_date:      string: contains the date and time that the post was created, generated 
+                            using python's datetime module and output in the MM:DD:YYYY, HH:MM:SS format  
+    plusses:        int32:  contains the total tally of votes awarded by users, tracks the current
+                            value so if a user changes their vote it will reduce by 1  
+    total_comments: int32:  contains the tally of comments on the post  
+    users_voted:    array:  contains a list of users who have voted on the post  
+    comments:       array:  contains a list of comments made on the post  
 
-**comment**: *object*: stored in the comments array  
-
-**comment_id**: *string*: unique identifier of the comment, generated by taking the post's id value and attaching the post's (total_comments + 1)  
-**comment_content**: *string*: contains the text content of the comment  
-**author**: *string*: contains the name of the comment's author  
-**post_date**: *string*: contains the date and time that the comment was created, generated using python's datetime module and output in the MM:DD:YYYY, HH:MM:SS format 
+    comment:        object: stored in the comments array  
+       comment_id:      string: unique identifier of the comment, generated by taking the post's 
+                                id value and attaching the post's (total_comments + 1)  
+       comment_content: string: contains the text content of the comment  
+       author:          string: contains the name of the comment's author  
+       post_date:       string: contains the date and time that the comment was created, generated 
+                                using python's datetime module and output in the MM:DD:YYYY, HH:MM:SS format 
  
-**total_comments**: *int32*: contains the tally of comments on the post  
-**users_voted**: *array*: contains a list of users who have voted on the post  
+
 
 #### Users Collection
 
@@ -114,24 +155,32 @@ The posts collection is where all of the posts made by users are stored in the d
 
 The users collection is where all of the users account details and interaction history is stored. It is used to store a user's login details as well as account statistics and a history of the user's posts comments and votes.
 
-**id**: ObjectId: unique identifier of each user object, generated by MongoDB  
-**username**: string: contains the user's username taken from the registration form  
-**password**: string: contains the hashed value of the user's password, taken from the user registration form and hashed using werkzeug  
-**voted**: array: contains the list of posts that a user has voted on, whenever a user votes on a post the post's id value is appended to this list  
-**account_image**: string: contains the href location of the avatar selected by the user, or a url if the user has input a url directly  
-**directly_input_url**: binary: this binary value states whether the user has input a url as an avatar selection or not used to inform the display of the avatar selection modal  
-**registration_date**: *string*: this field contains the date that the user registered their account, it is generated using python's date module and is used to provide an account age to the user  
-**posts_made**: *int32*: contains the cumulative tally of posts that the user has made  
-**comments_made**: *int32*: contains the cumulative tally of comments that the user has made  
-**plusses**: *int32*: contains the active tally of plus votes that a user's posts has received  
-**comments**: *array*: contains a list of comments made on the post  
-**comment**: *object*: stored in the comments array  
+    id:             ObjectId: unique identifier of each user object, generated by MongoDB  
+    username:       string: contains the user's username taken from the registration form  
+    password:       string: contains the hashed value of the user's password, taken from the user registration form and hashed using werkzeug  
+    voted:          array:  contains the list of posts that a user has voted on, whenever a user votes on a post
+                            the post's id value is appended to this list  
+    account_image:  string: contains the href location of the avatar selected by the user, or a url if the user
+                            has input a url directly  
+    directly_input_url: binary: this binary value states whether the user has input a url as an avatar selection
+                                or not used to inform the display of the avatar selection modal  
+    registration_date: string: this field contains the date that the user registered their account, it is generated
+                               using python's date module and is used to provide an account age to the user  
+    posts_made:     int32:  contains the cumulative tally of posts that the user has made  
+    comments_made:  int32: contains the cumulative tally of comments that the user has made  
+    plusses:        int32: contains the active tally of plus votes that a user's posts has received  
+    comments:       array: contains a list of comments made on the post 
+    
+    comment:        object: stored in the comments array  
 
-**comment_id**: *string*: unique identifier of the comment, generated by taking the post's id value and attaching the post's (total_comments + 1)  
-**comment_content**: *string*: contains the text content of the comment  
-**author**: *string*: contains the name of the comment's author  
-**post_date**: *string*: contains the date and time that the comment was created, generated using python's datetime module and output in the MM:DD:YYYY, HH:MM:SS format  
-**attached_post**: *string*: contains the id value of the post that the comment is attached to  
+       comment_id:      string: unique identifier of the comment, generated by taking the post's id value and
+                                attaching the post's (total_comments + 1)  
+       comment_content: string: contains the text content of the comment  
+       author:          string: contain
+       s the name of the comment's author  
+       post_date:       string: contains the date and time that the comment was created, generated using python's
+                                datetime module and output in the MM:DD:YYYY, HH:MM:SS format  
+       attached_post:   string: contains the id value of the post that the comment is attached to  
 
 #### Topics Collection
 
@@ -363,7 +412,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 ### Testing User Stories from User Experience (UX) Section
 #### First Time User Stories
 
-#### 1.    Goal: Discern the purpose and function of the website.
+#### 1.    Goal: As a first time visitor I should be able to understand the purpose and function of the website.
 
 **Expected:** When the user accesses the website for the first time they should be presented with a home page that makes it clear that it is a social media environment centered around sharing posts.
 
@@ -371,7 +420,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 
 ![Image of main post view](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_page.png)
 
-#### 2.    Goal: Understand the navigation structure and how to interact with the website
+#### 2.    Goal: As a first time visitor I should be able to understand the navigation structure and how to interact with the website
 
 **Expected:** Wherever the user is on the website they should be able to immediately identify and locate the navigation structure.
 
@@ -379,7 +428,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 
 ![Image of navbar](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_navbar.PNG)
 
-#### 3.    Goal: View posts relating to certain topics
+#### 3.    Goal: As a first time visitor I want to be able to view posts relating to a specific topic.
 
 **Expected:** The user should be able to filter the display of posts to see posts related to a single topic.
 
@@ -387,7 +436,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 
 ![Image of the filter options](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_filter.PNG)
 
-#### 4.    Goal: View the most popular posts.
+#### 4.    Goal: As a first time visitor I want to view the most popular posts.
 
 **Expected:** The user should be able to change the method through which the display of posts is sorted in order to view the most popular posts.
 
@@ -395,7 +444,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 
 ![Image of the sort options](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_sort.PNG)
 
-#### 5.    Goal: Register an account.
+#### 5.    Goal: As a first time visitor I want to register an account.
 
 **Expected:** The user should be able to easily create an account that they can use to access all of the site’s features.
 
@@ -404,7 +453,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 ![Image of the registration form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_register.PNG)
 
 #### Return Visitor Stories
-#### 1.    Goal: Sign in to their account
+#### 1.    Goal: As a return visitor I want to sign in to my account.
 
 **Expected:** The user should be able to easily navigate to the appropriate page and from there input their details to sign in to their account.
 
@@ -412,7 +461,7 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 
 ![Image of the sign in form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_sign_in.PNG)
 
-#### 2.    Goal: Make a post
+#### 2.    Goal: As a return visitor I want to be able make a post.
 
 **Expected:** The user should be able to create a post that will then be displayed on the site for others to see and interact with.
 
@@ -424,7 +473,7 @@ The user will then be redirected to the home page where their post will be visib
 
 ![Image of the post creation](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_create.PNG)
 
-#### 3.    Goal: Edit their post
+#### 3.    Goal: As a return visitor I should be able to edit my post.
 
 **Expected:** The user should be able to select an option on any of their posts to edit the content of the post and have the post permanently updated.
 
@@ -436,7 +485,7 @@ The user will then be redirected to the post details page for that page with a f
 
 ![Image of the post edit form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_edit.PNG)
 
-#### 4.    Goal: Delete their post
+#### 4.    Goal: As a return visitor I should be able to delete my post.
 
 **Expected:** The user should be able to select an option on any of their posts to permanently delete their post.
 
@@ -445,7 +494,7 @@ The user will then be redirected to the post details page for that page with a f
 ![Image of the post edit option](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_edit_option.PNG)
 ![Image of the post deletion option](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_delete.PNG)
 
-#### 5.    Goal: View the comments made on a post
+#### 5.    Goal: As a return visitor I should be able to view the comments made on a post.
 
 **Expected:** The user should be able to view all of the comments that have been made on a post.
 
@@ -454,7 +503,7 @@ The user will then be redirected to the post details page for that page with a f
 
 ![Image of the comment section](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_comment_section.PNG)
 
-#### 6.    Goal: Comment on another user’s post
+#### 6.    Goal: As a return visitor I want to be able to comment on another user’s post.
 
 **Expected:** The user should be able to make a comment on another user’s post that will then be displayed on that post for other user’s to see.
 
@@ -462,7 +511,7 @@ The user will then be redirected to the post details page for that page with a f
 
 ![Image of the comment form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_add_comment.PNG)
 
-#### 7.    Goal: Show support for a post
+#### 7.    Goal: As a return visitor I want to be able to show support for a post.
 
 **Expected:** The user should be able to show support to a post that they like or that interests them that would be meaningfully on the post.
 
@@ -471,7 +520,7 @@ The user will then be redirected to the post details page for that page with a f
 ![Image of the post voting button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/vote.PNG)
 ![Image of the post voted button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/vote-check.PNG)
 
-#### 8.    Goal: View posts that they have previously shown support for
+#### 8.    Goal: As a return visitor I should be able to view posts that they have previously shown support for
 
 **Expected:** The user should be able to revisit any posts that they have plussed in the past.
 
@@ -479,7 +528,7 @@ The user will then be redirected to the post details page for that page with a f
 
 ![Image of the plussed posts tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_plussed.PNG)
 
-#### 9.    Goal: View their own posts
+#### 9.    Goal: As a return visitor I should be able to view all of my posts conveniently.
 
 **Expected:** The user should be able to conveniently view all of their own posts in one location.
 
@@ -487,7 +536,7 @@ The user will then be redirected to the post details page for that page with a f
 
 ![Image of the user posts tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_posted.PNG)
 
-#### 10.    Goal: Change their account avatar
+#### 10.    Goal: As a return visitor I would like to be able to change my account avatar
 
 **Expected:** The user should be able to change the avatar that is associated with their account and have that change reflected in all of their posts.
 
@@ -499,7 +548,7 @@ If the user selects one of the provided avatars and clicks the save button then 
 
 ![Image of the avatar modal](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/avatar_select.PNG)
 
-#### 11.    Goal: Use an image url to load an image as their avatar
+#### 11.    Goal: As a return visitor I would like to be able to use an image url to generate a image as my avatar.
 
 
 **Expected:** The user should be able to directly input the url of an image on the internet, and then have that image be used as their account avatar on their account page and on any posts they make.
@@ -512,7 +561,7 @@ If the user selects the url input option and then inserts a url for image into t
 
 #### Administrator Stories
 
-#### 1. Goal: Edit or delete any post
+#### 1. Goal: As the site administrator I should be able to edit or delete any post.
 
 **Expected:** As the site administrator, the user should be able to access the post edit and delete options for all posts.
 
@@ -540,14 +589,32 @@ If the user selects the url input option and then inserts a url for image into t
 
 ## Credits
 
-### Resources Used
-
 ### Code
+
+-   [Bootstrap](https://getbootstrap.com/) library ver. 5 is used throughout the project to make the site responsive and provide the base components/ structure.
+
+-   [Stackoverflow post by jfriend00](https://stackoverflow.com/a/9754838) adapted and used to verify valid image url for direct url input avatar selection.
+
+-   [Stackoverflow post by Roko C. Buljan](https://stackoverflow.com/a/17541916) adapted and used to allow avatar images to be used in place of typical radio buttons.
+
+-   [Geeksforgeeks](https://www.geeksforgeeks.org/python-404-error-handling-in-flask/) article on handling 404 errors using Flask.
+
+-   [hover.css](https://ianlunn.github.io/Hover/) hvr.icon-spin styling used in style.css to implement hover and focus effects on post edit button.
 
 ### Content
 
+-   All of the text content on the site was produced by myself, or friends and family when testing.
+
 ### Media
 
+-   All button and illustrative icons were sourced and imported from [FontAwesome](https://fontawesome.com/)
+-   Favicon created using [Favicon.io](https://favicon.io/)
+
+
 #### Original creators and links to images
+-   User Avatar icons designed by [Freepik.com](https://www.freepik.com/) [link to download location](https://speckyboy.com/free-cute-user-avatar-icon-set/)
+
 
 ### Acknowledgements
+
+- My mentor Oluwafemi for his guidance and advice throughout the project.

@@ -107,26 +107,24 @@
                 {% if post.comments|length > 0 %}
                 <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h4>
                     <!-- Add commment form -->
-                    {% if userPostPage is defined %}
-                    <form method="POST" class="post-details-comment-form"
-                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
-                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
-                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
-                            maxlength="200" required></textarea>
-                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                    </form>
+                    {% if session.user %}
+                        <form method="POST" class="post-details-comment-form"{% if userPostPage is defined %}
+                            action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
+                            {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
+                            <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                                name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                                maxlength="200" required></textarea>
+                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                        </form>
                     {% else %}
-                    <form method="POST" class="post-details-comment-form"
-                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
-                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
-                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
-                            maxlength="200" required></textarea>
-                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                    </form>
+
+                        <div class="comment-form-alt">
+                            <p>You must <a href="{{ url_for('sign_in') }}">sign in</a> to comment on posts</p>
+                        </div>
                     {% endif %}
 
                     <!-- Comment display section -->
-                    {% for comment in post.comments%}
+                    {% for comment in post.comments|reverse %}
                     <div class="post-details-comment">
                         <h3>{{ comment.comment_content}}</h3>
                         <div class="post-details-comment-bottom-row">
@@ -138,25 +136,22 @@
                     <!-- Alt section if there is no comments -->
                     {% else %}
                     <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
-
-                    {% if userPostPage is defined %}
-                    <form method="POST" class="post-details-comment-form"
-                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}">
-                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
-                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
-                            maxlength="200" required></textarea>
-                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                    </form>
+                    {% if session.user %}
+                        <form method="POST" class="post-details-comment-form"{% if userPostPage is defined %}
+                            action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
+                            {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
+                            <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                                name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                                maxlength="200" required></textarea>
+                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                        </form>
                     {% else %}
-                    <form method="POST" class="post-details-comment-form"
-                        action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}">
-                        <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
-                            name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
-                            maxlength="200" required></textarea>
-                        <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                    </form>
+
+                        <div class="comment-form-alt">
+                            <p>You must <a href="{{ url_for('sign_in') }}">sign in</a> to comment on posts</p>
+                        </div>
                     {% endif %}
-                    {% endif %}
+                {% endif %}
             </div>
         </div>
     </div>
