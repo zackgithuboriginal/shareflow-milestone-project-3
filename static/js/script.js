@@ -32,7 +32,7 @@ $(document).ready(function () {
      * When the avatar selection modal of account.html is open and the url input option is selected
      * this will make entering a url required and will apply the active style to the input field
      */
-    $('.modal-direct-input').click(function () {
+    $('#direct-input-image-url').click(function () {
         document.getElementById("direct-url-input-radio").checked = true;
         document.getElementById("direct-input-image-url").required = true;
     });
