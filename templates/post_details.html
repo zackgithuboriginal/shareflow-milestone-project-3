@@ -111,8 +111,8 @@
                         <form method="POST" class="post-details-comment-form"{% if userPostPage is defined %}
                             action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
                             {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
-                            <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
-                                name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                            <textarea class="form-control comment-form-textarea" id="comment_content"
+                                name="comment_content" placeholder="Enter Your Comment Here" minlength="10"
                                 maxlength="200" required></textarea>
                             <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
                         </form>
