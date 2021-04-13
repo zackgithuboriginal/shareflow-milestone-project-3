@@ -376,10 +376,38 @@ The website was tested thoroughly across all major browsers and all screen and d
 
 At the end of the project, the code was put through CSS and HTML validators to ensure there were no errors presented.
 
-#### style.css css validation            [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
-![Image of css validator](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/css_validation.png)
+#### HTML validation [W3 Nu HTML validator](https://validator.w3.org/nu/)
+#### Home page html validation
+![Image of home page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_page_html.png)
 
-#### gym-finder.js js validation         [JSHint](https://jshint.com/)
+#### Post Details page html validation
+![Image of post details page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/details_html.png)
+
+#### Account page html validation
+![Image of account page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_html.png)
+
+#### Create Post page html validation
+![Image of create post page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/create_html.png)
+
+#### Edit Post page html validation
+![Image of edit post page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/edit_post_html.png)
+
+#### Sign Up page html validation
+![Image of sign up page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/register_html.png)
+
+#### Sign In page html validation
+![Image of sign in page results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/sign_in_html.png)
+
+#### Python Validation [PEP8 online check](http://pep8online.com/)
+#### app.py python validation            
+![Image of python validator results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/python_validation.png)
+
+#### CSS Validation [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+#### style.css css validation
+![Image of css validator results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/css_validation.png)
+
+#### Javascript Validation [JSHint](https://jshint.com/)
+#### script.js validation
 ![Image of Js linter results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/script.js-validation.png)
 
 ### Performance Testing
