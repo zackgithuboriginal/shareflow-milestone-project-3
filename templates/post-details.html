@@ -108,7 +108,7 @@
                 <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h4>
                     <!-- Add commment form -->
                     {% if session.user %}
-                        <form method="POST" class="post-details-comment-form"{% if userPostPage is defined %}
+                        <form method="POST" class="post-details-comment-form" {% if userPostPage is defined %}
                             action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
                             {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
                             <textarea class="form-control comment-form-textarea" id="comment_content"
@@ -137,7 +137,7 @@
                     {% else %}
                     <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
                     {% if session.user %}
-                        <form method="POST" class="post-details-comment-form"{% if userPostPage is defined %}
+                        <form method="POST" class="post-details-comment-form" {% if userPostPage is defined %}
                             action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[userPostPage, userPlusPage, active_tab]) }}"
                             {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
                             <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
