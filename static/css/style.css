@@ -1128,17 +1128,30 @@ form.registration-form {
 	justify-content: space-between;
 }
 
-.create-post-form button {
+.create-post-form button,
+.create-post-form a {
 	min-width: 10rem;
 	width: auto;
 	font-size: 1.8rem;
 	margin: 0 auto;
 	margin-top: 2rem;
 	box-shadow: .2rem .3rem .4rem rgba(0, 0, 0, 0.2);
-	height: 4.5rem;
+	padding: .75rem .25rem;
 	text-align: center;
 	color: #ffffff;
 	-webkit-appearance: none;
+}
+
+.create-post-form a {
+    text-decoration: none;
+}
+
+.create-post-form button:focus,
+.create-post-form button:active,
+.create-post-form a:focus,
+.create-post-form a:active {
+    color: #89A6FB;
+    background-color: #ffffff;
 }
 
 .post-form-textarea,
