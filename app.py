@@ -36,10 +36,10 @@ def get_posts(posts, offset=0, per_page=10):
 
 @app.errorhandler(404)
 def page_not_found(e):
-"""
-Route responsible for handling 404 errors
-Renders 404.html page
-"""
+    """
+    Route responsible for handling 404 errors
+    Renders 404.html page
+    """
     return render_template('404.html')
 
 
@@ -123,7 +123,7 @@ def posts():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-"""
+    """
     View responsible for rendering the user register page and creating the user object record
 
     If the function receives a post request from register.html
@@ -139,7 +139,7 @@ def register():
 
     If the function does not receive a post request
     it will instead render the register.html page
-"""
+    """
 
     if request.method == 'POST':
         existing_user = \
@@ -176,9 +176,9 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/edit-avatar/<active_tab>/<userPlusPage>/<userPostPage>',
+@app.route('/edit-avatar/<active_tab>/<user_plus_page>/<user_post_page>',
            methods=['GET', 'POST'])
-def edit_avatar(active_tab, userPlusPage, userPostPage):
+def edit_avatar(active_tab, user_plus_page, user_post_page):
     """
     This view handles users updating their avatar or adding a direct url to use as their avatar
 
@@ -210,8 +210,8 @@ def edit_avatar(active_tab, userPlusPage, userPostPage):
             if selected_avatar == user['account_image']:
                 return redirect(url_for('account', post_id='None',
                                 active_tab=active_tab,
-                                userPlusPage=userPlusPage,
-                                userPostPage=userPostPage))
+                                user_plus_page=user_plus_page,
+                                user_post_page=user_post_page))
             else:
                 updated_avatar = \
                     {'$set': {'account_image': selected_avatar,
@@ -223,26 +223,26 @@ def edit_avatar(active_tab, userPlusPage, userPostPage):
         flash('Image Successfully Updated')
         return redirect(url_for('account', post_id='None',
                         active_tab=active_tab,
-                        userPlusPage=userPlusPage,
-                        userPostPage=userPostPage))
+                        user_plus_page=user_plus_page,
+                        user_post_page=user_post_page))
     else:
         return redirect(url_for('account', post_id='None',
                         active_tab=active_tab,
-                        userPlusPage=userPlusPage,
-                        userPostPage=userPostPage))
+                        user_plus_page=user_plus_page,
+                        user_post_page=user_post_page))
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
-"""
-View handles the rendering of the sign in page and handles the sign in functonality
+    """
+    View handles the rendering of the sign in page and handles the sign in functonality
 
-If the function receives a post request it will take two arguments from the request form
-the username, which must match an existing record in the database
-the password, which must match the hashed password value of the user object
+    If the function receives a post request it will take two arguments from the request form
+    the username, which must match an existing record in the database
+    the password, which must match the hashed password value of the user object
 
-if both match the user is added to the session and redirected to the home page
-"""
+    if both match the user is added to the session and redirected to the home page
+    """
     if request.method == 'POST':
 
         existing_user = \
@@ -276,24 +276,24 @@ if both match the user is added to the session and redirected to the home page
 
 @app.route('/create-post')
 def create_post():
-"""
-This view handles rendering the create post page
-It gets the list of topics from the database to ouput as select options
-"""
+    """
+    This view handles rendering the create post page
+    It gets the list of topics from the database to ouput as select options
+    """
     topics = list(db.topics.find())
     return render_template('create-post.html', topics=topics)
 
 
 @app.route('/add-post', methods=['GET', 'POST'])
 def add_post():
-"""
-This view handles adding a post to the database
+    """
+    This view handles adding a post to the database
 
-The user must be signed in, else they will be redirected and informed that it is necessary to be signed in
+    The user must be signed in, else they will be redirected and informed that it is necessary to be signed in
 
-The function creates an object containing a new post record with data from the request form and another containing the changes to be made to the user's record
-The objects are then added to the database and the user is redirected to the home page
-"""
+    The function creates an object containing a new post record with data from the request form and another containing the changes to be made to the user's record
+    The objects are then added to the database and the user is redirected to the home page
+    """
     if 'user' in session:
         if request.method == 'POST':
             user = db.users.find_one({'username': session['user']})
@@ -336,15 +336,15 @@ The objects are then added to the database and the user is redirected to the hom
 @app.route('/edit-post/<post_id>/<pagination_arguments>', methods=['GET'
            , 'POST'])
 def edit_post(post_id, pagination_arguments):
-"""
-This view handles the rendering of the edit post page as well as adding updated posts to the database
+    """
+    This view handles the rendering of the edit post page as well as adding updated posts to the database
 
-As arguments it accepts post_id and pagination_arguments
-post_id: contains the unique objectid of the post being edited
-pagination_arguments: contains the page specific pagination and tab arguments from the user's previous location
+    As arguments it accepts post_id and pagination_arguments
+    post_id: contains the unique objectid of the post being edited
+    pagination_arguments: contains the page specific pagination and tab arguments from the user's previous location
 
-The pagination arguments are passed to allow the page to be rendered with the correct active tab and correct pagination status
-"""
+    The pagination arguments are passed to allow the page to be rendered with the correct active tab and correct pagination status
+    """
 
     # pagination_arguments is split from a string to an array of values
 
@@ -363,8 +363,8 @@ The pagination arguments are passed to allow the page to be rendered with the co
                     'account',
                     post_id=post_id,
                     active_tab=split_pagination_arguments[2],
-                    userPlusPage=split_pagination_arguments[1],
-                    userPostPage=split_pagination_arguments[0],
+                    user_plus_page=split_pagination_arguments[1],
+                    user_post_page=split_pagination_arguments[0],
                     _anchor=post_id,
                     ))
             else:
@@ -401,8 +401,8 @@ def close_post_edit(post_id, pagination_arguments):
             'account',
             post_id=post_id,
             active_tab=split_pagination_arguments[2],
-            userPlusPage=split_pagination_arguments[1],
-            userPostPage=split_pagination_arguments[0],
+            user_plus_page=split_pagination_arguments[1],
+            user_post_page=split_pagination_arguments[0],
             _anchor=post_id,
             ))
     else:
@@ -411,13 +411,13 @@ def close_post_edit(post_id, pagination_arguments):
 
 
 def process_post_edit(post_id):
-"""
-This function processes the editing of a post
+    """
+    This function processes the editing of a post
 
-It takes the post_id as an argument to find and update the relevant post
+    It takes the post_id as an argument to find and update the relevant post
 
-An object is created with the post details taken from the user's request form and that is then used to change the post's record
-"""
+    An object is created with the post details taken from the user's request form and that is then used to change the post's record
+    """
     post = db.posts.find_one({'_id': ObjectId(post_id)})
     updated_post = {'$set': {'post_title': request.form.get('post_title'
                     ), 'post_content': request.form.get('post_content'
@@ -430,9 +430,9 @@ An object is created with the post details taken from the user's request form an
 
 @app.route('/sign-out')
 def sign_out():
-"""
-This view handles siging the user out of the website by removing the user from the session
-"""
+    """
+    This view handles siging the user out of the website by removing the user from the session
+    """
     flash('Successfully signed out.')
     session.pop('user')
 
@@ -440,19 +440,19 @@ This view handles siging the user out of the website by removing the user from t
 
 
 def process_vote(post_id):
-"""
-This function processes a user's vote
+    """
+    This function processes a user's vote
 
-it accepts the post's unique id value as the only argument
+    it accepts the post's unique id value as the only argument
 
-it will determine whether the user has already voted on the post or not
-if the user has already voted for the post it will remove the vote from the post's record and the post author's record 
-and remove post the post id of the post from the user's record
+    it will determine whether the user has already voted on the post or not
+    if the user has already voted for the post it will remove the vote from the post's record and the post author's record 
+    and remove post the post id of the post from the user's record
 
-if the user has not already voted for the post it will add its vote to the post's record, and the post author's record
-and add the post id of the post to the user's record
+    if the user has not already voted for the post it will add its vote to the post's record, and the post author's record
+    and add the post id of the post to the user's record
 
-"""
+    """
     current_post = db.posts.find_one({'_id': ObjectId(post_id)})
     current_vote = current_post['plusses']
     post_creator = current_post['author']
@@ -514,13 +514,13 @@ and add the post id of the post to the user's record
 
 @app.route('/posts-vote/<post_id>/<page>', methods=['GET', 'POST'])
 def posts_vote(post_id, page):
-"""
-This view handles a user voting on a post from the home page
-it accepts the post_id of the post in order to pass it on to the process vote function
+    """
+    This view handles a user voting on a post from the home page
+    it accepts the post_id of the post in order to pass it on to the process vote function
 
-it accepts the page argument which represents the current active paginated page of posts
-in order to reload the page with the correct page of posts open
-"""
+    it accepts the page argument which represents the current active paginated page of posts
+    in order to reload the page with the correct page of posts open
+    """
     vote_status = process_vote(post_id)
     return redirect(url_for('posts', post_id=post_id, page=page,
                     _anchor=post_id))
@@ -528,14 +528,14 @@ in order to reload the page with the correct page of posts open
 
 @app.route('/vote/<post_id>/<pagination_arguments>')
 def vote(post_id, pagination_arguments):
-"""
-This view handles a user voting on a post from the post details page
-it accepts the post_id of the post in order to pass it on to the process vote function
+    """
+    This view handles a user voting on a post from the post details page
+    it accepts the post_id of the post in order to pass it on to the process vote function
 
-it accepts the pagination_arguments argument which contains the pagination status of the user's location before they 
-opened the post details view. These details are passed through so that when the user closes the post details page they will be redirected to 
-their previous location with the correct page of posts open.
-"""
+    it accepts the pagination_arguments argument which contains the pagination status of the user's location before they 
+    opened the post details view. These details are passed through so that when the user closes the post details page they will be redirected to 
+    their previous location with the correct page of posts open.
+    """
     vote_status = process_vote(post_id)
     split_pagination_arguments = pagination_arguments.replace('[', ''
             ).replace(']', '').replace("'", '').replace(' ', ''
@@ -545,8 +545,8 @@ their previous location with the correct page of posts open.
             'account_post_details',
             post_id=post_id,
             active_tab=split_pagination_arguments[2],
-            userPlusPage=split_pagination_arguments[1],
-            userPostPage=split_pagination_arguments[0],
+            user_plus_page=split_pagination_arguments[1],
+            user_post_page=split_pagination_arguments[0],
             _anchor=post_id,
             ))
     else:
@@ -557,17 +557,17 @@ their previous location with the correct page of posts open.
 @app.route('/comment/<post_id>/<pagination_arguments>', methods=['GET',
            'POST'])
 def add_comment(post_id, pagination_arguments):
-"""
-This view handles the creation of comments
+    """
+    This view handles the creation of comments
 
-Accepted arguments:
-    post_id: this contains the unique objectid value of the post that is being commented on
-    pagination_arguments: this contains the pagination status of the user's location before they 
-    opened the post details view
+    Accepted arguments:
+        post_id: this contains the unique objectid value of the post that is being commented on
+        pagination_arguments: this contains the pagination status of the user's location before they 
+        opened the post details view
 
-The comment's details are taken from the user's request form and added to a new comment object that is 
-then added to the relevant record's comment array
-"""
+    The comment's details are taken from the user's request form and added to a new comment object that is 
+    then added to the relevant record's comment array
+    """
     split_pagination_arguments = pagination_arguments.replace('[', ''
             ).replace(']', '').replace("'", '').replace(' ', ''
             ).split(',')
@@ -616,8 +616,8 @@ then added to the relevant record's comment array
                     'account_post_details',
                     post_id=post_id,
                     active_tab=split_pagination_arguments[2],
-                    userPlusPage=split_pagination_arguments[1],
-                    userPostPage=split_pagination_arguments[0],
+                    user_plus_page=split_pagination_arguments[1],
+                    user_post_page=split_pagination_arguments[0],
                     _anchor=post_id,
                     ))
             else:
@@ -632,8 +632,8 @@ then added to the relevant record's comment array
                 'account_post_details',
                 post_id=post_id,
                 active_tab=split_pagination_arguments[2],
-                userPlusPage=split_pagination_arguments[1],
-                userPostPage=split_pagination_arguments[0],
+                user_plus_page=split_pagination_arguments[1],
+                user_post_page=split_pagination_arguments[0],
                 _anchor=post_id,
                 ))
         else:
@@ -673,21 +673,21 @@ def delete_post(post_id, pagination_arguments):
     if len(split_pagination_arguments) == 3:
         return redirect(url_for('account', post_id='None',
                         active_tab=split_pagination_arguments[2],
-                        userPlusPage=split_pagination_arguments[1],
-                        userPostPage=split_pagination_arguments[0]))
+                        user_plus_page=split_pagination_arguments[1],
+                        user_post_page=split_pagination_arguments[0]))
     else:
         return redirect(url_for('posts',
                         page=split_pagination_arguments[0]))
 
 
 def process_post_details(post_id):
-"""
-This function finds a post using it's unique id an then returns the details along with the full list of user records in order to supply the 
-avatars used by each post
+    """
+    This function finds a post using it's unique id an then returns the details along with the full list of user records in order to supply the 
+    avatars used by each post
 
-If the user is signed in it will also find their record to determine whether the user has voted for the
-post or not
-"""
+    If the user is signed in it will also find their record to determine whether the user has voted for the
+    post or not
+    """
     post = db.posts.find_one({'_id': ObjectId(post_id)})
     users = list(db.users.find())
     if 'user' in session:
@@ -703,18 +703,18 @@ post or not
 
 @app.route('/post-details/<post_id>/<post_page>')
 def post_details(post_id, post_page):
-"""
-This view handles the rendering of the post details page from the home page
+    """
+    This view handles the rendering of the post details page from the home page
 
-Accepted arguments:
-    post_id: this contains the unique objectid value of the post that is being opened
-    post_page: this contains the pagination status of the home page when the user opened the post details view
+    Accepted arguments:
+        post_id: this contains the unique objectid value of the post that is being opened
+        post_page: this contains the pagination status of the home page when the user opened the post details view
 
-The post id will be used to find the post's record in the posts collection and then access it's details
+    The post id will be used to find the post's record in the posts collection and then access it's details
 
-Routing parameters is the array returned from the process_post_details function. It contains the data necessary
- to render the page depending on whether the user is signed in or not
-"""
+    Routing parameters is the array returned from the process_post_details function. It contains the data necessary
+    to render the page depending on whether the user is signed in or not
+    """
     if db.posts.find_one({'_id': ObjectId(post_id)}):
         routing_parameters = process_post_details(post_id)
         if 'user' in session:
@@ -734,62 +734,62 @@ Routing parameters is the array returned from the process_post_details function.
         return redirect(url_for('posts', post_page=post_page))
 
 
-@app.route('/account-vote/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>'
+@app.route('/account-vote/<active_tab>/<post_id>/<user_plus_page>/<user_post_page>'
            , methods=['GET', 'POST'])
 def account_vote(
     post_id,
     active_tab,
-    userPlusPage,
-    userPostPage,
+    user_plus_page,
+    user_post_page,
     ):
-"""
-This view handles the process of voting when the user is on the account page
+    """
+    This view handles the process of voting when the user is on the account page
 
-Accepted arguments:
-    post_id: this contains the unique objectid value of the post that is being voted on, this value is passed into
-    the process_vote_function
-    active_tab: this contains the current value of which account tab is open, posts or plussed
-    user_post_page: contains the current value of the paginated page of user posts
-    user_plus_page: contains the current value of the paginated page of user plussed posts
+    Accepted arguments:
+        post_id: this contains the unique objectid value of the post that is being voted on, this value is passed into
+        the process_vote_function
+        active_tab: this contains the current value of which account tab is open, posts or plussed
+        user_post_page: contains the current value of the paginated page of user posts
+        user_plus_page: contains the current value of the paginated page of user plussed posts
 
-The pagination status arguments are used to reload the page with the correct pages open maintain positive user experience
-"""
+    The pagination status arguments are used to reload the page with the correct pages open maintain positive user experience
+    """
     vote_status = process_vote(post_id)
     return redirect(url_for(
         'account',
         post_id=post_id,
         active_tab=active_tab,
-        userPlusPage=userPlusPage,
-        userPostPage=userPostPage,
+        user_plus_page=user_plus_page,
+        user_post_page=user_post_page,
         _anchor=post_id,
         ))
 
 
-@app.route('/account-post-details/<active_tab>/<post_id>/<userPlusPage>/<userPostPage>'
+@app.route('/account-post-details/<active_tab>/<post_id>/<user_plus_page>/<user_post_page>'
            )
 def account_post_details(
     post_id,
     active_tab,
-    userPlusPage,
-    userPostPage,
+    user_plus_page,
+    user_post_page,
     ):
 
-"""This view handles the rendering of the post details page from the account page
+    """This view handles the rendering of the post details page from the account page
 
-Accepted arguments:
-    post_id: this contains the unique objectid value of the post that is being opened
-    active_tab: this contains the current value of which account tab is open, posts or plussed
-    user_post_page: contains the current value of the paginated page of user posts
-    user_plus_page: contains the current value of the paginated page of user plussed posts
+    Accepted arguments:
+        post_id: this contains the unique objectid value of the post that is being opened
+        active_tab: this contains the current value of which account tab is open, posts or plussed
+        user_post_page: contains the current value of the paginated page of user posts
+        user_plus_page: contains the current value of the paginated page of user plussed posts
 
-The post id will be used to find the post's record in the posts collection and then access it's details
+    The post id will be used to find the post's record in the posts collection and then access it's details
 
-Routing parameters is the array returned from the process_post_details function. It contains the data necessary
- to render the page depending on whether the user is signed in or not
+    Routing parameters is the array returned from the process_post_details function. It contains the data necessary
+    to render the page depending on whether the user is signed in or not
 
-The three pagination arguments are passed through to enable the accout page to reload with the correct 
-pagination and tab status when the post details are closed
-"""
+    The three pagination arguments are passed through to enable the accout page to reload with the correct 
+    pagination and tab status when the post details are closed
+    """
 
     if db.posts.find_one({'_id': ObjectId(post_id)}):
         routing_parameters = process_post_details(post_id)
@@ -801,42 +801,42 @@ pagination and tab status when the post details are closed
                 user_plusses=routing_parameters[1],
                 users=routing_parameters[2],
                 user=routing_parameters[3],
-                userPlusPage=userPlusPage,
-                userPostPage=userPostPage,
+                user_plus_page=user_plus_page,
+                user_post_page=user_post_page,
                 )
         return render_template(
             'post-details.html',
             active_tab=active_tab,
             post=routing_parameters[0],
             users=routing_parameters[1],
-            userPlusPage=userPlusPage,
-            userPostPage=userPostPage,
+            user_plus_page=user_plus_page,
+            user_post_page=user_post_page,
             )
     else:
         return redirect(url_for('account', post_id='None',
                         active_tab=active_tab,
-                        userPlusPage=userPlusPage,
-                        userPostPage=userPostPage))
+                        user_plus_page=user_plus_page,
+                        user_post_page=user_post_page))
 
 
 
 
 @app.route('/account/<post_id>/<active_tab>', methods=['GET', 'POST'])
 def account(post_id, active_tab):
-"""
-This view handles the rendering of the account page
+    """
+    This view handles the rendering of the account page
 
-It uses the session user's attribute to find the user record of the user
-It then finds all posts where the user is the author and all posts that the user has voted for
+    It uses the session user's attribute to find the user record of the user
+    It then finds all posts where the user is the author and all posts that the user has voted for
 
-It will generate paginated lists for those two arrays and an individual pagination instance for both
+    It will generate paginated lists for those two arrays and an individual pagination instance for both
 
-The arguments passed to the render of the page are:
-        active tab either posts or plusses specified,
-        the users username,
-        a list of all user records for finding the avatar needed to display on each post,
-        an the respective pagination parameters for both the posts list and the plusses list
-"""
+    The arguments passed to the render of the page are:
+            active tab either posts or plusses specified,
+            the users username,
+            a list of all user records for finding the avatar needed to display on each post,
+            an the respective pagination parameters for both the posts list and the plusses list
+    """
     if session['user']:
         user = db.users.find_one({'username': session['user']})
         username = user['username']
@@ -875,7 +875,7 @@ The arguments passed to the render of the page are:
         # i.e page 2 will be 10 - 19 page 4 will be 30 - 39 ...
 
         (plussesPage, per_page, offset) = \
-            get_page_args(page_parameter='userPlusPage',
+            get_page_args(page_parameter='user_plus_page',
                           per_page_parameter='per_page')
 
         # Total length of plussed posts used to determine the total number of pages
@@ -889,21 +889,21 @@ The arguments passed to the render of the page are:
 
         # Pagination contains the pagination details, and data for navigation
 
-        pagination_plussed = Pagination(page_parameter='userPlusPage',
-                userPlusPage=plussesPage, per_page=per_page,
+        pagination_plussed = Pagination(page_parameter='user_plus_page',
+                user_plus_page=plussesPage, per_page=per_page,
                 total=totalPlussedPosts, css_framework='bootstrap4')
 
         # As above but for user authored posts
 
         (postsPage, per_page, offset) = \
-            get_page_args(page_parameter='userPostPage',
+            get_page_args(page_parameter='user_post_page',
                           per_page_parameter='per_page')
 
         totalUserPosts = len(userPosts)
         pagination_posts_list = get_posts(posts=userPosts,
                 offset=offset, per_page=per_page)
-        pagination_posts = Pagination(page_parameter='userPostPage',
-                userPostPage=postsPage, per_page=per_page,
+        pagination_posts = Pagination(page_parameter='user_post_page',
+                user_post_page=postsPage, per_page=per_page,
                 total=totalUserPosts, css_framework='bootstrap4')
 
         # if the post id passed in is = None then the page will render on the default tab
@@ -917,10 +917,10 @@ The arguments passed to the render of the page are:
                 userPlusses=pagination_plussed_list,
                 plussed_posts=plussed_posts,
                 pagination_plussed=pagination_plussed,
-                userPostPage=postsPage,
+                user_post_page=postsPage,
                 user=user,
                 userPosts=pagination_posts_list,
-                userPlusPage=plussesPage,
+                user_plus_page=plussesPage,
                 per_page=per_page,
                 pagination_posts=pagination_posts,
                 )
@@ -938,11 +938,11 @@ The arguments passed to the render of the page are:
                     userPlusses=pagination_plussed_list,
                     plussed_posts=plussed_posts,
                     pagination_plussed=pagination_plussed,
-                    userPostPage=postsPage,
+                    user_post_page=postsPage,
                     active_tab='posts',
                     user=user,
                     userPosts=pagination_posts_list,
-                    userPlusPage=plussesPage,
+                    user_plus_page=plussesPage,
                     per_page=per_page,
                     pagination_posts=pagination_posts,
                     _anchor='#' + post_id,
@@ -958,11 +958,11 @@ The arguments passed to the render of the page are:
                     userPlusses=pagination_plussed_list,
                     plussed_posts=plussed_posts,
                     pagination_plussed=pagination_plussed,
-                    userPostPage=postsPage,
+                    user_post_page=postsPage,
                     active_tab='plusses',
                     user=user,
                     userPosts=pagination_posts_list,
-                    userPlusPage=plussesPage,
+                    user_plus_page=plussesPage,
                     per_page=per_page,
                     pagination_posts=pagination_posts,
                     _anchor='#' + post_id,
@@ -972,9 +972,9 @@ The arguments passed to the render of the page are:
 
 
 def alertUser(key):
-"""
-This function sends a flash message to the user if they try and take an action without being logged in
-"""
+    """
+    This function sends a flash message to the user if they try and take an action without being logged in
+    """
     if key == 'session':
         flash('You must be signed in to vote')
     return 'Ok'

@@ -124,8 +124,8 @@ function profileTabDisplayParse() {
         let prevUserPlusPage = "1";
         let prevUserPostPage = "1";
 
-        let currentUserPlusPage = checkSearchParams("userPlusPage");
-        let currentUserPostPage = checkSearchParams("userPostPage");
+        let currentUserPlusPage = checkSearchParams("user_plus_page");
+        let currentUserPostPage = checkSearchParams("user_post_page");
 
         /**
          * If statement to ensure the document referrer contains a query before continuing in logic
@@ -135,15 +135,15 @@ function profileTabDisplayParse() {
 
             /**
              * Splits and isolates the query section from referrer
-             * i.e 'https://shareflow-milestone-project-3.herokuapp.com/account/None?userPlusPage=2&userPostPage=2' to 'userPlusPage=2&userPostPage=2'
+             * i.e 'https://shareflow-milestone-project-3.herokuapp.com/account/None?user_plus_page=2&user_post_page=2' to 'user_plus_page=2&user_post_page=2'
              */
             let prevUrl = document.referrer.split("?")[1];
 
             /**
              * If two parameters are present in url, splits them , and the further splits to seperate name of arg from value
-             * i.e 'userPlusPage=2&userPostPage=2'
-             * =>     'userPlusPage=2'
-             * =>     'userPlusPage' and '2'
+             * i.e 'user_plus_page=2&user_post_page=2'
+             * =>     'user_plus_page=2'
+             * =>     'user_plus_page' and '2'
              */
             if (prevUrl.includes("&")) {
                 prevUrlFirstParam = prevUrl.split("&")[0].split("=")[0];
@@ -154,7 +154,7 @@ function profileTabDisplayParse() {
                 /**
                  * This section assigns values to the variables representing the previous url's argument values
                  */
-                if (prevUrlFirstParam == "userPostPage") {
+                if (prevUrlFirstParam == "user_post_page") {
                     prevUserPostPage = prevUrlFirstParamValue;
                     prevUserPlusPage = prevUrlSecondParamValue;
 
@@ -169,7 +169,7 @@ function profileTabDisplayParse() {
             } else {
                 prevUrlFirstParam = prevUrl.split("=")[0];
                 prevUrlFirstParamValue = prevUrl.split("=")[1];
-                if (prevUrlFirstParam == "userPostPage") {
+                if (prevUrlFirstParam == "user_post_page") {
                     prevUserPostPage = prevUrlFirstParamValue;
 
                 } else {
