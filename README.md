@@ -600,7 +600,58 @@ If the user selects the url input option and then inserts a url for image into t
 ### Manual Functionality Testing
 
 
-### Bugs Discovered
+### Bugs Discovered 
+
+1.
+The first bug that i will highlight is an issue that arose regarding the display of plussed posts on the account page. The issue, as seen in the image below that arose was that the number of posts that were displaying on the individual paginated pages were inconsistent and often less than the designated number.
+
+![Image of posts per paginated page issue](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_plussed_issue.PNG)
+
+After investigating the issue I figured out that issue was arising because of the way in which the posts were being displayed. In order to not display the posts that the user themselves had authored and then plussed in the plussed tab as well as in the authored posts tab, a conditional statement was being implemented before the jinja templating rendered the post as seen in the following code block.
+
+    {% for post in userPlusses%}
+      {% if post.author != session['user'] %}
+         <div class="post-card">
+
+While this code had the desired effect of displaying all of the plussed posts except for the self authored ones it was causing an issue as the self authored posts were still included in the original list that was then sliced to create the smaller lists for pagination purposes. This was resulting in the shortened list that was to be displayed as one page of posts and that was supposed to be 10 posts long potentially having no displayable posts.
+
+Once the problem and its cause was fully known the fix was straightforward enough. It involved iterating through the list of plussed posts in the original python function, and if the posts were not self authored then they would be added to a list that was then used to created the paginated lists and output by the function and rendered on the page.
+
+    userPlusses = []
+    postsPlussed = list(
+          mongo.db.posts.find({"users_voted": session["user"]})
+    for post in postsPlussed:
+          if post[author] != session['user']:
+                userPlusses.append(post)
+
+![Image of posts per paginated page issue resolution](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_plussed_resolved.PNG)
+
+2. 
+Another bug that I encountered and will highlight was a bug that was relating to the handling of a database update request. It was a small issue but required some figuring out none the less. The issue was caused by attempting to add a comment to a post which would result in the page failing to reload and presenting an error message.
+
+![Image of error message on add comment attempt](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/comments_object_issue.PNG)
+
+After examining the error message which stated that "the field 'comments' must be an array but is of type object." I looked into the structure of the post object and the comments field. As the error message stated it was the incorrect type and that was causing an issue because the manner in which the new comment was being added was with a '$push' operator which works by adding an item to an array. By simply changing the comments field of the post object from
+
+```
+post = {
+        ...
+        'comments': {},
+        ...
+        }
+```
+
+to 
+
+```
+post = {
+        ...
+        'comments': [],
+        ...
+        }
+```
+
+it allowed for a new comment to be pushed to the array and stored in the field. The page would then load successfully and allow for comments to be added once again.
 
 
 ## Deployment
