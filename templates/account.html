@@ -245,7 +245,7 @@
                         </label>
                         <input type="radio" name="avatar_select" value="direct_input" id="direct-url-input-radio"
                             {% if user.directly_input_url == True %}checked{% endif %} required>
-                        <input type="text" name="avatar_direct_input" placeholder="Enter a valid image url"
+                        <input type="url" name="avatar_direct_input" placeholder="Enter a valid image url"
                             id="direct-input-image-url" class="form-control direct-input-text-field"
                             {% if user.directly_input_url == True %} value={{ user.account_image }} {% endif %}>
                         <!-- Avatar radio selection -->
