@@ -657,14 +657,117 @@ it allowed for a new comment to be pushed to the array and stored in the field. 
 ## Deployment
 
 ### To Publish to Heroku
+Before publishing to Heroku it was necessary to set up two files in order to enable heroku to run the project correctly. These are the requirements.txt which inform heroku what dependencies are needed to run the website and the Procfile which informs heroku what file is needed to start the project and how. To create these files the following command line commands are used.
+
+    pip3 freeze --local > requirements.txt
+    echo web: python app.py > Procfile
+
+Following the creation of these files it is now possible to deploy the project to heroku.
+Begin by logging in to your Heroku account and navigating to the dashboard. From the dashboard select the New button and the New App option in the dropdown menu.
+
+![Image of the New app dropdown menu](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_1.PNG)
+
+In the form that then appears enter the project's name and select the appropriate region for your circumstance. Then select the Create app button.
+
+![Image of the app settings form](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_2.PNG)
+
+In the deployment tab then scroll down to the deployment method section and select the Github option. 
+
+![Image of the deployment options](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_3.PNG)
+
+So long as you have your github account linked to your heroku account you can then enter the repository name in the input field and click the connect button next to the correct repository after searching.
+
+![Image of the repository search field](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_4.PNG)
+
+After connecting to the repository navigate to the Settings tab and the config vars section. Click the reveal config vars and input the variables from your applications env.py file.
+
+![Image of the config vars section](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_7.PNG)
+
+After adding the config vars navigate to the deploy tab and enable automatic updates and then click the deploy branch button in the manual deploy section.
+
+![Image of the manual deploy button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_8.PNG)
+
+The project will then be successfully hosted on heroku and can be accessed by clicking the Open App button.
+
+![Image of the Open App button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_9.PNG)
+
+### To Connect your Database to the Project
+
+
+To connect your project to the MongoDB cluster, log in to your mongodb account and navigate to the overview tab of the cluser you wish to connect.
+
+![Image of the overview tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/mongo_deploy_1.PNG)
+
+![Image of the connect tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/mongo_deploy_2.PNG)
+
+Click the connect button on the right hand side of the page and then  select the 'Connect your application' option.
+
+![Image of the connect your application button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/mongo_deploy_3.PNG)
+
+Fill in the correct options for driver and version, in this project's case it is Python and the latest version.
+
+![Image of the connection settings](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/mongo_deploy_4.PNG)
+
+Then edit the database name and password variables in the URI string that is presented below to match your project's details.
+
+![Image of the database uri](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/mongo_deploy_5.PNG)
+
+Copy the string and input it in the field for MONGO_URI in your env.py file and heroku config var settings
+
+![Image of the config var field for mongo_uri](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/mongo_deploy_6.PNG)
+
+Then create an instance of pymongo in your app.py file by entering  
+     
+    mongo = PyMongo(app) 
 
 ### To Clone the Repository and Run Locally
-
 #### To Clone Using the Command Line
+
+Navigate to the home page of the repository.
+
+To the top right of the repository file directory click the "Code" button.
+
+![Image of the clone repository tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/clone_1.PNG)
+
+Make sure that the HTTPS tab is open and click the copy to clipboard button.
+
+![Image of the option to copy HTTPS link](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/clone_2.PNG)
+
+Navigate to your IDE and open the directory to which you want to clone the repository
+
+Open the terminal and type "git clone" followed by the contents of the clipboard which will be "https://github.com/zackgithuboriginal/workout-plus-milestone-project-2.git" click enter and the repository will then clone to that directory.
+
+    git clone https://github.com/zackgithuboriginal/shareflow-milestone-project-3.git
 
 #### To Clone Using GitHub Desktop
 
+Navigate to the home page of the repository.
+
+To the top right of the repository file directory click the "Code" button.
+
+![Image of the clone repository tab](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/clone_1.PNG)
+
+Halfway down the tab click the "Open with GitHub Desktop" option.
+
+![Image of the open GitHub desktop button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/clone_3.PNG)
+
+If the GitHub Desktop application is installed and open it will be presented with this prompt.
+
+![Image of the GitHub desktop prompt](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/clone_4.PNG)
+
+Enter the desired location to clone the repository to and click the clone button. 
+
+The repository will then be cloned to that location.
+
 #### To Run the Project Locally
+
+To run the project locally there are a number of things that you need to do. 
+Firstly open the project in your IDE of choice and ensure that all of the dependencies listed in Requirements.txt are installed.
+
+Then you need to recreate the env.py file containing the config vars as these will be necessary for the full functionality of the website.
+After adding all of the necessary settings to the env.py the project will run locally and you can host locally by using the following command.
+
+    python3 app.py
 
 ## Credits
 
@@ -679,6 +782,8 @@ it allowed for a new comment to be pushed to the array and stored in the field. 
 -   [Geeksforgeeks](https://www.geeksforgeeks.org/python-404-error-handling-in-flask/) article on handling 404 errors using Flask.
 
 -   [hover.css](https://ianlunn.github.io/Hover/) hvr.icon-spin styling used in style.css to implement hover and focus effects on post edit button.
+
+-    [Flask Paginate Tutorial](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9) to get an understanding of how to implement the flask paginate library
 
 ### Content
 
