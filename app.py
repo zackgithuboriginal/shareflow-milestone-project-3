@@ -271,38 +271,42 @@ def sign_in():
     if both match the user is added to the session and
     redirected to the home page
     """
+    if 'user' not in session:
 
-    if request.method == 'POST':
+        if request.method == 'POST':
 
-        existing_user = \
-            db.users.find_one({'username': request.form.get(
-                               'username').lower()})
+            existing_user = \
+                db.users.find_one({'username': request.form.get(
+                                'username').lower()})
 
-        if existing_user:
-            if check_password_hash(existing_user['password'],
-                                   request.form.get('password')):
-                session['user'] = request.form.get('username').lower()
-                flash('Successfully Signed In')
-                return redirect(url_for('posts'))
+            if existing_user:
+                if check_password_hash(existing_user['password'],
+                                    request.form.get('password')):
+                    session['user'] = request.form.get('username').lower()
+                    flash('Successfully Signed In')
+                    return redirect(url_for('posts'))
+                else:
+
+                    # If there is no password match the page is reloaded
+                    # and the user is informed
+
+                    flash('Incorrect Account Details')
+                    return redirect(url_for('sign_in'))
             else:
 
-                # If there is no password match the page is reloaded
-                # and the user is informed
+                # If there is no existing user the page is
+                # reloaded and the user is informed
 
                 flash('Incorrect Account Details')
                 return redirect(url_for('sign_in'))
-        else:
 
-            # If there is no existing user the page is
-            # reloaded and the user is informed
+        # If the user is not submitting the form the
+        # default behaviour of rendering the page will occur
 
-            flash('Incorrect Account Details')
-            return redirect(url_for('sign_in'))
-
-    # If the user is not submitting the form the
-    # default behaviour of rendering the page will occur
-
-    return render_template('sign-in.html')
+        return render_template('sign-in.html')
+    else: 
+        flash('You are already signed in.')
+        return redirect(url_for('posts'))
 
 
 @app.route('/create-post')
