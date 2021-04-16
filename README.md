@@ -602,6 +602,98 @@ If the user selects the URL input option and then inserts a URL for an image int
 ### Manual Functionality Testing
 
 
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Home Page | Click on navbar ShareFlow brand | Page reloads | Pass
+Home Page | Select 'Most Popular' option in sort by field | Page reloads with posts sorted in descending order of 'plusses', sort by field displays 'Most Popular' | Pass
+Home Page | Select 'Entertainment' option in filter field | Page reloads with only posts with topic of 'Entertainment' displayed, filter field displays 'Entertainment'| Pass
+Home Page | Click the link to navigate to the second page of posts | Selection of posts displayed changes to the next 10, maintains chronological sort | Pass
+Home Page | Sort page by most popular, then navigate to the second page of posts | Page displays next 10 posts ordered by number of 'plusses', sort by field displays 'Most Popular' | Pass
+Home Page | Navigate to second page of posts, then change filter criteria to 'Entertainment' | Page reloads only displaying Entertainment posts, on page one of posts | Pass
+Home Page | Click on the + icon of a post while not signed in | Page reloads focused on the relevant post. Page displays a message to user that signing in is necessary to vote.  | Pass
+Home Page | Click on the + icon of a post while signed in | Page reloads focused on the relevant post. Number tally below icon displays the previous total + 1. Plus icon replaced by a tick icon. | Pass
+Home Page | Click on the tick icon of a post. | Page reloads focused on the relevant post. Number tally below icon displays the previous total - 1. Tick icon replaced by a plus icon. | Pass
+Home Page | Click the 'View Post' button on a post | Browser navigates to the post details page for that page. | Pass
+Home Page | When signed in click the 'cog' icon on a post. | Dropdown menu appears displaying post deletion and edit options. | Pass
+Home Page | When signed in click the 'cog' icon on a post, then click the edit post option. | Browser navigates to the edit post page for that post, with that post's details filled in and editable | Pass
+Home Page | When signed in click the 'cog' icon on a post, then click the delete post option. | Page reloads at the top of the active page of posts, message displayed informing user that the post was successfully deleted. Post removed from display and database record. | Pass
+Home Page | Click on the floating action button labelled with a '+' and a label of 'create post' while not signed in. | Browser navigates to the sign in page | Pass
+Home Page | Click on the floating action button labelled with a '+' and a label of 'create post' while signed in. | Browser navigates to the create post page. | Pass
+Home Page | Navigate to the second page of posts and click the 'view post' button of a post on that page. Then close the post details page using the button labelled 'close'. | Browser navigates back to home page, to the second page of posts and directly to the post that was active. | Pass
+Home Page | Navigate to the second page of posts and click the 'edit post' option on a post that you authored on that page. Then either close or submit the edit post form.  | Browser navigates back to home page, to the second page of posts and directly to the post that was open in the edit post page. | Pass
+
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Create Post Page | Click the 'Add' button without filling in all three fields | Nothing happens, validation messages appear on fields informing user they are required. | Pass
+Create Post Page | Click the Post Topic field. | Dropdown select menu appears with topic options. | Pass
+Create Post Page | Fill out all three fields and click 'Add' button.| Browser navigates to home page. Page displays message informing user that the post was succesfully created. New post is visible at top of page. | Pass
+Create Post Page | Enter 5 characters into the post title field. Then click 'Add'. | Nothing happens, validation message appears below post title field informing user that there needs to be a minimum 8 characters in the title. | Pass
+Create Post Page | Enter 5 characters into the post content field. Then click 'Add'. | Nothing happens, validation message appears below post title field informing user that there needs to be a minimum 20 characters in the post content. | Pass
+
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Edit Post Page | Delete all of the text in the Post Title field. Then click the 'Save Changes' button. | Nothing happens, validation message appears informing user that the field is required.| Pass
+Edit Post Page | Delete all of the text in the Post Title field except for five characters. Then click the 'Save Changes' button. | Nothing happens, validation message appears below post title field informing user that there needs to be a minimum 8 characters in the title. | Pass
+Edit Post Page | Change the Post Tite and Post Content field inputs and Click the 'Save Changes' button. | Browser redirects user to their previous location, directly to the edited post and the page's previous pagination status. Post's content reflects the new changes and page displays a message informing user that the post was updated succesfully. | Pass
+Edit Post Page | Change the Post Tite and Post Content field inputs and click the 'Cancel Changes' button. | PBrowser redirects user to their previous location directly to the post that was open. The post's content will remain unchanged. | Pass
+Edit Post Page | Click the 'Sign Out' link in the navbar and then hit the return button on the browser. | The browser will navigate to the Sign In page and display a flash informing the user of a successful sign out. Then when the return button is clicked the browser will navigate to the home page and inform the user that they must be signed in to edit posts. | Pass
+
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Account Page | Click the 'Plussed Posts' tab | The displayed posts on the page will change from posts authored by the user to posts that the user has 'plussed' | Pass
+Account Page | Click the 'Plussed Posts' tab, then navigate to the second page of Plussed Posts. | The page will display the posts that the user has 'plussed' and then the page will reload with the 'Plussed Posts' tab active and display the next 10 posts. | Pass
+Account Page | Navigate to the second page of posts in the 'Your Posts' tab, then switch to the 'Plussed Posts' tab and navigate to the second page of 'Plussed' posts. Then return to the 'Your Posts' tab. | The page will display the second page of 'Your Posts' posts and then display the 'Plussed Posts' tab. When the user navigates to the second page of posts the page will reload with the plussed posts tab active. When the user returns to the 'Your Posts' tab the tab will display the second page of 'Your Posts' posts. | Pass
+Account Page | Navigate to the second page of posts in the 'Your Posts' tab, then switch to the 'Plussed Posts' tab and navigate to the second page of 'Plussed' posts. Then click the 'View Post' button of a post and click the 'Close' button when the Post Details page opens. | After clicking the 'Close' button of the post details page, the account page will open with the Plussed Posts tab active and on the second page of posts. The 'Your Posts' tab will also be on the second page of posts. | Pass
+Account Page | Click on the + icon of a post on the 'Your Posts' tab | Page will reload with the correct pagination conditions and with the 'Your Posts' tab active. The Post will display a tick icon instead of a plus and the vote tally below the icon will increase by 1. | Pass
+Account Page | Click on the tick icon of a post on the 'Plussed Posts' tab | Page will reload with correct pagination conditions and with the Plussed Posts tab active, the post that was voted on will no longer be displayed | Pass
+Account Page | Click the 'Update Image' link | Modal window pops up with avatar selection form and direct url input field | Pass
+Account Page | Click the 'Update Image' link. Then select a new avatar and click the submit button. | Account page reloads and displays the new avatar in the account details section. Also displays the new avatar on the self authored posts in the Your Posts tab. | Pass
+Account Page | Click the 'Update Image' link. Then input a non url string into the direct input field and click the submit button. | Validation warning appears below field informing user to enter a url | Pass
+Account Page | Click the 'Update Image' link. Then input a url that does relate to an image into the direct input field and click the submit button. | Page alerts user that the url they submitted does not contains one of the allowed file extensions | Pass
+Account Page | Click the 'Update Image' link. Then input a fake url that contains a .jpg file extension and click the submit button. | Page alerts user that the url they submitted does not point to a valid image | Pass
+Account Page | Click the 'Update Image' link. Then input a url meets the requirements and relates to an image and click the submit button. | Account page reloads and displays the new image in the account details section. Also displays the new image on the self authored posts in the Your Posts tab. | Pass
+Account Page | Click the 'Sign Out' link in the navbar. Then hit the return button on the browser | The browser will navigate to the Sign In page and display a flash informing the user of a successful sign out. Then when the return button is clicked the browser will reload the sign in page. | Pass | Pass
+
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Register Page | Click the 'Sign In' link at the bottom of the page. | Browser will navigate to the Sign In page| Pass
+Register Page | Enter a username that already exists and submit the form | Page will reload and display a message informing user that the username is unavailable. | Pass
+Register Page | Enter a username that is longer than 15 characters and submit | Box will outline in red and validation message will appearing informing user of requirements| Pass
+Register Page | Enter a password that is 5 characters long and submit  | Box will outline in red and validation message will appearing informing user of requirements| Pass
+Register Page | Enter a valid password and a non matching string in the repeat password field | Box will outline in red and tester will be informed that the passwords must match  | Pass
+Register Page | Fill out all fields correctly and submit. | Browser will redirect to home page and page will display a message informing user that the Registration was successful | Pass
+Register Page | Fill out all fields correctly and submit. Then hit the return button on the browser. | Browser will navigate to the home page and dispay a message informing the user that they are already signed in | Pass
+
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Sign In Page | Click the 'Register Now' link at the bottom of the page. | Browser will navigate to the Registration page| Pass
+Sign In Page | Submit the form without filling in fields | Nothing will happen, input fields will display validation message informing user that they are required | Pass
+Sign In Page | Submit the form with username filled in but with incorrect password | Page will reload and display message of "Incorrect Account Details" | Pass
+Sign In Page | Submit the form with incorrect username | Page will reload and display message of "Incorrect Account Details" | Pass
+Sign In Page | Submit the form with correct details | Browser navigates to home page, displays message informing user of successful sign in | Pass
+Sign In Page | Submit the form with correct details and then hit return button on browser | Browser navigates to home page, on return button click home page will reload and display message, 'you are already signed in' | Pass
+
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+Post Details Page | Click on the + icon while not signed in | Page reloads and displays a message that you must besigned in to vote | Pass
+Post Details Page | Click on the + icon while signed in | Page reloads, plus icon is replaced with a tick icon and vote tally below icon will be increased by 1 | Pass
+Post Details Page | Click on the tick icon | Page reloads, tick icon is replaced with a plus icon and vote tally below iccon will be decreased by 1 | Pass
+Post Details Page | Click the 'Close Button' | Browser will navigate to the user's previous page, either the account page or the home page. If user had navigated to a different page of posts or a different tab in the case of the account page, the page will return to those conditions. | Pass
+Post Details Page | Click the submit comment button without entering text in the textarea | Nothing will happed, validation message will appear below the textarea informing user it is required. | Pass
+Post Details Page | If not signed in click the sign in link in the comment section | Browser will navigate to the Sign In page | Pass
+Post Details Page | Type a message into the textarea and click the 'Submit' button. | Page will reload and display a message informing user that the comment was made successfully. Comment will be displayed at the top of the comment section with all relevant details. | Pass
+
+Page | Action | Expected Result | Result
+------------ | ------------- | ------------- | -------------
+404 Reponse Page | Wait 5 seconds | Browser will navigate to the home page. | Pass
+404 Reponse Page | Click the 'click here' link | Browser will navigate to the home page. | Pass
+
 
 ### Bugs Discovered 
 
