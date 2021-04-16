@@ -106,51 +106,52 @@
             <div class="post-details-comment-container">
                 {% if post.comments|length > 0 %}
                 <h4 class="post-details-comment-count">Total Comments: {{ post.total_comments }}</h4>
-                    <!-- Add commment form -->
-                    {% if session.user %}
-                        <form method="POST" class="post-details-comment-form" {% if user_post_page is defined %}
-                            action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[user_post_page, user_plus_page, active_tab]) }}"
-                            {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
-                            <textarea class="form-control comment-form-textarea" id="comment_content"
-                                name="comment_content" placeholder="Enter Your Comment Here" minlength="10"
-                                maxlength="200" required></textarea>
-                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                        </form>
-                    {% else %}
+                <!-- Add commment form -->
+                {% if session.user %}
+                <form method="POST" class="post-details-comment-form" {% if user_post_page is defined %}
+                    action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[user_post_page, user_plus_page, active_tab]) }}"
+                    {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"
+                    {% endif%}>
+                    <textarea class="form-control comment-form-textarea" id="comment_content" name="comment_content"
+                        placeholder="Enter Your Comment Here" minlength="10" maxlength="200" required></textarea>
+                    <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                </form>
+                {% else %}
 
-                        <div class="comment-form-alt">
-                            <p>You must <a href="{{ url_for('sign_in') }}">sign in</a> to comment on posts</p>
-                        </div>
-                    {% endif %}
+                <div class="comment-form-alt">
+                    <p>You must <a href="{{ url_for('sign_in') }}">sign in</a> to comment on posts</p>
+                </div>
+                {% endif %}
 
-                    <!-- Comment display section -->
-                    {% for comment in post.comments|reverse %}
-                    <div class="post-details-comment">
-                        <h3>{{ comment.comment_content}}</h3>
-                        <div class="post-details-comment-bottom-row">
-                            <h4>By {{ comment.author }}</h4>
-                            <h4>{{ comment.post_date }}</h4>
-                        </div>
+                <!-- Comment display section -->
+                {% for comment in post.comments|reverse %}
+                <div class="post-details-comment">
+                    <h3>{{ comment.comment_content}}</h3>
+                    <div class="post-details-comment-bottom-row">
+                        <h4>By {{ comment.author }}</h4>
+                        <h4>{{ comment.post_date }}</h4>
                     </div>
-                    {% endfor %}
-                    <!-- Alt section if there is no comments -->
-                    {% else %}
-                    <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
-                    {% if session.user %}
-                        <form method="POST" class="post-details-comment-form" {% if user_post_page is defined %}
-                            action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[user_post_page, user_plus_page, active_tab]) }}"
-                            {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"{% endif%}>
-                            <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
-                                name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
-                                maxlength="200" required></textarea>
-                            <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
-                        </form>
-                    {% else %}
+                </div>
+                {% endfor %}
+                <!-- Alt section if there is no comments -->
+                {% else %}
+                <h4 class="post-details-comment-count">There are no comments yet. Be the first!</h4>
+                {% if session.user %}
+                <form method="POST" class="post-details-comment-form" {% if user_post_page is defined %}
+                    action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[user_post_page, user_plus_page, active_tab]) }}"
+                    {% else %}action="{{ url_for('add_comment', post_id=post._id, pagination_arguments=[page]) }}"
+                    {% endif%}>
+                    <textarea class="form-control comment-form-textarea" type="text" id="comment_content"
+                        name="comment_content" placeholder="Enter Your Comment Here" rows="" cols="" minlength="10"
+                        maxlength="200" required></textarea>
+                    <button class="form-control button-confirm comment-form-button" type="submit">Submit</button>
+                </form>
+                {% else %}
 
-                        <div class="comment-form-alt">
-                            <p>You must <a href="{{ url_for('sign_in') }}">sign in</a> to comment on posts</p>
-                        </div>
-                    {% endif %}
+                <div class="comment-form-alt">
+                    <p>You must <a href="{{ url_for('sign_in') }}">sign in</a> to comment on posts</p>
+                </div>
+                {% endif %}
                 {% endif %}
             </div>
         </div>

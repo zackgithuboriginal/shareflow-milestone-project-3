@@ -15,8 +15,7 @@
             minlength="8" maxlength="50" value="{{ post.post_title }}" required>
         <label class="post-form-label" for="post_content">Post Content</label>
         <textarea class=" form-control post-form-textarea" id="post_content" name="post_content"
-            placeholder="Post Content" minlength="20" maxlength="300"
-            required>{{ post.post_content }}</textarea>
+            placeholder="Post Content" minlength="20" maxlength="300" required>{{ post.post_content }}</textarea>
         <label class="post-form-label" for="post_topic">Post Topic</label>
         <select class=" form-control" name="post_topic" id="post_topic">
             {% for topic in topics %}
@@ -28,8 +27,7 @@
             {% endfor %}
         </select>
         <div class="form-buttons">
-            <a 
-            class="form-control button-cancel"
+            <a class="form-control button-cancel"
                 href="{{ url_for('close_post_edit', post_id=post._id, pagination_arguments=pagination_arguments ) }}">Cancel
                 Changes</a>
             <button class="form-control button-confirm" type="submit">Save Changes</button>

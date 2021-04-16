@@ -123,7 +123,8 @@
 <!-- Create post floating action button -->
 <div class="create-post-button-container">
     <div class="absolute-div">
-        <a id="floating-create-post" {% if session.user %}href="{{ url_for('create_post') }}"{% else %}href="{{ url_for('sign_in') }}"{% endif %} class="create-post-action-button">
+        <a id="floating-create-post" {% if session.user %}href="{{ url_for('create_post') }}"
+            {% else %}href="{{ url_for('sign_in') }}" {% endif %} class="create-post-action-button">
             <i class="fas fa-plus"></i>
         </a>
         <h3 id="floating-create-post-label">Create Post</h3>
