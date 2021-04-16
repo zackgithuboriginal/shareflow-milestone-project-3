@@ -387,43 +387,46 @@ def edit_post(post_id, pagination_arguments):
     The pagination arguments are passed to allow the page to
      be rendered with the correct active tab and correct pagination status
     """
+    if 'user' in session:
+        # pagination_arguments is split from a string to an array of values
 
-    # pagination_arguments is split from a string to an array of values
+        split_pagination_arguments = pagination_arguments.replace(
+            '[', '').replace(']', '').replace("'", '').replace(
+            ' ', '').split(',')
 
-    split_pagination_arguments = pagination_arguments.replace(
-        '[', '').replace(']', '').replace("'", '').replace(
-        ' ', '').split(',')
+        # If the user has submitted the edit post form a function will
+        # be called to process the form's values
 
-    # If the user has submitted the edit post form a function will
-    # be called to process the form's values
+        if request.method == 'POST':
+            if process_post_edit(post_id) == 'success':
 
-    if request.method == 'POST':
-        if process_post_edit(post_id) == 'success':
+                # If the number of values in the array is 3, the account
+                # page will be rendered using the relevant parameters
 
-            # If the number of values in the array is 3, the account
-            # page will be rendered using the relevant parameters
+                if len(split_pagination_arguments) == 3:
+                    return redirect(url_for(
+                        'account',
+                        post_id=post_id,
+                        active_tab=split_pagination_arguments[2],
+                        user_plus_page=split_pagination_arguments[1],
+                        user_post_page=split_pagination_arguments[0],
+                        _anchor=post_id,
+                        ))
+                else:
 
-            if len(split_pagination_arguments) == 3:
-                return redirect(url_for(
-                    'account',
-                    post_id=post_id,
-                    active_tab=split_pagination_arguments[2],
-                    user_plus_page=split_pagination_arguments[1],
-                    user_post_page=split_pagination_arguments[0],
-                    _anchor=post_id,
-                    ))
-            else:
+                    # Otherwise the posts page will be rendered
 
-                # Otherwise the posts page will be rendered
+                    return redirect(url_for('posts', post_id=post_id,
+                                    page=split_pagination_arguments[0],
+                                    _anchor=post_id))
 
-                return redirect(url_for('posts', post_id=post_id,
-                                page=split_pagination_arguments[0],
-                                _anchor=post_id))
-
-    post = db.posts.find_one({'_id': ObjectId(post_id)})
-    topics = db.topics.find()
-    return render_template('edit-post.html', post=post, topics=topics,
-                           pagination_arguments=pagination_arguments)
+        post = db.posts.find_one({'_id': ObjectId(post_id)})
+        topics = db.topics.find()
+        return render_template('edit-post.html', post=post, topics=topics,
+                            pagination_arguments=pagination_arguments)
+    else: 
+        flash('You must be signed in to edit posts')
+        return redirect(url_for('posts'))
 
 
 @app.route('/close-post-edit/<post_id>/<pagination_arguments>')
