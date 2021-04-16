@@ -315,7 +315,7 @@ def create_post():
         return render_template('create-post.html', topics=topics)
     
     else: 
-        flash('You ust be signed in to create a post')
+        flash('You must be signed in to create a post')
         return redirect(url_for('posts'))
 
 
