@@ -3,9 +3,9 @@
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/device-mockup.PNG)
 
 ## Website Description
-This website is designed to be a text-based social media website for people to share their thoughts and opinions on a range of topics and to interact and engage with other users and their posts. Designing the website I intended to maximise the clarity and visibility of the user’s content and the ease and usability of interaction and navigation above all other considerations. 
+This website is designed to be a text-based social media website where people can come to share their thoughts and opinions on a range of topics and to interact and engage with other users and their posts. Designing the website I intended to maximise the clarity and visibility of the user’s content and the ease and usability of interaction and navigation above all other considerations. 
 
-The thinking behind this process was that as a social media site the content and the ease of creating, navigating and filtering that content would be integral to the user experience of the website. To pursue this ideal the website has several features aimed to elevate the importance and visibility of user’s posts and to allow them to view and interact with posts in a number of different ways.
+The thinking behind this process was that as a social media site the content and the ease of creating, navigating and filtering that content would be integral to the user experience of the website. To pursue this ideal the website has several features aimed to elevate the importance and visibility of user’s posts and to allow them to view and interact with posts in a number of different ways, including voting and commenting.
 
 ## User Experience / UX
 ### User Stories
@@ -49,31 +49,32 @@ The thinking behind this process was that as a social media site the content and
 ### Design
 
 #### Design Overview
-There were two driving principles behind the design were firstly to create an environment in which there is a clear hierarchy of importance with user’s content and posts being foremost in importance and secondly to create an easily understandable and intuitive navigation and interaction interface.
+There were two driving principles behind the design of this website and these were firstly to create an environment in which there is a clear hierarchy of importance with user’s content and posts being foremost and secondly to create an easily understandable and intuitive navigation and interaction interface.
 
 #### Colour Scheme
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/shareflow-primary-colour-scheme.png)
 #### Primary Colours
 These three colours are the primary colours of the website, they make up the background colours of the majority of visual elements on the page. The three primary colours, are, as above in the image #FFFFFF, #89A6FB and #1B263B. 
 
-#89A6FB is used as the main branding colour of the website. This colour was chosen as it’s a very calm colour that wouldn’t be too distracting or too eye-catching for the user. As well as that, as a purple shade, when it is combined with white text it creates a minimal and in my opinion very clean aesthetic. This aesthetic was something that I valued and placed importance on as creating a clean interface with clear hierarchical importance was something I valued in the design of this project. 
+#89A6FB is used as the main branding colour of the website. This colour was chosen as it’s a very calm colour that wouldn’t be too distracting or too eye-catching for the user. As well as that, as a purple shade, when it is combined with white text it creates a minimal and in my opinion very clean aesthetic. This aesthetic was something that I valued and placed importance on as creating a clean interface that allowed for clear hierarchical importance was something I valued in the design of this project. 
 
-#FFFFFF, or plain white was used to highlight elements that were related of central importance to the user or the page that they were on. For instance, on the Home page, the elements that hold the most importance to the user were, the post-filtering and sorting options as well as the posts themselves. These elements, therefore, are primarily white, which when contrasted against #1B263B, a dark navy colour and the background colour of each page stand out very clearly and immediately pop into the eye of the user. 
+#FFFFFF, or plain white was used to highlight elements that were related of central importance to the user or the page that they were on. For instance, on the Home page, the elements that hold the most importance to the user were the post-filtering and sorting options as well as the posts themselves. These elements, therefore, are primarily white, which when contrasted against #1B263B, a dark navy colour and the background colour of each page stand out very clearly and immediately pop into the eye of the user. 
 
-As a user scrolls down the page or navigates through the website their eye is immediately drawn to the most important information and most important points of interaction which is a feature that was very important to achieve to help the user understand and feel comfortable using the site and browsing the site’s content.
+As a user scrolls down the page or navigates through the website their eye is immediately drawn to the most important information and most important points of interaction which is a feature that was very important for the website to achieve  in order to help the user understand and feel comfortable using the site and browsing the site’s content.
 
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/shareflow-topics-colour-scheme.png)
 
-#### Secondary colours in use in the site exist to create a distinction between posts relating to different topics. I decided to undertake this route, with a clear visual cue indication the post’s topic as I believed that it could foster an almost subconscious and very quick understanding of a post’s content and allow a user who was scrolling through the website to quickly find posts that might interest them without necessarily having to use the filtering functionality.
+#### Secondary colours 
+The secondary colours in use in the site exist to create a distinction between posts relating to different topics. This decision was made in an attempt to aid the user's quick digestion of a post's basic information. With a clear visual cue indicating the post’s topic, I believed that an almost subconscious and very quick understanding of a post’s content could be fostered that would allow a user who was scrolling through the website to quickly find posts that might interest them without necessarily having to use the filtering functionality.
 
 #### Typography
-The two fonts in use on the website are Montserrat and Libre Franklin. These two fonts are visibly distinct although both were chosen as clean, minimal and easy to read fonts. Montserrat is used throughout the site in areas that needed to be highlighted and set apart in times of importance and visibility. It is used in navigation elements, headings and titles as well as in form elements. Libre Franklin on the other hand is a more visually simple font and so is used in paragraph elements and other locations where the user would be expected to read a long section of text. 
+The two fonts in use on the website are Montserrat and Libre Franklin. These two fonts are visibly distinct although both were chosen as clean, minimal and easy to read fonts. Montserrat is used throughout the site in areas that needed to be highlighted and set apart in times of importance and visibility. It is used in navigation elements, headings and titles as well as in form elements. Libre Franklin on the other hand is a more visually simple font and so is used in paragraph elements and other locations where the user would be expected to read a longer section of text. 
 
 #### Imagery
 There aren’t many images used on the website. Following the idea of being more of a message board than a typical social media website, the features and functionality of the website are primarily centred around the sharing of ideas and text, as opposed to the sharing of imagery.
 There are however user avatars and pictures. Whenever a user registers an account they are given a placeholder avatar. If they then go to the account page they can either choose a different avatar or enter a URL linking to an image that they wish to use. After they submit the form their account image will be updated and on any post that they make their image will be displayed. 
 
-The user’s image is also displayed on the user’s account page itself, alongside some of the user’s profile statistics and information to encourage the user to create a sense of identity and ownership with the account.
+The user’s image is also displayed on the user’s account page itself, alongside some of the user’s profile statistics and information with the aim of encouraging the user to create a sense of identity and ownership with the account. This sense of identity would also enable different users to connect as their avatars and images will be displayed on their posts, so by scrolling down the home page it would be more akin to seeing a community of users sharing ideas than an anonymous board.
 
 ### Wireframes
 
@@ -118,13 +119,15 @@ The wireframes for the website were developed using [Figma](https://www.figma.co
 
 ### Database Design / Data Modelling
 
+![Image of data schema diagram](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/data_schema.png)
+
 The project uses a MongoDB nonrelational database to store its data. Data is stored across three collections, the Posts collection, the Users collection and the Topics collection.
 
 #### Posts Collection
 
 ![Image of post collection object](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/post_data_object.PNG)
 
-The posts collection is where all of the posts made by users are stored in the database. It uses MongoDB's ObjectId value as a unique identifier and stores all other details necessary to the display and tracking of the post in its data fields.
+The posts collection is where all of the posts made by users are stored in the database. It uses MongoDB's ObjectId value as a unique key and stores all other details necessary to the display and tracking of the post in its data fields.
 
     id:             ObjectId: the unique identifier of each post object, generated by MongoDB  
     post_title:     string: contains the post's title, input by the user in the post creation form  
@@ -190,7 +193,7 @@ The topics collection and data record are currently very basic. I have included 
 
 ## Features
 
-### Home Page
+#### Home Page
 
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/home_page.png)
 
@@ -200,46 +203,45 @@ To achieve the first goal I aimed to make the purpose of the home page as simple
 
 The second goal of the home page to be the primary post navigation screen is achieved by utilising several smaller features to make the functionality of viewing and exploring posts as convenient and intuitive as possible.
 
-### Post Filter and Sort Toolbar
+#### Post Filter and Sort Toolbar
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/filter-feature.PNG)
 
-At the top of the home page is a toolbar containing two dropdown options that allow users to customise the appearance and display of posts to improve the page’s practical usability and make it more user friendly. The User can both sort and filter the posts displayed. The options for sorting posts are to sort by date created, which is the default setting of the page and which will display the newest posts at the top of the page with older ones chronologically below it, or by most popular. The Most popular sort uses the voting system attached to each post and sorts the posts from most votes tallied to least. This is a very useful tool to find the most interesting or engaging posts as opposed to just the newest and can provide a very different post browsing experience.
+At the top of the home page is a toolbar containing two dropdown options that allow users to customise the appearance and display of posts to improve the page’s practical usability and make the user experience more comprehensive. The User can both sort and filter the posts displayed. The options for sorting posts are to sort by date created, which is the default setting of the page and which will display the newest posts at the top of the page with older ones chronologically below it, or by most popular. The Most popular sort uses the voting system attached to each post and sorts the posts from most votes tallied to least. This is a very useful tool to find the most interesting or engaging posts as opposed to just the newest and can provide a very different post browsing experience.
 The filter options for the posts, allow the user to display all of the posts, across all topics, or by one of the five topics provided. The five topics being Sports, Entertainment, Global News, Politics and General Thoughts. This filtering function allows the user to explore posts relating to one topic that may interest them in particular and increases the usefulness of the post display.
 
-### Pagination 
+#### Pagination 
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/pagination-features.PNG)
 
-The home page makes use of pagination to display only a certain number of posts at a time to the user. It does this for a couple of reasons. Number one, instead of displaying all of the posts initially and forcing the user’s browser to load them all at once, which would be increasingly impractical if there was a large number of posts it will load the posts 10 at a time to lower the demand on the browser. Number two it will allow a user to easily navigate back and forth between the pages to find posts that they like without having to scroll and search for the post.
+The home page makes use of pagination to display only a certain number of posts at a time to the user. It does this for a couple of reasons. Number one, instead of displaying all of the posts initially and forcing the user’s browser to load them all at once, which would be increasingly impractical if there was a large number of posts, it will load the posts 10 at a time to lower the demand on the browser. Number two it will allow a user to easily navigate back and forth between the pages to find posts that they like without having to scroll and search for the post.
 
-### Create post floating action button
+#### Create post floating action button
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/fab-feature.PNG)
 
 This floating action button is a fixed element on the bottom right of the screen. Since it is fixed it will stay in position even as a user scrolls down the page. When the user hovers over the button a label will appear with the text ‘Create a Post’, and when the user clicks the button the page will be redirected directly to the Create a Post page. This button is there to add another option to navigate to the post creation page and provides an option for mobile users to create a post without having to reach the top of the screen which can be inconvenient and unergonomic.
 
-### Create post page
+#### Create post page
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/create_post_page.png)
 
 The create post page is very simple and consists of a single form titled ‘Post Details’. The form is where the user can input the details of the post. The form contains an input box for the title, a Textarea input for the post content and a dropdown selection for the post topic. The dropdown selection is populated with the five topics available. To ensure that the website’s posts both maintain a consistent size on the page as well as to ensure that the posts maintain a reasonable standard of effort there are minimum character requirements for both the title and the post content. When the user submits the page they will automatically be directed to the home page and the newest posts.
 
-### Edit Post Page
+#### Edit Post Page
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/edit_post_page.png)
 
 The edit post page is similar to the create post page, it contains a form in the same format and styling. When a user selects the option to edit their post, the page loads with the existing details of the post prefilled and editable. When the user has edited the post to their satisfaction they can submit and they will be redirected to the posts details page for that post.
 
-
-### 404 Page
+#### 404 Page
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/404_page.png)
 
 If a user attempts to navigate to a page that either does not exist or has been deleted the flask routing will redirect them to the 404 response page. This page is very basic and acts as a landing page in the case of a load error. It consists of a header text explaining that the page the user has tried to load doesn’t exist and a subheading providing a countdown to when the page will automatically redirect to the home page. The subheading also contains a link to the home page in the case that the page does not automatically redirect. 
 
-### Sign in / Registration Page 
+#### Sign in / Registration Page 
 
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/sign_in_page.png)
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/register_page.png)
 
 The sign in and registration pages are mirrored versions of themselves. They consist of a central card containing a form, in the case of the sign-in page, consisting of two input fields one for their username and one for their password and in the case of the registration form three fields one for their desired username, one for their intended password and another to repeat their password for validation. In the case that the user submits a username that is not available or that they submit passwords that are not matching they will receive a validation message informing them that their input does not meet the requirements. 
 
-### Post Details Page
+#### Post Details Page
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/post_details_page.png)
 
 The post details page is where a post is displayed when a user selects the ‘View Post’ option from either their profile or from the home page. The page contains the same information as the regular post view with the basic post details as well as the voting button. Additionally, there is a close button on the top right of the card which will return the user to the page that they were on remembering the pagination status of that page.
@@ -247,45 +249,46 @@ The post details page is where a post is displayed when a user selects the ‘Vi
 As well as the post details the page contains a comment section that will display the total comment count if there are any otherwise it will display a placeholder message. The section contains a form where a user can submit a comment and then below that the comments of the post are displayed in chronological order starting with the oldest.
 
 
-### Account Page
+#### Account Page
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_page.png)
 
 The user’s account page is unique to them and generated using data gathered from their interaction with the website and with other user’s posts. The page consists of two sections, the first is the account details section where the user’s username is displayed along with their avatar or chosen image and a display of some statistics relating to the user’s engagement with the website. 
 The second section is the post display container. The post display container consists of a toggleable display that will either display the posts authored by the user, which is the default display or the posts ‘plussed’ by the user. The idea behind the toggleable display is to allow the user to view their posts or to view the posts that they had plussed. This is a useful feature that practically allows a user to save posts that they want to view again in the future simply by voting for it.
 
-### Account details
+#### Account details
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/account_details.PNG)
 
 This is the account details display, it takes values from the user’s database record to inform the total posts made total comments and total votes received. It also displays the length of time since the account was registered.
 
 
-### Display tab
+#### Display tab
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/display_tab.PNG)
 
-There are two display tabs one for users posts and one for posts that the user has voted for. They are displayed in paginated lists and the page will only display one tab at a time. To ensure the user experience is as seamless and intuitive as possible the page will remember the status of both pagination lists as well as the active tab whenever the page reloads or a user navigates back to the page from the post details page.
+There are two display tabs one for users posts and one for posts that the user has voted for. They are displayed in paginated lists and the page will only display one tab at a time. To ensure the user experience is as seamless and intuitive as possible the page will remember the status of both pagination lists as well as the active tab whenever the page reloads or a user navigates back to the page from the post details or edit post pages.
 
-### Avatar Selection
+#### Avatar Selection
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/avatar_select.PNG)
 
-Whenever the user clicks on the account image in the account details section of their account page, a modal will display with a radio selection option of either selecting one of a number of provided avatars or selecting the option to input a URL that leads to an image of their choice. The URL input will automatically validate that the URL relates to an image and that the URL loads an image successfully. If it does not, the user will be alerted that the URL they entered is not valid. This avatar will be displayed on all posts authored by the user to create a sense of a community of people as opposed to just anonymous posts.
+Whenever the user clicks on the account image in the account details section of their account page, a modal will display with a radio selection option of either selecting one of a number of provided avatars or selecting the option to input a URL that leads to an image of their choice. The URL input will automatically validate that the URL relates to an image and that the URL loads an image successfully. If it does not, the user will be alerted that the URL they entered is not valid. This avatar will be displayed on all posts authored by the user to create a sense of a community of members as opposed to just anonymous posts.
 
-### Flash messages
+#### Flash messages
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/flash_message.PNG)
 
 Whenever a user takes an action that causes the page to update or reload such as commenting, editing a post, signing in, sign out etc. The page will display a message in the centre of the screen informing the user of the success or the failure of the action.
 
-### Post Card
+#### Post Card
 ![Image of responsive page mockups](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/post-feature.PNG)
 
 The Post card itself is the primary way in which a post is displayed. The post contains a plus that can be clicked on to vote on the post, this will also enable the post to be displayed in the plussed posts tab of the user’s account page. It also contains a button that will navigate the user to the post details page for that post where the post's comments can be seen and comments can be made. 
 
 If the user is the author of the post in the top right-hand corner of the card there will be a cog icon displayed, that, when clicked will display a dropdown menu containing the post's edit and delete options.
 
-### Logical routing behaviour
-There are some interactions with the site that in order to provide a satisfying and logical experience for the user needs to recall the user’s previous actions. The most complex example of this is when a user on their account page changes the active tab of the account page and changes the active page of the pagination menu, then proceeds to navigate into the post details page of a post and open up the edit post page for that post. In this instance, the website will recall the previous user’s path to the page and the account page’s pagination and tab arguments from when the user was last on the page. To ensure a satisfying user experience the page will return the user to the post details page when the edit page is closed and then return the user to the account page with the correct pagination status and with the correct tab open when the user closes the post details page.
+#### Logical routing behaviour
+There are some interactions with the site that in order to provide a satisfying and logical experience for the user needs to recall the user’s previous actions. The most complex example of this is when a user on their account page changes the active tab of the account page and changes the active page of the pagination menu, then proceeds to navigate into the post details page of a post and open up the edit post page for that post. In this instance, the website will recall the previous user’s path to the page and the account page’s pagination and tab arguments from when the user was last on the page. To ensure a satisfying user experience the page will return the user to the post details page when the edit post page is closed and then return the user to the account page with the correct pagination status and with the correct tab open when the user closes the post details page.
 
 
 ## Technologies Used
+
 
 ### Languages Used
 
@@ -293,6 +296,7 @@ There are some interactions with the site that in order to provide a satisfying 
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 -   [JavaScript](https://www.javascript.com/)
 -   [Python](https://www.python.org/)
+
 
 ### Frameworks, Libraries & Programs Used
 
@@ -355,7 +359,7 @@ There are some interactions with the site that in order to provide a satisfying 
 
 20. [Multi Device Website Mockup Generator](https://techsini.com/multi-mockup/index.php)
 - This website was used to generate the image at the top of the readme.md file.
-- 
+
 21. [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 - Jinja is used by and in conjunction with Flask to enable templating of HTML pages.
 
@@ -412,6 +416,7 @@ At the end of the project, the code was put through CSS and HTML validators to e
 #### script.js validation
 ![Image of Js linter results](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/script.js-validation.png)
 
+
 ### Performance Testing
 
 To ensure that the website performed well and loaded all pages quickly I tested each page using [Lighthouse](https://developers.google.com/web/tools/lighthouse) where all pages received positive results
@@ -436,7 +441,6 @@ To ensure that the website performed well and loaded all pages quickly I tested 
 
 #### Edit Post Page
 ![Image of edit post page performance test](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/lighthouse-edit.PNG)
-
 
 
 ### Testing User Stories from User Experience (UX) Section
@@ -580,7 +584,6 @@ If the user selects one of the provided avatars and clicks the save button then 
 
 #### 11.    Goal: As a repeat user I would like to be able to use an image URL to generate an image as my avatar.
 
-
 **Expected:** The user should be able to directly input the URL of an image on the internet, and then have that image be used as their account avatar on their account page and on any posts they make.
 
 **Result:** On the account page the user can select the ‘Update Image’ option just below their current avatar. After selecting the option the user will be presented with a modal window offering two options to change their avatar. The first is to enter the URL of an image that they wish to use and the second is to select one of the provided avatars. 
@@ -599,11 +602,11 @@ If the user selects the URL input option and then inserts a URL for an image int
 
 ![Image of the admin's page view](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/user_admin.PNG)
 
+
 ### Manual Functionality Testing
 
-
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 Home Page | Click on navbar ShareFlow brand | Page reloads | Pass
 Home Page | Select 'Most Popular' option in sort by field | Page reloads with posts sorted in descending order of 'plusses', sort by field displays 'Most Popular' | Pass
 Home Page | Select 'Entertainment' option in filter field | Page reloads with only posts with topic of 'Entertainment' displayed, filter field displays 'Entertainment'| Pass
@@ -624,7 +627,7 @@ Home Page | Navigate to the second page of posts and click the 'edit post' optio
 
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 Create Post Page | Click the 'Add' button without filling in all three fields | Nothing happens, validation messages appear on fields informing user they are required. | Pass
 Create Post Page | Click the Post Topic field. | Dropdown select menu appears with topic options. | Pass
 Create Post Page | Fill out all three fields and click 'Add' button.| Browser navigates to home page. Page displays message informing user that the post was succesfully created. New post is visible at top of page. | Pass
@@ -633,7 +636,7 @@ Create Post Page | Enter 5 characters into the post content field. Then click 'A
 
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 Edit Post Page | Delete all of the text in the Post Title field. Then click the 'Save Changes' button. | Nothing happens, validation message appears informing user that the field is required.| Pass
 Edit Post Page | Delete all of the text in the Post Title field except for five characters. Then click the 'Save Changes' button. | Nothing happens, validation message appears below post title field informing user that there needs to be a minimum 8 characters in the title. | Pass
 Edit Post Page | Change the Post Tite and Post Content field inputs and Click the 'Save Changes' button. | Browser redirects user to their previous location, directly to the edited post and the page's previous pagination status. Post's content reflects the new changes and page displays a message informing user that the post was updated succesfully. | Pass
@@ -642,7 +645,7 @@ Edit Post Page | Click the 'Sign Out' link in the navbar and then hit the return
 
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+--------- | ------------- | ------------- | ---------
 Account Page | Click the 'Plussed Posts' tab | The displayed posts on the page will change from posts authored by the user to posts that the user has 'plussed' | Pass
 Account Page | Click the 'Plussed Posts' tab, then navigate to the second page of Plussed Posts. | The page will display the posts that the user has 'plussed' and then the page will reload with the 'Plussed Posts' tab active and display the next 10 posts. | Pass
 Account Page | Navigate to the second page of posts in the 'Your Posts' tab, then switch to the 'Plussed Posts' tab and navigate to the second page of 'Plussed' posts. Then return to the 'Your Posts' tab. | The page will display the second page of 'Your Posts' posts and then display the 'Plussed Posts' tab. When the user navigates to the second page of posts the page will reload with the plussed posts tab active. When the user returns to the 'Your Posts' tab the tab will display the second page of 'Your Posts' posts. | Pass
@@ -659,7 +662,7 @@ Account Page | Click the 'Sign Out' link in the navbar. Then hit the return butt
 
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 Register Page | Click the 'Sign In' link at the bottom of the page. | Browser will navigate to the Sign In page| Pass
 Register Page | Enter a username that already exists and submit the form | Page will reload and display a message informing user that the username is unavailable. | Pass
 Register Page | Enter a username that is longer than 15 characters and submit | Box will outline in red and validation message will appearing informing user of requirements| Pass
@@ -670,7 +673,7 @@ Register Page | Fill out all fields correctly and submit. Then hit the return bu
 
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 Sign In Page | Click the 'Register Now' link at the bottom of the page. | Browser will navigate to the Registration page| Pass
 Sign In Page | Submit the form without filling in fields | Nothing will happen, input fields will display validation message informing user that they are required | Pass
 Sign In Page | Submit the form with username filled in but with incorrect password | Page will reload and display message of "Incorrect Account Details" | Pass
@@ -680,7 +683,7 @@ Sign In Page | Submit the form with correct details and then hit return button o
 
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 Post Details Page | Click on the + icon while not signed in | Page reloads and displays a message that you must besigned in to vote | Pass
 Post Details Page | Click on the + icon while signed in | Page reloads, plus icon is replaced with a tick icon and vote tally below icon will be increased by 1 | Pass
 Post Details Page | Click on the tick icon | Page reloads, tick icon is replaced with a plus icon and vote tally below iccon will be decreased by 1 | Pass
@@ -690,7 +693,7 @@ Post Details Page | If not signed in click the sign in link in the comment secti
 Post Details Page | Type a message into the textarea and click the 'Submit' button. | Page will reload and display a message informing user that the comment was made successfully. Comment will be displayed at the top of the comment section with all relevant details. | Pass
 
 Page | Action | Expected Result | Result
------------- | ------------- | ------------- | -------------
+-------- | ------------- | ------------- | ---------
 404 Reponse Page | Wait 5 seconds | Browser will navigate to the home page. | Pass
 404 Reponse Page | Click the 'click here' link | Browser will navigate to the home page. | Pass
 
@@ -786,8 +789,8 @@ The project will then be successfully hosted on Heroku and can be accessed by cl
 
 ![Image of the Open App button](https://github.com/zackgithuboriginal/shareflow-milestone-project-3/blob/master/static/images/readme_images/deploy_9.PNG)
 
-### To Connect your Database to the Project
 
+### To Connect your Database to the Project
 
 To connect your project to the MongoDB cluster, log in to your MongoDB account and navigate to the overview tab of the cluster you wish to connect.
 
@@ -815,7 +818,9 @@ Then create an instance of pymongo in your app.py file by entering
      
     mongo = PyMongo(app) 
 
+
 ### To Clone the Repository and Run Locally
+
 #### To Clone Using the Command Line
 
 Navigate to the home page of the repository.
@@ -830,7 +835,7 @@ Make sure that the HTTPS tab is open and click the copy to clipboard button.
 
 Navigate to your IDE and open the directory to which you want to clone the repository
 
-Open the terminal and type "git clone" followed by the contents of the clipboard which will be "https://github.com/zackgithuboriginal/workout-plus-milestone-project-2.git" click enter and the repository will then clone to that directory.
+Open the terminal and type "git clone" followed by the contents of the clipboard which will be "https://github.com/zackgithuboriginal/shareflow-milestone-project-3.git" click enter and the repository will then clone to that directory.
 
     git clone https://github.com/zackgithuboriginal/shareflow-milestone-project-3.git
 
@@ -864,6 +869,7 @@ After adding all of the necessary settings to the env.py the project will run lo
 
     python3 app.py
 
+
 ## Credits
 
 ### Code
@@ -880,9 +886,11 @@ After adding all of the necessary settings to the env.py the project will run lo
 
 -    [Flask Paginate Tutorial](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9) to get an understanding of how to implement the flask paginate library
 
+
 ### Content
 
 -   All of the text content on the site was produced by myself, or friends and family when testing.
+
 
 ### Media
 
