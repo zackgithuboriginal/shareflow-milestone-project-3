@@ -160,38 +160,43 @@ def register():
     If the function does not receive a post request
     it will instead render the register.html page
     """
+    if 'user' not in session:
+        if request.method == 'POST':
+            existing_user = \
+                db.users.find_one({'username': request.form.get(
+                                    'username').lower()
+                                })
 
-    if request.method == 'POST':
-        existing_user = \
-            db.users.find_one({'username': request.form.get(
-                                'username').lower()
-                               })
+            if existing_user:
+                flash('Username unavailable.')
+                return redirect(url_for('register'))
 
-        if existing_user:
-            flash('Username unavailable.')
-            return redirect(url_for('register'))
+            register = {
+                'username': request.form.get('username').lower(),
+                'password': generate_password_hash(request.form.get('password'
+                                                                    )),
+                'voted': [],
+                'account_image': '/static/images/avatar_images/avatar_1.png',
+                'directly_input_url': False,
+                'registration_date': datetime.now().strftime('%m/%d/%Y'),
+                'posts_made': 0,
+                'comments_made': 0,
+                'plusses': 0,
+                }
 
-        register = {
-            'username': request.form.get('username').lower(),
-            'password': generate_password_hash(request.form.get('password'
-                                                                )),
-            'voted': [],
-            'account_image': '/static/images/avatar_images/avatar_1.png',
-            'directly_input_url': False,
-            'registration_date': datetime.now().strftime('%m/%d/%Y'),
-            'posts_made': 0,
-            'comments_made': 0,
-            'plusses': 0,
-            }
+            db.users.insert_one(register)
 
-        db.users.insert_one(register)
+            session['user'] = request.form.get('username').lower()
 
-        session['user'] = request.form.get('username').lower()
+            flash('Registration Complete')
+            return redirect(url_for('posts'))
 
-        flash('Registration Complete')
+        return render_template('register.html')
+        
+    else: 
+        flash('You are already signed in.')
         return redirect(url_for('posts'))
 
-    return render_template('register.html')
 
 
 @app.route('/edit-avatar/<active_tab>/<user_plus_page>/<user_post_page>',
