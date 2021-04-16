@@ -46,6 +46,16 @@ def page_not_found(e):
     return render_template('404.html')
 
 
+@app.errorhandler(500)
+def internal_server_error(e):
+    """
+    Route responsible for handling 500 errors
+    Renders 500.html page
+    """
+
+    return render_template('500.html')
+
+
 @app.route('/')
 @app.route('/posts')
 def posts():
@@ -945,7 +955,7 @@ def account(post_id, active_tab):
             the posts list and the plusses list
     """
 
-    if session['user']:
+    if 'user' in session:
         user = db.users.find_one({'username': session['user']})
         username = user['username']
 
@@ -1086,8 +1096,8 @@ def account(post_id, active_tab):
                     pagination_posts=pagination_posts,
                     _anchor='#' + post_id,
                     )
-
-    return redirect(url_for('sign_in'))
+    else:
+        return redirect(url_for('sign_in'))
 
 
 def alertUser(key):
