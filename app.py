@@ -46,16 +46,6 @@ def page_not_found(e):
     return render_template('404.html')
 
 
-@app.errorhandler(500)
-def internal_server_error(e):
-    """
-    Route responsible for handling 500 errors
-    Renders 500.html page
-    """
-
-    return render_template('500.html')
-
-
 @app.route('/')
 @app.route('/posts')
 def posts():
