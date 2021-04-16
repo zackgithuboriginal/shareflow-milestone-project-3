@@ -192,7 +192,7 @@ def register():
             return redirect(url_for('posts'))
 
         return render_template('register.html')
-        
+
     else: 
         flash('You are already signed in.')
         return redirect(url_for('posts'))
@@ -320,9 +320,13 @@ def create_post():
     This view handles rendering the create post page
     It gets the list of topics from the database to ouput as select options
     """
-
-    topics = list(db.topics.find())
-    return render_template('create-post.html', topics=topics)
+    if 'user' in session:
+        topics = list(db.topics.find())
+        return render_template('create-post.html', topics=topics)
+    
+    else: 
+        flash('You ust be signed in to create a post')
+        return redirect(url_for('posts'))
 
 
 @app.route('/add-post', methods=['GET', 'POST'])
